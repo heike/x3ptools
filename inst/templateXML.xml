@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<p:ISO5436_2 xmlns:p="http://www.opengps.eu/2008/ISO5436_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengps.eu/2008/ISO5436_2 http://www.opengps.eu/2008/ISO5436_2/ISO5436_2.xsd">
+  <Record1>
+    <Revision>ISO5436:2000</Revision>
+    <FeatureType>SUR</FeatureType>
+    <Axes>
+      <CX>
+        <AxisType>I</AxisType>
+        <DataType>D</DataType>
+        <Increment>1.5625</Increment>
+        <Offset>0</Offset>
+      </CX>
+      <CY>
+        <AxisType>I</AxisType>
+        <DataType>D</DataType>
+        <Increment>1.5625</Increment>
+        <Offset>0</Offset>
+      </CY>
+      <CZ>
+        <AxisType>A</AxisType>
+        <DataType>D</DataType>
+        <Increment>1</Increment>
+        <Offset>0</Offset>
+      </CZ>
+    </Axes>
+  </Record1>
+  <Record2>
+    <Date>2013-12-26T16:06:00</Date>
+    <Creator>Creator Name</Creator>
+    <Instrument>
+      <Manufacturer>Manufacturer Name</Manufacturer>
+      <Model>Model</Model>
+      <Serial>Serial</Serial>
+      <Version>Version</Version>
+    </Instrument>
+    <CalibrationDate>Date of Calibration</CalibrationDate>
+    <ProbingSystem>
+      <Type>Type</Type>
+      <Identification>Identification</Identification>
+    </ProbingSystem>
+    <Comment>comment</Comment>
+  </Record2>
+  <Record3>
+    <MatrixDimension>
+      <SizeX>501</SizeX>
+      <SizeY>1588</SizeY>
+      <SizeZ>1</SizeZ>
+    </MatrixDimension>
+    <DataLink>
+      <PointDataLink>bindata/data.bin</PointDataLink>
+      <MD5ChecksumPointData>23AC292B62AD68A884D13499BB59AE3C</MD5ChecksumPointData>
+    </DataLink>
+  </Record3>
+  <Record4>
+    <ChecksumFile>md5checksum.hex</ChecksumFile>
+  </Record4>
+</p:ISO5436_2>

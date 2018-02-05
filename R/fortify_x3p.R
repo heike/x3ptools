@@ -1,0 +1,46 @@
+#' Convert an x3p file into a data frame
+#' 
+#' An x3p file consists of a list with meta info and a 2d matrix with scan depths. 
+#' fortify turns the matrix into a data frame, using the parameters of the header as necessary.
+#' @param x3p a file in x3p format as returned by function read_x3p
+#' @return data frame with variables x, y, and value and meta function in attribute
+#' @export
+#' @examples 
+#' data(br411)
+#' br411_fort <- fortify_x3p(br411)
+#' head(br411_fort)
+fortify_x3p <- function(x3p) {
+  info <- x3p$header.info
+
+  df <- data.frame(expand.grid(
+    x=1:info$sizeX,
+    y=info$sizeY:1), 
+    value=as.vector(x3p$surface.matrix))
+  df$y <- (df$y-1) * info$incrementY
+  df$x <- (df$x-1) * info$incrementX
+  
+  attr(df, "header.info") <- info
+  attr(df, "feature.info") <- x3p$feature.info
+  attr(df, "general.info") <- x3p$general.info
+  
+  df
+}
+
+#' Convert  a data frame into an x3p file
+#' 
+#' @param dframe  data frame
+#' @return x3p object
+#' @export
+unfortify_x3p <- function(dframe) {
+  x3p <- attributes(dframe)[-(1:3)]
+  # first three attributes are names, row.names and class, we want to keep the others
+  
+  x3p[["surface.matrix"]] <- matrix(dframe$value, 
+                                      nrow = length(unique(dframe$y)), 
+                                      ncol = length(unique(dframe$x)),
+                                      byrow = TRUE)
+  
+  class(x3p) <- "x3p"
+
+  x3p
+}
