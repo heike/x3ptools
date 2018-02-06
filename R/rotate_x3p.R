@@ -28,3 +28,28 @@ rotate_x3p <- function(x3p, angle=90) {
  
   x3p
 }
+
+
+#' Transpose an x3p object
+#' 
+#' Transpose the surface matrix of an x3p object. Also adjust meta information.
+#' @param x3p x3p object
+#' @export
+transpose_x3p <- function(x3p) {
+
+  x3p$surface.matrix <- t(x3p$surface.matrix)
+    
+    size <- x3p$header.info$sizeX
+    x3p$header.info$sizeX <- x3p$header.info$sizeY
+    x3p$header.info$sizeY <- size
+    
+    inc <- x3p$header.info$incrementX
+    x3p$header.info$incrementX <- x3p$header.info$incrementY
+    x3p$header.info$incrementY <- inc
+    
+    x3p$matrix.info$MatrixDimension$SizeX[[1]] <- x3p$header.info$sizeX
+    x3p$matrix.info$MatrixDimension$SizeY[[1]] <- x3p$header.info$sizeY
+    
+  
+  x3p
+}
