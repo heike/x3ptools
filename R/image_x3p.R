@@ -15,6 +15,7 @@
 #' data(br411)
 #' image_x3p(br411, file = "br411.png")
 image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoom= 0.35, multiply=5, ...) {
+  stopifnot("x3p" %in% class(x3p))
   surface <- x3p$surface.matrix
   z <- multiply*surface # Exaggerate the relief
   y <- x3p$header.info$incrementY * (ncol(z):1) # 

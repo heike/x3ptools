@@ -36,7 +36,8 @@ rotate_x3p <- function(x3p, angle=90) {
 #' @param x3p x3p object
 #' @export
 transpose_x3p <- function(x3p) {
-
+  stopifnot("x3p" %in% class(x3p))
+  
   x3p$surface.matrix <- t(x3p$surface.matrix)
     
     size <- x3p$header.info$sizeX

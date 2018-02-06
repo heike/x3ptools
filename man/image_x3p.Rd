@@ -5,7 +5,7 @@
 \title{Plot x3p object as an image}
 \usage{
 image_x3p(x3p, file = NULL, col = "#cd7f32", size = c(750, 250),
-  zoom = 0.35, ...)
+  zoom = 0.35, multiply = 5, ...)
 }
 \arguments{
 \item{x3p}{x3p object}
@@ -18,6 +18,8 @@ The file extension determines the type of output. Possible extensions are png, s
 \item{size}{vector of width and height}
 
 \item{zoom}{numeric value indicating the amount of zoom}
+
+\item{multiply}{exaggerate the relief by factor multiply}
 
 \item{...}{not used}
 }
