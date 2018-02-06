@@ -39,7 +39,12 @@ unfortify_x3p <- function(dframe) {
                                       nrow = length(unique(dframe$y)), 
                                       ncol = length(unique(dframe$x)),
                                       byrow = TRUE)
-  
+  if (is.null(x3p$header.info)) {
+    x3p$header.info <- list(sizeX = length(unique(dframe$x)),
+                            sizeY = length(unique(dframe$y)),
+                            incrementX = median(diff(unique(dframe$x))),
+                            incrementY = median(diff(unique(dframe$y))))
+  }
   class(x3p) <- "x3p"
 
   x3p

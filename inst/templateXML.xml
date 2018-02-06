@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <p:ISO5436_2 xmlns:p="http://www.opengps.eu/2008/ISO5436_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengps.eu/2008/ISO5436_2 http://www.opengps.eu/2008/ISO5436_2/ISO5436_2.xsd">
   <Record1>
-    <Revision>ISO5436:2000</Revision>
+    <Revision>ISO5436 – 2000</Revision>
     <FeatureType>SUR</FeatureType>
     <Axes>
       <CX>
