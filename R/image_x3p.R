@@ -12,8 +12,8 @@
 #' @import rgl
 #' @importFrom rgl snapshot3d r3dDefaults
 #' @examples 
-#' data(br411)
-#' image_x3p(br411, file = "br411.png")
+#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' image_x3p(logo, file = "logo.png")
 image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoom= 0.35, multiply=5, ...) {
   stopifnot("x3p" %in% class(x3p))
   surface <- x3p$surface.matrix
