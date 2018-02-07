@@ -38,7 +38,7 @@ read_x3p <- function(file) {
   ## Read the data matrix
   sizes <- as.numeric(c(bullet_info_unlist$SizeX[[1]], bullet_info_unlist$SizeY[[1]], bullet_info_unlist$SizeZ[[1]]))
   increments <- as.numeric(c(bullet_info_unlist$CX$Increment[[1]], bullet_info_unlist$CY$Increment[[1]], bullet_info_unlist$CZ$Increment[[1]]))
-  datamat <- matrix(readBin(bullet_data, what = numeric(), n = prod(sizes)),
+  datamat <- matrix(readBin(bullet_data, what = numeric(), n = prod(sizes[1:2])),
                     nrow = sizes[1],
                     ncol = sizes[2]) 
   
