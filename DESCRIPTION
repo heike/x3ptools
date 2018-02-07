@@ -6,14 +6,19 @@ Date: 2018-02-05
 Authors@R: c(person("Heike", "Hofmann", role = c("aut", "cre"),
                       email = "hofmann@iastate.edu"), 
              person("Ganesh", "Krishnan", role = c("ctb"),
-                      email = "ganeshk@iastate.edu"))
-Author: Heike Hofmann [aut, cre], Ganesh Krishnan, CSAFE
+                      email = "ganeshk@iastate.edu"),
+             person("Eric", "Hare", email = "eric@oaiti.org", role = "aut")
+             )
+Author: Heike Hofmann [aut, cre], Ganesh Krishnan, Eric Hare, CSAFE
 Maintainer: Heike Hofmann <hofmann@iastate.edu>
 Description: x3p files are specified in ISO standard 5436:2000 for 3d surface measurements. `x3ptools` allows reading, writing and basic modifications to these objects.
 Depends: R (>= 3.3),
          digest (>= 0.6.15),
          xml2 (>= 1.2.0),
-         rgl (>= 0.98.1),
-License: MIT
+         rgl (>= 0.98.1)
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr         
+License: file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
+

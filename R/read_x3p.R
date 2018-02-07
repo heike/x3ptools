@@ -1,15 +1,15 @@
 #' Read an x3p file into an x3p object
 #' 
 #' @param file The file path to the x3p file
-#' 
+#' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
 #' @importFrom utils unzip
-#' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' 
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 read_x3p <- function(file) {
+  if (!file.exists(file)) stop(sprintf("File %f not found.\n", file))
   ## Create a temp directory to unzip x3p file
   mydir <- tempdir()
   result <- unzip(file, exdir = mydir)

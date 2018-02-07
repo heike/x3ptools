@@ -2,7 +2,7 @@
 % Please edit documentation in R/sample_x3p.R
 \name{sample_x3p}
 \alias{sample_x3p}
-\title{Sampling from an x3p object}
+\title{Sample from an x3p object}
 \usage{
 sample_x3p(x3p, m = 2)
 }
@@ -15,5 +15,5 @@ sample_x3p(x3p, m = 2)
 downsampled x3p object
 }
 \description{
-Sampling from an x3p object
+Sample from an x3p object
 }

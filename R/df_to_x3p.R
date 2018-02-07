@@ -6,10 +6,10 @@
 #' @return data frame with variables x, y, and value and meta function in attribute
 #' @export
 #' @examples 
-#' data(br411)
-#' br411_fort <- fortify_x3p(br411)
-#' head(br411_fort)
-fortify_x3p <- function(x3p) {
+#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo_df <- x3p_to_df(logo)
+#' head(logo_df)
+x3p_to_df <- function(x3p) {
   info <- x3p$header.info
 
   df <- data.frame(expand.grid(
@@ -30,8 +30,9 @@ fortify_x3p <- function(x3p) {
 #' 
 #' @param dframe  data frame
 #' @return x3p object
+#' @importFrom stats median
 #' @export
-unfortify_x3p <- function(dframe) {
+df_to_x3p <- function(dframe) {
   x3p <- attributes(dframe)[-(1:3)]
   # first three attributes are names, row.names and class, we want to keep the others
   

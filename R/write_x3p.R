@@ -36,10 +36,11 @@ write_x3p <- function(x3p, file)
   
   feature.info$Axes$CX$Increment <- header.info$incrementX
   feature.info$Axes$CY$Increment <- header.info$incrementY
+  feature.info$Axes$CZ$Increment <- 1e-6
   
   matrix.info$MatrixDimension$SizeX <- header.info$sizeX
   matrix.info$MatrixDimension$SizeY <- header.info$sizeY
-  matrix.info$MatrixDimension$SizeZ <- as.numeric(matrix.info$MatrixDimension$SizeZ)
+  matrix.info$MatrixDimension$SizeZ <- 1
   # Storing the Working Dir path
   orig.path<- getwd()
   # Creating Temp directory and bin directory

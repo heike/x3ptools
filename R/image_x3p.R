@@ -41,7 +41,7 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoo
     splits <- strsplit(file, split ="\\.")
     extension <- splits[[1]][length(splits[[1]])]
     if (extension=="png") {
-      rgl.snapshot(file=file)
+      rgl.snapshot(filename=file)
     }
     if (extension=="stl") {
       writeSTL(con=file)
