@@ -27,6 +27,8 @@ The file extension determines the type of output. Possible extensions are png, s
 Plot x3p object as an image
 }
 \examples{
+\dontrun{
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 image_x3p(logo, file = "logo.png")
+}
 }
