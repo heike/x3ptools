@@ -1,13 +1,15 @@
 ---
 title: "x3ptools"
 author: "Heike Hofmann, Ganesh Krishnan, Eric Hare"
-date: "February 09, 2018"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
     keep_md: true
 ---
 
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 R package for working with x3p files
 
