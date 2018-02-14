@@ -1,6 +1,6 @@
 Package: x3ptools
 Type: Package
-Title: Tools for working with x3p files
+Title: Tools for Working with 3D Surface Measurements
 Version: 0.0.1
 Date: 2018-02-05
 Authors@R: c(person("Heike", "Hofmann", role = c("aut", "cre"),
@@ -9,9 +9,9 @@ Authors@R: c(person("Heike", "Hofmann", role = c("aut", "cre"),
                       email = "ganeshk@iastate.edu"),
              person("Eric", "Hare", email = "eric@oaiti.org", role = "aut")
              )
-Author: Heike Hofmann [aut, cre], Ganesh Krishnan, Eric Hare, CSAFE
+Author: Heike Hofmann [aut, cre], Ganesh Krishnan [ctb], Eric Hare [aut]
 Maintainer: Heike Hofmann <hofmann@iastate.edu>
-Description: x3p files are specified in ISO standard 5436:2000 for 3d surface measurements. `x3ptools` allows reading, writing and basic modifications to these objects.
+Description: The x3p file format  is specified in ISO standard 5436:2000 to describe 3d surface measurements. 'x3ptools' allows reading, writing and basic modifications to the 3D surface measurements.
 Depends: R (>= 3.3),
          digest (>= 0.6.15),
          xml2 (>= 1.2.0),

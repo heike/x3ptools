@@ -1,0 +1,66 @@
+---
+title: "x3p basics"
+author: "Heike Hofmann"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## The file format 
+
+The x3p file format is an xml based file format created to describe digital surface measurements.  x3p has been developed by OpenFMC (Open Forensic Metrology Consortium, see http://www.openfmc.org/) and has been adopted as ISO ISO5436 – 2000.
+x3p files are a zip archive of a directory consisting of an xml file of meta information and a matrix of numeric surface measurements. 
+
+### x3p objects
+
+Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:
+
+```{r}
+library(x3ptools)
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+names(logo)
+```
+
+The four info objects specify the information for Record1 through Record4 in the xml file. An example for an xml file is provided with the package and can be accessed as 
+`system.file("templateXML.xml", package="x3ptools")`. 
+
+`header.info`  contains the information relevant to interpret locations for the surface matrix:
+
+```{r}
+logo$header.info
+```
+`matrix.info` expands on `header.info` and provides the link to the surface measurements in binary format.
+
+`general.info` consists of information on how the data was captured, i.e. both author and capturing device are specified here.
+
+`feature.info` is informed by the header info and provides the structure for storing the information.
+
+While these pieces can be changed and adapted manually, it is more convenient to save information on the capturing device and the creator in a separate template and bind measurements and meta information together in the command `addtemplate_x3p`.
+
+
+## Functionality
+
+`x3ptools` implements basic functionality for `x3p` files: 
+
+- reading with `read_x3p`
+- writing files with `write_x3p`
+- displaying files with `image_x3p`
+- rotating and transposing images: `rotate_x3p` and `transpose_x3p`
+- changing meta information using templates with `addtemplate_x3p`
+- casting between an x3p format and a data frame: `x3p_tp_df` and `df_to_x3p`
+- sample from an x3p file with `sample_x3p`
+
+
+
+
+
