@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
 author: "Heike Hofmann, Ganesh Krishnan, Eric Hare"
-date: "February 15, 2018"
+date: "February 16, 2018"
 output: 
   html_document:
     keep_md: true
@@ -104,7 +104,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
 
 `rotate_x3p` rotates an x3p image in steps of 90 degrees, `transpose_x3p` transposes the surface matrix of an image and updates the corresponding meta information.
 
-### Sampling
+#### Sampling
 
 `sample_x3p` allows to sub-sample an x3p object to get a lower resolution image.
 In `sample_x3p` we need to set a sampling factor. A sample factor $m$ of 2 means that we only use every 2nd value of the surface matrix, $m$ of 5 means, we only use every fifth value:
