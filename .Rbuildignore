@@ -3,4 +3,5 @@
 ^.travis.yml$
 ^README.Rmd$
 ^README.html$
+^README_files$
 stuff

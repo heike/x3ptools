@@ -76,7 +76,12 @@ The function `image_x3p` uses `rgl` to render a 3d object in a separate window. 
 ```{r, eval=FALSE}
 image_x3p(logo, file=NULL)
 ```
-![rgl image of the logo](../inst/doc/images/logo-rgl.png)
+![rgl image of the logo](images/logo-rgl.png)
+
+The surface matrix can also be imaged directly:
+```{r}
+image(logo$surface.matrix, ylim=c(1,0))
+```
 
 ### Casting between data types
 
@@ -91,7 +96,7 @@ General info and feature info can not be extracted from the measurements, but ha
 
 Once data is in a regular data frame, we can use our regular means to visualize these raster images, e.g. using `ggplot2`:
 
-```{r}
+```{r, eval=FALSE}
 library(ggplot2)
 logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   geom_tile() +
