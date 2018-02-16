@@ -36,7 +36,7 @@ write_x3p <- function(x3p, file)
   
   feature.info$Axes$CX$Increment <- header.info$incrementX
   feature.info$Axes$CY$Increment <- header.info$incrementY
-  feature.info$Axes$CZ$Increment <- 1e-6
+  feature.info$Axes$CZ$Increment <- 1 
   
   matrix.info$MatrixDimension$SizeX <- header.info$sizeX
   matrix.info$MatrixDimension$SizeY <- header.info$sizeY

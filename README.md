@@ -62,7 +62,7 @@ The function `image_x3p` uses `rgl` to render a 3d object in a separate window. 
 ```r
 image_x3p(logo, file=NULL)
 ```
-![rgl image of the logo](vignettes/images/logo-rgl.png)
+![rgl image of the logo](inst/images/logo-rgl.png)
 
 ### Casting between data types
 
