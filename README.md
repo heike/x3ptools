@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
 author: "Heike Hofmann, Ganesh Krishnan, Eric Hare"
-date: "February 16, 2018"
+date: "February 19, 2018"
 output: 
   html_document:
     keep_md: true
@@ -107,7 +107,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
 #### Sampling
 
 `sample_x3p` allows to sub-sample an x3p object to get a lower resolution image.
-In `sample_x3p` we need to set a sampling factor. A sample factor $m$ of 2 means that we only use every 2nd value of the surface matrix, $m$ of 5 means, we only use every fifth value:
+In `sample_x3p` we need to set a sampling factor. A sample factor `m` of 2 means that we only use every 2nd value of the surface matrix, `m` of 5 means, we only use every fifth value:
 
 
 ```r

@@ -48,14 +48,19 @@ df_to_x3p <- function(dframe) {
     df2 <- merge(df2, dframe, by=c("x", "y"), all.x=TRUE)
     dframe <- df2
   }
+ # browser()
+  idx <- order(dframe$x, dframe$y)
+  dframe <- dframe[idx, ]
+  #dframe <- dframe %>% arrange(x, y)
+  
   
   x3p[["surface.matrix"]] <- matrix(dframe$value, 
-                                      nrow = length(unique(dframe$y)), 
-                                      ncol = length(unique(dframe$x)),
-                                      byrow = TRUE)
+                                    #  nrow = ny,  ncol = nx, byrow = TRUE)
+                                    nrow = nx, ncol = ny, byrow=TRUE)
+  
   if (is.null(x3p$header.info)) {
-    x3p$header.info <- list(sizeX = length(unique(dframe$x)),
-                            sizeY = length(unique(dframe$y)),
+    x3p$header.info <- list(sizeX = nx,
+                            sizeY = ny,
                             incrementX = median(diff(unique(dframe$x))),
                             incrementY = median(diff(unique(dframe$y))))
   }
