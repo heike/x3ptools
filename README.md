@@ -102,7 +102,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
 
 #### Rotation and Transposition
 
-`rotate_x3p` rotates an x3p image in steps of 90 degrees, `transpose_x3p` transposes the surface matrix of an image and updates the corresponding meta information.
+`rotate_x3p` rotates an x3p image in steps of 90 degrees, `transpose_x3p` transposes the surface matrix of an image and updates the corresponding meta information. The function `y_flip_x3p` is a combination of transpose and rotation, that allows to flip the direction of the y axis to move easily from legacy ISO x3p scans to make them conform to the newer ISO standard.
 
 #### Sampling
 
