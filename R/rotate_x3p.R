@@ -54,3 +54,17 @@ transpose_x3p <- function(x3p) {
   
   x3p
 }
+
+
+#' Flip the y coordinate of an x3p image
+#' 
+#' One of the major changes between the previous two ISO standards is the 
+#' way the y axis is defined in a scan. The entry (0,0) used to refer to the top left corner of a scan, now it refers to the
+#' bottom right corner, which means that all legacy x3p files have to flip their y axis in order to 
+#' conform to the newest ISO norm. 
+#' @param x3p x3p object
+#' @return x3p object in which the y coordinate is reversed.
+#' @export
+y_flip_x3p <- function(x3p) {
+  rotate_x3p(transpose_x3p(x3p), angle=90)
+}

@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
 author: "Heike Hofmann, Ganesh Krishnan, Eric Hare"
-date: "February 19, 2018"
+date: "February 20, 2018"
 output: 
   html_document:
     keep_md: true

@@ -12,9 +12,11 @@
 x3p_to_df <- function(x3p) {
   info <- x3p$header.info
 
+  # expand.grid creates grid with first variable the fastest
   df <- data.frame(expand.grid(
     x=1:info$sizeX,
-    y=info$sizeY:1), 
+    y=info$sizeY:1
+    ), 
     value=as.vector(x3p$surface.matrix))
   df$y <- (df$y-1) * info$incrementY
   df$x <- (df$x-1) * info$incrementX
@@ -48,12 +50,10 @@ df_to_x3p <- function(dframe) {
     df2 <- merge(df2, dframe, by=c("x", "y"), all.x=TRUE)
     dframe <- df2
   }
- # browser()
-  idx <- order(dframe$x, dframe$y)
+  dframe$y <- (-1)*dframe$y
+  idx <- order(dframe$x, dframe$y) 
   dframe <- dframe[idx, ]
-  #dframe <- dframe %>% arrange(x, y)
-  
-  
+
   x3p[["surface.matrix"]] <- matrix(dframe$value, 
                                     #  nrow = ny,  ncol = nx, byrow = TRUE)
                                     nrow = nx, ncol = ny, byrow=TRUE)
