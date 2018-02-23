@@ -7,14 +7,19 @@ output:
     keep_md: true
 ---
 
-```{r setup, include=FALSE}
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
+
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+# x3ptools
 
-
-[![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
 
 <!--[![CRAN Status](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/x3ptools)](http://www.r-pkg.org/pkg/x3ptools) -->
 
@@ -55,7 +60,10 @@ The function `image_x3p` uses `rgl` to render a 3d object in a separate window. 
 ```{r, eval=FALSE}
 image_x3p(logo, file=NULL)
 ```
-![rgl image of the logo](inst/images/logo-rgl.png)
+
+```{r, echo=FALSE}
+knitr::include_graphics("inst/images/logo-rgl.png")
+```
 
 ### Casting between data types
 
@@ -81,7 +89,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
 
 #### Rotation and Transposition
 
-`rotate_x3p` rotates an x3p image in steps of 90 degrees, `transpose_x3p` transposes the surface matrix of an image and updates the corresponding meta information. The function `y_flip_x3p` is a combination of transpose and rotation, that allows to flip the direction of the y axis to move easily from legacy ISO x3p scans to make them conform to the newer ISO standard.
+`rotate_x3p` rotates an x3p image in steps of 90 degrees, `transpose_x3p` transposes the surface matrix of an image and updates the corresponding meta information. The function `y_flip_x3p` is a combination of transpose and rotation, that allows to flip the direction of the y axis to move easily from legacy ISO x3p scans to ones conforming to the most recent ISO standard.
 
 #### Sampling
 

@@ -7,7 +7,7 @@
 df_to_x3p(dframe)
 }
 \arguments{
-\item{dframe}{data frame. `dframe` must have the columns x, y, and value.}
+\item{dframe}{data frame. \code{dframe} must have the columns x, y, and value.}
 }
 \value{
 x3p object

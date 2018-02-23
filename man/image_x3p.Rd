@@ -10,7 +10,7 @@ image_x3p(x3p, file = NULL, col = "#cd7f32", size = c(750, 250),
 \arguments{
 \item{x3p}{x3p object}
 
-\item{file}{file name for saving, if file is NULL the opengl device stays open. 
+\item{file}{file name for saving, if file is NULL the opengl device stays open.
 The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing).}
 
 \item{col}{color specification}

@@ -13,7 +13,7 @@ x3p_to_df(x3p)
 data frame with variables x, y, and value and meta function in attribute
 }
 \description{
-An x3p file consists of a list with meta info and a 2d matrix with scan depths. 
+An x3p file consists of a list with meta info and a 2d matrix with scan depths.
 fortify turns the matrix into a data frame, using the parameters of the header as necessary.
 }
 \examples{
