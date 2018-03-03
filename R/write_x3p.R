@@ -9,7 +9,7 @@
 write_x3p <- function(x3p, file)
 {
   a1 <- read_xml(system.file("templateXML.xml", package="x3ptools"))
-  a1list<- as_list(a1)
+  a1list<- as_list(a1, ns = xml_ns(a1))
   tmp<- as.relistable(a1list) # structure needed for compiling xml_document
   
   feature.info <- x3p$feature.info
@@ -97,6 +97,11 @@ write_x3p <- function(x3p, file)
   # Writing the md5checksum.hex with checksum for the main.xml
   main.chksum<- digest("main.xml", algo= "md5", serialize=FALSE, file=TRUE)
   write(main.chksum, "md5checksum.hex")
+  # unfortunate solution: get namespace reference back in front of the root tag of the resulting xml:
+  main <- readLines("main.xml")
+  main <- gsub("^<ISO5436_2", "<p:ISO5436_2", main)
+  main <- gsub("^</ISO5436_2", "</p:ISO5436_2", main)
+  writeLines(main, "main.xml")
   
   # Write the x3p file and reset path
   # create zipped file one level up, now get out and delete

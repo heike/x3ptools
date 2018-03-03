@@ -29,11 +29,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Installation
 
-A stable version of `x3ptools` is available on CRAN:
+`x3ptools` is not yet available from CRAN.
 
+<!--
 ```{r, eval = FALSE}
 install.packages("x3ptools")
 ```
+-->
 
 The development version is available from Github:
 
