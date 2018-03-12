@@ -32,7 +32,10 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoo
   
   open3d(params=params)
   rgl.pop("lights")
-  xyz <- matrix(c(-2000, mean(y), max(z, na.rm=TRUE)), ncol = 3)
+#  xyz <- matrix(c(-2000, mean(y), max(z, na.rm=TRUE)), ncol = 3)
+  xyz <- matrix(c(min(y) - diff(range(y)), 
+                  mean(y), max(z, na.rm=TRUE)), ncol = 3)
+  
   light3d(x = xyz, diffuse = "gray40", 
           specular = "gray40", ambient="grey10", viewpoint.rel = TRUE) 
   light3d(diffuse = "gray20", specular = "gray20")
