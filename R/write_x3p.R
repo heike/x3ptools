@@ -34,13 +34,13 @@ write_x3p <- function(x3p, file)
   
   # now overwrite template with relevant information:
   
-  feature.info$Axes$CX$Increment <- header.info$incrementX
-  feature.info$Axes$CY$Increment <- header.info$incrementY
-  feature.info$Axes$CZ$Increment <- 1 
+  feature.info$Axes$CX$Increment <- list(header.info$incrementX)
+  feature.info$Axes$CY$Increment <- list(header.info$incrementY)
+  feature.info$Axes$CZ$Increment <- list(1)
   
-  matrix.info$MatrixDimension$SizeX <- header.info$sizeX
-  matrix.info$MatrixDimension$SizeY <- header.info$sizeY
-  matrix.info$MatrixDimension$SizeZ <- 1
+  matrix.info$MatrixDimension$SizeX <- list(header.info$sizeX)
+  matrix.info$MatrixDimension$SizeY <- list(header.info$sizeY)
+  matrix.info$MatrixDimension$SizeZ <- list(1)
   # Storing the Working Dir path
   orig.path<- getwd()
   # Creating Temp directory and bin directory
@@ -54,39 +54,25 @@ write_x3p <- function(x3p, file)
   # Assigning values to the Record 1 part of the XML
   a1list[[1]]$Record2 <- general.info
   
-  sizes<- c(matrix.info$MatrixDimension$SizeX, matrix.info$MatrixDimension$SizeY, matrix.info$MatrixDimension$SizeZ)
-  sizes<- as.numeric(sizes)
-  increments<- c(feature.info$Axes$CX$Increment, feature.info$Axes$CY$Increment, feature.info$Axes$CZ$Increment)
-  increments<- as.numeric(increments)
-  
-  # Updating the list values
-  matrix.info$MatrixDimension$SizeX<- as.character(sizes[1])
-  matrix.info$MatrixDimension$SizeY<- as.character(sizes[2])
-  matrix.info$MatrixDimension$SizeZ<- as.character(sizes[3])
-  feature.info$Axes$CX$Increment<- as.character(increments[1])
-  feature.info$Axes$CY$Increment<- as.character(increments[2])
-  feature.info$Axes$CZ$Increment<- as.character(increments[3])
-  
   # Updating the Records in list for: main.xml.
   a1list[[1]]$Record3 <- matrix.info
-  a1list[[1]]$Record3$DataLink$PointDataLink<- "bindata/data.bin"
+  a1list[[1]]$Record3$DataLink$PointDataLink <- list("bindata/data.bin")
   a1list[[1]]$Record1 <- feature.info
-  
-  
   
   # Writing the Surface Matrix as a Binary file
   writeBin(as.vector((x3p$surface.matrix)), con = "bindata/data.bin")
   
   # Generating the MD% check sum
   chksum<- digest("bindata/data.bin", algo= "md5", serialize=FALSE, file=TRUE)
-  a1list[[1]]$Record3$DataLink$MD5ChecksumPointData<- chksum
+  a1list[[1]]$Record3$DataLink$MD5ChecksumPointData <- list(chksum)
   
   
   # Assigning values to Record 4 in main.xml
-  a1list[[1]]$Record4$ChecksumFile<- "md5checksum.hex"
+  a1list[[1]]$Record4$ChecksumFile <- list("md5checksum.hex")
   
   # Convert to xml
-  final.xml.list<- relist(unlist(a1list), skeleton = tmp) #tmp structure used for writing the xml file
+#  final.xml.list<- relist(unlist(a1list), skeleton = tmp) #tmp structure used for writing the xml file
+  final.xml.list <- a1list
   a1xml<- as_xml_document(list(structure(list(final.xml.list))))
   
   #xml_attrs(a1xml)<- xml_attrs(a1)
