@@ -33,7 +33,6 @@ write_x3p <- function(x3p, file)
   }
   
   # now overwrite template with relevant information:
-  
   feature.info$Axes$CX$Increment <- list(header.info$incrementX)
   feature.info$Axes$CY$Increment <- list(header.info$incrementY)
   feature.info$Axes$CZ$Increment <- list(1)
