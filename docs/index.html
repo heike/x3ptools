@@ -74,11 +74,16 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>A stable version of <code>x3ptools</code> is available on CRAN:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"x3ptools"</span>)</code></pre></div>
+<p><code>x3ptools</code> is not yet available from CRAN.</p>
+<!--
+
+```r
+install.packages("x3ptools")
+```
+-->
 <p>The development version is available from Github:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"heike/x3ptools"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"heike/x3ptools"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
@@ -115,8 +120,8 @@ logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.
 <p>When converting from the x3p format to a data frame, the values from the surface matrix are interpreted as heights (saved as <code>value</code>) on an x-y grid. The dimension of the matrix sets the number of different x and y levels, the information in <code>header.info</code> allows us to scale the levels to the measured quantities. Similarly, when moving from a data frame to a surface matrix, the assumption is that measurements are taken on an equi-spaced and complete grid of x-y values. The information on the resolution (i.e. the spacing between consecutive x and y locations) is saved in form of the header info, which is added to the list. General info and feature info can not be extracted from the measurements, but have to be recorded with other means.</p>
 <p>Once data is in a regular data frame, we can use our regular means to visualize these raster images, e.g. using <code>ggplot2</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-logo_df %&gt;%<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>( <span class="dt">x=</span> x, <span class="dt">y=</span>y, <span class="dt">fill=</span> value)) +
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_tile</a></span>() +
+logo_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>( <span class="dt">x=</span> x, <span class="dt">y=</span>y, <span class="dt">fill=</span> value)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_tile</a></span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient">scale_fill_gradient2</a></span>(<span class="dt">midpoint=</span><span class="fl">4e-7</span>)</code></pre></div>
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 </div>
@@ -132,11 +137,16 @@ logo_df %&gt;%<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 <h4 class="hasAnchor">
 <a href="#sampling" class="anchor"></a>Sampling</h4>
 <p><code>sample_x3p</code> allows to sub-sample an x3p object to get a lower resolution image. In <code>sample_x3p</code> we need to set a sampling factor. A sample factor <code>m</code> of 2 means that we only use every 2nd value of the surface matrix, <code>m</code> of 5 means, we only use every fifth value:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(logo$surface.matrix)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(logo<span class="op">$</span>surface.matrix)</code></pre></div>
 <pre><code>## [1] 741 419</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logo_sample &lt;-<span class="st"> </span><span class="kw"><a href="reference/sample_x3p.html">sample_x3p</a></span>(logo, <span class="dt">m=</span><span class="dv">5</span>)
-<span class="kw">dim</span>(logo_sample$surface.matrix)</code></pre></div>
+<span class="kw">dim</span>(logo_sample<span class="op">$</span>surface.matrix)</code></pre></div>
 <pre><code>## [1] 149  84</code></pre>
+</div>
+<div id="interpolation" class="section level4">
+<h4 class="hasAnchor">
+<a href="#interpolation" class="anchor"></a>Interpolation</h4>
+<p><code>interpolate_x3p</code> allows, like <code>sample_x3p</code>, to create a new x3p file at a new resolution, as specified in the parameters <code>resx</code> and <code>resy</code>. The new resolution should be lower (i.e. larger values for <code>resx</code> and <code>resy</code>) than the resolution specified as <code>IncrementX</code> and <code>IncrementY</code> in the header info of the x3p file. <code>interpolate_x3p</code> can also be used to interpolate missing values (set parameter <code>maxgap</code> according to specifications in <code><a href="http://www.rdocumentation.org/packages/zoo/topics/na.approx">zoo::na.approx</a></code>).</p>
 </div>
 </div>
 </div>
@@ -167,7 +177,7 @@ logo_df %&gt;%<span class="st"> </span><span class="kw"><a href="http://www.rdoc
 <li><a href="commits/master"><img src="https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square" alt="packageversion"></a></li>
 <li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 <li><a href="https://travis-ci.org/heike/x3ptools"><img src="https://travis-ci.org/heike/x3ptools.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--02--23-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg" alt="Last-changedate"></a></li>
 </ul>
 </div>
 

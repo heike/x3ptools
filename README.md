@@ -1,9 +1,9 @@
 x3ptools: working with x3p files in R
 ================
 Heike Hofmann, Ganesh Krishnan, Eric Hare
-February 23, 2018
+March 14, 2018
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--02--23-yellowgreen.svg)](/commits/master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg)](/commits/master)
 
 x3ptools
 ========
@@ -13,12 +13,14 @@ x3ptools
 Installation
 ============
 
-A stable version of `x3ptools` is available on CRAN:
+`x3ptools` is not yet available from CRAN.
 
-``` r
+<!--
+
+```r
 install.packages("x3ptools")
 ```
-
+-->
 The development version is available from Github:
 
 ``` r
@@ -104,3 +106,7 @@ dim(logo_sample$surface.matrix)
 ```
 
     ## [1] 149  84
+
+#### Interpolation
+
+`interpolate_x3p` allows, like `sample_x3p`, to create a new x3p file at a new resolution, as specified in the parameters `resx` and `resy`. The new resolution should be lower (i.e. larger values for `resx` and `resy`) than the resolution specified as `IncrementX` and `IncrementY` in the header info of the x3p file. `interpolate_x3p` can also be used to interpolate missing values (set parameter `maxgap` according to specifications in `zoo::na.approx`).
