@@ -84,9 +84,41 @@ install.packages("x3ptools")
 <p>The development version is available from Github:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"heike/x3ptools"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<div id="usage" class="section level2">
+<div id="the-file-format" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<a href="#the-file-format" class="anchor"></a>The file format</h2>
+<p>The x3p file format is an xml based file format created to describe digital surface measurements. x3p has been developed by OpenFMC (Open Forensic Metrology Consortium, see <a href="http://www.openfmc.org/" class="uri">http://www.openfmc.org/</a>) and has been adopted as ISO ISO5436 – 2000. x3p files are a zip archive of a directory consisting of an xml file of meta information and a matrix of numeric surface measurements.</p>
+<div id="x3p-objects" class="section level3">
+<h3 class="hasAnchor">
+<a href="#x3p-objects" class="anchor"></a>x3p objects</h3>
+<p>Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(x3ptools)</code></pre></div>
+<pre><code>## Loading required package: digest</code></pre>
+<pre><code>## Loading required package: xml2</code></pre>
+<pre><code>## Loading required package: rgl</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))
+<span class="kw">names</span>(logo)</code></pre></div>
+<pre><code>## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
+## [5] "matrix.info"</code></pre>
+<p>The four info objects specify the information for Record1 through Record4 in the xml file. An example for an xml file is provided with the package and can be accessed as <code>system.file("templateXML.xml", package="x3ptools")</code>.</p>
+<p><code>header.info</code> contains the information relevant to interpret locations for the surface matrix:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logo<span class="op">$</span>header.info</code></pre></div>
+<pre><code>## $sizeY
+## [1] 419
+## 
+## $sizeX
+## [1] 741
+## 
+## $incrementY
+## [1] 6.45e-07
+## 
+## $incrementX
+## [1] 6.45e-07</code></pre>
+<p><code>matrix.info</code> expands on <code>header.info</code> and provides the link to the surface measurements in binary format.</p>
+<p><code>general.info</code> consists of information on how the data was captured, i.e. both author and capturing device are specified here.</p>
+<p><code>feature.info</code> is informed by the header info and provides the structure for storing the information.</p>
+<p>While these pieces can be changed and adapted manually, it is more convenient to save information on the capturing device and the creator in a separate template and bind measurements and meta information together in the command <code>addtemplate_x3p</code>.</p>
+</div>
 <div id="reading-and-writing-x3p-files" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reading-and-writing-x3p-files" class="anchor"></a>Reading and writing x3p files</h3>
@@ -97,6 +129,10 @@ logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.
 <pre><code>## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
 ## [5] "matrix.info"</code></pre>
 </div>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
 <div id="visualizing-x3p-objects" class="section level3">
 <h3 class="hasAnchor">
 <a href="#visualizing-x3p-objects" class="anchor"></a>Visualizing x3p objects</h3>
@@ -123,7 +159,7 @@ logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.
 logo_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>( <span class="dt">x=</span> x, <span class="dt">y=</span>y, <span class="dt">fill=</span> value)) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_tile</a></span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient">scale_fill_gradient2</a></span>(<span class="dt">midpoint=</span><span class="fl">4e-7</span>)</code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 </div>
 <div id="elementary-operations" class="section level3">
 <h3 class="hasAnchor">
@@ -177,7 +213,7 @@ logo_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 <li><a href="commits/master"><img src="https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square" alt="packageversion"></a></li>
 <li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 <li><a href="https://travis-ci.org/heike/x3ptools"><img src="https://travis-ci.org/heike/x3ptools.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg" alt="Last-changedate"></a></li>
 </ul>
 </div>
 

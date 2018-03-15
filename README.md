@@ -1,9 +1,9 @@
 x3ptools: working with x3p files in R
 ================
 Heike Hofmann, Ganesh Krishnan, Eric Hare
-March 14, 2018
+March 15, 2018
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--14-yellowgreen.svg)](/commits/master)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master) [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg)](/commits/master)
 
 x3ptools
 ========
@@ -28,8 +28,60 @@ The development version is available from Github:
 devtools::install_github("heike/x3ptools", build_vignettes = TRUE)
 ```
 
-Usage
------
+The file format
+---------------
+
+The x3p file format is an xml based file format created to describe digital surface measurements. x3p has been developed by OpenFMC (Open Forensic Metrology Consortium, see <http://www.openfmc.org/>) and has been adopted as ISO ISO5436 – 2000. x3p files are a zip archive of a directory consisting of an xml file of meta information and a matrix of numeric surface measurements.
+
+### x3p objects
+
+Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:
+
+``` r
+library(x3ptools)
+```
+
+    ## Loading required package: digest
+
+    ## Loading required package: xml2
+
+    ## Loading required package: rgl
+
+``` r
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+names(logo)
+```
+
+    ## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
+    ## [5] "matrix.info"
+
+The four info objects specify the information for Record1 through Record4 in the xml file. An example for an xml file is provided with the package and can be accessed as `system.file("templateXML.xml", package="x3ptools")`.
+
+`header.info` contains the information relevant to interpret locations for the surface matrix:
+
+``` r
+logo$header.info
+```
+
+    ## $sizeY
+    ## [1] 419
+    ## 
+    ## $sizeX
+    ## [1] 741
+    ## 
+    ## $incrementY
+    ## [1] 6.45e-07
+    ## 
+    ## $incrementX
+    ## [1] 6.45e-07
+
+`matrix.info` expands on `header.info` and provides the link to the surface measurements in binary format.
+
+`general.info` consists of information on how the data was captured, i.e. both author and capturing device are specified here.
+
+`feature.info` is informed by the header info and provides the structure for storing the information.
+
+While these pieces can be changed and adapted manually, it is more convenient to save information on the capturing device and the creator in a separate template and bind measurements and meta information together in the command `addtemplate_x3p`.
 
 ### Reading and writing x3p files
 
@@ -43,6 +95,9 @@ names(logo)
 
     ## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
     ## [5] "matrix.info"
+
+Usage
+-----
 
 ### Visualizing x3p objects
 
@@ -82,7 +137,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   scale_fill_gradient2(midpoint=4e-7)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ### Elementary operations
 
