@@ -4,18 +4,22 @@
 \alias{interpolate_x3p}
 \title{Interpolate from an x3p object}
 \usage{
-interpolate_x3p(x3p, resx = 1e-06, resy = resx)
+interpolate_x3p(x3p, resx = 1e-06, resy = resx, maxgap = 1)
 }
 \arguments{
 \item{x3p}{x3p object}
 
-\item{resx}{numeric value specifying the new resolution for the x axis}
+\item{resx}{numeric value specifying the new resolution for the x axis.}
 
-\item{resy}{numeric value specifying the new resolution for the y axis}
+\item{resy}{numeric value specifying the new resolution for the y axis.}
+
+\item{maxgap}{integer variable used in \code{na.approx} to specify the maximum number of NAs to be interpolated, defaults to 1.}
 }
 \value{
 interpolated x3p object
 }
 \description{
-Interpolate from an x3p object
+An interpolated scan is created at specified resolutions \code{resx}, \code{resy} in x and y direction.
+The interpolation is based on \code{na.approx} from the \code{zoo} package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but not recommended to do so.
+\code{interpolate_x3p} can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.
 }
