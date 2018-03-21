@@ -5,37 +5,32 @@ date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
     keep_md: true
+    self_contained: true
 ---
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
+<!--[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)-->
+<!--[![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)-->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)
+<!--[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)-->
 
 ```{r setup, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.path = "man/figures/")
 ```
 
 
 # x3ptools
 
 
-<!--[![CRAN Status](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/x3ptools)](http://www.r-pkg.org/pkg/x3ptools) -->
-
-
-<!--[![Downloads](http://cranlogs.r-pkg.org/badges/x3ptools?color=brightgreen)](https://cran.r-project.org/package=x3ptools)-->
-
 
 # Installation
 
-`x3ptools` is not yet available from CRAN.
+`x3ptools` is  available from CRAN:
 
-<!--
+
 ```{r, eval = FALSE}
 install.packages("x3ptools")
 ```
--->
 
 The development version is available from Github:
 
@@ -98,7 +93,7 @@ image_x3p(logo, file=NULL)
 ```
 
 ```{r, echo=FALSE}
-knitr::include_graphics("inst/images/logo-rgl.png")
+knitr::include_graphics("man/figures/logo-rgl.png")
 ```
 
 ### Casting between data types
