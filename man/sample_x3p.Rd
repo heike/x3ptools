@@ -12,7 +12,7 @@ sample_x3p(x3p, m = 2)
 \item{m}{integer value - every mth value is included in the sample}
 }
 \value{
-downsampled x3p object
+down-sampled x3p object
 }
 \description{
 Sample from an x3p object

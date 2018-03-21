@@ -68,19 +68,12 @@
 <div id="x3ptools" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#x3ptools" class="anchor"></a>x3ptools</h1></div>
-<!--[![CRAN Status](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/x3ptools)](http://www.r-pkg.org/pkg/x3ptools) -->
-<!--[![Downloads](http://cranlogs.r-pkg.org/badges/x3ptools?color=brightgreen)](https://cran.r-project.org/package=x3ptools)-->
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p><code>x3ptools</code> is not yet available from CRAN.</p>
-<!--
-
-```r
-install.packages("x3ptools")
-```
--->
+<p><code>x3ptools</code> is available from CRAN:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"x3ptools"</span>)</code></pre></div>
 <p>The development version is available from Github:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"heike/x3ptools"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -138,7 +131,7 @@ logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.
 <a href="#visualizing-x3p-objects" class="anchor"></a>Visualizing x3p objects</h3>
 <p>The function <code>image_x3p</code> uses <code>rgl</code> to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate). In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/image_x3p.html">image_x3p</a></span>(logo, <span class="dt">file=</span><span class="ot">NULL</span>)</code></pre></div>
-<p><img src="inst/images/logo-rgl.png"><!-- --></p>
+<p><img src="reference/figures/logo-rgl.png"><!-- --></p>
 </div>
 <div id="casting-between-data-types" class="section level3">
 <h3 class="hasAnchor">
@@ -159,7 +152,7 @@ logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.
 logo_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>( <span class="dt">x=</span> x, <span class="dt">y=</span>y, <span class="dt">fill=</span> value)) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_tile</a></span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_gradient">scale_fill_gradient2</a></span>(<span class="dt">midpoint=</span><span class="fl">4e-7</span>)</code></pre></div>
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
+<p><img src="reference/figures/unnamed-chunk-9-1.png" width="672"></p>
 </div>
 <div id="elementary-operations" class="section level3">
 <h3 class="hasAnchor">
@@ -213,7 +206,7 @@ logo_df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 <li><a href="commits/master"><img src="https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square" alt="packageversion"></a></li>
 <li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 <li><a href="https://travis-ci.org/heike/x3ptools"><img src="https://travis-ci.org/heike/x3ptools.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--03--15-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--03--21-yellowgreen.svg" alt="Last-changedate"></a></li>
 </ul>
 </div>
 

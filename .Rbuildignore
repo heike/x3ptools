@@ -6,3 +6,4 @@
 ^README_files$
 stuff
 docs
+^cran-comments\.md$

@@ -2,7 +2,7 @@
 #' 
 #' @param x3p x3p object
 #' @param m integer value - every mth value is included in the sample
-#' @return downsampled x3p object
+#' @return down-sampled x3p object
 #' @export
 sample_x3p <- function(x3p, m=2) {
   stopifnot("x3p" %in% class(x3p))
