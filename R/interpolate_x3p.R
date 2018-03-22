@@ -10,6 +10,14 @@
 #' @return interpolated x3p object
 #' @importFrom zoo na.approx 
 #' @export
+#' @examples
+#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' # resolution:
+#' logo$header.info$incrementX
+#' # change resolution to 1 micron = 1e-6 meters
+#' logo2 <- interpolate_x3p(logo, resx = 1e-6)
+#' logo2$header.info$incrementX
+ 
 interpolate_x3p <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
   stopifnot("x3p" %in% class(x3p))
   if ((resx < x3p$header.info$incrementX) | (resy < x3p$header.info$incrementY)) 

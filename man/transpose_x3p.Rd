@@ -12,3 +12,16 @@ transpose_x3p(x3p)
 \description{
 Transpose the surface matrix of an x3p object. Also adjust meta information.
 }
+\examples{
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+dim(logo$surface.matrix)
+\dontrun{
+image_x3p(logo)
+}
+#  transpose the image
+logotp <- transpose_x3p(logo)
+dim(logotp$surface.matrix)
+\dontrun{
+image_x3p(logotp)
+}
+}

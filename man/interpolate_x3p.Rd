@@ -23,3 +23,11 @@ An interpolated scan is created at specified resolutions \code{resx}, \code{resy
 The interpolation is based on \code{na.approx} from the \code{zoo} package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but not recommended to do so.
 \code{interpolate_x3p} can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.
 }
+\examples{
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+# resolution:
+logo$header.info$incrementX
+# change resolution to 1 micron = 1e-6 meters
+logo2 <- interpolate_x3p(logo, resx = 1e-6)
+logo2$header.info$incrementX
+}
