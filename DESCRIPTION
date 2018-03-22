@@ -20,6 +20,6 @@ Suggests: knitr, rmarkdown
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
-URL: http://pkgdown.r-lib.org, https://github.com/heike/x3ptools
+URL: https://github.com/heike/x3ptools
 BugReports: https://github.com/heike/x3ptools/issues
 Roxygen: list(markdown = TRUE)

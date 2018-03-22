@@ -109,12 +109,72 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='co'># exchange meta information for general x3p information:</span>
+<span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'>addtemplate_x3p</span>(<span class='no'>logo</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'>system.file</span>(<span class='st'>"templateXML.xml"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='no'>logo</span>$<span class='no'>general.info</span></div><div class='output co'>#&gt; $Date
+#&gt; $Date[[1]]
+#&gt; [1] "2013-12-26T16:06:00"
+#&gt; 
+#&gt; 
+#&gt; $Creator
+#&gt; $Creator[[1]]
+#&gt; [1] "Creator Name"
+#&gt; 
+#&gt; 
+#&gt; $Instrument
+#&gt; $Instrument$Manufacturer
+#&gt; $Instrument$Manufacturer[[1]]
+#&gt; [1] "Manufacturer Name"
+#&gt; 
+#&gt; 
+#&gt; $Instrument$Model
+#&gt; $Instrument$Model[[1]]
+#&gt; [1] "Model"
+#&gt; 
+#&gt; 
+#&gt; $Instrument$Serial
+#&gt; $Instrument$Serial[[1]]
+#&gt; [1] "Serial"
+#&gt; 
+#&gt; 
+#&gt; $Instrument$Version
+#&gt; $Instrument$Version[[1]]
+#&gt; [1] "Version"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $CalibrationDate
+#&gt; $CalibrationDate[[1]]
+#&gt; [1] "Date of Calibration"
+#&gt; 
+#&gt; 
+#&gt; $ProbingSystem
+#&gt; $ProbingSystem$Type
+#&gt; $ProbingSystem$Type[[1]]
+#&gt; [1] "Type"
+#&gt; 
+#&gt; 
+#&gt; $ProbingSystem$Identification
+#&gt; $ProbingSystem$Identification[[1]]
+#&gt; [1] "Identification"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $Comment
+#&gt; $Comment[[1]]
+#&gt; [1] "comment"
+#&gt; 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
