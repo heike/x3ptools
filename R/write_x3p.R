@@ -8,10 +8,8 @@
 #' @export
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-#' \dontrun{
-#' # write copy of the file in the current working directory
-#' write_x3p(logo, "logo.x3p") 
-#' }
+#' # write a copy of the file into a temporary file
+#' write_x3p(logo, file = tempfile(fileext="x3p")) 
 write_x3p <- function(x3p, file)
 {
   a1 <- read_xml(system.file("templateXML.xml", package="x3ptools"))

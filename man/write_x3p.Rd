@@ -16,8 +16,6 @@ Write an x3p object to a file
 }
 \examples{
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-\dontrun{
-# write copy of the file in the current working directory
-write_x3p(logo, "logo.x3p") 
-}
+# write a copy of the file into a temporary file
+write_x3p(logo, file = tempfile(fileext="x3p")) 
 }
