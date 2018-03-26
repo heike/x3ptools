@@ -46,6 +46,9 @@ write_x3p <- function(x3p, file)
   matrix.info$MatrixDimension$SizeZ <- list(1)
   # Storing the Working Dir path
   orig.path<- getwd()
+  # include on.exit call to prevent surprises
+  on.exit(setwd(orig.path))
+  
 
   # Figure out where the file should go
   fileDir <- normalizePath(dirname(file))
@@ -66,11 +69,12 @@ write_x3p <- function(x3p, file)
   
   # Updating the Records in list for: main.xml.
   a1list[[1]]$Record3 <- matrix.info
-  a1list[[1]]$Record3$DataLink$PointDataLink <- list("bindata/data.bin")
+  binPath = file.path("bindata", "data.bin")
+  a1list[[1]]$Record3$DataLink$PointDataLink <- list(binPath)
   a1list[[1]]$Record1 <- feature.info
   
   # Writing the Surface Matrix as a Binary file
-  writeBin(as.vector((x3p$surface.matrix)), con = "bindata/data.bin")
+  writeBin(as.vector((x3p$surface.matrix)), con = binPath)
   
   # Generating the MD% check sum
   chksum<- digest("bindata/data.bin", algo= "md5", serialize=FALSE, file=TRUE)
