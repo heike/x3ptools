@@ -6,6 +6,12 @@
 #' @importFrom xml2 read_xml
 #' @importFrom utils as.relistable relist zip
 #' @export
+#' @examples
+#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' \dontrun{
+#' # write copy of the file in the current working directory
+#' write_x3p(logo, "logo.x3p") 
+#' }
 write_x3p <- function(x3p, file)
 {
   a1 <- read_xml(system.file("templateXML.xml", package="x3ptools"))
@@ -42,14 +48,21 @@ write_x3p <- function(x3p, file)
   matrix.info$MatrixDimension$SizeZ <- list(1)
   # Storing the Working Dir path
   orig.path<- getwd()
-  # Creating Temp directory and bin directory
-  # 'File structure'
-  dir.create("x3pfolder")
-  dir.create("x3pfolder/bindata")
+
+  # Figure out where the file should go
+  fileDir <- normalizePath(dirname(file))
+  fileName <- basename(file)
+
+  # Creating Temp directory and switch to directory
+  tmpDir <- tempdir()
+  tmpx3pfolder <- tempfile(pattern="folder", tmpdir=tmpDir)
+  setwd(tmpDir)
   
-  # Change Working Dir 
-  setwd(paste0(getwd(),"/x3pfolder"))
-  new.wdpath<- getwd()
+  # Set up file structure
+  dir.create(tmpx3pfolder)
+  setwd(tmpx3pfolder)
+  dir.create("bindata")
+  
   # Assigning values to the Record 1 part of the XML
   a1list[[1]]$Record2 <- general.info
   
@@ -70,7 +83,7 @@ write_x3p <- function(x3p, file)
   a1list[[1]]$Record4$ChecksumFile <- list("md5checksum.hex")
   
   # Convert to xml
-#  final.xml.list<- relist(unlist(a1list), skeleton = tmp) #tmp structure used for writing the xml file
+  #  final.xml.list<- relist(unlist(a1list), skeleton = tmp) #tmp structure used for writing the xml file
   final.xml.list <- a1list
   a1xml<- as_xml_document(list(structure(list(final.xml.list))))
   
@@ -84,18 +97,21 @@ write_x3p <- function(x3p, file)
   main <- gsub("^<ISO5436_2", "<p:ISO5436_2", main)
   main <- gsub("^</ISO5436_2", "</p:ISO5436_2", main)
   writeLines(main, "main.xml")
-
+  
   # HH: only get the checksum once we are done changing the main.xml
   # Writing the md5checksum.hex with checksum for the main.xml
   main.chksum<- digest("main.xml", algo= "md5", serialize=FALSE, file=TRUE)
   write(main.chksum, "md5checksum.hex")
   
   # Write the x3p file and reset path
-  # create zipped file one level up, now get out and delete
-  zip(zipfile = paste0("../",file), files = dir())
-  setwd("./..")
-  unlink("x3pfolder",recursive = TRUE)
+  # create zipped file in the specified location 
   
+  zip(zipfile = file.path(fileDir, fileName), files = dir())
+  # not necessary to delete the temporary folder 
+ # setwd("..")
+#  unlink(tmpx3pfolder,recursive = TRUE)
   setwd(orig.path) 
   
 }
+
+
