@@ -1,11 +1,11 @@
 x3ptools: working with x3p files in R
 ================
 Heike Hofmann, Ganesh Krishnan, Eric Hare
-March 22, 2018
+March 30, 2018
 
 <!--[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)-->
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools) <!--[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--22-yellowgreen.svg)](/commits/master)-->
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools) <!--[![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--30-yellowgreen.svg)](/commits/master)-->
 
 x3ptools
 ========
@@ -37,15 +37,6 @@ Internally, x3p objects are stored as a list consisting of the surface matrix (t
 
 ``` r
 library(x3ptools)
-```
-
-    ## Loading required package: digest
-
-    ## Loading required package: xml2
-
-    ## Loading required package: rgl
-
-``` r
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 names(logo)
 ```
@@ -86,7 +77,6 @@ While these pieces can be changed and adapted manually, it is more convenient to
 `read_x3p` and `write_x3p` are the two functions allows us to read x3p files and write to x3p files.
 
 ``` r
-library(x3ptools)
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 names(logo)
 ```

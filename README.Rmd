@@ -49,7 +49,7 @@ x3p files are a zip archive of a directory consisting of an xml file of meta inf
 
 Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:
 
-```{r}
+```{r, message=FALSE}
 library(x3ptools)
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 names(logo)
@@ -76,7 +76,6 @@ While these pieces can be changed and adapted manually, it is more convenient to
 
 `read_x3p` and `write_x3p` are the two functions allows us to read x3p files and write to x3p files.
 ```{r, echo=TRUE, message=FALSE}
-library(x3ptools)
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 names(logo)
 ```

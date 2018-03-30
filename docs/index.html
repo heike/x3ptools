@@ -87,11 +87,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h3 class="hasAnchor">
 <a href="#x3p-objects" class="anchor"></a>x3p objects</h3>
 <p>Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(x3ptools)</code></pre></div>
-<pre><code>## Loading required package: digest</code></pre>
-<pre><code>## Loading required package: xml2</code></pre>
-<pre><code>## Loading required package: rgl</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(x3ptools)
+logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))
 <span class="kw">names</span>(logo)</code></pre></div>
 <pre><code>## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
 ## [5] "matrix.info"</code></pre>
@@ -118,8 +115,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h3 class="hasAnchor">
 <a href="#reading-and-writing-x3p-files" class="anchor"></a>Reading and writing x3p files</h3>
 <p><code>read_x3p</code> and <code>write_x3p</code> are the two functions allows us to read x3p files and write to x3p files.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(x3ptools)
-logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))
 <span class="kw">names</span>(logo)</code></pre></div>
 <pre><code>## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
 ## [5] "matrix.info"</code></pre>
