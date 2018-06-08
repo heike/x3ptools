@@ -9,7 +9,7 @@
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 read_x3p <- function(file) {
-  if (!file.exists(file)) stop(sprintf("File %f not found.\n", file))
+  if (!file.exists(file)) stop(sprintf("File %s not found.\n", file))
   ## Create a temp directory to unzip x3p file
   mydir <- tempdir()
   result <- unzip(file, exdir = mydir)
