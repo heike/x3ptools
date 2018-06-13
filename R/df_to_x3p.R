@@ -11,6 +11,8 @@
 #' head(logo_df)
 x3p_to_df <- function(x3p) {
   info <- x3p$header.info
+  if (is.null(info$sizeX)) info$sizeX <- info$num_obs_per_profile
+  if (is.null(info$sizeY)) info$sizeY <- info$num_profiles
 
   # expand.grid creates grid with first variable the fastest
   df <- data.frame(expand.grid(
