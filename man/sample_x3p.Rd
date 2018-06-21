@@ -4,12 +4,18 @@
 \alias{sample_x3p}
 \title{Sample from an x3p object}
 \usage{
-sample_x3p(x3p, m = 2)
+sample_x3p(x3p, m = 2, mY = m, offset = 0, offsetY = offset)
 }
 \arguments{
 \item{x3p}{x3p object}
 
 \item{m}{integer value - every mth value is included in the sample}
+
+\item{mY}{integer value - every mth value is included in the sample in x direction and every mYth value is included in y direction}
+
+\item{offset}{integer value between 0 and m-1 to specify offset of the sample}
+
+\item{offsetY}{integer value between 0 and mY-1 to specify different offsets for x and y direction}
 }
 \value{
 down-sampled x3p object

@@ -124,13 +124,22 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
 #### Sampling
 
 `sample_x3p` allows to sub-sample an x3p object to get a lower resolution image.
-In `sample_x3p` we need to set a sampling factor. A sample factor `m` of 2 means that we only use every 2nd value of the surface matrix, `m` of 5 means, we only use every fifth value:
+In `sample_x3p` we need to set a sampling factor. A sample factor `mX` of 2 means that we only use every 2nd value of the surface matrix, `mX` of 5 means, we only use every fifth value:
 
 ```{r}
 dim(logo$surface.matrix)
 
 logo_sample <- sample_x3p(logo, m=5)
 dim(logo_sample$surface.matrix)
+```
+
+Parameter `mY` can be specified separately from `mX` for a different sampling rate in y direction.
+We can also use different offsets in x and y direction by specifying `offsetX` and/or `offsetY`.
+
+```{r}
+sample2 <- sample_x3p(logo, m=5, offset=1)
+cor(as.vector(logo_sample$surface.matrix[-149,]), as.vector(sample2$surface.matrix))
+
 ```
 
 #### Interpolation
