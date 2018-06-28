@@ -66,6 +66,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -93,7 +96,7 @@
     <p>Sample from an x3p object</p>
     
 
-    <pre class="usage"><span class='fu'>sample_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>sample_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>mY</span> <span class='kw'>=</span> <span class='no'>m</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>offsetY</span> <span class='kw'>=</span> <span class='no'>offset</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -105,6 +108,18 @@
     <tr>
       <th>m</th>
       <td><p>integer value - every mth value is included in the sample</p></td>
+    </tr>
+    <tr>
+      <th>mY</th>
+      <td><p>integer value - every mth value is included in the sample in x direction and every mYth value is included in y direction</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>integer value between 0 and m-1 to specify offset of the sample</p></td>
+    </tr>
+    <tr>
+      <th>offsetY</th>
+      <td><p>integer value between 0 and mY-1 to specify different offsets for x and y direction</p></td>
     </tr>
     </table>
     
