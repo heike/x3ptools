@@ -4,7 +4,8 @@ Title: Tools for Working with 3D Surface Measurements
 Version: 0.0.1.9000
 Date: 2018-06-01
 Authors@R: c(person("Heike", "Hofmann", role = c("aut", "cre"),
-                      email = "hofmann@iastate.edu"), 
+                      email = "hofmann@iastate.edu"),
+             person("Susan", "Vanderplas", email = "srvander@iastate.edu", role = "aut"),                      
              person("Ganesh", "Krishnan", role = c("aut"),
                       email = "ganeshk@iastate.edu"),
              person("Eric", "Hare", email = "eric@oaiti.org", role = "aut")
