@@ -14,16 +14,21 @@
 #' @importFrom xml2 xml_text
 #' @importFrom xml2 xml_find_all
 #' @importFrom xml2 xml_attr 
+#' @importFrom utils download.file
+#' @section Note:
+#' To instead download enough data to use for package exploration, use the 
+#' \code{\link{NRBTDsample_download}} function. 
+#' @seealso NRBTDsample_download
 #' @examples 
 #' \dontrun{
 #' url <- "https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/"
 #' studyID <- "c09aaa86-5d60-4acb-9031-46dad2c0ad32"
 #' fullurl <- paste0(url, studyID)
-#' NISTstudy_download(fullurl, 
+#' NRBTD_download(fullurl, 
 #'                    file.path("data"), mirrorFileStructure = T)
-#' NISTstudy_download(studyID, file.path("data"), mirrorFileStructure = T)                    
+#' NRBTD_download(studyID, file.path("data"), mirrorFileStructure = T)                    
 #'}
-NISTstudy_download <- function(study_link, directory, mirrorFileStructure = T) {
+NRBTD_download <- function(study_link, directory, mirrorFileStructure = T) {
   stopifnot(dir.exists(directory))
   
   if (!grepl(study_link, "http")) {
@@ -93,10 +98,12 @@ NISTstudy_download <- function(study_link, directory, mirrorFileStructure = T) {
 #' land. The x3p files are placed in folders corresponding to each bullet.
 #' Data from additional studies can be found at 
 #' \url{https://tsapps.nist.gov/NRBTD/Studies/Search} and can be downloaded with
-#' the \code{\link{NISTstudy_download()}} function. 
+#' the \code{\link{NRBTD_download}} function. 
 #' @param directory Location to save the files
+#' @importFrom utils download.file
 #' @export
-NISTsamplebullets_download <- function(directory) {
+#' @seealso NRBTD_download
+NRBTDsample_download <- function(directory) {
   stopifnot(dir.exists(directory))
   
   # Bullet 1, Barrel 1
