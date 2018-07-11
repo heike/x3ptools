@@ -1,47 +1,29 @@
-#' Clone of magrittr's pipe
+#' Download data from an entire study
 #' 
-#' @param lhs left hand side
-#' @param rhs right hand side
-"%>%" <- function (lhs, rhs) 
-{
-  parent <- parent.frame()
-  env <- new.env(parent = parent)
-  chain_parts <- split_chain(match.call(), env = env)
-  pipes <- chain_parts[["pipes"]]
-  rhss <- chain_parts[["rhss"]]
-  lhs <- chain_parts[["lhs"]]
-  env[["_function_list"]] <- lapply(1:length(rhss), function(i) wrap_function(rhss[[i]], 
-                                                                              pipes[[i]], parent))
-  env[["_fseq"]] <- `class<-`(eval(quote(function(value) freduce(value, 
-                                                                 `_function_list`)), env, env), c("fseq", "function"))
-  env[["freduce"]] <- freduce
-  if (is_placeholder(lhs)) {
-    env[["_fseq"]]
-  }
-  else {
-    env[["_lhs"]] <- eval(lhs, parent, parent)
-    result <- withVisible(eval(quote(`_fseq`(`_lhs`)), env, 
-                               env))
-    if (is_compound_pipe(pipes[[1L]])) {
-      eval(call("<-", lhs, result[["value"]]), parent, 
-           parent)
-    }
-    else {
-      if (result[["visible"]]) 
-        result[["value"]]
-      else invisible(result[["value"]])
-    }
-  }
-}
-
-#' Download a bullet land from NIST's NBTRD
-#' 
-#' @param study_link
-#' @param filename
+#' Use this function to download all of the data from a single study. Locate
+#' the study using the search page (\url{https://tsapps.nist.gov/NRBTD/Studies/Studies}). 
+#' @param study_link Link to study page, or id value 
+#'          (https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/<study-id-value>)
+#' @param directory Directory to download the data into. 
+#' @param mirrorFileStructure Should separate folders be created for each 
+#'          firearm and bullet? This may result in highly nested data structure. 
+#'          Setting this to FALSE may result in metadata being overwritten.
 #' @export
 #' @importFrom xml2 read_html
-#' @return This function does not return anything but leaves downloaded files in the file structure. 
-download_NIST <- function(study_link, directory, mirrorFileStructure = T) {
+#' @importFrom xml2 xml_find_first
+#' @importFrom xml2 xml_text
+#' @importFrom xml2 xml_find_all
+#' @importFrom xml2 xml_attr 
+#' @examples 
+#' \dontrun{
+#' url <- "https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/"
+#' studyID <- "c09aaa86-5d60-4acb-9031-46dad2c0ad32"
+#' fullurl <- paste0(url, studyID)
+#' NISTstudy_download(fullurl, 
+#'                    file.path("data"), mirrorFileStructure = T)
+#' NISTstudy_download(studyID, file.path("data"), mirrorFileStructure = T)                    
+#'}
+NISTstudy_download <- function(study_link, directory, mirrorFileStructure = T) {
   stopifnot(dir.exists(directory))
   
   if (!grepl(study_link, "http")) {
@@ -50,10 +32,13 @@ download_NIST <- function(study_link, directory, mirrorFileStructure = T) {
     studyUrl <- study_link
   }
   
-  studyPage <- xml2::read_html(studyUrl)
+  studyPage <- try(xml2::read_html(studyUrl))
+  if ("try-error" %in% class(studyPage)) {
+    stop("Could not find study page as specified. Try copying the URL directly")
+  }
   
   barrelLinks <- unlist(lapply(xml2::xml_find_all(studyPage, "//a[text()='Bullet / CC']"), function(x) xml2::xml_attr(x, attr = "href")))
-  barrelNames <- lapply(xml2::xml_find_first())
+
   landLinks <- lapply(paste0("https://tsapps.nist.gov", barrelLinks), function(x) {
       pg <- xml2::read_html(x)
       barrelName <- xml2::xml_find_first(pg, '//*[@id="bodycontainer"]/div[4]/div/div/div[2]/div[2]/div[1]/dl/dd[1]/text()') 
@@ -62,7 +47,7 @@ download_NIST <- function(study_link, directory, mirrorFileStructure = T) {
       # Create folder for barrel
       if (mirrorFileStructure) {
         curpath <- file.path(directory, barrelName)
-        dir.create(curpath)
+        if (!dir.exists(curpath)) dir.create(curpath)
       } else {
         curpath <- directory
       }
@@ -84,7 +69,7 @@ download_NIST <- function(study_link, directory, mirrorFileStructure = T) {
     
     if (mirrorFileStructure) {
       curpath <- file.path(landLinks[x,]$barrelPath, bulletName)
-      dir.create(curpath)
+      if (!dir.exists(curpath)) dir.create(curpath)
     } else {
       curpath <- landLinks[x,]$barrelPath
     }
@@ -98,4 +83,54 @@ download_NIST <- function(study_link, directory, mirrorFileStructure = T) {
     file.remove(file.path(curpath, "meas.zip"))
   })
   
+}
+
+#' Download data from two NIST bullets to use as sample data
+#' 
+#' Bullets downloaded are from the Hamby series of studies, using 9mm 
+#' ammunition. This function downloads two bullets from the same barrel 
+#' (Barrel 1); each bullet has 6 x3p files associated with it - one for each 
+#' land. The x3p files are placed in folders corresponding to each bullet.
+#' Data from additional studies can be found at 
+#' \url{https://tsapps.nist.gov/NRBTD/Studies/Search} and can be downloaded with
+#' the \code{\link{NISTstudy_download()}} function. 
+#' @param directory Location to save the files
+#' @export
+NISTsamplebullets_download <- function(directory) {
+  stopifnot(dir.exists(directory))
+  
+  # Bullet 1, Barrel 1
+  dl_df <- data.frame(
+    name = c(paste0("Hamby252_Barrel1_Bullet1_Land", 1:6, ".x3p"), 
+             paste0("Hamby252_Barrel1_Bullet2_Land", 1:6, ".x3p")),
+    folder = rep(c("Bullet1", "Bullet2"), each = 6),
+    url = c("https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/43567404-1611-4b40-ae74-a1e440e79f6a", 
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/a9f59fe1-f64b-487b-9f73-322ea0133a74",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/2ea4efe4-beeb-4291-993d-ae7726c624f4",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/6bb13db8-01ca-4cd4-ba5d-1c5670f1c204",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/2110e6c2-f801-458f-941a-9740804aa162",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/eaa73b31-8f9c-4b7f-a1c8-48e4da3ff9e0",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/979bf3f5-2bf4-43ab-aa14-66e79e0cbc99",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/b2b25004-364c-4468-b835-fd563b190a27",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/554c40d8-8857-4b1c-a28f-fda9b347999b",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/da019fc2-3a19-4da5-b1d7-ec059cd095f2",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/d6dfaef6-f066-4b76-bf42-f0e8c06d6241",
+            "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/a172932e-121c-4bee-9477-ae2454f0b513"),
+    stringsAsFactors = F
+  )
+  
+  folders <- file.path(directory, unique(dl_df$folder))
+  folders_exist <- dir.exists(folders)
+  if (sum(!folders_exist) > 0) {
+    lapply(folders[!folders_exist], dir.create)
+  }
+  # Ensure sub-folders exist
+  stopifnot(dir.exists(folders))
+  
+  sapply(1:nrow(dl_df), 
+         function(x) {
+           download.file(url = dl_df$url[x], 
+                         destfile = file.path(directory, dl_df$folder[x], 
+                                              dl_df$name[x], ".x3p"))
+         })
 }
