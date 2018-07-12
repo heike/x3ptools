@@ -1,7 +1,7 @@
 x3ptools: working with x3p files in R
 ================
 Heike Hofmann, Ganesh Krishnan, Eric Hare
-June 28, 2018
+July 12, 2018
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
@@ -10,7 +10,7 @@ state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build
 Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--06--28-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--07--12-yellowgreen.svg)](/commits/master)
 
 # x3ptools
 
