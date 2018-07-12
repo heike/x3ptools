@@ -138,6 +138,6 @@ NRBTDsample_download <- function(directory) {
          function(x) {
            download.file(url = dl_df$url[x], 
                          destfile = file.path(directory, dl_df$folder[x], 
-                                              dl_df$name[x], ".x3p"))
+                                              dl_df$name[x]))
          })
 }
