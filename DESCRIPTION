@@ -17,7 +17,11 @@ Depends: R (>= 3.3),
          xml2 (>= 1.2.0),
          rgl (>= 0.99.9),
          zoo (>= 1.8.1)
-Suggests: knitr, rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat,
+    covr
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
