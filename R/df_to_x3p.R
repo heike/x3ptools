@@ -48,10 +48,10 @@ df_to_x3p <- function(dframe) {
   ny <- length(unique(dframe$y))
   nx <- length(unique(dframe$x))
   if (nrow(dframe) != nx*ny) {
-    cat("dframe has missing values ...")
+    message("dframe has missing values ...")
     df2 <- expand.grid(x = unique(dframe$x), y = unique(dframe$y))
-    cat(" expand ... \n")
-    df2 <- merge(df2, dframe, by=c("x", "y"), all.x=TRUE)
+    message(" expand ... \n")
+    df2 <- merge(df2, dframe, by = c("x", "y"), all.x = TRUE)
     dframe <- df2
   }
   dframe$y <- (-1)*dframe$y
@@ -60,7 +60,7 @@ df_to_x3p <- function(dframe) {
 
   x3p[["surface.matrix"]] <- matrix(dframe$value, 
                                     #  nrow = ny,  ncol = nx, byrow = TRUE)
-                                    nrow = nx, ncol = ny, byrow=TRUE)
+                                    nrow = nx, ncol = ny, byrow = TRUE)
   
   if (is.null(x3p$header.info)) {
     x3p$header.info <- list(sizeX = nx,
