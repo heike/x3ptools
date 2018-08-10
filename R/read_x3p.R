@@ -1,6 +1,6 @@
 #' Read an x3p file into an x3p object
 #' 
-#' @param file The file path to the x3p file
+#' @param file The file path to the x3p file, or an url to an x3p file
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
@@ -9,10 +9,18 @@
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 read_x3p <- function(file) {
-  if (!file.exists(file)) stop(sprintf("File %s not found.\n", file))
+  if (grepl("http|www", file)) {
+    fname <- tempfile(fileext = ".x3p")
+    download.file(file, destfile = fname)
+    on.exit(file.remove(fname))
+  } else {
+    fname <- file
+  }
+  
+  if (!file.exists(fname)) stop(sprintf("File %s not found.\n", fname))
   ## Create a temp directory to unzip x3p file
   mydir <- tempdir()
-  result <- unzip(file, exdir = mydir)
+  result <- unzip(fname, exdir = mydir)
   ## see what we got: 
   data <- grep(".bin$", result) # data has extension .bin
   meta <- grep(".xml$", result) # meta info has extension .xml
