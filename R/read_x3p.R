@@ -1,6 +1,7 @@
 #' Read an x3p file into an x3p object
 #' 
 #' @param file The file path to the x3p file, or an url to an x3p file
+#' @param quiet for url downloads, show download progress?
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
@@ -8,10 +9,10 @@
 #' 
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-read_x3p <- function(file) {
+read_x3p <- function(file, quiet = T) {
   if (grepl("http|www", file)) {
     fname <- tempfile(fileext = ".x3p")
-    download.file(file, destfile = fname)
+    download.file(file, destfile = fname, quiet = quiet)
     on.exit(file.remove(fname))
   } else {
     fname <- file

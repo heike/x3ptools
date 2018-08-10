@@ -4,10 +4,12 @@
 \alias{read_x3p}
 \title{Read an x3p file into an x3p object}
 \usage{
-read_x3p(file)
+read_x3p(file, quiet = T)
 }
 \arguments{
-\item{file}{The file path to the x3p file}
+\item{file}{The file path to the x3p file, or an url to an x3p file}
+
+\item{quiet}{for url downloads, show download progress?}
 }
 \value{
 x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
