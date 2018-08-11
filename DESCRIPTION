@@ -21,7 +21,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    covr
+    covr,
+    here
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
