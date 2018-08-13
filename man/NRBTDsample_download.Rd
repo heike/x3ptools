@@ -4,10 +4,14 @@
 \alias{NRBTDsample_download}
 \title{Download data from two NIST bullets to use as sample data}
 \usage{
-NRBTDsample_download(directory)
+NRBTDsample_download(directory, maxFiles = 0, quiet = T)
 }
 \arguments{
 \item{directory}{Location to save the files}
+
+\item{maxFiles}{maximum number of x3p files to download. 0 indicates that all x3p files should be downloaded.}
+
+\item{quiet}{quiet download of files}
 }
 \description{
 Bullets downloaded are from the Hamby series of studies, using 9mm

@@ -4,7 +4,8 @@
 \alias{NRBTD_download}
 \title{Download data from an entire study}
 \usage{
-NRBTD_download(study_link, directory, mirrorFileStructure = T)
+NRBTD_download(study_link, directory, mirrorFileStructure = T, maxFiles = 0,
+  quiet = T)
 }
 \arguments{
 \item{study_link}{Link to study page, or id value
@@ -15,6 +16,10 @@ NRBTD_download(study_link, directory, mirrorFileStructure = T)
 \item{mirrorFileStructure}{Should separate folders be created for each
 firearm and bullet? This may result in highly nested data structure.
 Setting this to FALSE may result in metadata being overwritten.}
+
+\item{maxFiles}{maximum number of x3p files to download. 0 indicates that all x3p files should be downloaded.}
+
+\item{quiet}{quiet download of files}
 }
 \description{
 Use this function to download all of the data from a single study. Locate
