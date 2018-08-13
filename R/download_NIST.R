@@ -8,6 +8,8 @@
 #' @param mirrorFileStructure Should separate folders be created for each 
 #'          firearm and bullet? This may result in highly nested data structure. 
 #'          Setting this to FALSE may result in metadata being overwritten.
+#' @param maxFiles maximum number of x3p files to download. 0 indicates that all x3p files should be downloaded.
+#' @param quiet quiet download of files
 #' @export
 #' @importFrom xml2 read_html
 #' @importFrom xml2 xml_find_first
@@ -28,7 +30,7 @@
 #'                    file.path("data"), mirrorFileStructure = T)
 #' NRBTD_download(studyID, file.path("data"), mirrorFileStructure = T)                    
 #'}
-NRBTD_download <- function(study_link, directory, mirrorFileStructure = T) {
+NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFiles = 0, quiet = T) {
   stopifnot(dir.exists(directory))
   
   if (!grepl(study_link, "http")) {
@@ -65,7 +67,13 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T) {
   
   landLinks <- do.call("rbind", landLinks)
   
-  measLinks <- lapply(1:nrow(landLinks), function(x) {
+  if (maxFiles == 0) {
+    ndl <- nrow(landLinks)
+  } else {
+    ndl <- maxFiles
+  }
+  
+  measLinks <- lapply(1:ndl, function(x) {
     pg <- xml2::read_html(paste0("https://tsapps.nist.gov", landLinks[x,]$measLink))
     
     bulletName <- xml2::xml_find_first(pg, '//*[@id="bodycontainer"]/div[4]/div/div/div[2]/div[2]/div[1]/dl/dd[1]/text()') 
@@ -81,7 +89,7 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T) {
     
     measLinks <- xml2::xml_find_first(pg, '//*/dd/a')
     measLinks <- xml2::xml_attr(measLinks, "href")
-    download.file(paste0("https://tsapps.nist.gov", measLinks), destfile = file.path(curpath, "meas.zip"))
+    download.file(paste0("https://tsapps.nist.gov", measLinks), destfile = file.path(curpath, "meas.zip"), quiet = quiet)
     
     unzip(file.path(curpath, "meas.zip"), exdir = curpath, overwrite = T)
     
@@ -100,10 +108,12 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T) {
 #' \url{https://tsapps.nist.gov/NRBTD/Studies/Search} and can be downloaded with
 #' the \code{\link{NRBTD_download}} function. 
 #' @param directory Location to save the files
+#' @param maxFiles maximum number of x3p files to download. 0 indicates that all x3p files should be downloaded.
+#' @param quiet quiet download of files
 #' @importFrom utils download.file
 #' @export
 #' @seealso NRBTD_download
-NRBTDsample_download <- function(directory) {
+NRBTDsample_download <- function(directory, maxFiles = 0, quiet = T) {
   stopifnot(dir.exists(directory))
   
   # Bullet 1, Barrel 1
@@ -134,10 +144,16 @@ NRBTDsample_download <- function(directory) {
   # Ensure sub-folders exist
   stopifnot(dir.exists(folders))
   
-  sapply(1:nrow(dl_df), 
+  if (maxFiles == 0) {
+    ndl <- nrow(dl_df)
+  } else {
+    ndl <- maxFiles
+  }
+  
+  sapply(1:ndl, 
          function(x) {
            download.file(url = dl_df$url[x], 
                          destfile = file.path(directory, dl_df$folder[x], 
-                                              dl_df$name[x]))
+                                              dl_df$name[x]), quiet = quiet)
          })
 }
