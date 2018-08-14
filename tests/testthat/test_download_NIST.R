@@ -13,22 +13,16 @@ teardown({
 test_that("download_NIST works as expected", {
   # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
   skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
-  maxfiles <- 2
+  maxfiles <- 1
   if (dir.exists("downloadNist")) {
     unlink("downloadNist", recursive = T)
   }
   expect_warning(NRBTD_download("4908a64a-702c-4203-a945-6279df3acf3f", "downloadNist", 
-                               mirrorFileStructure = T, maxFiles = maxfiles))
+                               mirrorFileStructure = T, maxFiles = -1))
   expect_true(dir.exists("downloadNist"))
-  # expect_equal(list.files("downloadNist/*", recursive = F, include.dirs = T), 
-  #              sprintf("Hi-Point %02d", 1:10))
-  # expect_equal(gsub("^(.*)\\.", "", list.files("downloadNist/Hi-Point 01/HiPoint 1-1/Hamby Hi-Point C9 Sl/", 
-  #                                              recursive = T, include.dirs = F)),
-  #              c("png", "png", "png", "x3p", "xlsx"))
-  # expect_equal(gsub("^(.*)\\.", "", list.files("downloadNist/Hi-Point 01/HiPoint 1-2/Hamby Hi-Point C9 Sl/", 
-  #                                              recursive = T, include.dirs = F)),
-  #              c("png", "png", "png", "x3p", "xlsx"))
-  # expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), maxfiles)
+  expect_equal(list.files("downloadNist/", recursive = F, include.dirs = T),
+               sprintf("Hi-Point %02d", 1:10))
+  expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), 0)
   unlink("downloadNist/*", recursive = T)
   
   # File Structure Mirroring is false
@@ -36,7 +30,7 @@ test_that("download_NIST works as expected", {
                                mirrorFileStructure = F, maxFiles = maxfiles))
   expect_equal(list.files("downloadNist", recursive = F, include.dirs = T), "Hamby Hi-Point C9 Sl")
   expect_equal(gsub("^(.*)\\.", "", list.files("downloadNist/", recursive = T, include.dirs = F)),
-               c("png", "png", "png", "x3p", "png", "png", "png", "x3p", "xlsx"))
+               c(rep(c("png", "png", "png", "x3p"), times = maxfiles), "xlsx"))
   expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), maxfiles)
   unlink("downloadNist/*", recursive = T)
   
