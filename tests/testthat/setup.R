@@ -8,5 +8,5 @@ library(dplyr)
 `%>%` <- magrittr::`%>%`
 
 url_unreachable <- function(url) {
-  !("try-error" %in% class(try(xml2::read_html(url), silent = T)))
+  ("try-error" %in% class(try(xml2::read_html(url), silent = T)))
 }
