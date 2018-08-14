@@ -13,6 +13,7 @@ teardown({
 test_that("download_NIST works as expected", {
   # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
   skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
+  # skip_on_cran()
   maxfiles <- 1
   if (dir.exists("downloadNist")) {
     unlink("downloadNist", recursive = T)
