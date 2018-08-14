@@ -48,9 +48,8 @@ df_to_x3p <- function(dframe) {
   ny <- length(unique(dframe$y))
   nx <- length(unique(dframe$x))
   if (nrow(dframe) != nx*ny) {
-    message("dframe has missing values ...")
+    message("dframe has missing values ... they will be expanded")
     df2 <- expand.grid(x = unique(dframe$x), y = unique(dframe$y))
-    message(" expand ... \n")
     df2 <- merge(df2, dframe, by = c("x", "y"), all.x = TRUE)
     dframe <- df2
   }
