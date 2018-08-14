@@ -113,7 +113,8 @@ the study using the search page (<a href='https://tsapps.nist.gov/NRBTD/Studies/
     
     </div>
 
-    <pre class="usage"><span class='fu'>NRBTD_download</span>(<span class='no'>study_link</span>, <span class='no'>directory</span>, <span class='kw'>mirrorFileStructure</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
+    <pre class="usage"><span class='fu'>NRBTD_download</span>(<span class='no'>study_link</span>, <span class='no'>directory</span>, <span class='kw'>mirrorFileStructure</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>maxFiles</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,6 +133,14 @@ the study using the search page (<a href='https://tsapps.nist.gov/NRBTD/Studies/
       <td><p>Should separate folders be created for each
 firearm and bullet? This may result in highly nested data structure.
 Setting this to FALSE may result in metadata being overwritten.</p></td>
+    </tr>
+    <tr>
+      <th>maxFiles</th>
+      <td><p>maximum number of x3p files to download. 0 indicates that all x3p files should be downloaded.</p></td>
+    </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p>quiet download of files</p></td>
     </tr>
     </table>
     
