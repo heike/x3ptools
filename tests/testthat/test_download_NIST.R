@@ -1,19 +1,22 @@
 context("download_NIST")
 
 setup({
-  dir.create("downloadNist")
+  # dir.create("downloadNist")
 })
 
 teardown({
-  unlink("downloadNist", recursive = T)
+  if (dir.exists("downloadNist")) {
+    unlink("downloadNist", recursive = T)
+  }
 })
 
 test_that("download_NIST works as expected", {
   # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
   skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
   maxfiles <- 2
-  expect_silent(NRBTD_download("4908a64a-702c-4203-a945-6279df3acf3f", "downloadNist", 
+  expect_warning(NRBTD_download("4908a64a-702c-4203-a945-6279df3acf3f", "downloadNist", 
                                mirrorFileStructure = T, maxFiles = maxfiles))
+  expect_true(dir.exists("downloadNist"))
   expect_equal(list.files("downloadNist", recursive = F, include.dirs = T), 
                sprintf("Hi-Point %02d", 1:10))
   expect_equal(gsub("^(.*)\\.", "", list.files("downloadNist/Hi-Point 01/HiPoint 1-1/Hamby Hi-Point C9 Sl/", 
@@ -41,7 +44,7 @@ test_that("download_NIST works as expected", {
   unlink("downloadNist/*", recursive = T)
 
   # Page that doesn't exist
-  expect_error(NRBTD_download("4908a64a-702c-4203-a945-62734f3acf3f", "downloadNist", maxFiles = maxfiles, quiet = T))
+  expect_error(NRBTD_download("4908a64a-702c-4203-a945-62734f3acf3f", "downloadNist", maxFiles = -1, quiet = T))
 })
 
 test_that("NRBTDsample_download works as expected", {

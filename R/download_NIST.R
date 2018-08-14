@@ -43,7 +43,7 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFi
     studyUrl <- study_link
   }
   
-  studyPage <- try(xml2::read_html(studyUrl))
+  studyPage <- try(xml2::read_html(studyUrl), silent = T)
   if ("try-error" %in% class(studyPage)) {
     stop("Could not find study page as specified. Try copying the URL directly")
   }
