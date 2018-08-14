@@ -119,6 +119,10 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFi
 #' @importFrom utils download.file
 #' @export
 #' @seealso NRBTD_download
+#' @examples 
+#' \dontrun{
+#' NRBTDsample_download(file.path("data"))                  
+#'}
 NRBTDsample_download <- function(directory, maxFiles = 0, quiet = T) {
   if (!dir.exists(directory)) {
     warning("Directory does not exist. It will be created.")
