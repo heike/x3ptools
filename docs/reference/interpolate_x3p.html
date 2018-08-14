@@ -21,18 +21,24 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="Interpolate from an x3p object — interpolate_x3p" />
 
 <meta property="og:description" content="An interpolated scan is created at specified resolutions resx, resy in x and y direction.
 The interpolation is based on na.approx from the zoo package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but not recommended to do so.
 interpolate_x3p can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -55,8 +61,12 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">x3ptools</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">x3ptools</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -69,7 +79,7 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -81,6 +91,7 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -88,21 +99,25 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Interpolate from an x3p object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/interpolate_x3p.R'><code>R/interpolate_x3p.R</code></a></small>
+    <div class="hidden name"><code>interpolate_x3p.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>An interpolated scan is created at specified resolutions <code>resx</code>, <code>resy</code> in x and y direction.
 The interpolation is based on <code>na.approx</code> from the <code>zoo</code> package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but not recommended to do so.
 <code>interpolate_x3p</code> can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>interpolate_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>resx</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>resy</span> <span class='kw'>=</span> <span class='no'>resx</span>, <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -160,5 +175,8 @@ The interpolation is based on <code>na.approx</code> from the <code>zoo</code> p
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
