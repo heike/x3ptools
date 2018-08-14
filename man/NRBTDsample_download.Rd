@@ -22,6 +22,11 @@ Data from additional studies can be found at
 \url{https://tsapps.nist.gov/NRBTD/Studies/Search} and can be downloaded with
 the \code{\link{NRBTD_download}} function.
 }
+\examples{
+\dontrun{
+NRBTDsample_download(file.path("data"))                  
+}
+}
 \seealso{
 NRBTD_download
 }

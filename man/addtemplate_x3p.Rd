@@ -4,7 +4,7 @@
 \alias{addtemplate_x3p}
 \title{Add/change xml meta information in x3p object}
 \usage{
-addtemplate_x3p(x3p, template)
+addtemplate_x3p(x3p, template = NULL)
 }
 \arguments{
 \item{x3p}{x3p object}
