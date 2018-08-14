@@ -37,7 +37,6 @@ test_that("download_NIST works as expected", {
   # full download link
   expect_silent(NRBTD_download("https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/c09aaa86-5d60-4acb-9031-46dad2c0ad32",
                                directory = "downloadNist", mirrorFileStructure = F, maxFiles = -1))
-  expect_equal(list.files("downloadNist", recursive = F, include.dirs = T), "Hamby Hi-Point C9 Sl")
   expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), 0)
   unlink("downloadNist/*", recursive = T)
 
