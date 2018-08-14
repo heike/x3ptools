@@ -35,13 +35,10 @@ test_that("download_NIST works as expected", {
   unlink("downloadNist/*", recursive = T)
   
   # full download link
-  expect_silent(NRBTD_download("https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/4908a64a-702c-4203-a945-6279df3acf3f",
-                               directory = "downloadNist",
-                                 mirrorFileStructure = F, maxFiles = maxfiles))
+  expect_silent(NRBTD_download("https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/c09aaa86-5d60-4acb-9031-46dad2c0ad32",
+                               directory = "downloadNist", mirrorFileStructure = F, maxFiles = -1))
   expect_equal(list.files("downloadNist", recursive = F, include.dirs = T), "Hamby Hi-Point C9 Sl")
-  expect_equal(gsub("^(.*)\\.", "", list.files("downloadNist/", recursive = T, include.dirs = F)),
-               c("png", "png", "png", "x3p", "png", "png", "png", "x3p", "xlsx"))
-  expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), maxfiles)
+  expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), 0)
   unlink("downloadNist/*", recursive = T)
 
   # Page that doesn't exist

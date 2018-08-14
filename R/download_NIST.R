@@ -31,9 +31,13 @@
 #' NRBTD_download(studyID, file.path("data"), mirrorFileStructure = T)                    
 #'}
 NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFiles = 0, quiet = T) {
+  if (!dir.exists(directory)) {
+    warning("Directory does not exist. It will be created.")
+    dir.create(directory, recursive = T)
+  }
   stopifnot(dir.exists(directory))
   
-  if (!grepl(study_link, "http")) {
+  if (!(grepl(study_link, pattern = "http") | grepl(study_link, pattern = "www"))) {
     studyUrl <- paste0("https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/", study_link)
   } else {
     studyUrl <- study_link
@@ -69,6 +73,8 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFi
   
   if (maxFiles == 0) {
     ndl <- nrow(landLinks)
+  } else if (maxFiles < 0) {
+    return()
   } else {
     ndl <- maxFiles
   }
@@ -114,6 +120,10 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFi
 #' @export
 #' @seealso NRBTD_download
 NRBTDsample_download <- function(directory, maxFiles = 0, quiet = T) {
+  if (!dir.exists(directory)) {
+    warning("Directory does not exist. It will be created.")
+    dir.create(directory, recursive = T)
+  }
   stopifnot(dir.exists(directory))
   
   # Bullet 1, Barrel 1
@@ -146,6 +156,8 @@ NRBTDsample_download <- function(directory, maxFiles = 0, quiet = T) {
   
   if (maxFiles == 0) {
     ndl <- nrow(dl_df)
+  } else if (maxFiles < 0) {
+    return()
   } else {
     ndl <- maxFiles
   }
