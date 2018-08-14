@@ -1,7 +1,7 @@
 context("df_to_x3p")
 
 # Test missing values messages
-dftest2 <- dftest[sample(1:36, size = 34), c(1, 2, 4)]
+dftest2 <- dftest[sample(1:42, size = 38), c(1, 2, 4)]
 
 
 test_that("df_to_x3p works as expected", {
@@ -13,7 +13,7 @@ test_that("df_to_x3p works as expected", {
   expect_equivalent(tmp$surface.matrix,
                     matrix(dplyr::arrange(dftest, desc(y))$value,
                            byrow = F, nrow = 6))
-  expect_equivalent(tmp$header.info, list(sizeX = 6, sizeY = 6, incrementX = 1, incrementY = 1))
+  expect_equivalent(tmp$header.info, list(sizeX = 6, sizeY = 7, incrementX = 1, incrementY = 1))
   
   expect_message(
     x3ptest2 <- df_to_x3p(dftest2),
