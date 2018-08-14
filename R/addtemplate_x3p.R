@@ -9,12 +9,12 @@
 #' # exchange meta information for general x3p information:
 #' logo <- addtemplate_x3p(logo, template = system.file("templateXML.xml", package="x3ptools"))
 #' logo$general.info
-addtemplate_x3p <- function(x3p, template) {
+addtemplate_x3p <- function(x3p, template = NULL) {
   if (is.null(template)) {
-    template <- system.file("templateXML.xml", package="x3ptools")
+    template <- system.file("templateXML.xml", package = "x3ptools")
   }
   a1 <- read_xml(template)
-  a1list<- as_list(a1)
+  a1list <- as_list(a1)
   
   x3p$general.info <- a1list[[1]]$Record2
   if (is.null(x3p$feature.info)) {
