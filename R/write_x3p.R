@@ -22,16 +22,16 @@ write_x3p <- function(x3p, file)
   matrix.info <- x3p$matrix.info
   
   if (is.null(general.info)) {
-    cat("general info not specified, using template\n")
+    message("general info not specified, using template\n")
     general.info = as_list(xml_child(a1, search = "Record2"))
   }
   if (is.null(feature.info)) {
-    cat("feature info not specified, using template\n")
+    message("feature info not specified, using template\n")
     feature.info = as_list(xml_child(a1, search = "Record1"))
     
   }
   if (is.null(matrix.info)) {
-    cat("matrix info not specified, using template\n")
+    message("matrix info not specified, using template\n")
     matrix.info = as_list(xml_child(a1, search = "Record3"))
     
   }
