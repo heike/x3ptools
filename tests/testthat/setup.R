@@ -18,3 +18,4 @@ dftest <- expand.grid(x = 1:6, y = 1:7) %>%
                 value = z)
 
 x3ptest <- df_to_x3p(dftest[,c(1, 2, 4)])
+
