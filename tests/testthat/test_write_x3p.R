@@ -7,8 +7,10 @@ test_that("write_x3p works as expected", {
   write_x3p(x3ptest, file = tmpfile)
   tmpx3p <- read_x3p(tmpfile)
   expect_equivalent(tmpx3p$surface.matrix, x3ptest$surface.matrix)
-  # Header info is switched, but surface matrix isn't?
-  # expect_equivalent(tmpx3p$header.info, x3ptest$header.info)
+  expect_equivalent(tmpx3p$header.info$sizeX, x3ptest$header.info$sizeX)
+  expect_equivalent(tmpx3p$header.info$sizeY, x3ptest$header.info$sizeY)
+  expect_equivalent(tmpx3p$header.info$incrementX, x3ptest$header.info$incrementX)
+  expect_equivalent(tmpx3p$header.info$incrementY, x3ptest$header.info$incrementY)
   
   file.remove(tmpfile)
 })
