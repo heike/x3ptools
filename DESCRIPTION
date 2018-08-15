@@ -3,15 +3,19 @@ Type: Package
 Title: Tools for Working with 3D Surface Measurements
 Version: 0.0.1.9000
 Date: 2018-06-01
-Authors@R: c(person("Heike", "Hofmann", role = c("aut", "cre"),
-                      email = "hofmann@iastate.edu"),
-             person("Susan", "Vanderplas", email = "srvander@iastate.edu", role = "aut"),                      
-             person("Ganesh", "Krishnan", role = c("aut"),
-                      email = "ganeshk@iastate.edu"),
-             person("Eric", "Hare", email = "eric@oaiti.org", role = "aut")
-             )
+Authors@R: c(
+    person("Heike", "Hofmann", role = c("aut", "cre"),
+            email = "hofmann@iastate.edu"),
+    person("Susan", "Vanderplas", email = "srvander@iastate.edu", 
+            role = "aut"),                      
+    person("Ganesh", "Krishnan", role = c("aut"),
+            email = "ganeshk@iastate.edu"),
+    person("Eric", "Hare", email = "eric@oaiti.org", role = "aut")
+    )
 Maintainer: Heike Hofmann <hofmann@iastate.edu>
-Description: The x3p file format  is specified in ISO standard 5436:2000 to describe 3d surface measurements. 'x3ptools' allows reading, writing and basic modifications to the 3D surface measurements.
+Description: The x3p file format  is specified in ISO standard 5436:2000 to 
+    describe 3d surface measurements. 'x3ptools' allows reading, writing and 
+    basic modifications to the 3D surface measurements.
 Depends: R (>= 3.3),
          digest (>= 0.6.15),
          xml2 (>= 1.2.0),
