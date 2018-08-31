@@ -4,10 +4,12 @@
 \alias{read_x3p}
 \title{Read an x3p file into an x3p object}
 \usage{
-read_x3p(file, quiet = T)
+read_x3p(file, size = NA, quiet = T)
 }
 \arguments{
 \item{file}{The file path to the x3p file, or an url to an x3p file}
+
+\item{size}{size in bytes to use for reading the binary file. If not specified, default is used.}
 
 \item{quiet}{for url downloads, show download progress?}
 }
