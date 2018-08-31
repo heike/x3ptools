@@ -2,6 +2,7 @@
 #' 
 #' @param file The file path to the x3p file, or an url to an x3p file
 #' @param quiet for url downloads, show download progress?
+#' @param size size in bytes to use for reading the binary file. If not specified, default is used.
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
@@ -9,7 +10,7 @@
 #' 
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-read_x3p <- function(file, quiet = T) {
+read_x3p <- function(file, size = NA, quiet = T) {
   if (grepl("http|www", file)) {
     fname <- tempfile(fileext = ".x3p")
     download.file(file, destfile = fname, quiet = quiet)
@@ -47,7 +48,9 @@ read_x3p <- function(file, quiet = T) {
   ## Read the data matrix
   sizes <- as.numeric(c(bullet_info_unlist$SizeX[[1]], bullet_info_unlist$SizeY[[1]], bullet_info_unlist$SizeZ[[1]]))
   increments <- as.numeric(c(bullet_info_unlist$CX$Increment[[1]], bullet_info_unlist$CY$Increment[[1]], bullet_info_unlist$CZ$Increment[[1]]))
-  datamat <- matrix(readBin(bullet_data, what = numeric(), n = prod(sizes[1:2])),
+  datamat <- matrix(readBin(bullet_data, what = numeric(), 
+                            size = size,
+                            n = prod(sizes[1:2])),
                     nrow = sizes[1],
                     ncol = sizes[2]) 
   
