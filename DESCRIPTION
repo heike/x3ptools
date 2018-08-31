@@ -20,7 +20,8 @@ Depends: R (>= 3.3),
          digest (>= 0.6.15),
          xml2 (>= 1.2.0),
          rgl (>= 0.99.9),
-         zoo (>= 1.8.1)
+         zoo (>= 1.8.1),
+         assertthat
 Suggests: 
     knitr,
     rmarkdown,
