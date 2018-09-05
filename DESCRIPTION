@@ -31,7 +31,7 @@ Suggests:
     dplyr
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 URL: https://github.com/heike/x3ptools
 BugReports: https://github.com/heike/x3ptools/issues
 Roxygen: list(markdown = TRUE)

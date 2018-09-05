@@ -4,8 +4,8 @@
 \alias{NRBTD_download}
 \title{Download data from an entire study}
 \usage{
-NRBTD_download(study_link, directory, mirrorFileStructure = T, maxFiles = 0,
-  quiet = T)
+NRBTD_download(study_link, directory, mirrorFileStructure = T,
+  maxFiles = 0, quiet = T)
 }
 \arguments{
 \item{study_link}{Link to study page, or id value
