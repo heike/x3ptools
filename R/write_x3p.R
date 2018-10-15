@@ -108,7 +108,8 @@ write_x3p <- function(x3p, file)
   # Write the x3p file and reset path
   # create zipped file in the specified location 
   
-  zip(zipfile = file.path(fileDir, fileName), files = dir())
+#  zip(zipfile = file.path(fileDir, fileName), files = dir())
+  zip(zipfile = file.path(fileDir, fileName), files = dir(), flags = "-r9X")
   # not necessary to delete the temporary folder 
  # setwd("..")
 #  unlink(tmpx3pfolder,recursive = TRUE)

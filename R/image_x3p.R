@@ -2,7 +2,7 @@
 #' 
 #' @param x3p x3p object
 #' @param file file name for saving, if file is NULL the opengl device stays open. 
-#' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing).
+#' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.
 #' @param col color specification
 #' @param size vector of width and height
 #' @param zoom numeric value indicating the amount of zoom
@@ -47,6 +47,9 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoo
     extension <- splits[[1]][length(splits[[1]])]
     if (extension=="png") {
       rgl.snapshot(filename=file)
+    }
+    if (extension == "svg") {
+      rgl.postscript(filename=file, fmt="svg")
     }
     if (extension=="stl") {
       writeSTL(con=file)
