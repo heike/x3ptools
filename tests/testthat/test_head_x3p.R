@@ -4,7 +4,7 @@ setup({
   
 })
 teardown({
-  file.remove("head_test_output.txt")
+  # file.remove("head_test_output.txt")
 })
 
 head_output <- capture_output(head_obj <- head(x3ptest))
