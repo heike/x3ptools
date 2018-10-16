@@ -31,7 +31,7 @@ test_that("image_x3p_crosscut works as expected", {
   image_x3p_crosscut(x3ptest, crosscut = 3, crosscut_rad = 1)
   rglwindowopen <- rgl::.check3d()
   # Check that a window is open
-  expect_equivalent(rglwindowopen, 2)
+  expect_gte(rglwindowopen, 1)
   # If open, close it
   if (rglwindowopen) {
     rgl::rgl.close()
