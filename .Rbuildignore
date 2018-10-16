@@ -9,3 +9,4 @@ docs
 ^cran-comments\.md$
 ^inst/sensofar1.*
 ^codecov.yml*
+raw-data
