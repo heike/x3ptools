@@ -95,9 +95,10 @@ NRBTD_download <- function(study_link, directory, mirrorFileStructure = T, maxFi
     
     measLinks <- xml2::xml_find_first(pg, '//*/dd/a')
     measLinks <- xml2::xml_attr(measLinks, "href")
-    download.file(paste0("https://tsapps.nist.gov", measLinks), destfile = file.path(curpath, "meas.zip"), quiet = quiet)
+    download.file(paste0("https://tsapps.nist.gov", measLinks), 
+                  destfile = file.path(curpath, "meas.zip"), quiet = quiet)
     
-    unzip(file.path(curpath, "meas.zip"), exdir = curpath, overwrite = T)
+    suppressWarnings(unzip(file.path(curpath, "meas.zip"), exdir = file.path(curpath), overwrite = T))
     
     file.remove(file.path(curpath, "meas.zip"))
   })
