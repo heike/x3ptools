@@ -69,8 +69,7 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoo
 #' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.
 #' @param col color specification
 #' @param crosscut crosscut index
-#' @param crosscut_col color for crosscut region
-#' @param crosscut_rad radius around crosscut to color
+#' @param ccParam list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region
 #' @param size vector of width and height
 #' @param zoom numeric value indicating the amount of zoom
 #' @param multiply exaggerate the relief by factor multiply
@@ -84,8 +83,9 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32", size = c(750, 250), zoo
 #' image_x3p_crosscut(logo, file = "logo.png", crosscut = 50)
 #' }
 image_x3p_crosscut <- function(x3p, file = NULL, col = "#cd7f32",
-                               crosscut = NULL, crosscut_col = "#000000",
-                               crosscut_rad = 3,
+                               crosscut = NA, 
+                               ccParam = list(color = "#e6bf98",
+                                              radius = 5),
                                size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
   stopifnot("x3p" %in% class(x3p))
   surface <- x3p$surface.matrix
@@ -94,7 +94,6 @@ image_x3p_crosscut <- function(x3p, file = NULL, col = "#cd7f32",
   y <- x3p$header.info$incrementY * yidx #
   x <- x3p$header.info$incrementX * (1:nrow(z)) #
 
-  crosscutidx <- which(yidx == crosscut)
 
   params <- rgl::r3dDefaults
   #  params$viewport <- c(0,0, 750, 250)
@@ -117,19 +116,23 @@ image_x3p_crosscut <- function(x3p, file = NULL, col = "#cd7f32",
   )
   light3d(diffuse = "gray20", specular = "gray20")
 
-  colmat <- matrix(rep(col, length(z)), nrow = nrow(z), ncol = ncol(z))
-
-  if (!is.null(crosscut)) {
+  if (!is.na(crosscut)) {
+    crosscutidx <- which(yidx == crosscut)
+    
+    colmat <- matrix(rep(col, length(z)), nrow = nrow(z), ncol = ncol(z))
+    
     if (length(crosscutidx) > 0) {
-      coloridx <- pmax(crosscutidx - crosscut_rad, 0):pmin(crosscutidx + crosscut_rad, ncol(z))
-      colmat[, coloridx] <- crosscut_col
+      coloridx <- pmax(crosscutidx - ccParam$radius, 0):pmin(crosscutidx + ccParam$radius, ncol(z))
+      colmat[, coloridx] <- ccParam$color
     } else {
       warning("Crosscut does not map to x3p file correctly.")
     }
-  }
-
-  surface3d(x, y, z, color = colmat, back = "fill")
-
+    
+    
+    surface3d(x, y, z, color = colmat, back = "fill")
+  } else 
+    surface3d(x, y, z, color = col, back = "fill")
+  
   if (!is.null(file)) {
     splits <- strsplit(file, split = "\\.")
     extension <- splits[[1]][length(splits[[1]])]

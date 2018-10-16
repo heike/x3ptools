@@ -23,6 +23,7 @@ read_x3p <- function(file, size = NA, quiet = T) {
   ## Create a temp directory to unzip x3p file
   mydir <- tempdir()
   result <- unzip(fname, exdir = mydir)
+  if (length(result) == 0) stop(sprintf("File %s is not an x3p file", fname)) # unzipping didn't work
   ## see what we got: 
   data <- grep(".bin$", result) # data has extension .bin
   meta <- grep(".xml$", result) # meta info has extension .xml
