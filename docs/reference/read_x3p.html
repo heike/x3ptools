@@ -111,7 +111,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_x3p</span>(<span class='no'>file</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
+    <pre class="usage"><span class='fu'>read_x3p</span>(<span class='no'>file</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -119,6 +119,10 @@
     <tr>
       <th>file</th>
       <td><p>The file path to the x3p file, or an url to an x3p file</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>size in bytes to use for reading the binary file. If not specified, default is used.</p></td>
     </tr>
     <tr>
       <th>quiet</th>

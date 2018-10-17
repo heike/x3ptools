@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • x3ptools</title>
+<title>Convert x3p header information to microns from meters — x3p_m_to_mum • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,13 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Convert x3p header information to microns from meters — x3p_m_to_mum" />
+
+<meta property="og:description" content="ISO standard 5436_2 asks for specification of values in meters.
+For topographic surfaces collected by microscopes values in microns are
+more readable. Besides scaling the values in the surface matrix, corresponding
+increments are changed to microns as well." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -95,132 +101,47 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Convert x3p header information to microns from meters</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/convert.R'><code>R/convert.R</code></a></small>
+    <div class="hidden name"><code>x3p_m_to_mum.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>ISO standard 5436_2 asks for specification of values in meters.
+For topographic surfaces collected by microscopes values in microns are
+more readable. Besides scaling the values in the surface matrix, corresponding
+increments are changed to microns as well.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="NRBTD_download.html">NRBTD_download()</a></code> </p>
-        </td>
-        <td><p>Download data from an entire study</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="NRBTDsample_download.html">NRBTDsample_download()</a></code> </p>
-        </td>
-        <td><p>Download data from two NIST bullets to use as sample data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="addtemplate_x3p.html">addtemplate_x3p()</a></code> </p>
-        </td>
-        <td><p>Add/change xml meta information in x3p object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="df_to_x3p.html">df_to_x3p()</a></code> </p>
-        </td>
-        <td><p>Convert  a data frame into an x3p file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="head.x3p.html">head(<i>&lt;x3p&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Show meta information of an x3p file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="image_x3p.html">image_x3p()</a></code> </p>
-        </td>
-        <td><p>Plot x3p object as an image</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="interpolate_x3p.html">interpolate_x3p()</a></code> </p>
-        </td>
-        <td><p>Interpolate from an x3p object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.x3p.html">print(<i>&lt;x3p&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Show meta information of an x3p file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_x3p.html">read_x3p()</a></code> </p>
-        </td>
-        <td><p>Read an x3p file into an x3p object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rotate_x3p.html">rotate_x3p()</a></code> </p>
-        </td>
-        <td><p>Rotate an x3p object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sample_x3p.html">sample_x3p()</a></code> </p>
-        </td>
-        <td><p>Sample from an x3p object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="transpose_x3p.html">transpose_x3p()</a></code> </p>
-        </td>
-        <td><p>Transpose an x3p object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_x3p.html">write_x3p()</a></code> </p>
-        </td>
-        <td><p>Write an x3p object to a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="x3p_m_to_mum.html">x3p_m_to_mum()</a></code> </p>
-        </td>
-        <td><p>Convert x3p header information to microns from meters</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="x3p_to_df.html">x3p_to_df()</a></code> </p>
-        </td>
-        <td><p>Convert an x3p file into a data frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="y_flip_x3p.html">y_flip_x3p()</a></code> </p>
-        </td>
-        <td><p>Flip the y coordinate of an x3p image</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>x3p_m_to_mum</span>(<span class='no'>x3p</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x3p</th>
+      <td><p>x3p file with header information in meters</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>x3p with header information in microns</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 

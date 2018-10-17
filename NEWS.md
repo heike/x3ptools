@@ -12,6 +12,7 @@
 
 - head.x3p
 - enabled URL read of x3p files
+- include svg as an option for file save from image_x3p
 
 ## bug fixes
 
