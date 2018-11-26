@@ -30,6 +30,15 @@ test_that("image_x3p works as expected", {
   
   image_x3p(x3ptest, file = "x3ptest.stl")
   expect_true(file.exists("x3ptest.stl"))
+  
+  image_x3p(x3ptest, crosscut = 1)
+  rglwindowopen <- rgl::.check3d()
+  # Check that a window is open
+  expect_gte(rglwindowopen, 1)
+  # If open, close it
+  if (rglwindowopen) {
+    rgl::rgl.close()
+  }
 })
 
 test_that("image_x3p_grid works as expected", {
