@@ -11,10 +11,38 @@
 #' head(logo_df)
 x3p_to_df <- function(x3p) {
   info <- x3p$header.info
-  if (is.null(info$sizeX)) info$sizeX <- info$num_obs_per_profile
-  if (is.null(info$sizeY)) info$sizeY <- info$num_profiles
-  if (is.null(info$incrementY)) info$incrementY <- info$profile_inc
-  if (is.null(info$incrementX)) info$incrementX <- info$obs_inc
+  if (is.null(info$sizeX)) {
+    if (!is.null(info$num_obs_per_profile)) {
+      info$sizeX <- info$num_obs_per_profile 
+    } else {
+      warning("Assuming X is represented by rows of the surface matrix because it is not specified in header information")
+      info$sizeX <- nrow(x3p$surface.matrix)
+    }
+  }
+  if (is.null(info$sizeY)) {
+    if (!is.null(info$num_profiles)) {
+      info$sizeY <- info$num_profiles
+    } else {
+      warning("Assuming Y is represented by columns of the surface matrix because it is not specified in header information")
+      info$sizeY <- ncol(x3p$surface.matrix)
+    }
+  } 
+  if (is.null(info$incrementY)) {
+    if (!is.null(info$profile_inc)) {
+      info$incrementY <- info$profile_inc
+    } else {
+      warning("Assuming Y increment is 1 - not specified")
+      info$incrementY <- 1
+    }
+  } 
+  if (is.null(info$incrementX)) {
+    if (!is.null(info$obs_inc)) {
+      info$incrementX <- info$obs_inc
+    } else {
+      warning("Assuming X increment is 1 - not specified")
+      info$incrementX <- 1
+    }
+  }  
   
   # expand.grid creates grid with first variable the fastest
   df <- data.frame(expand.grid(

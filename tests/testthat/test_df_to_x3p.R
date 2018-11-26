@@ -26,4 +26,9 @@ test_that("x3p_to_df works as expected", {
                       dplyr::mutate(x = x + 1, y = y + 1) %>% 
                       dplyr::arrange(y, x), 
                     dftest[,c(1, 2, 4)])
+  
+  x3ptest2 <- x3ptest
+  x3ptest2$header.info <- list(sizeX = NULL, sizeY = NULL, incrementX = NULL, incrementY = NULL)
+  expect_warning(tmp2 <- x3p_to_df(x3ptest2))
+  expect_equivalent(sort(tmp2$value), sort(dftest$value))
 })
