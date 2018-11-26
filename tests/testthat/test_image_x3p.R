@@ -4,11 +4,17 @@ teardown({
   if (file.exists("x3ptest.png")) {
     file.remove("x3ptest.png")
   }
+  if (file.exists("x3ptest.svg")) {
+    file.remove("x3ptest.svg")
+  }
   if (file.exists("x3ptest.stl")) {
     file.remove("x3ptest.stl")
   }
   if (file.exists("x3ptest2.png")) {
     file.remove("x3ptest2.png")
+  }
+  if (file.exists("x3ptest2.svg")) {
+    file.remove("x3ptest2.svg")
   }
   if (file.exists("x3ptest2.stl")) {
     file.remove("x3ptest2.stl")
@@ -27,7 +33,8 @@ test_that("image_x3p works as expected", {
   }
   image_x3p(x3ptest, file = "x3ptest.png")
   expect_true(file.exists("x3ptest.png"))
-  
+  image_x3p(x3ptest, file = "x3ptest.svg")
+  expect_true(file.exists("x3ptest.svg"))
   image_x3p(x3ptest, file = "x3ptest.stl")
   expect_true(file.exists("x3ptest.stl"))
   
@@ -53,7 +60,8 @@ test_that("image_x3p_grid works as expected", {
   }
   image_x3p_grid(x3ptest, file = "x3ptest2.png")
   expect_true(file.exists("x3ptest2.png"))
-  
+  image_x3p_grid(x3ptest, file = "x3ptest2.svg")
+  expect_true(file.exists("x3ptest2.svg"))
   image_x3p_grid(x3ptest, file = "x3ptest2.stl")
   expect_true(file.exists("x3ptest2.stl"))
 })
