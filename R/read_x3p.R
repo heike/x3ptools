@@ -48,7 +48,11 @@ read_x3p <- function(file, size = NA, quiet = T) {
   
   ## Read the data matrix
   sizes <- as.numeric(c(bullet_info_unlist$SizeX[[1]], bullet_info_unlist$SizeY[[1]], bullet_info_unlist$SizeZ[[1]]))
-  increments <- as.numeric(c(bullet_info_unlist$CX$Increment[[1]], bullet_info_unlist$CY$Increment[[1]], bullet_info_unlist$CZ$Increment[[1]]))
+  increments <- as.numeric(
+    c(bullet_info_unlist$CX$Increment[[1]], 
+      bullet_info_unlist$CY$Increment[[1]], 
+      ifelse(length(bullet_info_unlist$CZ$Increment)==0,1,bullet_info_unlist$CZ$Increment[[1]])))
+    # use a default of 1 in case the Z increment is not included
   datamat <- matrix(readBin(bullet_data, what = numeric(), 
                             size = size,
                             n = prod(sizes[1:2])),

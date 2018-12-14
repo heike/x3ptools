@@ -160,6 +160,36 @@ image_x3p_grid <- function(x3p, file = NULL, col = "#cd7f32",
 
       colmat[, coloridx] <- gridParam$color
       colmat[coloridy, ] <- gridParam$color
+
+   #   every five spaces:      
+      yspaces = seq(1, max(yidx), by =5*spaces)
+      crosscutidx <- which(yidx %in% yspaces)
+
+      coloridx <- rep(crosscutidx, each = 2*gridParam$radius+1) + (-gridParam$radius):(gridParam$radius)
+      coloridx <- unique(pmin(pmax(coloridx, 1), max(yidx)))
+      
+      xspaces = seq(1, max(xidx), by =5*2*spaces)
+      crosscutidy <- which(xidx %in% xspaces)
+      coloridy <- rep(crosscutidy,  each = 2*gridParam$radius+1) + (-gridParam$radius):(gridParam$radius)
+      coloridy <- unique(pmin(pmax(coloridy, 1), max(xidx)))
+     
+      colmat[, coloridx] <- "darkred"
+      colmat[coloridy, ] <- "darkred"
+    
+     #   every ten spaces:      
+      yspaces = seq(1, max(yidx), by =10*spaces)
+      crosscutidx <- which(yidx %in% yspaces)
+      
+      coloridx <- rep(crosscutidx, each = 2*gridParam$radius+1) + (-gridParam$radius):(gridParam$radius)
+      coloridx <- unique(pmin(pmax(coloridx, 1), max(yidx)))
+      
+      xspaces = seq(1, max(xidx), by =10*2*spaces)
+      crosscutidy <- which(xidx %in% xspaces)
+      coloridy <- rep(crosscutidy,  each = 2*gridParam$radius+1) + (-gridParam$radius):(gridParam$radius)
+      coloridy <- unique(pmin(pmax(coloridy, 1), max(xidx)))
+      
+      colmat[, coloridx] <- "black"
+      colmat[coloridy, ] <- "black"  
     } else {
       warning("Crosscut does not map to x3p file correctly.")
     }
