@@ -4,12 +4,14 @@
 \alias{write_x3p}
 \title{Write an x3p object to a file}
 \usage{
-write_x3p(x3p, file)
+write_x3p(x3p, file, size = 8)
 }
 \arguments{
 \item{x3p}{x3p object}
 
 \item{file}{path to where the file should be written}
+
+\item{size}{integer. The number of bytes per element in the  surface matrix used for creating the binary file. Use size = 4 for 32 bit IEEE 754 floating point numbers and size = 8 for 64 bit IEEE 754 floating point number (default).}
 }
 \description{
 Write an x3p object to a file

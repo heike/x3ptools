@@ -2,6 +2,7 @@
 #' 
 #' @param x3p x3p object
 #' @param file path to where the file should be written
+#' @param size integer. The number of bytes per element in the  surface matrix used for creating the binary file. Use size = 4 for 32 bit IEEE 754 floating point numbers and size = 8 for 64 bit IEEE 754 floating point number (default).
 #' @importFrom digest digest
 #' @importFrom xml2 read_xml
 #' @importFrom utils as.relistable relist zip
@@ -10,11 +11,14 @@
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 #' # write a copy of the file into a temporary file
 #' write_x3p(logo, file = tempfile(fileext="x3p")) 
-write_x3p <- function(x3p, file)
+write_x3p <- function(x3p, file, size = 8)
 {
   a1 <- read_xml(system.file("templateXML.xml", package="x3ptools"))
   a1list<- as_list(a1, ns = xml_ns(a1))
   tmp<- as.relistable(a1list) # structure needed for compiling xml_document
+  
+  # check that size is 4 or 8
+  stopifnot(size %in% c(4,8))
   
   feature.info <- x3p$feature.info
   general.info <- x3p$general.info
@@ -74,12 +78,13 @@ write_x3p <- function(x3p, file)
   a1list[[1]]$Record1 <- feature.info
   
   # Writing the Surface Matrix as a Binary file
-  writeBin(as.vector((x3p$surface.matrix)), con = binPath)
-  
+  writeBin(as.vector((x3p$surface.matrix)), con = binPath, size = size)
   # Generating the MD% check sum
   chksum<- digest("bindata/data.bin", algo= "md5", serialize=FALSE, file=TRUE)
   a1list[[1]]$Record3$DataLink$MD5ChecksumPointData <- list(chksum)
   
+  if (size == 4) a1list[[1]]$Record1$Axes$CZ$DataType[[1]] <- "F"
+  if (size == 8) a1list[[1]]$Record1$Axes$CZ$DataType[[1]] <- "D"
   
   # Assigning values to Record 4 in main.xml
   a1list[[1]]$Record4$ChecksumFile <- list("md5checksum.hex")
