@@ -2,7 +2,7 @@
 #' 
 #' @param file The file path to the x3p file, or an url to an x3p file
 #' @param quiet for url downloads, show download progress?
-#' @param size size in bytes to use for reading the binary file. If not specified, default is used.
+#' @param size size in bytes to use for reading the binary file. If not specified, default is used. Will be overwritten if specified in the xml meta file.
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
@@ -53,6 +53,10 @@ read_x3p <- function(file, size = NA, quiet = T) {
       bullet_info_unlist$CY$Increment[[1]], 
       ifelse(length(bullet_info_unlist$CZ$Increment)==0,1,bullet_info_unlist$CZ$Increment[[1]])))
     # use a default of 1 in case the Z increment is not included
+
+  if (bullet_info_unlist$CZ$DataType[[1]] == "F") size <- 4
+  if (bullet_info_unlist$CZ$DataType[[1]] == "D") size <- 8
+  
   datamat <- matrix(readBin(bullet_data, what = numeric(), 
                             size = size,
                             n = prod(sizes[1:2])),
