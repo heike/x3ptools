@@ -9,7 +9,7 @@ read_x3p(file, size = NA, quiet = T)
 \arguments{
 \item{file}{The file path to the x3p file, or an url to an x3p file}
 
-\item{size}{size in bytes to use for reading the binary file. If not specified, default is used.}
+\item{size}{size in bytes to use for reading the binary file. If not specified, default is used. Will be overwritten if specified in the xml meta file.}
 
 \item{quiet}{for url downloads, show download progress?}
 }
