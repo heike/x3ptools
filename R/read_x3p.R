@@ -60,8 +60,7 @@ read_x3p <- function(file, size = NA, quiet = T) {
   if (!is.na(size2) & !(is.na(size))) 
     if (size != size2) warning(sprintf("Number of bytes specified (%d bytes) in x3p file different from requested (%d bytes)", size2, size))
     
-  if (!is.na(size2))  
-    size <- size2  
+  if (is.na(size)) size <- size2  # only use xml when size is not specified
   
   datamat <- matrix(readBin(bullet_data, what = numeric(), 
                             size = size,
