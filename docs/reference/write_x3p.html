@@ -111,7 +111,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>write_x3p</span>(<span class='no'>x3p</span>, <span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>write_x3p</span>(<span class='no'>x3p</span>, <span class='no'>file</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>8</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,6 +123,10 @@
     <tr>
       <th>file</th>
       <td><p>path to where the file should be written</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>integer. The number of bytes per element in the  surface matrix used for creating the binary file. Use size = 4 for 32 bit IEEE 754 floating point numbers and size = 8 for 64 bit IEEE 754 floating point number (default).</p></td>
     </tr>
     </table>
     

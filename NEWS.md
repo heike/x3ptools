@@ -13,6 +13,7 @@
 - head.x3p
 - enabled URL read of x3p files
 - include svg as an option for file save from image_x3p
+- read_x3p and write_x3p check xml meta file for specification of float size
 
 ## bug fixes
 
