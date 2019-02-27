@@ -54,8 +54,14 @@ read_x3p <- function(file, size = NA, quiet = T) {
       ifelse(length(bullet_info_unlist$CZ$Increment)==0,1,bullet_info_unlist$CZ$Increment[[1]])))
     # use a default of 1 in case the Z increment is not included
 
-  if (bullet_info_unlist$CZ$DataType[[1]] == "F") size <- 4
-  if (bullet_info_unlist$CZ$DataType[[1]] == "D") size <- 8
+  size2 <- NA
+  if (bullet_info_unlist$CZ$DataType[[1]] == "F") size2 <- 4
+  if (bullet_info_unlist$CZ$DataType[[1]] == "D") size2 <- 8
+  if (!is.na(size2) & !(is.na(size))) 
+    if (size != size2) warning(sprintf("Number of bytes specified (%d bytes) in x3p file different from requested (%d bytes)", size2, size))
+    
+  if (!is.na(size2))  
+    size <- size2  
   
   datamat <- matrix(readBin(bullet_data, what = numeric(), 
                             size = size,
