@@ -122,6 +122,17 @@ image_x3p(logo, file=NULL)
 
 <img src="man/figures/logo-rgl.png" width="360" />
 
+#### Helper lines
+
+`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 pixels by default). Lines every 5 and 10 spaces are colored differently to ease a visual assessment of distance.
+
+
+```r
+image_x3p_grid(logo, size=c(741,419), zoom=0.5)
+```
+
+<img src="man/figures/logo-rgl-grid.png" width="741" />
+
 ### Casting between data types
 
 The functions `x3p_to_df` and `df_to_x3p` allow casting between an x3p format and an x-y-z data set:
@@ -154,7 +165,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   scale_fill_gradient2(midpoint=4e-7)
 ```
 
-![](man/figures/unnamed-chunk-9-1.png)<!-- -->
+![](man/figures/unnamed-chunk-11-1.png)<!-- -->
 
 ### Elementary operations
 

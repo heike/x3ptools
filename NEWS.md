@@ -10,6 +10,7 @@
 - x3p_show_xml and x3p_modify_xml:
     - identify and show elements of the meta file based on names
     - modify individual elements
+- image_x3p_grid add gridlines on top of rendered scan images.    
 
 ## minor functionality 
 
