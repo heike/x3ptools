@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
-author: "Heike Hofmann, Ganesh Krishnan, Eric Hare"
-date: "August 14, 2018"
+author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
+date: "February 28, 2019"
 output: 
   html_document:
     keep_md: true
@@ -12,7 +12,7 @@ output:
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--14-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2019--02--28-yellowgreen.svg)](/commits/master)
 [![Coverage status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 
 
@@ -201,3 +201,48 @@ cor(as.vector(logo_sample$surface.matrix[-149,]), as.vector(sample2$surface.matr
 #### Interpolation
 
 `interpolate_x3p` allows, like `sample_x3p`, to create a new x3p file at a new resolution, as specified in the parameters `resx` and `resy`. The new resolution should be lower (i.e. larger values for `resx` and `resy`) than the resolution specified as `IncrementX` and `IncrementY` in the header info of the x3p file. `interpolate_x3p` can also be used to interpolate missing values (set parameter `maxgap` according to specifications in `zoo::na.approx`).
+
+
+### Inspecting and modifying meta information
+
+The four records of header info, feature info, general info, and matrix info of an x3p object contain meta information relevant to the scan.
+`x3p_show_xml` allows the user to specify a search term and then proceeds to go through all records for a matching term. As a result any matching elements from the meta file are shown:
+
+```r
+logo %>% x3p_show_xml("axis") # three axes are defined
+```
+
+```
+## $Axes.CX.AxisType
+## [1] "I"
+## 
+## $Axes.CY.AxisType
+## [1] "I"
+## 
+## $Axes.CZ.AxisType
+## [1] "A"
+```
+
+```r
+logo %>% x3p_show_xml("creator")
+```
+
+```
+## $Creator
+## [1] "Heike Hofmann, CSAFE"
+```
+
+If a search term identifies a single element, `x3p_modify_xml` allows the user to update the corresponding meta information:
+
+```r
+logo %>% x3p_modify_xml("creator", "I did this")
+```
+
+```
+## x3p object
+## Instrument: N/A 
+## size (width x height): 741 x 419 in pixel 
+## resolution (um x um): 0.6450 x 0.6450 
+## Creator: I did this 
+## Comment: image rendered from the CSAFE logo
+```

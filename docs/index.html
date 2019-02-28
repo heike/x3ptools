@@ -187,6 +187,31 @@
 <p><code>interpolate_x3p</code> allows, like <code>sample_x3p</code>, to create a new x3p file at a new resolution, as specified in the parameters <code>resx</code> and <code>resy</code>. The new resolution should be lower (i.e. larger values for <code>resx</code> and <code>resy</code>) than the resolution specified as <code>IncrementX</code> and <code>IncrementY</code> in the header info of the x3p file. <code>interpolate_x3p</code> can also be used to interpolate missing values (set parameter <code>maxgap</code> according to specifications in <code><a href="http://www.rdocumentation.org/packages/zoo/topics/na.approx">zoo::na.approx</a></code>).</p>
 </div>
 </div>
+<div id="inspecting-and-modifying-meta-information" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inspecting-and-modifying-meta-information" class="anchor"></a>Inspecting and modifying meta information</h3>
+<p>The four records of header info, feature info, general info, and matrix info of an x3p object contain meta information relevant to the scan. <code>x3p_show_xml</code> allows the user to specify a search term and then proceeds to go through all records for a matching term. As a result any matching elements from the meta file are shown:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_show_xml.html">x3p_show_xml</a></span>(<span class="st">"axis"</span>) <span class="co"># three axes are defined</span></a></code></pre></div>
+<pre><code>## $Axes.CX.AxisType
+## [1] "I"
+## 
+## $Axes.CY.AxisType
+## [1] "I"
+## 
+## $Axes.CZ.AxisType
+## [1] "A"</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_show_xml.html">x3p_show_xml</a></span>(<span class="st">"creator"</span>)</a></code></pre></div>
+<pre><code>## $Creator
+## [1] "Heike Hofmann, CSAFE"</code></pre>
+<p>If a search term identifies a single element, <code>x3p_modify_xml</code> allows the user to update the corresponding meta information:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_modify_xml.html">x3p_modify_xml</a></span>(<span class="st">"creator"</span>, <span class="st">"I did this"</span>)</a></code></pre></div>
+<pre><code>## x3p object
+## Instrument: N/A 
+## size (width x height): 741 x 419 in pixel 
+## resolution (um x um): 0.6450 x 0.6450 
+## Creator: I did this 
+## Comment: image rendered from the CSAFE logo</code></pre>
+</div>
 </div>
 </div>
   </div>

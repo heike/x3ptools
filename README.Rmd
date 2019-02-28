@@ -150,4 +150,14 @@ cor(as.vector(logo_sample$surface.matrix[-149,]), as.vector(sample2$surface.matr
 
 ### Inspecting and modifying meta information
 
-The four records of header info, feature info, general info, and matrix info of an x3p object contain meta information relevant to 
+The four records of header info, feature info, general info, and matrix info of an x3p object contain meta information relevant to the scan.
+`x3p_show_xml` allows the user to specify a search term and then proceeds to go through all records for a matching term. As a result any matching elements from the meta file are shown:
+```{r}
+logo %>% x3p_show_xml("axis") # three axes are defined
+logo %>% x3p_show_xml("creator")
+```
+
+If a search term identifies a single element, `x3p_modify_xml` allows the user to update the corresponding meta information:
+```{r}
+logo %>% x3p_modify_xml("creator", "I did this")
+```
