@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • x3ptools</title>
+<title>Modify xml elements meta information in x3p object — x3p_modify_xml • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Modify xml elements meta information in x3p object — x3p_modify_xml" />
+
+<meta property="og:description" content="Identify xml fields in the meta file of an x3p object by name and modify content if uniquely described." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -97,67 +100,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/heike/x3ptools/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Modify xml elements meta information in x3p object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/modify_xml.R'><code>R/modify_xml.R</code></a></small>
+    <div class="hidden name"><code>x3p_modify_xml.Rd</code></div>
     </div>
 
-    <div id="x3ptools-0019000" class="section level1">
-<h1 class="page-header">
-<a href="#x3ptools-0019000" class="anchor"></a>x3ptools 0.0.1.9000<small> Unreleased </small>
-</h1>
-<div id="features" class="section level2">
-<h2 class="hasAnchor">
-<a href="#features" class="anchor"></a>features</h2>
-<ul>
-<li>sample_x3p:
-<ul>
-<li>sample at different rates in x and y direction (using parameters m and mY)</li>
-<li>sample at offset accessible through parameters offset and offsetY</li>
-</ul>
-</li>
-<li>print.x3p for showing a concise summary of relevant meta information from the xml file.</li>
-<li>download sample x3p files from the NIST Ballistics Toolmarks Research Database</li>
-<li>x3p_show_xml and x3p_modify_xml:
-<ul>
-<li>identify and show elements of the meta file based on names</li>
-<li>modify individual elements</li>
-</ul>
-</li>
-</ul>
-</div>
-<div id="minor-functionality" class="section level2">
-<h2 class="hasAnchor">
-<a href="#minor-functionality" class="anchor"></a>minor functionality</h2>
-<ul>
-<li>head.x3p</li>
-<li>enabled URL read of x3p files</li>
-<li>include svg as an option for file save from image_x3p</li>
-<li>read_x3p and write_x3p check xml meta file for specification of float size</li>
-</ul>
-</div>
-<div id="bug-fixes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>bug fixes</h2>
-</div>
-</div>
-    <div id="x3ptools-001" class="section level1">
-<h1 class="page-header">
-<a href="#x3ptools-001" class="anchor"></a>x3ptools 0.0.1<small> 2018-04-05 </small>
-</h1>
-<p>initial release to CRAN</p>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Identify xml fields in the meta file of an x3p object by name and modify content if uniquely described.</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>x3p_modify_xml</span>(<span class='no'>x3p</span>, <span class='no'>element</span>, <span class='no'>value</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x3p</th>
+      <td><p>x3p object</p></td>
+    </tr>
+    <tr>
+      <th>element</th>
+      <td><p>character. Name of xml field in the meta file.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>character. Value to be given to the xml field in the meta file.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>x3p object with changed meta information</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='fu'><a href='x3p_show_xml.html'>x3p_show_xml</a></span>(<span class='no'>logo</span>, <span class='st'>"creator"</span>)</div><div class='output co'>#&gt; $Creator
+#&gt; [1] "Heike Hofmann, CSAFE"
+#&gt; </div><div class='input'><span class='fu'>x3p_modify_xml</span>(<span class='no'>logo</span>, <span class='st'>"creator"</span>, <span class='st'>"I did that"</span>)</div><div class='output co'>#&gt; x3p object
+#&gt; Instrument: N/A 
+#&gt; size (width x height): 741 x 419 in pixel 
+#&gt; resolution (um x um): 0.6450 x 0.6450 
+#&gt; Creator: I did that 
+#&gt; Comment: image rendered from the CSAFE logo </div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#x3ptools-0019000">0.0.1.9000</a></li>
-        <li><a href="#x3ptools-001">0.0.1</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
+  </div>
 </div>
 
       <footer>

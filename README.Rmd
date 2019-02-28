@@ -1,6 +1,6 @@
 ---
 title: "x3ptools: working with x3p files in R"
-author: "Heike Hofmann, Ganesh Krishnan, Eric Hare"
+author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
@@ -146,3 +146,8 @@ cor(as.vector(logo_sample$surface.matrix[-149,]), as.vector(sample2$surface.matr
 #### Interpolation
 
 `interpolate_x3p` allows, like `sample_x3p`, to create a new x3p file at a new resolution, as specified in the parameters `resx` and `resy`. The new resolution should be lower (i.e. larger values for `resx` and `resy`) than the resolution specified as `IncrementX` and `IncrementY` in the header info of the x3p file. `interpolate_x3p` can also be used to interpolate missing values (set parameter `maxgap` according to specifications in `zoo::na.approx`).
+
+
+### Inspecting and modifying meta information
+
+The four records of header info, feature info, general info, and matrix info of an x3p object contain meta information relevant to 

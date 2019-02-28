@@ -7,6 +7,9 @@
     - sample at offset accessible through parameters offset and offsetY
 - print.x3p for showing a concise summary of relevant meta information from the xml file. 
 - download sample x3p files from the NIST Ballistics Toolmarks Research Database
+- x3p_show_xml and x3p_modify_xml:
+    - identify and show elements of the meta file based on names
+    - modify individual elements
 
 ## minor functionality 
 
