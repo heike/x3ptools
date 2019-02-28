@@ -124,7 +124,7 @@ image_x3p(logo, file=NULL)
 
 #### Helper lines
 
-`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 pixels by default). Lines every 5 and 10 spaces are colored differently to ease a visual assessment of distance.
+`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 pixels by default in y direction and 100 pixels in x direction). Lines every 5 and 10 spaces are colored differently to ease a visual assessment of distance.
 
 
 ```r
