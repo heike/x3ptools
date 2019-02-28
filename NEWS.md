@@ -13,7 +13,8 @@
 
 ## minor functionality 
 
-- head.x3p
+- testing routines added with coverage > 90%
+- head.x3p provides a succinct summary of scan meta information
 - enabled URL read of x3p files
 - include svg as an option for file save from image_x3p
 - read_x3p and write_x3p check xml meta file for specification of float size
