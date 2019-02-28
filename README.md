@@ -131,7 +131,7 @@ image_x3p(logo, file=NULL)
 image_x3p_grid(logo, size=c(741,419), zoom=0.5)
 ```
 
-<img src="man/figures/logo-rgl-grid.png" width="741" />
+<img src="man/figures/logo-rgl-grid.png" width="350" />
 
 ### Casting between data types
 
