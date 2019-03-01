@@ -97,6 +97,8 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
 #' @param size vector of width and height
 #' @param zoom numeric value indicating the amount of zoom
 #' @param multiply exaggerate the relief by factor multiply
+#' @param useNULL logical value. Do you want a new rgl window to be opened? Use useNull = FALSE (default) in interactive mode and useNULL = TRUE if the image is opened as part of a predefined space such as an image container in an html site.
+#' @param closeRGL logical value. Should the RGL window be closed by the routine?
 #' @param ... not used
 #' @export
 #' @import rgl
@@ -110,7 +112,8 @@ image_x3p_grid <- function(x3p, file = NULL, col = "#cd7f32",
                       spaces = 50, 
                       gridParam = list(color = "#e6bf98",
                                       radius = 5),
-                      size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
+                      size = c(750, 250), zoom = 0.35, multiply = 5, 
+                      useNULL = FALSE, closeRGL = !is.null(file), ...) {
   stopifnot("x3p" %in% class(x3p))
   surface <- x3p$surface.matrix
   z <- multiply * surface # Exaggerate the relief
@@ -194,11 +197,13 @@ image_x3p_grid <- function(x3p, file = NULL, col = "#cd7f32",
       warning("Crosscut does not map to x3p file correctly.")
     }
     
-    
+    rgl.open(useNULL = useNULL)
     surface3d(x, y, z, color = colmat, back = "fill")
-  } else 
+  } else {
+    rgl.open(useNULL = useNULL)
     surface3d(x, y, z, color = col, back = "fill")
-  
+  }
+    
   if (!is.null(file)) {
     splits <- strsplit(file, split = "\\.")
     extension <- splits[[1]][length(splits[[1]])]
@@ -211,6 +216,6 @@ image_x3p_grid <- function(x3p, file = NULL, col = "#cd7f32",
     if (extension == "stl") {
       writeSTL(con = file)
     }
-    rgl.close()
   }
+  if (closeRGL) rgl.close()
 }
