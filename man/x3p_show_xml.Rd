@@ -24,7 +24,7 @@ x3p_show_xml(logo, "creator") # all fields containing the word "creator"
 x3p_show_xml(logo, "axis")
 x3p_show_xml(logo, "CZ.AxisType")
 # show all fields:
-x3p_show_xml(x3p, "*")
+x3p_show_xml(logo, "*")
 # show first five fields
-x3p_show_xml(x3p, 1:5)
+x3p_show_xml(logo, 1:5)
 }

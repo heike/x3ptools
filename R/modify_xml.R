@@ -68,9 +68,9 @@ helper_identify_xml <- function(x3p, element) {
 #' x3p_show_xml(logo, "axis")
 #' x3p_show_xml(logo, "CZ.AxisType")
 #' # show all fields:
-#' x3p_show_xml(x3p, "*")
+#' x3p_show_xml(logo, "*")
 #' # show first five fields
-#' x3p_show_xml(x3p, 1:5)
+#' x3p_show_xml(logo, 1:5)
 x3p_show_xml <- function(x3p, element) {
   res <- helper_identify_xml(x3p, element)
   if (length(res[[2]]) == 0) warning(sprintf("no fields containing \"%s\" found. Try `element=\"*\" to see all fields.", as.character(element)))
