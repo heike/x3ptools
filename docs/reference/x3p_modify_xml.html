@@ -122,7 +122,8 @@
     </tr>
     <tr>
       <th>element</th>
-      <td><p>character. Name of xml field in the meta file.</p></td>
+      <td><p>character or integer. In case of character, name of xml field in the meta file. Note that element can contain regular expressions, e.g. <code>"*"</code> returns all meta fields.
+In case of integer, element is used as an index for the meta fields.</p></td>
     </tr>
     <tr>
       <th>value</th>
@@ -144,6 +145,13 @@
 #&gt; size (width x height): 741 x 419 in pixel 
 #&gt; resolution (um x um): 0.6450 x 0.6450 
 #&gt; Creator: I did that 
+#&gt; Comment: image rendered from the CSAFE logo </div><div class='input'><span class='fu'><a href='x3p_show_xml.html'>x3p_show_xml</a></span>(<span class='no'>logo</span>, <span class='fl'>20</span>)</div><div class='output co'>#&gt; $Creator
+#&gt; [1] "Heike Hofmann, CSAFE"
+#&gt; </div><div class='input'><span class='fu'>x3p_modify_xml</span>(<span class='no'>logo</span>, <span class='fl'>20</span>, <span class='st'>"I did that, too"</span>)</div><div class='output co'>#&gt; x3p object
+#&gt; Instrument: N/A 
+#&gt; size (width x height): 741 x 419 in pixel 
+#&gt; resolution (um x um): 0.6450 x 0.6450 
+#&gt; Creator: I did that, too 
 #&gt; Comment: image rendered from the CSAFE logo </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
