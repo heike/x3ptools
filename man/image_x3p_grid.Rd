@@ -6,7 +6,8 @@
 \usage{
 image_x3p_grid(x3p, file = NULL, col = "#cd7f32", spaces = 50,
   gridParam = list(color = "#e6bf98", radius = 5), size = c(750, 250),
-  zoom = 0.35, multiply = 5, ...)
+  zoom = 0.35, multiply = 5, useNULL = FALSE,
+  closeRGL = !is.null(file), ...)
 }
 \arguments{
 \item{x3p}{x3p object}
@@ -25,6 +26,10 @@ The file extension determines the type of output. Possible extensions are png, s
 \item{zoom}{numeric value indicating the amount of zoom}
 
 \item{multiply}{exaggerate the relief by factor multiply}
+
+\item{useNULL}{logical value. Do you want a new rgl window to be opened? Use useNull = FALSE (default) in interactive mode and useNULL = TRUE if the image is opened as part of a predefined space such as an image container in an html site.}
+
+\item{closeRGL}{logical value. Should the RGL window be closed by the routine?}
 
 \item{...}{not used}
 }

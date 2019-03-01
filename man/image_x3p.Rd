@@ -6,7 +6,8 @@
 \usage{
 image_x3p(x3p, file = NULL, col = "#cd7f32", crosscut = NA,
   ccParam = list(color = "#e6bf98", radius = 5), size = c(750, 250),
-  zoom = 0.35, multiply = 5, ...)
+  zoom = 0.35, multiply = 5, useNULL = FALSE,
+  closeRGL = !is.null(file), ...)
 }
 \arguments{
 \item{x3p}{x3p object}

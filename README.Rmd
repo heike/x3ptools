@@ -4,8 +4,8 @@ author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
-    keep_md: true
-    self_contained: true
+    keep_md: TRUE
+    self_contained: TRUE
 ---
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
@@ -86,24 +86,23 @@ names(logo)
 
 ### Visualizing x3p objects
 
-The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate). In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).
+The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate - try to click with the mouse in the image below). Note that loading this image takes a few moments: 
 
-```{r, eval=FALSE}
-image_x3p(logo, file=NULL)
+```{r, eval=TRUE, fig.width = 5, fig.height =2.83}
+image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
+rglwidget()
 ```
 
-```{r, echo=FALSE}
-knitr::include_graphics("man/figures/logo-rgl.png")
-```
+In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).
 
 #### Helper lines
 
 `image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 pixels by default in y direction and 100 pixels in x direction). Lines every 5 and 10 spaces are colored differently to ease a visual assessment of distance.
 
-```{r, eval=FALSE}
-image_x3p_grid(logo, size=c(741,419), zoom=0.5)
+```{r, eval=FALSE, fig.width = 5, fig.height =2.83}
+image_x3p_grid(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
+rglwidget()
 ```
-
 ```{r, echo=FALSE}
 knitr::include_graphics("man/figures/logo-rgl-grid.png")
 ```
