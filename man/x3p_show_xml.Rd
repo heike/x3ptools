@@ -9,17 +9,22 @@ x3p_show_xml(x3p, element)
 \arguments{
 \item{x3p}{x3p object}
 
-\item{element}{character. Name of xml field in the meta file.}
+\item{element}{character or integer (vector). In case of character, name of xml field in the meta file. Note that element can contain regular expressions, e.g. \code{"*"} returns all meta fields.
+In case of integer, element is used as an index vector for the meta fields.}
 }
 \value{
 list of exact field names and their contents
 }
 \description{
-Identify xml fields by name and show content
+Identify xml fields by name and show content.
 }
 \examples{
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-x3p_show_xml(logo, "creator")
+x3p_show_xml(logo, "creator") # all fields containing the word "creator"
 x3p_show_xml(logo, "axis")
 x3p_show_xml(logo, "CZ.AxisType")
+# show all fields:
+x3p_show_xml(x3p, "*")
+# show first five fields
+x3p_show_xml(x3p, 1:5)
 }

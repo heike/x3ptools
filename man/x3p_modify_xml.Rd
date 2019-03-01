@@ -9,7 +9,8 @@ x3p_modify_xml(x3p, element, value)
 \arguments{
 \item{x3p}{x3p object}
 
-\item{element}{character. Name of xml field in the meta file.}
+\item{element}{character or integer. In case of character, name of xml field in the meta file. Note that element can contain regular expressions, e.g. \code{"*"} returns all meta fields.
+In case of integer, element is used as an index for the meta fields.}
 
 \item{value}{character. Value to be given to the xml field in the meta file.}
 }
@@ -23,4 +24,6 @@ Identify xml fields in the meta file of an x3p object by name and modify content
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 x3p_show_xml(logo, "creator")
 x3p_modify_xml(logo, "creator", "I did that") 
+x3p_show_xml(logo, 20)
+x3p_modify_xml(logo, 20, "I did that, too") 
 }
