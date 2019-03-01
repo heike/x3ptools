@@ -22,7 +22,8 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
                       crosscut = NA, 
                       ccParam = list(color = "#e6bf98",
                                      radius = 5),
-                      size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
+                      size = c(750, 250), zoom = 0.35, multiply = 5, 
+                      useNULL = FALSE, closeRGL = !is.null(file), ...) {
   stopifnot("x3p" %in% class(x3p))
   surface <- x3p$surface.matrix
   z <- multiply * surface # Exaggerate the relief
@@ -64,10 +65,12 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
       warning("Crosscut does not map to x3p file correctly.")
     }
     
-    
+    rgl.open(useNULL = useNULL)
     surface3d(x, y, z, color = colmat, back = "fill")
-  } else 
+  } else {
+    rgl.open(useNULL = useNULL)
     surface3d(x, y, z, color = col, back = "fill")
+  }
   
   if (!is.null(file)) {
     splits <- strsplit(file, split = "\\.")
@@ -81,8 +84,9 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
     if (extension == "stl") {
       writeSTL(con = file)
     }
-    rgl.close()
   }
+  if (closeRGL) rgl.close()
+
 }
 
 
