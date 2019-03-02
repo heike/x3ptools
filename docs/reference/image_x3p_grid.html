@@ -113,7 +113,8 @@
 
     <pre class="usage"><span class='fu'>image_x3p_grid</span>(<span class='no'>x3p</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#cd7f32"</span>, <span class='kw'>spaces</span> <span class='kw'>=</span> <span class='fl'>50</span>,
   <span class='kw'>gridParam</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>, <span class='kw'>radius</span> <span class='kw'>=</span> <span class='fl'>5</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>750</span>, <span class='fl'>250</span>),
-  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.35</span>, <span class='kw'>multiply</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.35</span>, <span class='kw'>multiply</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>useNULL</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>closeRGL</span> <span class='kw'>=</span> !<span class='fu'>is.null</span>(<span class='no'>file</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +151,14 @@ The file extension determines the type of output. Possible extensions are png, s
     <tr>
       <th>multiply</th>
       <td><p>exaggerate the relief by factor multiply</p></td>
+    </tr>
+    <tr>
+      <th>useNULL</th>
+      <td><p>logical value. Do you want a new rgl window to be opened? Use useNull = FALSE (default) in interactive mode and useNULL = TRUE if the image is opened as part of a predefined space such as an image container in an html site.</p></td>
+    </tr>
+    <tr>
+      <th>closeRGL</th>
+      <td><p>logical value. Should the RGL window be closed by the routine?</p></td>
     </tr>
     <tr>
       <th>...</th>
