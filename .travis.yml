@@ -3,7 +3,17 @@
 language: R
 sudo: false
 cache: packages
+r_packages:
+  - covr
 
+r_binary_packages:
+  - rgl
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
+  
 env:
   global:
     - RGL_USE_NULL=TRUE
