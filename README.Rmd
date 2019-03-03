@@ -86,7 +86,7 @@ names(logo)
 
 ### Visualizing x3p objects
 
-The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate - try to click with the mouse in the image below). Note that loading this image takes a few moments: 
+The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate): 
 
 ```{r, eval=FALSE, fig.width = 5, fig.height =2.83}
 image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
