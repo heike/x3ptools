@@ -53,7 +53,7 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
   light3d(diffuse = "gray20", specular = "gray20")
 
   if (!is.na(crosscut)) {
-    crosscutidx <- which(yidx == crosscut)
+    crosscutidx <- y[which.min(abs(crosscut - y))]
     
     colmat <- matrix(rep(col, length(z)), nrow = nrow(z), ncol = ncol(z))
     
