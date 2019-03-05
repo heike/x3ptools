@@ -15,7 +15,7 @@ head.x3p <- function (x, n = 6L, ...)
 {
   cat(sprintf("size (width x height): %d x %d in pixel \n", 
               x$header.info$sizeX, x$header.info$sizeY))
-  cat(sprintf("resolution (um x um): %.4f x %.4f \n", x$header.info$incrementX * 
-                10^6, x$header.info$incrementY * 10^6))
+  cat(sprintf("resolution: %.4e x %.4e \n", x$header.info$incrementX, 
+              x$header.info$incrementY))
   head.matrix(x$surface.matrix[,1:n], n = n, ...)
 }

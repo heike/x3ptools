@@ -14,8 +14,8 @@ print.x3p <- function (x, ...)
   cat(sprintf("Instrument: %s \n", x$general.info$Instrument$Manufacturer[[1]]))
   cat(sprintf("size (width x height): %d x %d in pixel \n", 
               x$header.info$sizeX, x$header.info$sizeY))
-  cat(sprintf("resolution (um x um): %.4f x %.4f \n", x$header.info$incrementX * 
-                10^6, x$header.info$incrementY * 10^6))
+  cat(sprintf("resolution: %.4e x %.4e \n", x$header.info$incrementX, 
+              x$header.info$incrementY))
   cat(sprintf("Creator: %s \n", x$general.info$Creator[[1]]))
   cat(sprintf("Comment: %s \n", x$general.info$Comment[[1]]))
   invisible(x)
