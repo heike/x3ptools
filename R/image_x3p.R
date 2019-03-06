@@ -61,9 +61,12 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
       coloridx <- pmax(crosscutidx - ccParam$radius, 0):pmin(crosscutidx + ccParam$radius, ncol(z))
       colmat[, coloridx] <- ccParam$color
     } else {
-      warning("Crosscut does not map to x3p file correctly.")
+      warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
     }
     
+    if (crosscut > max(y))
+      warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
+
     
     surface3d(x, y, z, color = colmat, back = "fill")
   } else 
