@@ -177,3 +177,9 @@ If a search term identifies a single element, `x3p_modify_xml` allows the user t
 ```{r}
 logo %>% x3p_modify_xml("creator", "I did this")
 ```
+
+
+#' leo <- magick::image_read("stuff/leopard.jpg")
+#' leo <- magick::image_crop(leo, "741x419")
+#' logoplus <- x3p_add_mask(logo, as.raster(leo))
+#' image_x3p(logoplus)

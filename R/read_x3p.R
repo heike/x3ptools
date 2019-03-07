@@ -27,6 +27,7 @@ read_x3p <- function(file, size = NA, quiet = T) {
   ## see what we got: 
   data <- grep(".bin$", result) # data has extension .bin
   meta <- grep(".xml$", result) # meta info has extension .xml
+  mask <- grep(".png$", result, value = TRUE) # mask has extension .png
   # if we have not exactly one of each we have a problem:
   stopifnot(length(data)==1, length(meta) == 1) # nice error messages would be good
   
@@ -44,7 +45,9 @@ read_x3p <- function(file, size = NA, quiet = T) {
   bullet_info_unlist <- unlist(bullet_info_list, recursive = FALSE)
   
   ## Get the data types
-  data_types <- sapply(bullet_info_list[[3]], `[[`, 2)
+  bi <- unlist(bullet_info_list[[3]])
+  idx <- grep("DataType", names(bi))
+  data_types <- bi[idx]
   
   ## Read the data matrix
   sizes <- as.numeric(c(bullet_info_unlist$SizeX[[1]], bullet_info_unlist$SizeY[[1]], bullet_info_unlist$SizeZ[[1]]))
@@ -85,6 +88,10 @@ read_x3p <- function(file, size = NA, quiet = T) {
               matrix.info = input.info$Record3)
             #  bullet_info = bullet_info)
   class(res) <- "x3p"
+  if (length(mask) == 1) {
+    png <- magick::image_read(mask)
+    res <- x3p_add_mask(res, mask = as.raster(png))
+  }
   return(res)
 }
 
