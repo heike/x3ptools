@@ -102,10 +102,12 @@ In case a file name is specified in the function call the resulting surface is s
 
 #### Helper lines
 
-`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 pixels by default in y direction and 100 pixels in x direction). Lines every 5 and 10 spaces are colored differently to ease a visual assessment of distance.
+`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.
 
 ```{r, eval=FALSE, fig.width = 5, fig.height =2.83}
-image_x3p_grid(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
+logoplus <- x3p_add_grid(logo, spaces=50e-6, 
+                         size = c(3,3,5), color=c("grey50", "black", "darkred"))
+image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rglwidget()
 ```
 ```{r, echo=FALSE}
@@ -127,6 +129,8 @@ Once data is in a regular data frame, we can use our regular means to visualize 
 
 ```{r}
 library(ggplot2)
+library(magrittr)
+
 logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   geom_tile() +
   scale_fill_gradient2(midpoint=4e-7)
@@ -178,8 +182,50 @@ If a search term identifies a single element, `x3p_modify_xml` allows the user t
 logo %>% x3p_modify_xml("creator", "I did this")
 ```
 
+### Adding and modifying masks
 
-#' leo <- magick::image_read("stuff/leopard.jpg")
-#' leo <- magick::image_crop(leo, "741x419")
-#' logoplus <- x3p_add_mask(logo, as.raster(leo))
-#' image_x3p(logoplus)
+#### Images as masks
+
+A mask is used to markup regions of the surface - the mask can then be used to overlay the rendered surface with color.
+
+Below is a 3d surface of a part of a bullet surface is shown. Some regions are marked up: the bronze colored area is an area with strong striae (vertical lines engraved on the bullet as it moves through the barrel of the handgun when fired), areas in dark blue show groove engraved areas, the light blue area shows break off at the bottom of the bullet, and the pink area marks an area without striae:
+
+```{r, echo=FALSE}
+knitr::include_graphics("man/figures/markup.png")
+```
+
+Any image can serve as a mask, the command `x3p_add_mask` allows to add a raster image as a mask for a x3p object:
+
+```{r}
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+color_logo <- magick::image_read(system.file("csafe-color.png", package="x3ptools"))
+logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
+
+image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics("man/figures/logo-color.png")
+```
+
+Some masks are more informative than others, but the only requirement for images is that they are of the right size.
+
+```{r, echo=FALSE, out.width="49%"}
+knitr::include_graphics("man/figures/csafe-leopard.png")
+knitr::include_graphics("man/figures/csafe-island.png")
+```
+
+#### Editing masks
+
+Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest to make use of functionality in the `magick` package to manipulate masks.
+
+Additionally, vertical and horizontal lines can be added in the masks using the commands `x3p_add_vline` and `x3p_add_hline`:
+```{r, eval=FALSE}
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
+#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
+```
+
+```{r, echo=FALSE}
+knitr::include_graphics("man/figures/logo-lines.png")
+```

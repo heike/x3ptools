@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
 author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
-date: "March 03, 2019"
+date: "March 08, 2019"
 output: 
   html_document:
     keep_md: TRUE
@@ -12,7 +12,7 @@ output:
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2019--03--03-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2019--03--08-yellowgreen.svg)](/commits/master)
 [![Coverage status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 
 
@@ -113,7 +113,7 @@ names(logo)
 
 ### Visualizing x3p objects
 
-The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate - try to click with the mouse in the image below). Note that loading this image takes a few moments: 
+The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate): 
 
 
 ```r
@@ -128,11 +128,13 @@ In case a file name is specified in the function call the resulting surface is s
 
 #### Helper lines
 
-`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 pixels by default in y direction and 100 pixels in x direction). Lines every 5 and 10 spaces are colored differently to ease a visual assessment of distance.
+`image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.
 
 
 ```r
-image_x3p_grid(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
+logoplus <- x3p_add_grid(logo, spaces=50e-6, 
+                         size = c(3,3,5), color=c("grey50", "black", "darkred"))
+image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rglwidget()
 ```
 <img src="man/figures/logo-rgl-grid.png" width="350" />
@@ -164,6 +166,8 @@ Once data is in a regular data frame, we can use our regular means to visualize 
 
 ```r
 library(ggplot2)
+library(magrittr)
+
 logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   geom_tile() +
   scale_fill_gradient2(midpoint=4e-7)
@@ -257,7 +261,48 @@ logo %>% x3p_modify_xml("creator", "I did this")
 ## x3p object
 ## Instrument: N/A 
 ## size (width x height): 741 x 419 in pixel 
-## resolution (um x um): 0.6450 x 0.6450 
+## resolution: 6.4500e-07 x 6.4500e-07 
 ## Creator: I did this 
 ## Comment: image rendered from the CSAFE logo
 ```
+
+### Adding and modifying masks
+
+#### Images as masks
+
+A mask is used to markup regions of the surface - the mask can then be used to overlay the rendered surface with color.
+
+Below is a 3d surface of a part of a bullet surface is shown. Some regions are marked up: the bronze colored area is an area with strong striae (vertical lines engraved on the bullet as it moves through the barrel of the handgun when fired), areas in dark blue show groove engraved areas, the light blue area shows break off at the bottom of the bullet, and the pink area marks an area without striae:
+
+<img src="man/figures/markup.png" width="750" />
+
+Any image can serve as a mask, the command `x3p_add_mask` allows to add a raster image as a mask for a x3p object:
+
+
+```r
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+color_logo <- magick::image_read(system.file("csafe-color.png", package="x3ptools"))
+logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
+
+image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
+```
+
+<img src="man/figures/logo-color.png" width="655" />
+
+Some masks are more informative than others, but the only requirement for images is that they are of the right size.
+
+<img src="man/figures/csafe-leopard.png" width="49%" /><img src="man/figures/csafe-island.png" width="49%" />
+
+#### Editing masks
+
+Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest to make use of functionality in the `magick` package to manipulate masks.
+
+Additionally, vertical and horizontal lines can be added in the masks using the commands `x3p_add_vline` and `x3p_add_hline`:
+
+```r
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
+#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
+```
+
+<img src="man/figures/logo-lines.png" width="370" />
