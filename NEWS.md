@@ -10,7 +10,8 @@
 - x3p_show_xml and x3p_modify_xml:
     - identify and show elements of the meta file based on names
     - modify individual elements
-- image_x3p_grid add gridlines on top of rendered scan images.    
+- adding/creating masks to overlay surfaces with color raster images    
+- x3p_add_vline, x3p_add_vline, x3p_add_grid: add lines on top of rendered scan surface
 
 ## minor functionality 
 
