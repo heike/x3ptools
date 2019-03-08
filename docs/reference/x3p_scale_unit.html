@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show meta information of an x3p file — print.x3p • x3ptools</title>
+<title>Scale x3p object by given unit — x3p_scale_unit • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Show meta information of an x3p file — print.x3p" />
+<meta property="og:title" content="Scale x3p object by given unit — x3p_scale_unit" />
 
-<meta property="og:description" content="print.x3p expands the generic print method for x3p objects. It gives a summary of the most relevant 3p meta information and returns the object invisibly." />
+<meta property="og:description" content="x3p objects can be presented in different units. ISO standard 5436_2 asks for specification of values in meters.
+For topographic surfaces collected by microscopes values in microns are
+more readable. This functions allows to convert between different units." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,40 +102,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show meta information of an x3p file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/print_x3p.R'><code>R/print_x3p.R</code></a></small>
-    <div class="hidden name"><code>print.x3p.Rd</code></div>
+    <h1>Scale x3p object by given unit</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/convert.R'><code>R/convert.R</code></a></small>
+    <div class="hidden name"><code>x3p_scale_unit.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>print.x3p</code> expands the generic print method for x3p objects. It gives a summary of the most relevant 3p meta information and returns the object invisibly.</p>
+    <p>x3p objects can be presented in different units. ISO standard 5436_2 asks for specification of values in meters.
+For topographic surfaces collected by microscopes values in microns are
+more readable. This functions allows to convert between different units.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for x3p</span>
-<span class='fu'>print</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_scale_unit</span>(<span class='no'>x3p</span>, <span class='no'>scale_by</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>x3p object</p></td>
+      <th>x3p</th>
+      <td><p>object in x3p format, 3d topographic surface.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>ignored</p></td>
+      <th>scale_by</th>
+      <td><p>numeric value. Value the surface to be scaled by. While not enforced, values of <code>scale_by</code> make most sense as multiples of 10 (for a metric system).</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>x3p with header information in microns</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='fu'>print</span>(<span class='no'>logo</span>)</div><div class='output co'>#&gt; x3p object
+<span class='no'>logo</span> <span class='co'># measurements in meters</span></div><div class='output co'>#&gt; x3p object
 #&gt; Instrument: N/A 
 #&gt; size (width x height): 741 x 419 in pixel 
 #&gt; resolution: 6.4500e-07 x 6.4500e-07 
+#&gt; Creator: Heike Hofmann, CSAFE 
+#&gt; Comment: image rendered from the CSAFE logo </div><div class='input'><span class='fu'>x3p_scale_unit</span>(<span class='no'>logo</span>, <span class='kw'>scale_by</span><span class='kw'>=</span><span class='fl'>10</span>^<span class='fl'>6</span>) <span class='co'># measurements in microns</span></div><div class='output co'>#&gt; x3p object
+#&gt; Instrument: N/A 
+#&gt; size (width x height): 741 x 419 in pixel 
+#&gt; resolution: 6.4500e-01 x 6.4500e-01 
 #&gt; Creator: Heike Hofmann, CSAFE 
 #&gt; Comment: image rendered from the CSAFE logo </div></pre>
   </div>
@@ -141,7 +153,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
