@@ -83,6 +83,15 @@ write_x3p <- function(x3p, file, size = 8)
   chksum<- digest("bindata/data.bin", algo= "md5", serialize=FALSE, file=TRUE)
   a1list[[1]]$Record3$DataLink$MD5ChecksumPointData <- list(chksum)
   
+  # if the mask exists, write it as a png file
+  if (exists("mask", x3p)) {
+    grDevices::png(file = "bindata/mask.png", width = x3p$header.info$sizeX,
+                   height = x3p$header.info$sizeY, units = "px", bg="transparent")
+    par(mar = c(0,0,0,0))
+    plot(x3p$mask)
+    dev.off()
+  }
+    
   if (size == 4) a1list[[1]]$Record1$Axes$CZ$DataType[[1]] <- "F"
   if (size == 8) a1list[[1]]$Record1$Axes$CZ$DataType[[1]] <- "D"
   
