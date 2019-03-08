@@ -6,6 +6,8 @@
 #' @importFrom digest digest
 #' @importFrom xml2 read_xml
 #' @importFrom utils as.relistable relist zip
+#' @importFrom graphics par plot
+#' @importFrom grDevices dev.off 
 #' @export
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
@@ -87,7 +89,7 @@ write_x3p <- function(x3p, file, size = 8)
   if (exists("mask", x3p)) {
     grDevices::png(file = "bindata/mask.png", width = x3p$header.info$sizeX,
                    height = x3p$header.info$sizeY, units = "px", bg="transparent")
-    par(mar = c(0,0,0,0))
+    graphics::par(mar = c(0,0,0,0))
     plot(x3p$mask)
     dev.off()
   }
