@@ -92,9 +92,11 @@ read_x3p <- function(file, size = NA, quiet = T) {
   #  png <- magick::image_read(mask)
     png <- png::readPNG(mask, native=FALSE)
     raster <- as.raster(png)
- #   browser()
-    # bit of a workaround - not sure why #rrggbb00 is not recognized as transparent automatically
-    raster[png[,,4] == 0] <- "transparent" 
+    if (dim(png)[3] == 4) {
+      # bit of a workaround - not sure why #rrggbb00 is not recognized as transparent automatically
+      raster[png[,,4] == 0] <- "transparent" 
+    }
+    # browser()
     res <- x3p_add_mask(res, mask = raster)
   }
   return(res)

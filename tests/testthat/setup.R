@@ -27,3 +27,13 @@ bigdf <- expand.grid(x = 0:50, y = 0:100) %>%
 
 x3pbig <- df_to_x3p(bigdf[,c(1, 2, 4)]) %>%
   x3p_add_mask()
+
+# Setup for F/D issue
+tmpfile <- tempfile(fileext = ".x3p")
+# write a copy of the file into a temporary file
+write_x3p(x3ptest, file = tmpfile, size = 4)
+
+# Set up file to read in with mask
+tmpfile2 <- tempfile(fileext = ".x3p")
+# write a copy of the file into a temporary file
+write_x3p(x3ptest %>% x3p_add_mask(), file = tmpfile2)

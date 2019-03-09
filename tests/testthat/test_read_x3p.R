@@ -5,11 +5,6 @@ context("read_x3p")
 
 url <- "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/43567404-1611-4b40-ae74-a1e440e79f6a"
 
-# Setup for F/D issue
-tmpfile <- tempfile(fileext = ".x3p")
-# write a copy of the file into a temporary file
-write_x3p(x3ptest, file = tmpfile, size = 4)
-
 test_that("read_x3p works as expected", {
   tmp <- read_x3p(url, quiet = T)
   expect_equivalent(tmp$header.info$sizeY, 1588)
@@ -23,4 +18,7 @@ test_that("read_x3p works as expected", {
   # Test correct reading of x3p with size=4
   expect_silent(read_x3p(tmpfile))
   expect_warning(read_x3p(tmpfile, size = 8))
+  
+  # Test whether mask can be read correctly
+  tmp2 <- read_x3p(tmpfile2)
 })
