@@ -89,8 +89,13 @@ read_x3p <- function(file, size = NA, quiet = T) {
             #  bullet_info = bullet_info)
   class(res) <- "x3p"
   if (length(mask) == 1) {
-    png <- magick::image_read(mask)
-    res <- x3p_add_mask(res, mask = as.raster(png))
+  #  png <- magick::image_read(mask)
+    png <- png::readPNG(mask, native=FALSE)
+    raster <- as.raster(png)
+ #   browser()
+    # bit of a workaround - not sure why #rrggbb00 is not recognized as transparent automatically
+    raster[png[,,4] == 0] <- "transparent" 
+    res <- x3p_add_mask(res, mask = raster)
   }
   return(res)
 }
