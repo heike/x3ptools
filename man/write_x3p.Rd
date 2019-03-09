@@ -4,7 +4,7 @@
 \alias{write_x3p}
 \title{Write an x3p object to a file}
 \usage{
-write_x3p(x3p, file, size = 8, quiet = T)
+write_x3p(x3p, file, size = 8, quiet = F)
 }
 \arguments{
 \item{x3p}{x3p object}
