@@ -198,7 +198,7 @@ Any image can serve as a mask, the command `x3p_add_mask` allows to add a raster
 
 ```{r}
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-color_logo <- magick::image_read(system.file("csafe-color.png", package="x3ptools"))
+color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
 logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
 
 image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
@@ -217,7 +217,7 @@ knitr::include_graphics("man/figures/csafe-island.png")
 
 #### Editing masks
 
-Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest to make use of functionality in the `magick` package to manipulate masks.
+Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest using the `magick` package to manipulate masks.
 
 Additionally, vertical and horizontal lines can be added in the masks using the commands `x3p_add_vline` and `x3p_add_hline`:
 ```{r, eval=FALSE}
