@@ -21,16 +21,17 @@ Imports: digest (>= 0.6.15),
          xml2 (>= 1.2.0),
          rgl (>= 0.99.9),
          zoo (>= 1.8.1),
+         png (>= 0.1-7),
          assertthat,
-         grDevices,
-         magick (>= 2.0)
+         grDevices
 Suggests:
     knitr,
     rmarkdown,
     testthat,
     covr,
     here,
-    dplyr
+    dplyr,
+    magick (>= 2.0)
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
