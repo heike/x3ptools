@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale x3p object by given unit — x3p_scale_unit • x3ptools</title>
+<title>Calculate grid spacing — calculate_spacing • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,11 +30,9 @@
 
 
 
-<meta property="og:title" content="Scale x3p object by given unit — x3p_scale_unit" />
+<meta property="og:title" content="Calculate grid spacing — calculate_spacing" />
 
-<meta property="og:description" content="x3p objects can be presented in different units. ISO standard 5436_2 asks for specification of values in meters.
-For topographic surfaces collected by microscopes values in microns are
-more readable. This functions allows to convert between different units." />
+<meta property="og:description" content="Calculate grid spacing" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,52 +102,41 @@ more readable. This functions allows to convert between different units." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scale x3p object by given unit</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/convert.R'><code>R/convert.R</code></a></small>
-    <div class="hidden name"><code>x3p_scale_unit.Rd</code></div>
+    <h1>Calculate grid spacing</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/add_lines_x3p.R'><code>R/add_lines_x3p.R</code></a></small>
+    <div class="hidden name"><code>calculate_spacing.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>x3p objects can be presented in different units. ISO standard 5436_2 asks for specification of values in meters.
-For topographic surfaces collected by microscopes values in microns are
-more readable. This functions allows to convert between different units.</p>
+    <p>Calculate grid spacing</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_scale_unit</span>(<span class='no'>x3p</span>, <span class='no'>scale_by</span>)</pre>
+    <pre class="usage"><span class='fu'>calculate_spacing</span>(<span class='no'>x3p</span>, <span class='no'>spaces</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='st'>"y"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x3p</th>
-      <td><p>object in x3p format, 3d topographic surface.</p></td>
+      <td><p>x3p file</p></td>
     </tr>
     <tr>
-      <th>scale_by</th>
-      <td><p>numeric value. Value the surface to be scaled by. While not enforced, values of <code>scale_by</code> make most sense as multiples of 10 (for a metric system).</p></td>
+      <th>spaces</th>
+      <td><p>space between grid lines</p></td>
+    </tr>
+    <tr>
+      <th>axis</th>
+      <td><p>axis to calculate, as character</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>x3p with header information in microns</p>
+    <p>vector of line locations</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='no'>logo</span> <span class='co'># measurements in meters</span></div><div class='output co'>#&gt; x3p object
-#&gt; Instrument: N/A 
-#&gt; size (width x height): 741 x 419 in pixel 
-#&gt; resolution: 6.4500e-07 x 6.4500e-07 
-#&gt; Creator: Heike Hofmann, CSAFE 
-#&gt; Comment: image rendered from the CSAFE logo </div><div class='input'><span class='fu'>x3p_scale_unit</span>(<span class='no'>logo</span>, <span class='kw'>scale_by</span><span class='kw'>=</span><span class='fl'>10</span>^<span class='fl'>6</span>) <span class='co'># measurements in microns</span></div><div class='output co'>#&gt; x3p object
-#&gt; Instrument: N/A 
-#&gt; size (width x height): 741 x 419 in pixel 
-#&gt; resolution: 6.4500e-01 x 6.4500e-01 
-#&gt; Creator: Heike Hofmann, CSAFE 
-#&gt; Comment: image rendered from the CSAFE logo </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -157,9 +144,7 @@ more readable. This functions allows to convert between different units.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
