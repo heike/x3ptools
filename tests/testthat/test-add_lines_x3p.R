@@ -25,12 +25,25 @@ test_that("x3p_add_hline works", {
 })
 
 test_that("x3p_add_grid works", {
-  logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools")) %>%
-    x3p_add_mask()
   
-  logo_grid <- x3p_add_grid(logo, spaces = 1e-4)
+  test_grid <- x3p_add_grid(x3pbig, spaces = 10)
+  colmax <- max(colSums(test_grid$mask == "#cd7f32"))
+  cols <- c(rep(0, 4), rep(colmax, 17), 0, rep(colmax, 19), 0, rep(colmax, 9))
+  rowmax <- max(rowSums(test_grid$mask == "#cd7f32"))
+  rows <- c(0, rep(rowmax, 7), # I think this should probably be slightly different... 
+            rep(c(0, rep(rowmax, 9)), times = 3), 
+            0, rep(rowmax, 8),
+            rep(0, 3), rep(rowmax, 8), 
+            rep(c(0, rep(rowmax, 9)), times = 3), 
+            0, rep(rowmax, 7), rep(0, 5))
   
-  # Hackish, should probably come up with a better example that I can test easily...
-  expect_equal(sum(colSums(logo_grid$mask == "#cd7f32") == 0), 5)
-  expect_equal(sum(rowSums(logo_grid$mask == "#cd7f32") == 0), 6)
+  expect_equal(colSums(test_grid$mask == "#cd7f32"), cols)
+  expect_equal(rowSums(test_grid$mask == "#cd7f32"), rows)
+  expect_equal(colSums(test_grid$mask == "black"), rep(c(0, 3), c(4, 47)))
+  expect_equal(rowSums(test_grid$mask == "black"), rep(c(0, 47, 0), c(47, 3, 51)))
+  expect_equal(colSums(test_grid$mask == "darkred"), rep(c(101, 6), c(4, 47)))
+  expect_equal(rowSums(test_grid$mask == "darkred"), rep(c(51, 4, 51), c(1, 95, 5)))
+  
+  expect_warning(x3p_add_grid(x3pbig, spaces = 200))
+  expect_warning(x3p_add_grid(x3pbig, spaces = 60))
 })
