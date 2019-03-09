@@ -23,5 +23,11 @@ test_that("x3p_add_mask works", {
                expected = c("surface.matrix", "header.info", "mask"))
   expect_s3_class(x3ptest_mask3$mask, "raster")
   
+  # With correct dim mask as numeric raster array (e.g. as PNG reads in)
+  new_mask3 <- as.raster(array(1, dim = c(dim(new_mask), 3)))
+  expect_silent(x3ptest_mask4 <- x3p_add_mask(x3ptest, new_mask3))
+  expect_named(x3ptest_mask4, 
+               expected = c("surface.matrix", "header.info", "mask"))
+  expect_s3_class(x3ptest_mask4$mask, "raster")
   # I'm not convinced it should add the mask in place - could we instead crop/pad it appropriately?
 })

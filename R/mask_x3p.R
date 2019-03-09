@@ -19,9 +19,11 @@ x3p_add_mask <- function(x3p, mask = NULL) {
   dims <- rev(dim(x3p$surface.matrix))
   if (is.null(mask)) mask <- as.raster(matrix("#cd7f32", dims[1], dims[2]))
   else {
+    mask <- as.raster(mask) # Fix matrix/array rasters
     # check that the mask has the right dimensions
     if (!all(dim(mask) == dims)) {
       dm <- dim(mask)
+      # SVP: This warning doesn't handle extra matrix dimensions :)
       warning(sprintf("Mask does not have the right dimensions. Mask has dimensions %d x %d should be %d x %d.", dm[1], dm[2], dims[1], dims[2]))
     }
   }
