@@ -21,7 +21,7 @@ Masks are used for overlaying colors on the bullets surface.
 \examples{
 \dontrun{
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-color_logo <- magick::image_read(system.file("csafe-color.png", package="x3ptools"))
+color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
 logoplus <- x3p_add_mask(logo, as.raster(color_logo))
 image_x3p(logoplus, multiply=50, size = c(741, 419),zoom = 0.5)
 }

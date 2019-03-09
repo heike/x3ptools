@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
 author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
-date: "March 08, 2019"
+date: "March 09, 2019"
 output: 
   html_document:
     keep_md: TRUE
@@ -12,7 +12,7 @@ output:
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.1-orange.svg?style=flat-square)](commits/master)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2019--03--08-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2019--03--09-yellowgreen.svg)](/commits/master)
 [![Coverage status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 
 
@@ -281,7 +281,7 @@ Any image can serve as a mask, the command `x3p_add_mask` allows to add a raster
 
 ```r
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-color_logo <- magick::image_read(system.file("csafe-color.png", package="x3ptools"))
+color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
 logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
 
 image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
@@ -295,7 +295,7 @@ Some masks are more informative than others, but the only requirement for images
 
 #### Editing masks
 
-Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest to make use of functionality in the `magick` package to manipulate masks.
+Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest using the `magick` package to manipulate masks.
 
 Additionally, vertical and horizontal lines can be added in the masks using the commands `x3p_add_vline` and `x3p_add_hline`:
 
