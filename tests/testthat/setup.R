@@ -19,3 +19,11 @@ dftest <- expand.grid(x = 1:6, y = 1:7) %>%
 
 x3ptest <- df_to_x3p(dftest[,c(1, 2, 4)])
 
+
+bigdf <- expand.grid(x = 0:50, y = 0:100) %>%
+  as.data.frame() %>%
+  dplyr::mutate(z = sqrt((x - 25.5)^2 + (y - 50.5)^2),
+                value = z)
+
+x3pbig <- df_to_x3p(bigdf[,c(1, 2, 4)]) %>%
+  x3p_add_mask()
