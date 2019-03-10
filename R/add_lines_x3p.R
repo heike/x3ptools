@@ -29,7 +29,7 @@ scale_to_pix <- function(x3p, which, values) {
 #' logoplus <- x3p_add_vline(logo, seq(0, 740 * 6.4500e-7, length = 5), size = 3)
 #' image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
 #' }
-x3p_add_vline <- function(x3p, xintercept, size = 3, color = "black") {
+x3p_add_vline <- function(x3p, xintercept, size = 5, color = "#e6bf98") {
   stopifnot("x3p" %in% class(x3p))
   if (!exists("mask", x3p)) x3p <- x3p_add_mask(x3p)
 
@@ -66,7 +66,7 @@ x3p_add_vline <- function(x3p, xintercept, size = 3, color = "black") {
 #' logoplus <- x3p_add_hline(logo, seq(0, 418 * 6.4500e-7, length = 5), size = 3)
 #' image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
 #' }
-x3p_add_hline <- function(x3p, yintercept, size = 3, color = "black") {
+x3p_add_hline <- function(x3p, yintercept, size = 5 color = "#e6bf98") {
   stopifnot("x3p" %in% class(x3p))
   if (!exists("mask", x3p)) x3p <- x3p_add_mask(x3p)
 
