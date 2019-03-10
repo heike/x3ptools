@@ -2,9 +2,9 @@ context("test-add_lines_x3p")
 
 test_that("x3p_add_vline works", {
   x3ptest_mask <- x3ptest %>%
-    x3p_add_vline(xintercept = 3, size = 2)
+    x3p_add_vline(xintercept = 3, size = 2, color="black")
   x3ptest_mask2 <- x3ptest %>%
-    x3p_add_vline(xintercept = 3, size = 3)
+    x3p_add_vline(xintercept = 3, size = 3, color="black")
   
   expect_equal(colSums(x3ptest_mask$mask == "black"), c(0, 0, 7, 7, 0, 0))
   expect_equal(colSums(x3ptest_mask2$mask == "black"), c(0, 0, 7, 7, 7, 0))
@@ -12,9 +12,9 @@ test_that("x3p_add_vline works", {
 
 test_that("x3p_add_hline works", {
   x3ptest_mask <- x3ptest %>%
-    x3p_add_hline(yintercept = 3, size = 2)
+    x3p_add_hline(yintercept = 3, size = 2, color="black")
   x3ptest_mask2 <- x3ptest %>%
-    x3p_add_hline(yintercept = 3, size = 3)
+    x3p_add_hline(yintercept = 3, size = 3, color="black")
   
   # This is how I expected it to work - why does the horizontal side work differently than the vertical side?
   # expect_equal(rowSums(x3ptest_mask$mask == "black"), c(0, 0, 7, 7, 0, 0, 0)) 

@@ -4,7 +4,7 @@
 \alias{x3p_add_hline}
 \title{Add horizontal line to the mask of an x3p object}
 \usage{
-x3p_add_hline(x3p, yintercept, size = 3, color = "black")
+x3p_add_hline(x3p, yintercept, size = 5, color = "#e6bf98")
 }
 \arguments{
 \item{x3p}{x3p object}

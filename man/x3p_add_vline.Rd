@@ -4,7 +4,7 @@
 \alias{x3p_add_vline}
 \title{Add vertical line to the mask of an x3p object}
 \usage{
-x3p_add_vline(x3p, xintercept, size = 3, color = "black")
+x3p_add_vline(x3p, xintercept, size = 5, color = "#e6bf98")
 }
 \arguments{
 \item{x3p}{x3p object}
