@@ -47,3 +47,4 @@ test_that("x3p_add_grid works", {
   expect_warning(x3p_add_grid(x3pbig, spaces = 200))
   expect_warning(x3p_add_grid(x3pbig, spaces = 60))
 })
+
