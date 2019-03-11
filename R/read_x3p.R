@@ -1,5 +1,10 @@
 #' Read an x3p file into an x3p object
 #' 
+#' Read file in x3p format. x3p formats describe 3d topological surface according to
+#' ISO standard ISO5436 – 2000. 
+#' x3p files are a container format implemented as a zip archive of a folder 
+#' consisting of an xml file of meta 
+#' information and a binary matrix of numeric surface measurements. 
 #' @param file The file path to the x3p file, or an url to an x3p file
 #' @param quiet for url downloads, show download progress?
 #' @param size size in bytes to use for reading the binary file. If not specified, default is used. Will be overwritten if specified in the xml meta file.
@@ -88,7 +93,7 @@ read_x3p <- function(file, size = NA, quiet = T) {
               matrix.info = input.info$Record3)
             #  bullet_info = bullet_info)
   class(res) <- "x3p"
-  if (length(mask) == 1) {
+  if (length(mask) > 0) {
   #  png <- magick::image_read(mask)
     png <- png::readPNG(mask, native=FALSE)
     raster <- as.raster(png)
@@ -96,7 +101,7 @@ read_x3p <- function(file, size = NA, quiet = T) {
       # bit of a workaround - not sure why #rrggbb00 is not recognized as transparent automatically
       raster[png[,,4] == 0] <- "transparent" 
     }
-    # browser()
+   #  browser()
     res <- x3p_add_mask(res, mask = raster)
   }
   return(res)
