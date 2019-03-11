@@ -25,6 +25,12 @@ test_that("download_NIST works as expected", {
                sprintf("Hi-Point %02d", 1:10))
   expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), 0)
   unlink("downloadNist/*", recursive = T)
+})
+
+test_that("file structure mirroring = F works", {
+  # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
+  skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
+  # skip_on_cran()
   
   # File Structure Mirroring is false
   expect_silent(NRBTD_download("4908a64a-702c-4203-a945-6279df3acf3f", "downloadNist", 
@@ -34,7 +40,11 @@ test_that("download_NIST works as expected", {
                # c(rep(c("png", "png", "png", "x3p"), times = maxfiles), "xlsx"))
   expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), maxfiles)
   unlink("downloadNist/*", recursive = T)
-  
+})
+test_that("full download URL works", {
+  # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
+  skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
+  # skip_on_cran()
   # full download link
   expect_silent(NRBTD_download("https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/c09aaa86-5d60-4acb-9031-46dad2c0ad32",
                                directory = "downloadNist", mirrorFileStructure = F, maxFiles = -1))
@@ -46,6 +56,10 @@ test_that("download_NIST works as expected", {
 })
 
 test_that("NRBTDsample_download works as expected", {
+  # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
+  skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
+  # skip_on_cran()
+  
   unlink("downloadNist", recursive = T)
   expect_warning(NRBTDsample_download("downloadNist", maxFiles = -1))
   expect_equal(NRBTDsample_download("downloadNist", maxFiles = 2), c(0, 0))
