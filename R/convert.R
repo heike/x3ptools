@@ -36,3 +36,15 @@ x3p_scale_unit <- function(x3p, scale_by) {
   x3p$header.info$incrementX <- x3p$header.info$incrementX * scale_by
   x3p
 }
+
+#' Check resolution of a scan
+#'
+#' Scans in x3p format capture 3d topogographic surfaces. According to ISO standard
+#' ISO5436 – 2000 scans are supposed to be captured in meters. For microscopic images
+#' capture in meters might be impractical.
+#' @param x3p object
+#' @return numeric value of resolution per pixel
+#' @export
+x3p_get_scale <- function(x3p) {
+  x3p$general.info$incrementX
+}

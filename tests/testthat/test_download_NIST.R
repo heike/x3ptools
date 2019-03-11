@@ -50,7 +50,12 @@ test_that("full download URL works", {
                                directory = "downloadNist", mirrorFileStructure = F, maxFiles = -1))
   expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), 0)
   unlink("downloadNist/*", recursive = T)
-
+})
+test_that("fake download URL errors", {
+  # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
+  skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
+  # skip_on_cran()
+  
   # Page that doesn't exist
   expect_error(NRBTD_download("4908a64a-702c-4203-a945-62734f3acf3f", "downloadNist", maxFiles = -1, quiet = T))
 })
