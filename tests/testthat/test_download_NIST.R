@@ -32,12 +32,11 @@ test_that("file structure mirroring = F works", {
   skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
   # skip_on_cran()
   
+  maxfiles <- 1
   # File Structure Mirroring is false
   expect_silent(NRBTD_download("4908a64a-702c-4203-a945-6279df3acf3f", "downloadNist", 
                                mirrorFileStructure = F, maxFiles = maxfiles))
   expect_equal(list.files("downloadNist", recursive = F, include.dirs = T), "Hamby Hi-Point C9 Sl")
-  # expect_equal(gsub("^(.*)\\.", "", list.files("downloadNist/", recursive = T, include.dirs = F)),
-               # c(rep(c("png", "png", "png", "x3p"), times = maxfiles), "xlsx"))
   expect_equal(length(list.files("downloadNist", "*.x3p", recursive = T)), maxfiles)
   unlink("downloadNist/*", recursive = T)
 })
@@ -45,6 +44,7 @@ test_that("full download URL works", {
   # Skip all tests in this block if tsapps.nist.gov/NRBTD is not reachable
   skip_if(url_unreachable("https://tsapps.nist.gov/NRBTD"))
   # skip_on_cran()
+  
   # full download link
   expect_silent(NRBTD_download("https://tsapps.nist.gov/NRBTD/Studies/Studies/Details/c09aaa86-5d60-4acb-9031-46dad2c0ad32",
                                directory = "downloadNist", mirrorFileStructure = F, maxFiles = -1))
