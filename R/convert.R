@@ -47,6 +47,6 @@ x3p_scale_unit <- function(x3p, scale_by) {
 #' @export
 x3p_get_scale <- function(x3p) {
   assert_that("x3p" %in% class(x3p))
-  
+
   x3p$header.info$incrementX
 }
