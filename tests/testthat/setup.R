@@ -37,3 +37,5 @@ write_x3p(x3ptest, file = tmpfile, size = 4, quiet = T)
 tmpfile2 <- tempfile(fileext = ".x3p")
 # write a copy of the file into a temporary file
 write_x3p(x3ptest %>% x3p_add_mask(), file = tmpfile2, quiet = T)
+
+logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
