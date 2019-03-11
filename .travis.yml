@@ -24,3 +24,6 @@ before_script:
 
 after_success:
     - Rscript -e 'covr::codecov()'
+    
+after_failure:
+  - if [ -f /home/travis/build/heike/x3ptools/x3ptools.Rcheck/00install.out ]; then cat /home/travis/build/heike/x3ptools/x3ptools.Rcheck/00install.out; fi
