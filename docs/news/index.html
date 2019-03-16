@@ -109,23 +109,32 @@
 <h2 class="hasAnchor">
 <a href="#features" class="anchor"></a>features</h2>
 <ul>
-<li>sample_x3p:
+<li>added functionality to download x3p files from the NIST Ballistics Toolmarks Research Database at <a href="https://tsapps.nist.gov/NRBTD/Home" class="uri">https://tsapps.nist.gov/NRBTD/Home</a>
+</li>
+<li>
+<code>sample_x3p</code>:
 <ul>
-<li>sample at different rates in x and y direction (using parameters m and mY)</li>
-<li>sample at offset accessible through parameters offset and offsetY</li>
+<li>sample at different rates in x and y direction (using parameters <code>m</code> and <code>mY</code>)</li>
+<li>sample at offset accessible through parameters <code>offset</code> and <code>offsetY</code>
+</li>
 </ul>
 </li>
-<li>print.x3p for showing a concise summary of relevant meta information from the xml file.</li>
-<li>download sample x3p files from the NIST Ballistics Toolmarks Research Database</li>
-<li>x3p_show_xml and x3p_modify_xml:
+<li>functionality to work with meta data:
 <ul>
-<li>identify and show elements of the meta file based on names</li>
-<li>modify individual elements</li>
+<li>
+<code>x3p_show_xml</code> to identify and show elements of the meta file based on names</li>
+<li>
+<code>x3p_modify_xml</code> to modify individual elements</li>
 </ul>
 </li>
+<li>functionality to overlay 3d surface data with color information:
+<ul>
 <li>adding/creating masks to overlay surfaces with color raster images<br>
 </li>
-<li>x3p_add_vline, x3p_add_vline, x3p_add_grid: add lines on top of rendered scan surface</li>
+<li>
+<code>x3p_add_vline</code>, <code>x3p_add_vline</code>, <code>x3p_add_grid</code>: add lines on top of rendered scan surface by manipulating the mask</li>
+</ul>
+</li>
 </ul>
 </div>
 <div id="minor-functionality" class="section level2">
@@ -133,7 +142,7 @@
 <a href="#minor-functionality" class="anchor"></a>minor functionality</h2>
 <ul>
 <li>testing routines added with coverage &gt; 90%</li>
-<li>head.x3p provides a succinct summary of scan meta information</li>
+<li>print.x3p and head.x3p provide a succinct summary of scan meta information</li>
 <li>enabled URL read of x3p files</li>
 <li>include svg as an option for file save from image_x3p</li>
 <li>read_x3p and write_x3p check xml meta file for specification of float size</li>
