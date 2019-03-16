@@ -76,3 +76,5 @@ x3p_show_xml <- function(x3p, element) {
   if (length(res[[2]]) == 0) warning(sprintf("no fields containing \"%s\" found. Try `element=\"*\" to see all fields.", as.character(element)))
   res[[2]]
 }
+
+
