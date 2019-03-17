@@ -8,5 +8,8 @@ stuff
 docs
 ^cran-comments\.md$
 ^inst/sensofar1.*
+^inst/sensofar1.*
+inst/*.R
 ^codecov.yml*
+^downloadNist$
 raw-data
