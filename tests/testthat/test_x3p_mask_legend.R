@@ -70,3 +70,9 @@ test_that("x3p_add_legend", {
   expect_gt(nrow(extra_stuff), 0) # TODO: Actually test for background? Not sure how to get at that...
 
 })
+
+
+test_that("x3p_mask_legend", {
+  expect_error(x3p_mask_legend("x3p"))
+  expect_null(x3p_mask_legend(x3ptest))
+})
