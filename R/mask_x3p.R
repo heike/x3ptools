@@ -32,6 +32,19 @@ x3p_add_mask <- function(x3p, mask = NULL) {
   }
   x3p$mask <- mask
   
+  if (!"matrix.info" %in% names(x3p)) {
+    x3p$matrix.info <- list(MatrixDimension = list(SizeX = dim(x3p$surface.matrix)[1],
+                                                   SizeY = dim(x3p$surface.matrix)[2],
+                                                   SizeZ = 1))
+  }
+  
+  if (!"Mask" %in% names(x3p$matrix.info)) {
+    x3p$matrix.info$Mask <- list(
+      Background = if (length(unique(mask)) == 1) {list(unique(mask))} else {list()},
+      Annotations = list()
+    )
+  }
+  
   x3p
 }
 
@@ -44,6 +57,9 @@ x3p_add_mask <- function(x3p, mask = NULL) {
 x3p_delete_mask <- function(x3p) {
   x3p$mask <- NULL # delete mask
   # also delete annotations from XML file
+  if ("Mask" %in% names(x3p$matrix.info)) {
+    x3p$matrix.info$Mask <- NULL
+  }
   
   x3p
 }
