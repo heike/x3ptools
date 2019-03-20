@@ -38,3 +38,35 @@ test_that("x3p_lighter", {
 })
 
 
+test_that("x3p_add_legend", {
+  expect_error(x3p_add_legend("x3p"))
+  expect_error(x3p_add_legend(x3pbig))
+
+  # With mask
+  x3pbig2 %>%
+    image_x3p()
+
+  objs <- rgl::rgl.attrib.info(showAll = T)
+  x3p_add_legend(x3pbig2)
+
+  objs2 <- rgl::rgl.attrib.info(showAll = T)
+  
+  rgl::rgl.close()
+  extra_stuff <- dplyr::anti_join(objs2, objs)
+  expect_gt(nrow(extra_stuff), 0) # TODO: Actually test for background? Not sure how to get at that...
+  
+  
+  # With mask
+  x3pbig2 %>%
+    image_x3p()
+  
+  objs <- rgl::rgl.attrib.info(showAll = T)
+  x3p_add_legend(x3pbig2, colors = c("not actually in here" = "#FF0000"))
+  
+  objs2 <- rgl::rgl.attrib.info(showAll = T)
+  
+  rgl::rgl.close()
+  extra_stuff <- dplyr::anti_join(objs2, objs)
+  expect_gt(nrow(extra_stuff), 0) # TODO: Actually test for background? Not sure how to get at that...
+
+})
