@@ -10,7 +10,7 @@ x3p_mask_legend(x3p)
 \item{x3p}{x3p object (with a mask)}
 }
 \value{
-named vector of colors, names show annotations
+named vector of colors, names show annotations. In case no annotations exist NULL is returned.
 }
 \description{
 Get legend for mask colors
