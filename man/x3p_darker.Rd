@@ -7,7 +7,7 @@
 x3p_darker(x3p)
 }
 \arguments{
-\item{x3p}{x3p object (with a mask)}
+\item{x3p}{x3p object}
 }
 \description{
 Makes the currently active rgl object darker by removing a light source. Once all light sources are removed the object can not be any darker.

@@ -1,7 +1,7 @@
 #' Get legend for mask colors
 #' 
 #' Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors. 
-#' @param x3p x3p object (with a mask)
+#' @param x3p x3p object with a mask
 #' @return named vector of colors, names show annotations. In case no annotations exist NULL is returned.
 #' @export
 #' @examples
@@ -21,7 +21,7 @@ x3p_mask_legend <- function(x3p) {
 #' Add legend to active rgl object
 #' 
 #' Add the legend for colors and annotations to the actuve rgl window.
-#' @param x3p x3p object (with a mask)
+#' @param x3p x3p object with a mask
 #' @param colors named character vector of colors (in hex format by default), names contain annotations
 #' @export
 #' @examples 
@@ -45,7 +45,7 @@ x3p_add_legend <- function(x3p, colors = NULL) {
 #' Lighten active rgl object
 #' 
 #' Make the currently active rgl object lighter. Adds a light source. Up to eight light sources can be added. Alternatively, any rgl light source can be added (see `light3d`).
-#' @param x3p x3p object (with a mask)
+#' @param x3p x3p object 
 #' @export
 x3p_lighter <- function(x3p) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
@@ -56,7 +56,7 @@ x3p_lighter <- function(x3p) {
 #' Darken active rgl object
 #' 
 #' Makes the currently active rgl object darker by removing a light source. Once all light sources are removed the object can not be any darker.
-#' @param x3p x3p object (with a mask)
+#' @param x3p x3p object 
 #' @export
 x3p_darker <- function(x3p) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object

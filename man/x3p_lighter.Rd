@@ -7,7 +7,7 @@
 x3p_lighter(x3p)
 }
 \arguments{
-\item{x3p}{x3p object (with a mask)}
+\item{x3p}{x3p object}
 }
 \description{
 Make the currently active rgl object lighter. Adds a light source. Up to eight light sources can be added. Alternatively, any rgl light source can be added (see \code{light3d}).

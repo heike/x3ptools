@@ -7,7 +7,7 @@
 x3p_add_legend(x3p, colors = NULL)
 }
 \arguments{
-\item{x3p}{x3p object (with a mask)}
+\item{x3p}{x3p object with a mask}
 
 \item{colors}{named character vector of colors (in hex format by default), names contain annotations}
 }
