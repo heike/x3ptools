@@ -25,6 +25,8 @@ sample_x3p <- function(x3p, m=2, mY=m, offset = 0, offsetY = offset) {
   
   
   x3p$surface.matrix <- x3p$surface.matrix[seqx, seqy]
+  if (!is.null(x3p$mask)) 
+    x3p$mask <- x3p$mask[seqy, seqx]
   
   x3p$header.info$sizeX <- length(seqx)
   x3p$header.info$sizeY <- length(seqy)

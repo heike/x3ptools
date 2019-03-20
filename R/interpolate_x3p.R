@@ -22,7 +22,11 @@ interpolate_x3p <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
   stopifnot("x3p" %in% class(x3p))
   if ((resx < x3p$header.info$incrementX) | (resy < x3p$header.info$incrementY)) 
     warning("New resolution is higher than the old. proceed with caution.\n")
-
+  
+  if (!is.null(x3p$mask)) {
+    warning("Mask will be deleted during interpolation. Use sample_x3p to preserve mask.")
+    x3p <- x3p_delete_mask(x3p)
+  }
   sizes <- dim(x3p$surface.matrix)
   newsize = round(sizes*c(x3p$header.info$incrementX/resx, x3p$header.info$incrementY/resy))
   seqx <- seq.int(from = 1, to = sizes[1]) 

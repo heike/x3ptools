@@ -32,4 +32,15 @@ x3p_add_mask <- function(x3p, mask = NULL) {
   x3p
 }
 
-
+#' Delete mask from an x3p object
+#' 
+#' Deletes mask an its annotations from an x3p file
+#' @param x3p x3p object
+#' @return x3p object without the mask
+#' @export
+x3p_delete_mask <- function(x3p) {
+  x3p$mask <- NULL # delete mask
+  # also delete annotations from XML file
+  
+  x3p
+}
