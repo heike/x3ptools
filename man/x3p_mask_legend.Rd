@@ -13,5 +13,9 @@ x3p_mask_legend(x3p)
 named vector of colors, names show annotations. In case no annotations exist NULL is returned.
 }
 \description{
-Get legend for mask colors
+Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors.
+}
+\examples{
+x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+x3p_mask_legend(x3p) # annotations and color hex definitions
 }

@@ -13,5 +13,5 @@ x3p_delete_mask(x3p)
 x3p object without the mask
 }
 \description{
-Deletes mask an its annotations from an x3p file
+Deletes mask and its annotations from an x3p file.
 }

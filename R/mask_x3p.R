@@ -8,6 +8,9 @@
 #' @export
 #' @importFrom grDevices as.raster
 #' @examples
+#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' # x3p file has mask consisting color raster image:
+#' x3p$mask[1:5,1:5]
 #' \dontrun{
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 #' color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
@@ -34,7 +37,7 @@ x3p_add_mask <- function(x3p, mask = NULL) {
 
 #' Delete mask from an x3p object
 #' 
-#' Deletes mask an its annotations from an x3p file
+#' Deletes mask and its annotations from an x3p file.
 #' @param x3p x3p object
 #' @return x3p object without the mask
 #' @export

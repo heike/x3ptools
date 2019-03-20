@@ -1,8 +1,12 @@
 #' Get legend for mask colors
 #' 
+#' Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors. 
 #' @param x3p x3p object (with a mask)
 #' @return named vector of colors, names show annotations. In case no annotations exist NULL is returned.
 #' @export
+#' @examples
+#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' x3p_mask_legend(x3p) # annotations and color hex definitions
 x3p_mask_legend <- function(x3p) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
   if (is.null(x3p$mask)) return(NULL)
@@ -16,9 +20,16 @@ x3p_mask_legend <- function(x3p) {
 
 #' Add legend to active rgl object
 #' 
+#' Add the legend for colors and annotations to the actuve rgl window.
 #' @param x3p x3p object (with a mask)
 #' @param colors named character vector of colors (in hex format by default), names contain annotations
 #' @export
+#' @examples 
+#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' \dontrun{
+#' image_x3p(x3p) # run when rgl can open window on the device
+#' x3p_add_legend(x3p) # add legend
+#' }
 x3p_add_legend <- function(x3p, colors = NULL) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
   
