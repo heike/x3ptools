@@ -31,3 +31,10 @@ test_that("x3p_add_mask works", {
   expect_s3_class(x3ptest_mask4$mask, "raster")
   # I'm not convinced it should add the mask in place - could we instead crop/pad it appropriately?
 })
+
+test_that("x3p_delete_mask works", {
+  x3ptest_mask <- x3p_add_mask(x3ptest)
+  
+  expect_equivalent(x3p_delete_mask(x3ptest_mask), x3ptest)
+  
+})
