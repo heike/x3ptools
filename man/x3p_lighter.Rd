@@ -4,11 +4,15 @@
 \alias{x3p_lighter}
 \title{Lighten active rgl object}
 \usage{
-x3p_lighter(x3p)
-}
-\arguments{
-\item{x3p}{x3p object}
+x3p_lighter()
 }
 \description{
 Make the currently active rgl object lighter. Adds a light source. Up to eight light sources can be added. Alternatively, any rgl light source can be added (see \code{light3d}).
+}
+\examples{
+x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+\dontrun{
+image_x3p(x3p) # run when rgl can open window on the device
+x3p_lighter() # add a light source
+}
 }

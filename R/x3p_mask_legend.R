@@ -32,6 +32,7 @@ x3p_mask_legend <- function(x3p) {
 #' }
 x3p_add_legend <- function(x3p, colors = NULL) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
+  stopifnot(length(rgl.dev.list()) > 0)
   
   if (is.null(colors)) colors <- x3p_mask_legend(x3p) 
   if (!is.null(colors))
@@ -45,10 +46,16 @@ x3p_add_legend <- function(x3p, colors = NULL) {
 #' Lighten active rgl object
 #' 
 #' Make the currently active rgl object lighter. Adds a light source. Up to eight light sources can be added. Alternatively, any rgl light source can be added (see `light3d`).
-#' @param x3p x3p object 
 #' @export
-x3p_lighter <- function(x3p) {
-  stopifnot("x3p" %in% class(x3p)) # no x3p object
+#' @examples 
+#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' \dontrun{
+#' image_x3p(x3p) # run when rgl can open window on the device
+#' x3p_lighter() # add a light source
+#' }
+x3p_lighter <- function() {
+  stopifnot(length(rgl.dev.list()) > 0)
+  # stopifnot("x3p" %in% class(x3p)) # no x3p object
   
   light3d(diffuse = "gray20", specular = "gray20")
 }
@@ -56,10 +63,16 @@ x3p_lighter <- function(x3p) {
 #' Darken active rgl object
 #' 
 #' Makes the currently active rgl object darker by removing a light source. Once all light sources are removed the object can not be any darker.
-#' @param x3p x3p object 
 #' @export
-x3p_darker <- function(x3p) {
-  stopifnot("x3p" %in% class(x3p)) # no x3p object
+#' @examples 
+#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' \dontrun{
+#' image_x3p(x3p) # run when rgl can open window on the device
+#' x3p_darker() # remove a light source
+#' }
+x3p_darker <- function() {
+  stopifnot(length(rgl.dev.list()) > 0)
+  # stopifnot("x3p" %in% class(x3p)) # no x3p object
   
   rgl.pop("lights")
 }
