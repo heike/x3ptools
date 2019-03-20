@@ -31,6 +31,23 @@ test_that("x3p_add_mask works", {
                expected = expectednames)
   expect_s3_class(x3ptest_mask4$mask, "raster")
   # I'm not convinced it should add the mask in place - could we instead crop/pad it appropriately?
+  
+  # Test that matrix.info gets added
+  x3ptest_min <- x3ptest
+  x3ptest_min$matrix.info <- NULL
+  x3ptest_min_mask <- x3p_add_mask(x3ptest)
+  expect_failure(expect_named(x3ptest_min, expected = expectednames))
+  expect_named(x3ptest_min_mask, 
+               expected = expectednames)
+  
+  # Test that matrix.info$Mask
+  x3ptest_min <- x3ptest
+  x3ptest_min$matrix.info$Mask <- NULL
+  x3ptest_min_mask <- x3p_add_mask(x3ptest)
+  expect_failure(expect_named(x3ptest_min$matrix.info, 
+                              expected = c("MatrixDimension", "Mask")))
+  expect_named(x3ptest_min_mask$matrix.info, 
+               expected = c("MatrixDimension", "Mask"))
 })
 
 test_that("x3p_delete_mask works", {
