@@ -95,6 +95,10 @@ df_to_x3p <- function(dframe) {
                             incrementX = median(diff(unique(dframe$x))),
                             incrementY = median(diff(unique(dframe$y))))
   }
+  
+  if (is.null(x3p$matrix.info)) {
+    x3p$matrix.info <- list(MatrixDimension = list(SizeX = nx, SizeY = ny, SizeZ = 1))
+  }
   class(x3p) <- "x3p"
 
   x3p
