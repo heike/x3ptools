@@ -1,3 +1,5 @@
+^docs$
+^_pkgdown\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.travis.yml$
@@ -7,7 +9,6 @@
 stuff
 docs
 ^cran-comments\.md$
-^inst/sensofar1.*
 ^inst/sensofar1.*
 inst/*.R
 ^codecov.yml*
