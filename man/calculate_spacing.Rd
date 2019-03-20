@@ -17,5 +17,5 @@ calculate_spacing(x3p, spaces, axis = "y")
 vector of line locations
 }
 \description{
-Calculate grid spacing
+Helper function, not exported.
 }

@@ -20,7 +20,7 @@ interpolated x3p object
 }
 \description{
 An interpolated scan is created at specified resolutions \code{resx}, \code{resy} in x and y direction.
-The interpolation is based on \code{na.approx} from the \code{zoo} package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but not recommended to do so.
+The interpolation is based on \code{na.approx} from the \code{zoo} package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but it is not recommended to do so.
 \code{interpolate_x3p} can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.
 }
 \examples{

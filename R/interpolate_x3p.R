@@ -1,7 +1,7 @@
 #' Interpolate from an x3p object
 #' 
 #' An interpolated scan is created at specified resolutions `resx`, `resy` in x and y direction.
-#' The interpolation is based on `na.approx` from the `zoo` package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but not recommended to do so.
+#' The interpolation is based on `na.approx` from the `zoo` package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but it is not recommended to do so.
 #' `interpolate_x3p` can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.
 #' @param x3p x3p object
 #' @param resx numeric value specifying the new resolution for the x axis.
@@ -17,7 +17,6 @@
 #' # change resolution to 1 micron = 1e-6 meters
 #' logo2 <- interpolate_x3p(logo, resx = 1e-6)
 #' logo2$header.info$incrementX
- 
 interpolate_x3p <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
   stopifnot("x3p" %in% class(x3p))
   if ((resx < x3p$header.info$incrementX) | (resy < x3p$header.info$incrementY)) 

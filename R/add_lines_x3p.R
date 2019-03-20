@@ -84,6 +84,7 @@ x3p_add_hline <- function(x3p, yintercept, size = 5, color = "#e6bf98") {
 
 #' Calculate grid spacing
 #' 
+#' Helper function, not exported.
 #' @param x3p x3p file
 #' @param spaces space between grid lines
 #' @param axis axis to calculate, as character
