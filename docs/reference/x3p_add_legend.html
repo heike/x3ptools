@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get legend for mask colors — x3p_mask_legend • x3ptools</title>
+<title>Add legend to active rgl object — x3p_add_legend • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Get legend for mask colors — x3p_mask_legend" />
+<meta property="og:title" content="Add legend to active rgl object — x3p_add_legend" />
 
-<meta property="og:description" content="Get legend for mask colors" />
+<meta property="og:description" content="Add legend to active rgl object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,18 +100,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get legend for mask colors</h1>
+    <h1>Add legend to active rgl object</h1>
     <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/x3p_mask_legend.R'><code>R/x3p_mask_legend.R</code></a></small>
-    <div class="hidden name"><code>x3p_mask_legend.Rd</code></div>
+    <div class="hidden name"><code>x3p_add_legend.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get legend for mask colors</p>
+    <p>Add legend to active rgl object</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_mask_legend</span>(<span class='no'>x3p</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_add_legend</span>(<span class='no'>x3p</span>, <span class='kw'>colors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -120,11 +120,11 @@
       <th>x3p</th>
       <td><p>x3p object (with a mask)</p></td>
     </tr>
+    <tr>
+      <th>colors</th>
+      <td><p>named character vector of colors (in hex format by default), names contain annotations</p></td>
+    </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>named vector of colors, names show annotations. In case no annotations exist NULL is returned.</p>
     
 
   </div>
@@ -132,9 +132,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

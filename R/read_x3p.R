@@ -11,7 +11,7 @@
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
-#' @importFrom utils unzip
+#' @importFrom utils unzip download.file
 #' 
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))

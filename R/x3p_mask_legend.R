@@ -30,23 +30,6 @@ x3p_add_legend <- function(x3p, colors = NULL) {
 }
 
 
-#' Add legend to active rgl object
-#' 
-#' @param x3p x3p object (with a mask)
-#' @param colors named character vector of colors (in hex format by default), names contain annotations
-#' @export
-x3p_add_legend <- function(x3p, colors = NULL) {
-  stopifnot("x3p" %in% class(x3p)) # no x3p object
-  
-  if (is.null(colors)) colors <- x3p_mask_legend(x3p) 
-  # only hue of these colors is stable, brightness and saturation are affected by
-  # the lighting
-  
-  legend3d("bottomright", legend = names(colors), pch = 15, 
-           col =colors,
-           cex=1, pt.cex = 2, inset=c(0.02))
-}
-
 
 #' Lighten active rgl object
 #' 

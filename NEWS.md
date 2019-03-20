@@ -2,7 +2,6 @@
 
 ## features
 
-- added functionality to download x3p files from the NIST Ballistics Toolmarks Research Database at https://tsapps.nist.gov/NRBTD/Home
 - `sample_x3p`: 
     - sample at different rates in x and y direction (using parameters `m` and `mY`)
     - sample at offset accessible through parameters `offset` and `offsetY`
