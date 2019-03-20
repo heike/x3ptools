@@ -38,4 +38,12 @@ tmpfile2 <- tempfile(fileext = ".x3p")
 # write a copy of the file into a temporary file
 write_x3p(x3ptest %>% x3p_add_mask(), file = tmpfile2, quiet = T)
 
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+
+x3pbig2 <- x3pbig
+x3pbig2$mask[1:5, ] <- "black"
+
+x3pbig2$matrix.info$Mask$Annotations <- list(
+  Annotation = structure(list("testing"), color = "black")
+)
+
+logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
