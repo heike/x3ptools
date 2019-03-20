@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Add legend to active rgl object — x3p_add_legend" />
 
-<meta property="og:description" content="Add legend to active rgl object" />
+<meta property="og:description" content="Add the legend for colors and annotations to the actuve rgl window." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,7 +107,7 @@
 
     <div class="ref-description">
     
-    <p>Add legend to active rgl object</p>
+    <p>Add the legend for colors and annotations to the actuve rgl window.</p>
     
     </div>
 
@@ -118,7 +118,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x3p</th>
-      <td><p>x3p object (with a mask)</p></td>
+      <td><p>x3p object with a mask</p></td>
     </tr>
     <tr>
       <th>colors</th>
@@ -127,12 +127,19 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>x3p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"sample-land.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='image_x3p.html'>image_x3p</a></span>(<span class='no'>x3p</span>) <span class='co'># run when rgl can open window on the device</span>
+<span class='fu'>x3p_add_legend</span>(<span class='no'>x3p</span>) <span class='co'># add legend</span>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

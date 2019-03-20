@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Get legend for mask colors — x3p_mask_legend" />
 
-<meta property="og:description" content="Get legend for mask colors" />
+<meta property="og:description" content="Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,7 +107,7 @@
 
     <div class="ref-description">
     
-    <p>Get legend for mask colors</p>
+    <p>Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors.</p>
     
     </div>
 
@@ -118,7 +118,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x3p</th>
-      <td><p>x3p object (with a mask)</p></td>
+      <td><p>x3p object with a mask</p></td>
     </tr>
     </table>
     
@@ -127,6 +127,10 @@
     <p>named vector of colors, names show annotations. In case no annotations exist NULL is returned.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>x3p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"sample-land.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='fu'>x3p_mask_legend</span>(<span class='no'>x3p</span>) <span class='co'># annotations and color hex definitions</span></div><div class='output co'>#&gt;    break-off right groove  left groove    no striae 
+#&gt;    "#1f376c"    "#629d4b"    "#800080"    "#ffff00" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -134,7 +138,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
