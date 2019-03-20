@@ -33,6 +33,8 @@ Suggests:
     dplyr,
     magick (>= 2.0),
     nbtrd
+Remotes: 
+    csafe-isu/nbtrd    
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
