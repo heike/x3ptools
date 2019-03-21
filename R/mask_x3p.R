@@ -20,8 +20,9 @@
 x3p_add_mask <- function(x3p, mask = NULL) {
   stopifnot("x3p" %in% class(x3p))
   dims <- rev(dim(x3p$surface.matrix))
-  if (is.null(mask)) mask <- as.raster(matrix("#cd7f32", dims[1], dims[2]))
-  else {
+  if (is.null(mask)) {
+    mask <- as.raster(matrix("#cd7f32", dims[1], dims[2]))
+  } else {
     mask <- as.raster(mask) # Fix matrix/array rasters
     # check that the mask has the right dimensions
     if (!all(dim(mask) == dims)) {
