@@ -48,3 +48,4 @@ test_that("x3p_delete_mask works", {
   expect_equivalent(x3p_delete_mask(x3ptest_mask), x3ptest)
   
 })
+

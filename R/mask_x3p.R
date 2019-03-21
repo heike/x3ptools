@@ -58,9 +58,10 @@ x3p_add_mask <- function(x3p, mask = NULL) {
 x3p_delete_mask <- function(x3p) {
   x3p$mask <- NULL # delete mask
   # also delete annotations from XML file
+
   if ("Mask" %in% names(x3p$matrix.info)) {
     x3p$matrix.info$Mask <- NULL
   }
-  
+
   x3p
 }
