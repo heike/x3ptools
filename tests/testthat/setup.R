@@ -5,7 +5,7 @@
 #   okfiles <- list.files(here::here("tests/"), ".Rdata", full.names = T)
 # }
 
-`%>%` <- magrittr::`%>%`
+`%>%` <- dplyr::`%>%`
 
 url_unreachable <- function(url) {
   ("try-error" %in% class(try(xml2::read_html(url), silent = T)))
