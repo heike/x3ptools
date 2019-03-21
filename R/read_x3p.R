@@ -18,7 +18,7 @@
 read_x3p <- function(file, size = NA, quiet = T) {
   if (grepl("http|www", file)) {
     fname <- tempfile(fileext = ".x3p")
-    download.file(file, destfile = fname, quiet = quiet)
+    download.file(file, destfile = fname, quiet = quiet, mode = "wb")
     on.exit(file.remove(fname))
   } else {
     fname <- file
