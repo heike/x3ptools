@@ -40,14 +40,6 @@ test_that("x3p_add_mask works", {
   expect_named(x3ptest_min_mask, 
                expected = expectednames)
   
-  # Test that matrix.info$Mask
-  x3ptest_min <- x3ptest
-  x3ptest_min$matrix.info$Mask <- NULL
-  x3ptest_min_mask <- x3p_add_mask(x3ptest)
-  expect_failure(expect_named(x3ptest_min$matrix.info, 
-                              expected = c("MatrixDimension", "Mask")))
-  expect_named(x3ptest_min_mask$matrix.info, 
-               expected = c("MatrixDimension", "Mask"))
 })
 
 test_that("x3p_delete_mask works", {

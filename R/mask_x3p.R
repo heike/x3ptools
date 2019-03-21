@@ -20,7 +20,13 @@
 x3p_add_mask <- function(x3p, mask = NULL) {
   stopifnot("x3p" %in% class(x3p))
   dims <- rev(dim(x3p$surface.matrix))
-  if (is.null(mask)) {
+  if (is.null(mask)) {  
+    if (!"Mask" %in% names(x3p$matrix.info)) {
+      x3p$matrix.info$Mask <- list(
+        Background = if (length(unique(mask)) == 1) {list(unique(mask))} else {list("")},
+        Annotations = list()
+      )
+    }
     mask <- as.raster(matrix("#cd7f32", dims[1], dims[2]))
   } else {
     mask <- as.raster(mask) # Fix matrix/array rasters
@@ -33,17 +39,11 @@ x3p_add_mask <- function(x3p, mask = NULL) {
   }
   x3p$mask <- mask
   
+  # This is necessary so that mask information can be added
   if (!"matrix.info" %in% names(x3p)) {
     x3p$matrix.info <- list(MatrixDimension = list(SizeX = dim(x3p$surface.matrix)[1],
                                                    SizeY = dim(x3p$surface.matrix)[2],
                                                    SizeZ = 1))
-  }
-  
-  if (!"Mask" %in% names(x3p$matrix.info)) {
-    x3p$matrix.info$Mask <- list(
-      Background = if (length(unique(mask)) == 1) {list(unique(mask))} else {list()},
-      Annotations = list()
-    )
   }
   
   x3p
