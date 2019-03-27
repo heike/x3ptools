@@ -10,6 +10,8 @@ x3p_read_dat(dat, delim = " ", col_names = FALSE)
 \item{dat}{path to the x-y-z file}
 
 \item{delim}{character determining delimiter}
+
+\item{col_names}{logical value - does the first line of the file contain the column names? Default is set to FALSE.}
 }
 \value{
 x3p object

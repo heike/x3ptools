@@ -1,3 +1,9 @@
+# x3ptools 0.0.3
+
+## features
+
+- `x3p_snapshot` lets you take a snapshot of the currently active rgl device. The extension of the file determines the format.
+
 # x3ptools 0.0.2
 
 ## features

@@ -2,6 +2,7 @@
 #' 
 #' @param dat path to the x-y-z file
 #' @param delim character determining delimiter
+#' @param col_names logical value - does the first line of the file contain the column names? Default is set to FALSE.
 #' @return x3p object
 #' @export
 x3p_read_dat <- function (dat, delim=" ", col_names = FALSE) {
