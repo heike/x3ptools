@@ -80,10 +80,24 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
   }
   
   if (!is.null(file)) {
+    x3p_snapshot(file)
+    rgl.close()
+  }
+}
+
+
+#' Take a snapshot of the current rgl file
+#' 
+#' Make a snapshot of the current rgl device and save it to file. Options for file formats are png, svg, and stl (for 3d printing).
+#' @param file file name for saving.
+#' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.
+#' @export
+x3p_snapshot <- function(file) {
+  if (!is.null(file)) {
     splits <- strsplit(file, split = "\\.")
     extension <- splits[[1]][length(splits[[1]])]
     if (extension == "png") {
-      rgl.snapshot(filename = file)
+      rgl.snapshot(filename = file, top=TRUE)
     }
     if (extension == "svg") {
       rgl.postscript(filename = file, fmt = "svg")
@@ -91,8 +105,5 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
     if (extension == "stl") {
       writeSTL(con = file)
     }
-    rgl.close()
   }
 }
-
-

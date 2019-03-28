@@ -1,7 +1,7 @@
 Package: x3ptools
 Type: Package
 Title: Tools for Working with 3D Surface Measurements
-Version: 0.0.2
+Version: 0.0.2.9000
 Date: 2019-02-28
 Authors@R: c(
     person("Heike", "Hofmann", role = c("aut", "cre"),
@@ -22,6 +22,7 @@ Imports: digest (>= 0.6.15),
          rgl (>= 0.99.9),
          zoo (>= 1.8.1),
          png (>= 0.1-7),
+         readr (>= 1.1.1),
          assertthat,
          grDevices
 Suggests:
