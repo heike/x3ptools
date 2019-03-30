@@ -22,12 +22,9 @@ x3p_modify_xml <- function(x3p, element, value) {
   if (length(res) > 1) stop(sprintf("More than one element matching <%s> found: %s", element, paste(names(res), collapse=", ")))
   
   # we found exactly one matching meta element
-  record <- NULL
-  n = find_element[[3]]
-  record <- which(idx <= cumsum(n))[1]
-
-  sm <- which(names(x3p)=="surface.matrix")
-  obj_str <- sprintf("x3p[-sm][[record]]$%s[[1]] <- value", gsub("\\.", "$", names(res)))
+  record <- find_element[[3]]
+  
+  obj_str <- sprintf("x3p$%s$%s[[1]] <- value", record, gsub("\\.", "$", names(res)), idx)
   
   eval(parse(text=obj_str))
   x3p
@@ -44,14 +41,16 @@ helper_identify_xml <- function(x3p, element) {
   n = c(length(rec1), length(rec2), length(rec3), length(rec4))
   
   idx <- NULL
-  if (is.string(element))
+  if (is.character(element))
   idx <- grep(tolower(element), tolower(names(allrecords)))
   if (is.numeric(element)) {
     idx <- element[element >0 & element < length(allrecords)]
   }
-  
-  
-  list(idx, allrecords[idx], n)
+
+  firstneg <- which(idx - cumsum(n) <= 0)
+  record <- c("header.info", "feature.info", "general.info", "matrix.info")[firstneg[1]]
+  firstidx <- (idx - cumsum(c(0,n)))[firstneg[1]]
+  list(firstidx, allrecords[idx], record)
 }
 
 #' Show xml elements from meta information in x3p object
