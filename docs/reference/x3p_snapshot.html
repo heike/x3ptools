@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot x3p object as an image — image_x3p • x3ptools</title>
+<title>Take a snapshot of the current rgl file — x3p_snapshot • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Plot x3p object as an image — image_x3p" />
+<meta property="og:title" content="Take a snapshot of the current rgl file — x3p_snapshot" />
 
-<meta property="og:description" content="Plot x3p object as an image" />
+<meta property="og:description" content="Make a snapshot of the current rgl device and save it to file. Options for file formats are png, svg, and stl (for 3d printing)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,80 +100,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot x3p object as an image</h1>
+    <h1>Take a snapshot of the current rgl file</h1>
     <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/image_x3p.R'><code>R/image_x3p.R</code></a></small>
-    <div class="hidden name"><code>image_x3p.Rd</code></div>
+    <div class="hidden name"><code>x3p_snapshot.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot x3p object as an image</p>
+    <p>Make a snapshot of the current rgl device and save it to file. Options for file formats are png, svg, and stl (for 3d printing).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>image_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#cd7f32"</span>, <span class='kw'>crosscut</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>ccParam</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>, <span class='kw'>radius</span> <span class='kw'>=</span> <span class='fl'>5</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>750</span>, <span class='fl'>250</span>),
-  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.35</span>, <span class='kw'>multiply</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_snapshot</span>(<span class='no'>file</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x3p</th>
-      <td><p>x3p object</p></td>
-    </tr>
-    <tr>
       <th>file</th>
-      <td><p>file name for saving, if file is NULL the opengl device stays open.
+      <td><p>file name for saving.
 The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.</p></td>
-    </tr>
-    <tr>
-      <th>col</th>
-      <td><p>color specification</p></td>
-    </tr>
-    <tr>
-      <th>crosscut</th>
-      <td><p>crosscut index</p></td>
-    </tr>
-    <tr>
-      <th>ccParam</th>
-      <td><p>list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>vector of width and height</p></td>
-    </tr>
-    <tr>
-      <th>zoom</th>
-      <td><p>numeric value indicating the amount of zoom</p></td>
-    </tr>
-    <tr>
-      <th>multiply</th>
-      <td><p>exaggerate the relief by factor multiply</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>not used</p></td>
     </tr>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='fu'>image_x3p</span>(<span class='no'>logo</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"logo.png"</span>, <span class='kw'>crosscut</span> <span class='kw'>=</span> <span class='fl'>50</span>*<span class='fl'>.645e-6</span>)
-<span class='co'># alternative to crosscut</span>
-<span class='no'>logoplus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_add_hline.html'>x3p_add_hline</a></span>(<span class='no'>logo</span>, <span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>50</span>*<span class='fl'>.645e-6</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='fu'>image_x3p</span>(<span class='no'>logoplus</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>741</span>, <span class='fl'>419</span>), <span class='kw'>zoom</span><span class='kw'>=</span><span class='fl'>0.5</span>)
-<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>
