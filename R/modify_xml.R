@@ -47,10 +47,25 @@ helper_identify_xml <- function(x3p, element) {
     idx <- element[element >0 & element < length(allrecords)]
   }
 
-  firstneg <- which(idx - cumsum(n) <= 0)
-  record <- c("header.info", "feature.info", "general.info", "matrix.info")[firstneg[1]]
-  firstidx <- (idx - cumsum(c(0,n)))[firstneg[1]]
-  list(firstidx, allrecords[idx], record)
+  if (length(idx) == 1) {
+    firstneg <- which(idx - cumsum(n) <= 0)
+    record <- c("header.info", "feature.info", "general.info", "matrix.info")[firstneg[1]]
+    firstidx <- (idx - cumsum(c(0,n)))[firstneg[1]]
+  }
+  
+  res <- lapply(idx, function(k) {
+    firstneg <- which(k - cumsum(n) <= 0)
+    record <- c("header.info", "feature.info", "general.info", "matrix.info")[firstneg[1]]
+    firstidx <- (k - cumsum(c(0,n)))[firstneg[1]]
+    list(firstidx, allrecords[k], record)
+  })
+  
+  
+  firstidx <- sapply(res, function(x) x[[1]])
+  allrecords <- sapply(res, function(x) x[[2]])
+  record <- sapply(res, function(x) x[[3]])
+  
+  list(firstidx, allrecords, record)
 }
 
 #' Show xml elements from meta information in x3p object

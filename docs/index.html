@@ -206,10 +206,6 @@
 <a href="#inspecting-and-modifying-meta-information" class="anchor"></a>Inspecting and modifying meta information</h3>
 <p>The four records of header info, feature info, general info, and matrix info of an x3p object contain meta information relevant to the scan. <code>x3p_show_xml</code> allows the user to specify a search term and then proceeds to go through all records for a matching term. As a result any matching elements from the meta file are shown:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_show_xml.html">x3p_show_xml</a></span>(<span class="st">"axis"</span>) <span class="co"># three axes are defined</span></a></code></pre></div>
-<pre><code>## Warning in idx - cumsum(n): longer object length is not a multiple of
-## shorter object length</code></pre>
-<pre><code>## Warning in idx - cumsum(c(0, n)): longer object length is not a multiple of
-## shorter object length</code></pre>
 <pre><code>## $Axes.CX.AxisType
 ## [1] "I"
 ## 
@@ -218,11 +214,11 @@
 ## 
 ## $Axes.CZ.AxisType
 ## [1] "A"</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_show_xml.html">x3p_show_xml</a></span>(<span class="st">"creator"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_show_xml.html">x3p_show_xml</a></span>(<span class="st">"creator"</span>)</a></code></pre></div>
 <pre><code>## $Creator
 ## [1] "Heike Hofmann, CSAFE"</code></pre>
 <p>If a search term identifies a single element, <code>x3p_modify_xml</code> allows the user to update the corresponding meta information:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_modify_xml.html">x3p_modify_xml</a></span>(<span class="st">"creator"</span>, <span class="st">"I did this"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">logo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/x3p_modify_xml.html">x3p_modify_xml</a></span>(<span class="st">"creator"</span>, <span class="st">"I did this"</span>)</a></code></pre></div>
 <pre><code>## x3p object
 ## Instrument: N/A 
 ## size (width x height): 741 x 419 in pixel 
@@ -240,11 +236,11 @@
 <p>Below is a 3d surface of a part of a bullet surface is shown. Some regions are marked up: the bronze colored area is an area with strong striae (vertical lines engraved on the bullet as it moves through the barrel of the handgun when fired), areas in dark blue show groove engraved areas, the light blue area shows break off at the bottom of the bullet, and the pink area marks an area without striae:</p>
 <p><img src="reference/figures/markup.png" width="375"></p>
 <p>Any image can serve as a mask, the command <code>x3p_add_mask</code> allows to add a raster image as a mask for a x3p object:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
-<a class="sourceLine" id="cb28-2" title="2">color_logo &lt;-<span class="st"> </span>png<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/png/topics/readPNG">readPNG</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-color.png"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
-<a class="sourceLine" id="cb28-3" title="3">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_mask.html">x3p_add_mask</a></span>(logo, <span class="dt">mask =</span> <span class="kw">as.raster</span>(color_logo))</a>
-<a class="sourceLine" id="cb28-4" title="4"></a>
-<a class="sourceLine" id="cb28-5" title="5"><span class="kw"><a href="reference/image_x3p.html">image_x3p</a></span>(logoplus, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>, <span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">multiply =</span> <span class="dv">30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<a class="sourceLine" id="cb26-2" title="2">color_logo &lt;-<span class="st"> </span>png<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/png/topics/readPNG">readPNG</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-color.png"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<a class="sourceLine" id="cb26-3" title="3">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_mask.html">x3p_add_mask</a></span>(logo, <span class="dt">mask =</span> <span class="kw">as.raster</span>(color_logo))</a>
+<a class="sourceLine" id="cb26-4" title="4"></a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="kw"><a href="reference/image_x3p.html">image_x3p</a></span>(logoplus, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>, <span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">multiply =</span> <span class="dv">30</span>)</a></code></pre></div>
 <p><img src="reference/figures/logo-color.png" width="328"></p>
 <p>Some masks are more informative than others, but the only requirement for images is that they are of the right size.</p>
 <p><img src="reference/figures/csafe-leopard.png" width="49%"><img src="reference/figures/csafe-island.png" width="49%"></p>
@@ -254,9 +250,9 @@
 <a href="#editing-masks" class="anchor"></a>Editing masks</h4>
 <p>Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest using the <code>magick</code> package to manipulate masks.</p>
 <p>Additionally, vertical and horizontal lines can be added in the masks using the commands <code>x3p_add_vline</code> and <code>x3p_add_hline</code>:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
-<a class="sourceLine" id="cb29-2" title="2">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_hline.html">x3p_add_hline</a></span>(logo, <span class="dt">yintercept=</span><span class="kw">c</span>(<span class="fl">13e-5</span>,<span class="fl">19.5e-5</span>), <span class="dt">color=</span><span class="st">"cyan"</span>)</a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="co">#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<a class="sourceLine" id="cb27-2" title="2">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_hline.html">x3p_add_hline</a></span>(logo, <span class="dt">yintercept=</span><span class="kw">c</span>(<span class="fl">13e-5</span>,<span class="fl">19.5e-5</span>), <span class="dt">color=</span><span class="st">"cyan"</span>)</a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="co">#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")</span></a></code></pre></div>
 <p><img src="reference/figures/logo-lines.png" width="185"></p>
 </div>
 </div>

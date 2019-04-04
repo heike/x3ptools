@@ -136,7 +136,7 @@ In case of integer, element is used as an index vector for the meta fields.</p><
     <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='read_x3p.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
 <span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"creator"</span>) <span class='co'># all fields containing the word "creator"</span></div><div class='output co'>#&gt; $Creator
 #&gt; [1] "Heike Hofmann, CSAFE"
-#&gt; </div><div class='input'><span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"axis"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; $Axes.CX.AxisType
+#&gt; </div><div class='input'><span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"axis"</span>)</div><div class='output co'>#&gt; $Axes.CX.AxisType
 #&gt; [1] "I"
 #&gt; 
 #&gt; $Axes.CY.AxisType
@@ -147,7 +147,7 @@ In case of integer, element is used as an index vector for the meta fields.</p><
 #&gt; </div><div class='input'><span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"CZ.AxisType"</span>)</div><div class='output co'>#&gt; $Axes.CZ.AxisType
 #&gt; [1] "A"
 #&gt; </div><div class='input'><span class='co'># show all fields:</span>
-<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"*"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; $sizeY
+<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"*"</span>)</div><div class='output co'>#&gt; $sizeY
 #&gt; [1] 419
 #&gt; 
 #&gt; $sizeX
@@ -246,7 +246,7 @@ In case of integer, element is used as an index vector for the meta fields.</p><
 #&gt; $DataLink.MD5ChecksumPointData
 #&gt; [1] "021a34716ab08d418048c137dc74f92b"
 #&gt; </div><div class='input'><span class='co'># show first five fields</span>
-<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: longer object length is not a multiple of shorter object length</span></div><div class='output co'>#&gt; $sizeY
+<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='output co'>#&gt; $sizeY
 #&gt; [1] 419
 #&gt; 
 #&gt; $sizeX
