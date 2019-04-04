@@ -18,7 +18,7 @@ x3p_mask_legend <- function(x3p) {
   
   background <- x3p_show_xml(x3p, "Background")
   if (length(background) > 0) {
-    colors <- c(background[1], colors)
+    colors <- c(background[[1]], colors)
     names(colors)[1] <- "background"
   }
   colors
