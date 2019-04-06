@@ -1,7 +1,7 @@
 ---
 title: "x3ptools: working with x3p files in R"
 author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
-date: "March 29, 2019"
+date: "April 04, 2019"
 output: 
   html_document:
     keep_md: TRUE
@@ -12,7 +12,7 @@ output:
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square)](commits/master)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2019--03--29-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2019--04--04-yellowgreen.svg)](/commits/master)
 [![Coverage status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 
 
