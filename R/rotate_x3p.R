@@ -3,7 +3,6 @@
 #' Rotate the surface matrix of an x3p object. Also adjust meta information.
 #' @param x3p x3p object
 #' @param angle rotate counter-clockwise by angle degrees given as 90, 180, 270 degree (or -90, -180, -270). 
-#' @importFrom raster as.raster
 #' @export
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))

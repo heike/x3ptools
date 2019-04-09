@@ -2,9 +2,12 @@
 % Please edit documentation in R/x3p_transpose.R
 \name{x3p_transpose}
 \alias{x3p_transpose}
+\alias{transpose_x3p}
 \title{Transpose an x3p object}
 \usage{
 x3p_transpose(x3p)
+
+transpose_x3p(x3p)
 }
 \arguments{
 \item{x3p}{x3p object}

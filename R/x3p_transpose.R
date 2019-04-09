@@ -37,7 +37,7 @@ x3p_transpose <- function(x3p) {
 }
 
 
-#' @rdname 
+#' @rdname x3p_transpose
 #' @export
 transpose_x3p <- function(x3p) {
   x3p_transpose(x3p)
