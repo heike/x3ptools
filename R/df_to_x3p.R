@@ -55,9 +55,11 @@ x3p_to_df <- function(x3p) {
   
   if (!is.null(x3p$mask)) {
     df$mask <- as.vector(x3p$mask)
+    # make sure the hex code is lower case and only 6 digits wide (7 including the hash)
+    df$maskmerge <- tolower(substr(df$mask, 1, 7))
     annotations <- x3p_mask_legend(x3p)
-    legend <- data.frame(mask=annotations, annotation=names(annotations))
-    df <- merge(df, legend, by="mask", all.x = TRUE)
+    legend <- data.frame(maskmerge=annotations, annotation=names(annotations))
+    df <- merge(df, legend, by="maskmerge", all.x = TRUE)
   }
   
   attr(df, "header.info") <- info

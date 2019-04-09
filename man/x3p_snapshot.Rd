@@ -2,7 +2,7 @@
 % Please edit documentation in R/image_x3p.R
 \name{x3p_snapshot}
 \alias{x3p_snapshot}
-\title{Take a snapshot of the current rgl file}
+\title{Take a snapshot of the active rgl device and save in a file}
 \usage{
 x3p_snapshot(file)
 }

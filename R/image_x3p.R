@@ -21,7 +21,7 @@
 #' logoplus <- x3p_add_hline(logo, yintercept = 50*.645e-6, color = "#e6bf98", size = 5)
 #' image_x3p(logoplus, size = c(741, 419), zoom=0.5)
 #' }
-image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
+x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
                       crosscut = NA, 
                       ccParam = list(color = "#e6bf98",
                                      radius = 5),
@@ -85,8 +85,18 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
   }
 }
 
+#' @export
+#' @rdname x3p_image
+image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
+                      crosscut = NA, 
+                      ccParam = list(color = "#e6bf98",
+                                     radius = 5),
+                      size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
+  x3p_image(x3p=x3p, file=file, col=col, crosscut=crosscut, ccParam = ccParam, 
+            size=size, zoom=zoom, multiply=multiply, ...)
+}
 
-#' Take a snapshot of the current rgl file
+#' Take a snapshot of the active rgl device and save in a file
 #' 
 #' Make a snapshot of the current rgl device and save it to file. Options for file formats are png, svg, and stl (for 3d printing).
 #' @param file file name for saving.
@@ -107,3 +117,4 @@ x3p_snapshot <- function(file) {
     }
   }
 }
+

@@ -14,6 +14,6 @@ numeric value of resolution per pixel
 }
 \description{
 Scans in x3p format capture 3d topogographic surfaces. According to ISO standard
-ISO5436 – 2000 scans are supposed to be captured in meters. For microscopic images
+ISO5436 - 2000 scans are supposed to be captured in meters. For microscopic images
 capture in meters might be impractical.
 }

@@ -18,6 +18,8 @@ x3p_read_dat <- function (dat, delim=" ", col_names = FALSE) {
   plux <- gsub(".dat$", ".plux", dat)
   if (file.exists(plux)) {
     x3p$general.info <- x3p_read_plux(plux)
+  } else {
+    cat(sprintf("no matching plux file found for %s", datfile))
   }
   
   x3p
