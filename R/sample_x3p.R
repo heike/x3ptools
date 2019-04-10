@@ -17,7 +17,7 @@
 #' image_x3p(logo)
 #' image_x3p(logo4)
 #' }
-sample_x3p <- function(x3p, m=2, mY=m, offset = 0, offsetY = offset) {
+x3p_sample <- function(x3p, m=2, mY=m, offset = 0, offsetY = offset) {
   stopifnot("x3p" %in% class(x3p))
   sizes <- dim(x3p$surface.matrix)
   seqx <- seq.int(from = 1+offset, to = sizes[1], by=m)
@@ -39,4 +39,11 @@ sample_x3p <- function(x3p, m=2, mY=m, offset = 0, offsetY = offset) {
   
   
   x3p
+}
+
+
+#' @rdname x3p_sample
+#' @export
+sample_x3p <- function(x3p, m=2, mY=m, offset = 0, offsetY = offset) {
+  x3p_sample(x3p=x3p, m=m, mY=mY, offset=offset, offsetY=offsetY)
 }

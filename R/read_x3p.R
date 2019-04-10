@@ -15,7 +15,7 @@
 #' 
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-read_x3p <- function(file, size = NA, quiet = T) {
+x3p_read <- function(file, size = NA, quiet = T) {
   if (grepl("http|www", file)) {
     fname <- tempfile(fileext = ".x3p")
     download.file(file, destfile = fname, quiet = quiet, mode = "wb")
@@ -60,14 +60,14 @@ read_x3p <- function(file, size = NA, quiet = T) {
     c(bullet_info_unlist$CX$Increment[[1]], 
       bullet_info_unlist$CY$Increment[[1]], 
       ifelse(length(bullet_info_unlist$CZ$Increment)==0,1,bullet_info_unlist$CZ$Increment[[1]])))
-    # use a default of 1 in case the Z increment is not included
-
+  # use a default of 1 in case the Z increment is not included
+  
   size2 <- NA
   if (bullet_info_unlist$CZ$DataType[[1]] == "F") size2 <- 4
   if (bullet_info_unlist$CZ$DataType[[1]] == "D") size2 <- 8
   if (!is.na(size2) & !(is.na(size))) 
     if (size != size2) warning(sprintf("Number of bytes specified (%d bytes) in x3p file different from requested (%d bytes)", size2, size))
-    
+  
   if (is.na(size)) size <- size2  # only use xml when size is not specified
   
   datamat <- matrix(readBin(bullet_data, what = numeric(), 
@@ -91,19 +91,25 @@ read_x3p <- function(file, size = NA, quiet = T) {
               feature.info = input.info$Record1,
               general.info= input.info$Record2,
               matrix.info = input.info$Record3)
-            #  bullet_info = bullet_info)
+  #  bullet_info = bullet_info)
   class(res) <- "x3p"
   if (length(mask) > 0) {
-  #  png <- magick::image_read(mask)
+    #  png <- magick::image_read(mask)
     png <- png::readPNG(mask, native=FALSE)
     raster <- as.raster(png)
     if (dim(png)[3] == 4) {
       # bit of a workaround - not sure why #rrggbb00 is not recognized as transparent automatically
       raster[png[,,4] == 0] <- "transparent" 
     }
-   #  browser()
+    #  browser()
     res <- x3p_add_mask(res, mask = raster)
   }
   return(res)
+}
+
+#' @rdname x3p_read
+#' @export
+read_x3p <- function(file, size = NA, quiet = T) {
+  x3p_read(file = file, size = size, quiet=quiet)
 }
 
