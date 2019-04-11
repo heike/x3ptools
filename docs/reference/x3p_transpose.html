@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show xml elements from meta information in x3p object — x3p_show_xml • x3ptools</title>
+<title>Transpose an x3p object — x3p_transpose • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Show xml elements from meta information in x3p object — x3p_show_xml" />
+<meta property="og:title" content="Transpose an x3p object — x3p_transpose" />
 
-<meta property="og:description" content="Identify xml fields by name and show content." />
+<meta property="og:description" content="Transpose the surface matrix of an x3p object. Also adjust meta information." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,18 +100,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show xml elements from meta information in x3p object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/modify_xml.R'><code>R/modify_xml.R</code></a></small>
-    <div class="hidden name"><code>x3p_show_xml.Rd</code></div>
+    <h1>Transpose an x3p object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/x3p_transpose.R'><code>R/x3p_transpose.R</code></a></small>
+    <div class="hidden name"><code>x3p_transpose.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Identify xml fields by name and show content.</p>
+    <p>Transpose the surface matrix of an x3p object. Also adjust meta information.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_show_xml</span>(<span class='no'>x3p</span>, <span class='no'>element</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_transpose</span>(<span class='no'>x3p</span>)
+
+<span class='fu'>transpose_x3p</span>(<span class='no'>x3p</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -120,155 +122,24 @@
       <th>x3p</th>
       <td><p>x3p object</p></td>
     </tr>
-    <tr>
-      <th>element</th>
-      <td><p>character or integer (vector). In case of character, name of xml field in the meta file. Note that element can contain regular expressions, e.g. <code>"*"</code> returns all meta fields.
-In case of integer, element is used as an index vector for the meta fields.</p></td>
-    </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>list of exact field names and their contents</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"creator"</span>) <span class='co'># all fields containing the word "creator"</span></div><div class='output co'>#&gt; $Creator
-#&gt; [1] "Heike Hofmann, CSAFE"
-#&gt; </div><div class='input'><span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"axis"</span>)</div><div class='output co'>#&gt; $Axes.CX.AxisType
-#&gt; [1] "I"
-#&gt; 
-#&gt; $Axes.CY.AxisType
-#&gt; [1] "I"
-#&gt; 
-#&gt; $Axes.CZ.AxisType
-#&gt; [1] "A"
-#&gt; </div><div class='input'><span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"CZ.AxisType"</span>)</div><div class='output co'>#&gt; $Axes.CZ.AxisType
-#&gt; [1] "A"
-#&gt; </div><div class='input'><span class='co'># show all fields:</span>
-<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='st'>"*"</span>)</div><div class='output co'>#&gt; $sizeY
-#&gt; [1] 419
-#&gt; 
-#&gt; $sizeX
-#&gt; [1] 741
-#&gt; 
-#&gt; $incrementY
-#&gt; [1] 6.45e-07
-#&gt; 
-#&gt; $incrementX
-#&gt; [1] 6.45e-07
-#&gt; 
-#&gt; $Revision
-#&gt; [1] "ISO5436 - 2000"
-#&gt; 
-#&gt; $FeatureType
-#&gt; [1] "SUR"
-#&gt; 
-#&gt; $Axes.CX.AxisType
-#&gt; [1] "I"
-#&gt; 
-#&gt; $Axes.CX.DataType
-#&gt; [1] "D"
-#&gt; 
-#&gt; $Axes.CX.Increment
-#&gt; [1] "6.45000000000095e-07"
-#&gt; 
-#&gt; $Axes.CX.Offset
-#&gt; [1] "0"
-#&gt; 
-#&gt; $Axes.CY.AxisType
-#&gt; [1] "I"
-#&gt; 
-#&gt; $Axes.CY.DataType
-#&gt; [1] "D"
-#&gt; 
-#&gt; $Axes.CY.Increment
-#&gt; [1] "6.45e-07"
-#&gt; 
-#&gt; $Axes.CY.Offset
-#&gt; [1] "0"
-#&gt; 
-#&gt; $Axes.CZ.AxisType
-#&gt; [1] "A"
-#&gt; 
-#&gt; $Axes.CZ.DataType
-#&gt; [1] "D"
-#&gt; 
-#&gt; $Axes.CZ.Increment
-#&gt; [1] "1e-06"
-#&gt; 
-#&gt; $Axes.CZ.Offset
-#&gt; [1] "0"
-#&gt; 
-#&gt; $Date
-#&gt; [1] "2018-01-30T08:30:24"
-#&gt; 
-#&gt; $Creator
-#&gt; [1] "Heike Hofmann, CSAFE"
-#&gt; 
-#&gt; $Instrument.Manufacturer
-#&gt; [1] "N/A"
-#&gt; 
-#&gt; $Instrument.Model
-#&gt; [1] "N/A"
-#&gt; 
-#&gt; $Instrument.Serial
-#&gt; [1] "N/A"
-#&gt; 
-#&gt; $Instrument.Version
-#&gt; [1] "N/A"
-#&gt; 
-#&gt; $CalibrationDate
-#&gt; [1] "2018-01-30T08:30:24"
-#&gt; 
-#&gt; $ProbingSystem.Type
-#&gt; [1] "Software"
-#&gt; 
-#&gt; $ProbingSystem.Identification
-#&gt; [1] "N/A"
-#&gt; 
-#&gt; $Comment
-#&gt; [1] "image rendered from the CSAFE logo"
-#&gt; 
-#&gt; $MatrixDimension.SizeX
-#&gt; [1] "741"
-#&gt; 
-#&gt; $MatrixDimension.SizeY
-#&gt; [1] "419"
-#&gt; 
-#&gt; $MatrixDimension.SizeZ
-#&gt; [1] "1"
-#&gt; 
-#&gt; $DataLink.PointDataLink
-#&gt; [1] "bindata/data.bin"
-#&gt; 
-#&gt; $DataLink.MD5ChecksumPointData
-#&gt; [1] "021a34716ab08d418048c137dc74f92b"
-#&gt; </div><div class='input'><span class='co'># show first five fields</span>
-<span class='fu'>x3p_show_xml</span>(<span class='no'>logo</span>, <span class='fl'>1</span>:<span class='fl'>5</span>)</div><div class='output co'>#&gt; $sizeY
-#&gt; [1] 419
-#&gt; 
-#&gt; $sizeX
-#&gt; [1] 741
-#&gt; 
-#&gt; $incrementY
-#&gt; [1] 6.45e-07
-#&gt; 
-#&gt; $incrementX
-#&gt; [1] 6.45e-07
-#&gt; 
-#&gt; $Revision
-#&gt; [1] "ISO5436 - 2000"
-#&gt; </div></pre>
+<span class='fu'>dim</span>(<span class='no'>logo</span>$<span class='no'>surface.matrix</span>)</div><div class='output co'>#&gt; [1] 741 419</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='x3p_image.html'>image_x3p</a></span>(<span class='no'>logo</span>)
+<span class='co'># }</span><div class='input'><span class='co'>#  transpose the image</span>
+<span class='no'>logotp</span> <span class='kw'>&lt;-</span> <span class='fu'>transpose_x3p</span>(<span class='no'>logo</span>)
+<span class='fu'>dim</span>(<span class='no'>logotp</span>$<span class='no'>surface.matrix</span>)</div><div class='output co'>#&gt; [1] 419 741</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='x3p_image.html'>image_x3p</a></span>(<span class='no'>logotp</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

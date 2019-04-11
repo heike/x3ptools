@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert an x3p file into a data frame — x3p_to_df • x3ptools</title>
+<title>Read an x3p file into an x3p object — x3p_read • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,13 @@
 
 
 
-<meta property="og:title" content="Convert an x3p file into a data frame — x3p_to_df" />
+<meta property="og:title" content="Read an x3p file into an x3p object — x3p_read" />
 
-<meta property="og:description" content="An x3p file consists of a list with meta info and a 2d matrix with scan depths.
-fortify turns the matrix into a data frame, using the parameters of the header as necessary." />
+<meta property="og:description" content="Read file in x3p format. x3p formats describe 3d topological surface according to
+ISO standard ISO5436 – 2000.
+x3p files are a container format implemented as a zip archive of a folder
+consisting of an xml file of meta
+information and a binary matrix of numeric surface measurements." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,44 +104,49 @@ fortify turns the matrix into a data frame, using the parameters of the header a
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert an x3p file into a data frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/df_to_x3p.R'><code>R/df_to_x3p.R</code></a></small>
-    <div class="hidden name"><code>x3p_to_df.Rd</code></div>
+    <h1>Read an x3p file into an x3p object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/read_x3p.R'><code>R/read_x3p.R</code></a></small>
+    <div class="hidden name"><code>x3p_read.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>An x3p file consists of a list with meta info and a 2d matrix with scan depths.
-fortify turns the matrix into a data frame, using the parameters of the header as necessary.</p>
+    <p>Read file in x3p format. x3p formats describe 3d topological surface according to
+ISO standard ISO5436 – 2000.
+x3p files are a container format implemented as a zip archive of a folder
+consisting of an xml file of meta
+information and a binary matrix of numeric surface measurements.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_to_df</span>(<span class='no'>x3p</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_read</span>(<span class='no'>file</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='no'>T</span>)
+
+<span class='fu'>read_x3p</span>(<span class='no'>file</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x3p</th>
-      <td><p>a file in x3p format as returned by function read_x3p</p></td>
+      <th>file</th>
+      <td><p>The file path to the x3p file, or an url to an x3p file</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>size in bytes to use for reading the binary file. If not specified, default is used. Will be overwritten if specified in the xml meta file.</p></td>
+    </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p>for url downloads, show download progress?</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data frame with variables x, y, and value and meta function in attribute</p>
+    <p>x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='no'>logo_df</span> <span class='kw'>&lt;-</span> <span class='fu'>x3p_to_df</span>(<span class='no'>logo</span>)
-<span class='fu'>head</span>(<span class='no'>logo_df</span>)</div><div class='output co'>#&gt;           x          y value
-#&gt; 1 0.000e+00 0.00026961 4e-07
-#&gt; 2 6.450e-07 0.00026961 4e-07
-#&gt; 3 1.290e-06 0.00026961 4e-07
-#&gt; 4 1.935e-06 0.00026961 4e-07
-#&gt; 5 2.580e-06 0.00026961 4e-07
-#&gt; 6 3.225e-06 0.00026961 4e-07</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'>read_x3p</span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

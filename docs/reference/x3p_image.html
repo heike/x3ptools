@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add/Exchange a mask for an x3p object — x3p_add_mask • x3ptools</title>
+<title>Plot x3p object as an image — x3p_image • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Add/Exchange a mask for an x3p object — x3p_add_mask" />
+<meta property="og:title" content="Plot x3p object as an image — x3p_image" />
 
-<meta property="og:description" content="Create a mask for an x3p object in case it does not have a mask yet.
-Masks are used for overlaying colors on the bullets surface." />
+<meta property="og:description" content="Plot x3p object as an image" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,19 +100,24 @@ Masks are used for overlaying colors on the bullets surface." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add/Exchange a mask for an x3p object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/mask_x3p.R'><code>R/mask_x3p.R</code></a></small>
-    <div class="hidden name"><code>x3p_add_mask.Rd</code></div>
+    <h1>Plot x3p object as an image</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/image_x3p.R'><code>R/image_x3p.R</code></a></small>
+    <div class="hidden name"><code>x3p_image.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Create a mask for an x3p object in case it does not have a mask yet.
-Masks are used for overlaying colors on the bullets surface.</p>
+    <p>Plot x3p object as an image</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_add_mask</span>(<span class='no'>x3p</span>, <span class='kw'>mask</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_image</span>(<span class='no'>x3p</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#cd7f32"</span>, <span class='kw'>crosscut</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>ccParam</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>, <span class='kw'>radius</span> <span class='kw'>=</span> <span class='fl'>5</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>750</span>, <span class='fl'>250</span>),
+  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.35</span>, <span class='kw'>multiply</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='no'>...</span>)
+
+<span class='fu'>image_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"#cd7f32"</span>, <span class='kw'>crosscut</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>ccParam</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>, <span class='kw'>radius</span> <span class='kw'>=</span> <span class='fl'>5</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>750</span>, <span class='fl'>250</span>),
+  <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.35</span>, <span class='kw'>multiply</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,38 +127,55 @@ Masks are used for overlaying colors on the bullets surface.</p>
       <td><p>x3p object</p></td>
     </tr>
     <tr>
-      <th>mask</th>
-      <td><p>raster matrix of colors with the same dimensions as the x3p surface. If NULL, an object of the right size will be created.</p></td>
+      <th>file</th>
+      <td><p>file name for saving, if file is NULL the opengl device stays open.
+The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>color specification</p></td>
+    </tr>
+    <tr>
+      <th>crosscut</th>
+      <td><p>crosscut index</p></td>
+    </tr>
+    <tr>
+      <th>ccParam</th>
+      <td><p>list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>vector of width and height</p></td>
+    </tr>
+    <tr>
+      <th>zoom</th>
+      <td><p>numeric value indicating the amount of zoom</p></td>
+    </tr>
+    <tr>
+      <th>multiply</th>
+      <td><p>exaggerate the relief by factor multiply</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>not used</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>x3p object with added/changed mask</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x3p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"sample-land.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='co'># x3p file has mask consisting color raster image:</span>
-<span class='no'>x3p</span>$<span class='no'>mask</span>[<span class='fl'>1</span>:<span class='fl'>5</span>,<span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt;      [,1]        [,2]        [,3]        [,4]        [,5]       
-#&gt; [1,] "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF"
-#&gt; [2,] "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF"
-#&gt; [3,] "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF"
-#&gt; [4,] "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF"
-#&gt; [5,] "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF" "#57005AFF"</div><span class='co'># NOT RUN {</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='no'>color_logo</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>png</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/png/topics/readPNG'>readPNG</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-color.png"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='no'>logoplus</span> <span class='kw'>&lt;-</span> <span class='fu'>x3p_add_mask</span>(<span class='no'>logo</span>, <span class='fu'>as.raster</span>(<span class='no'>color_logo</span>))
-<span class='fu'><a href='x3p_image.html'>image_x3p</a></span>(<span class='no'>logoplus</span>, <span class='kw'>multiply</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>741</span>, <span class='fl'>419</span>),<span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
+<span class='fu'>image_x3p</span>(<span class='no'>logo</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"logo.png"</span>, <span class='kw'>crosscut</span> <span class='kw'>=</span> <span class='fl'>50</span>*<span class='fl'>.645e-6</span>)
+<span class='co'># alternative to crosscut</span>
+<span class='no'>logoplus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_add_hline.html'>x3p_add_hline</a></span>(<span class='no'>logo</span>, <span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='fl'>50</span>*<span class='fl'>.645e-6</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='fu'>image_x3p</span>(<span class='no'>logoplus</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>741</span>, <span class='fl'>419</span>), <span class='kw'>zoom</span><span class='kw'>=</span><span class='fl'>0.5</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -95,7 +95,7 @@
 <a href="#x3p-objects" class="anchor"></a>x3p objects</h3>
 <p>Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(x3ptools)</a>
-<a class="sourceLine" id="cb3-2" title="2">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<a class="sourceLine" id="cb3-2" title="2">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_read.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw">names</span>(logo)</a></code></pre></div>
 <pre><code>## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
 ## [5] "matrix.info"</code></pre>
@@ -122,7 +122,7 @@
 <h3 class="hasAnchor">
 <a href="#reading-and-writing-x3p-files" class="anchor"></a>Reading and writing x3p files</h3>
 <p><code>read_x3p</code> and <code>write_x3p</code> are the two functions allows us to read x3p files and write to x3p files.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_read.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="kw">names</span>(logo)</a></code></pre></div>
 <pre><code>## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
 ## [5] "matrix.info"</code></pre>
@@ -135,7 +135,7 @@
 <h3 class="hasAnchor">
 <a href="#visualizing-x3p-objects" class="anchor"></a>Visualizing x3p objects</h3>
 <p>The function <code>image_x3p</code> uses <code>rgl</code> to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate):</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="reference/image_x3p.html">image_x3p</a></span>(logo, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>,<span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">useNULL=</span><span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="reference/x3p_image.html">image_x3p</a></span>(logo, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>,<span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">useNULL=</span><span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw">rglwidget</span>()</a></code></pre></div>
 <p><img src="reference/figures/logo-rgl.png" width="180"></p>
 <p>In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).</p>
@@ -145,7 +145,7 @@
 <p><code>image_x3p_grid</code> lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn <code>spaces</code> apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_grid.html">x3p_add_grid</a></span>(logo, <span class="dt">spaces=</span><span class="fl">50e-6</span>, </a>
 <a class="sourceLine" id="cb10-2" title="2">                         <span class="dt">size =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">5</span>), <span class="dt">color=</span><span class="kw">c</span>(<span class="st">"grey50"</span>, <span class="st">"black"</span>, <span class="st">"darkred"</span>))</a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="kw"><a href="reference/image_x3p.html">image_x3p</a></span>(logoplus, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>,<span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">useNULL=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="kw"><a href="reference/x3p_image.html">image_x3p</a></span>(logoplus, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>,<span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">useNULL=</span><span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb10-4" title="4"><span class="kw">rglwidget</span>()</a></code></pre></div>
 <p><img src="reference/figures/logo-rgl-grid.png" width="175"></p>
 </div>
@@ -187,11 +187,11 @@
 <p><code>sample_x3p</code> allows to sub-sample an x3p object to get a lower resolution image. In <code>sample_x3p</code> we need to set a sampling factor. A sample factor <code>mX</code> of 2 means that we only use every 2nd value of the surface matrix, <code>mX</code> of 5 means, we only use every fifth value:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">dim</span>(logo<span class="op">$</span>surface.matrix)</a></code></pre></div>
 <pre><code>## [1] 741 419</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">logo_sample &lt;-<span class="st"> </span><span class="kw"><a href="reference/sample_x3p.html">sample_x3p</a></span>(logo, <span class="dt">m=</span><span class="dv">5</span>)</a>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">logo_sample &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_sample.html">sample_x3p</a></span>(logo, <span class="dt">m=</span><span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb16-2" title="2"><span class="kw">dim</span>(logo_sample<span class="op">$</span>surface.matrix)</a></code></pre></div>
 <pre><code>## [1] 149  84</code></pre>
 <p>Parameter <code>mY</code> can be specified separately from <code>mX</code> for a different sampling rate in y direction. We can also use different offsets in x and y direction by specifying <code>offsetX</code> and/or <code>offsetY</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">sample2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/sample_x3p.html">sample_x3p</a></span>(logo, <span class="dt">m=</span><span class="dv">5</span>, <span class="dt">offset=</span><span class="dv">1</span>)</a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">sample2 &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_sample.html">sample_x3p</a></span>(logo, <span class="dt">m=</span><span class="dv">5</span>, <span class="dt">offset=</span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb18-2" title="2"><span class="kw">cor</span>(<span class="kw">as.vector</span>(logo_sample<span class="op">$</span>surface.matrix[<span class="op">-</span><span class="dv">149</span>,]), <span class="kw">as.vector</span>(sample2<span class="op">$</span>surface.matrix))</a></code></pre></div>
 <pre><code>## [1] 0.8639308</code></pre>
 </div>
@@ -236,11 +236,11 @@
 <p>Below is a 3d surface of a part of a bullet surface is shown. Some regions are marked up: the bronze colored area is an area with strong striae (vertical lines engraved on the bullet as it moves through the barrel of the handgun when fired), areas in dark blue show groove engraved areas, the light blue area shows break off at the bottom of the bullet, and the pink area marks an area without striae:</p>
 <p><img src="reference/figures/markup.png" width="375"></p>
 <p>Any image can serve as a mask, the command <code>x3p_add_mask</code> allows to add a raster image as a mask for a x3p object:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_read.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
 <a class="sourceLine" id="cb26-2" title="2">color_logo &lt;-<span class="st"> </span>png<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/png/topics/readPNG">readPNG</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-color.png"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
 <a class="sourceLine" id="cb26-3" title="3">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_mask.html">x3p_add_mask</a></span>(logo, <span class="dt">mask =</span> <span class="kw">as.raster</span>(color_logo))</a>
 <a class="sourceLine" id="cb26-4" title="4"></a>
-<a class="sourceLine" id="cb26-5" title="5"><span class="kw"><a href="reference/image_x3p.html">image_x3p</a></span>(logoplus, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>, <span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">multiply =</span> <span class="dv">30</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb26-5" title="5"><span class="kw"><a href="reference/x3p_image.html">image_x3p</a></span>(logoplus, <span class="dt">size=</span><span class="kw">c</span>(<span class="dv">741</span>, <span class="dv">419</span>), <span class="dt">zoom=</span><span class="fl">0.5</span>, <span class="dt">multiply =</span> <span class="dv">30</span>)</a></code></pre></div>
 <p><img src="reference/figures/logo-color.png" width="328"></p>
 <p>Some masks are more informative than others, but the only requirement for images is that they are of the right size.</p>
 <p><img src="reference/figures/csafe-leopard.png" width="49%"><img src="reference/figures/csafe-island.png" width="49%"></p>
@@ -250,7 +250,7 @@
 <a href="#editing-masks" class="anchor"></a>Editing masks</h4>
 <p>Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest using the <code>magick</code> package to manipulate masks.</p>
 <p>Additionally, vertical and horizontal lines can be added in the masks using the commands <code>x3p_add_vline</code> and <code>x3p_add_hline</code>:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_x3p.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">logo &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_read.html">read_x3p</a></span>(<span class="kw">system.file</span>(<span class="st">"csafe-logo.x3p"</span>, <span class="dt">package=</span><span class="st">"x3ptools"</span>))</a>
 <a class="sourceLine" id="cb27-2" title="2">logoplus &lt;-<span class="st"> </span><span class="kw"><a href="reference/x3p_add_hline.html">x3p_add_hline</a></span>(logo, <span class="dt">yintercept=</span><span class="kw">c</span>(<span class="fl">13e-5</span>,<span class="fl">19.5e-5</span>), <span class="dt">color=</span><span class="st">"cyan"</span>)</a>
 <a class="sourceLine" id="cb27-3" title="3"><span class="co">#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")</span></a></code></pre></div>
 <p><img src="reference/figures/logo-lines.png" width="185"></p>
@@ -297,7 +297,7 @@
 <li><a href="commits/master"><img src="https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square" alt="packageversion"></a></li>
 <li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 <li><a href="https://travis-ci.org/heike/x3ptools"><img src="https://travis-ci.org/heike/x3ptools.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--04--04-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2019--04--10-yellowgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://codecov.io/github/heike/x3ptools?branch=master"><img src="https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 </ul>
 </div>
