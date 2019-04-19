@@ -3,6 +3,11 @@
 ## features
 
 - `x3p_snapshot` lets you take a snapshot of the currently active rgl device. The extension of the file determines the format.
+- `x3p_mask_quantile` adds a region to the mask of an x3p object corresponding to the area between two specified quantiles
+
+## minor functionality 
+
+## bug fixes
 
 # x3ptools 0.0.2
 

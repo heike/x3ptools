@@ -23,7 +23,7 @@ x3p_add_mask <- function(x3p, mask = NULL) {
   if (is.null(mask)) {  
     if (!"Mask" %in% names(x3p$matrix.info)) {
       x3p$matrix.info$Mask <- list(
-        Background = if (length(unique(mask)) == 1) {list(unique(mask))} else {list("")},
+        Background = if (length(unique(mask)) == 1) {list(unique(mask))} else {list("#cd7f32")},
         Annotations = list()
       )
     }
@@ -63,5 +63,24 @@ x3p_delete_mask <- function(x3p) {
     x3p$matrix.info$Mask <- NULL
   }
 
+  x3p
+}
+
+#' Add annotations to an x3p object
+#' 
+#' @param x3p x3p object
+#' @param color name or hex value of color
+#' @param annotation character value describing the region
+#' @return x3p object with the added annotations
+#' @export
+x3p_add_annotation <- function(x3p, color, annotation) {
+  if (!("Mask" %in% names(x3p$matrix.info))) {
+    x3p$matrix.info$Mask <- list("Annotations")
+  }
+  
+  len <- length(x3p$matrix.info$Mask$Annotations)
+  x3p$matrix.info$Mask$Annotations[[len+1]] <- list()
+  x3p$matrix.info$Mask$Annotations[[len+1]][[1]] <- annotation
+  attr(x3p$matrix.info$Mask$Annotations[[len+1]], "color") <- color
   x3p
 }
