@@ -17,7 +17,7 @@
 #' # change resolution to 1 micron = 1e-6 meters
 #' logo2 <- interpolate_x3p(logo, resx = 1e-6)
 #' logo2$header.info$incrementX
-interpolate_x3p <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
+x3p_interpolate <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
   stopifnot("x3p" %in% class(x3p))
   if ((resx < x3p$header.info$incrementX) | (resy < x3p$header.info$incrementY)) 
     warning("New resolution is higher than the old. proceed with caution.\n")
@@ -53,4 +53,10 @@ interpolate_x3p <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
   
   
   x3p
+}
+
+#' @rdname x3p_interpolate
+#' @export
+interpolate_x3p <- function(x3p, resx=1e-6, resy=resx, maxgap=1) {
+  x3p_interpolate(x3p = x3p, resx=resx, resy=resy, maxgap = 1)
 }
