@@ -12,7 +12,7 @@ x3p_add_mask_layer <- function(x3p, mask, color="red", annotation="") {
   if (!exists("mask", x3p)) x3p <- x3p_add_mask(x3p, mask)
   
   # need to check that mask has the correct dimensions
-  stopifnot(dim(mask) != dim(x3p$mask))
+  stopifnot(dim(mask) == dim(x3p$mask))
   
   x3p$mask[mask] <- color
   # add color and annotation to the xml file
