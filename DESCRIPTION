@@ -28,7 +28,7 @@ Imports: digest (>= 0.6.15),
 Suggests:
     knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 2.1.0),
     covr,
     here,
     dplyr,
