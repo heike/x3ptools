@@ -25,6 +25,4 @@ x3p_flip_y <- function(x3p) {
 
 #' @rdname x3p_flip_y
 #' @export
-y_flip_x3p <- function(x3p) {
-  rotate_x3p(transpose_x3p(x3p), angle=90)
-}
+y_flip_x3p <- x3p_flip_y
