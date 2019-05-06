@@ -1,2 +1,4 @@
 try(file.remove(tmpfile))
 try(file.remove(tmpfile2))
+try(file.remove("test.dat"))
+try(file.remove("test2.dat"))
