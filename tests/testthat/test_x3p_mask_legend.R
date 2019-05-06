@@ -1,4 +1,4 @@
-context("test-x3p_mask_legend")
+context("x3p_mask_legend")
 
 test_that("x3p_darker", {
   expect_error(x3p_darker())

@@ -1,4 +1,4 @@
-context("test-add_lines_x3p")
+context("add_lines_x3p")
 
 test_that("x3p_add_vline works", {
   x3ptest_mask <- x3ptest %>%
