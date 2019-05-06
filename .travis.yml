@@ -3,11 +3,6 @@
 language: R
 sudo: false
 cache: packages
-r_packages:
-  - covr
-
-r_binary_packages:
-  - rgl
 
 addons:
   apt:
@@ -16,6 +11,15 @@ addons:
       - sourceline: 'ppa:opencpu/imagemagick'
     packages:
       - libmagick++-dev
+      - libglu1-mesa-dev 
+      - freeglut3-dev 
+      - mesa-common-dev
+
+r_packages:
+  - covr
+
+r_binary_packages:
+  - rgl
 
 before_script:
   - "export DISPLAY=:99.0"
