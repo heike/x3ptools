@@ -7,6 +7,7 @@
 #' @importFrom readr read_delim
 #' @export
 x3p_read_dat <- function (dat, delim=" ", col_names = FALSE) {
+  stopifnot(file.exists(dat))
   datfile <- readr::read_delim(dat, delim=delim, col_names=col_names)
 #  browser()
   
@@ -19,7 +20,7 @@ x3p_read_dat <- function (dat, delim=" ", col_names = FALSE) {
   if (file.exists(plux)) {
     x3p$general.info <- x3p_read_plux(plux)
   } else {
-    cat(sprintf("no matching plux file found for %s", datfile))
+    warning(sprintf("no matching plux file found for %s", dat))
   }
   
   x3p
