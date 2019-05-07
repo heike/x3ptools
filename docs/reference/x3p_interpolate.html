@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get legend for mask colors — x3p_mask_legend • x3ptools</title>
+<title>Interpolate from an x3p object — x3p_interpolate • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Get legend for mask colors — x3p_mask_legend" />
+<meta property="og:title" content="Interpolate from an x3p object — x3p_interpolate" />
 
-<meta property="og:description" content="Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors." />
+<meta property="og:description" content="An interpolated scan is created at specified resolutions resx, resy in x and y direction.
+The interpolation is based on na.approx from the zoo package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but it is not recommended to do so.
+interpolate_x3p can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,39 +102,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get legend for mask colors</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/x3p_mask_legend.R'><code>R/x3p_mask_legend.R</code></a></small>
-    <div class="hidden name"><code>x3p_mask_legend.Rd</code></div>
+    <h1>Interpolate from an x3p object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/interpolate_x3p.R'><code>R/interpolate_x3p.R</code></a></small>
+    <div class="hidden name"><code>x3p_interpolate.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Retrieve  color definitions and annotations from the mask. If available, results in a named vector of colors.</p>
+    <p>An interpolated scan is created at specified resolutions <code>resx</code>, <code>resy</code> in x and y direction.
+The interpolation is based on <code>na.approx</code> from the <code>zoo</code> package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but it is not recommended to do so.
+<code>interpolate_x3p</code> can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_mask_legend</span>(<span class='no'>x3p</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_interpolate</span>(<span class='no'>x3p</span>, <span class='kw'>resx</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>resy</span> <span class='kw'>=</span> <span class='no'>resx</span>, <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
+<span class='fu'>interpolate_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>resx</span> <span class='kw'>=</span> <span class='fl'>1e-06</span>, <span class='kw'>resy</span> <span class='kw'>=</span> <span class='no'>resx</span>, <span class='kw'>maxgap</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x3p</th>
-      <td><p>x3p object with a mask</p></td>
+      <td><p>x3p object</p></td>
+    </tr>
+    <tr>
+      <th>resx</th>
+      <td><p>numeric value specifying the new resolution for the x axis.</p></td>
+    </tr>
+    <tr>
+      <th>resy</th>
+      <td><p>numeric value specifying the new resolution for the y axis.</p></td>
+    </tr>
+    <tr>
+      <th>maxgap</th>
+      <td><p>integer variable used in <code>na.approx</code> to specify the maximum number of NAs to be interpolated, defaults to 1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>named vector of colors, names show annotations. In case no annotations exist NULL is returned.</p>
+    <p>interpolated x3p object</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x3p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"sample-land.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
-<span class='fu'>x3p_mask_legend</span>(<span class='no'>x3p</span>) <span class='co'># annotations and color hex definitions</span></div><div class='output co'>#&gt; well expressed striae             break-off          right groove 
-#&gt;             "#cd7f32"             "#1f376c"             "#629d4b" 
-#&gt;           left groove             no striae 
-#&gt;             "#800080"             "#ffff00" </div></pre>
+    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'>system.file</span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='co'># resolution:</span>
+<span class='no'>logo</span>$<span class='no'>header.info</span>$<span class='no'>incrementX</span></div><div class='output co'>#&gt; [1] 6.45e-07</div><div class='input'><span class='co'># change resolution to 1 micron = 1e-6 meters</span>
+<span class='no'>logo2</span> <span class='kw'>&lt;-</span> <span class='fu'>interpolate_x3p</span>(<span class='no'>logo</span>, <span class='kw'>resx</span> <span class='kw'>=</span> <span class='fl'>1e-6</span>)
+<span class='no'>logo2</span>$<span class='no'>header.info</span>$<span class='no'>incrementX</span></div><div class='output co'>#&gt; [1] 1e-06</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
