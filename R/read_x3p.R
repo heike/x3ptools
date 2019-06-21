@@ -86,12 +86,25 @@ x3p_read <- function(file, size = NA, quiet = T) {
   input.info<- as_list(bullet_info)
   # xml2 version update
   input.info<- input.info[[1]]
+  
+  # is there missing info in general.info?
+  any_empty_info <- sapply(input.info$Record2, function(x) !length(x))
+  if (any(any_empty_info)) {
+    idx <- which(any_empty_info)
+    input.info$Record2[idx] <- lapply(input.info$Record2[idx], function(x) {
+      x <- list("")
+      })
+  }
+  
+  
   res <- list(header.info = bullet_metadata,
               surface.matrix = datamat, 
               feature.info = input.info$Record1,
               general.info= input.info$Record2,
               matrix.info = input.info$Record3)
   #  bullet_info = bullet_info)
+#  browser()
+  
   class(res) <- "x3p"
   if (length(mask) > 0) {
     #  png <- magick::image_read(mask)
