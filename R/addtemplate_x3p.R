@@ -1,15 +1,15 @@
 #' Add/change xml meta information in x3p object
 #' 
-#' Use the specified template to overwrite the general info in the x3p object (and structure of the feature info, if needed).
+#' Use a specified template to overwrite the general info in the x3p object (and structure of the feature info, if needed).
 #' @param x3p x3p object
 #' @param template file path to xml template, use NULL for in-built package template
 #' @export
 #' @examples 
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 #' # exchange meta information for general x3p information:
-#' logo <- addtemplate_x3p(logo, template = system.file("templateXML.xml", package="x3ptools"))
+#' logo <- x3p_add_xmltemplate(logo, template = system.file("templateXML.xml", package="x3ptools"))
 #' logo$general.info
-addtemplate_x3p <- function(x3p, template = NULL) {
+x3p_add_meta <- function(x3p, template = NULL) {
   if (is.null(template)) {
     template <- system.file("templateXML.xml", package = "x3ptools")
   }
@@ -23,4 +23,10 @@ addtemplate_x3p <- function(x3p, template = NULL) {
     x3p$feature.info$Axes$CY$Increment <- x3p$header.info$incrementY
   }
   x3p
+}
+
+#' @rdname x3p_add_meta
+#' @export
+addtemplate_x3p <- function(x3p, template = NULL) {
+  x3p_add_meta(x3p = x3p, template = template)
 }
