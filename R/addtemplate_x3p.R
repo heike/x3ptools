@@ -7,7 +7,7 @@
 #' @examples 
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 #' # exchange meta information for general x3p information:
-#' logo <- x3p_add_xmltemplate(logo, template = system.file("templateXML.xml", package="x3ptools"))
+#' logo <- x3p_add_meta(logo, template = system.file("templateXML.xml", package="x3ptools"))
 #' logo$general.info
 x3p_add_meta <- function(x3p, template = NULL) {
   if (is.null(template)) {
