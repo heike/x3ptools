@@ -19,6 +19,10 @@ test_that("read_x3p works as expected", {
   expect_silent(read_x3p(tmpfile))
   expect_warning(read_x3p(tmpfile, size = 8))
   
+  tmp <- read_x3p(tmpfile, tmpdir = "tmpx3ptest")
+  expect_true(dir.exists("tmpx3ptest"))
+  unlink("tmpx3ptest", recursive = T, force = T)
+  
   # Test whether mask can be read correctly
   tmp2 <- read_x3p(tmpfile2)
 })

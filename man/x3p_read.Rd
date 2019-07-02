@@ -5,9 +5,9 @@
 \alias{read_x3p}
 \title{Read an x3p file into an x3p object}
 \usage{
-x3p_read(file, size = NA, quiet = T)
+x3p_read(file, size = NA, quiet = T, tmpdir = NULL)
 
-read_x3p(file, size = NA, quiet = T)
+read_x3p(file, size = NA, quiet = T, tmpdir = NULL)
 }
 \arguments{
 \item{file}{The file path to the x3p file, or an url to an x3p file}
@@ -15,6 +15,8 @@ read_x3p(file, size = NA, quiet = T)
 \item{size}{size in bytes to use for reading the binary file. If not specified, default is used. Will be overwritten if specified in the xml meta file.}
 
 \item{quiet}{for url downloads, show download progress?}
+
+\item{tmpdir}{temporary directory to use to extract the x3p file (default NULL uses tempdir() to set a directory).}
 }
 \value{
 x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard

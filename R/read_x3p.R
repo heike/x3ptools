@@ -8,6 +8,7 @@
 #' @param file The file path to the x3p file, or an url to an x3p file
 #' @param quiet for url downloads, show download progress?
 #' @param size size in bytes to use for reading the binary file. If not specified, default is used. Will be overwritten if specified in the xml meta file.
+#' @param tmpdir temporary directory to use to extract the x3p file (default NULL uses tempdir() to set a directory). 
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2 
@@ -15,7 +16,7 @@
 #' 
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
-x3p_read <- function(file, size = NA, quiet = T) {
+x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
   if (grepl("http|www", file)) {
     fname <- tempfile(fileext = ".x3p")
     download.file(file, destfile = fname, quiet = quiet, mode = "wb")
@@ -26,7 +27,12 @@ x3p_read <- function(file, size = NA, quiet = T) {
   
   if (!file.exists(fname)) stop(sprintf("File %s not found.\n", fname))
   ## Create a temp directory to unzip x3p file
-  mydir <- tempdir()
+  if (!is.null(tmpdir)) {
+    mydir <- tmpdir
+  } else {
+    mydir <- tempdir()
+  }
+  
   result <- unzip(fname, exdir = mydir)
   if (length(result) == 0) stop(sprintf("File %s is not an x3p file", fname)) # unzipping didn't work
   ## see what we got: 
@@ -122,7 +128,5 @@ x3p_read <- function(file, size = NA, quiet = T) {
 
 #' @rdname x3p_read
 #' @export
-read_x3p <- function(file, size = NA, quiet = T) {
-  x3p_read(file = file, size = size, quiet=quiet)
-}
+read_x3p <- x3p_read
 
