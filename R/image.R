@@ -5,6 +5,7 @@
 #' @param x an x3p object
 #' @param ... parameters passed into image
 #' @importFrom graphics image
+#' @method image x3p
 #' @export
 #' @examples 
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
