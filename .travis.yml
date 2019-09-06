@@ -14,12 +14,28 @@ addons:
       - libglu1-mesa-dev 
       - freeglut3-dev 
       - mesa-common-dev
-
-r_packages:
-  - covr
-
+      
 r_binary_packages:
   - rgl
+  - covr
+  - rmarkdown
+  - magick
+  - assertthat
+  - testthat
+  - purrr
+  - magrittr
+  - dplyr
+  - grDevices
+  - readr
+  - png
+  - zoo
+
+
+cache:
+  packages: true
+  directories:
+    - /usr/local/lib/R/site-library
+    - /usr/lib/R
 
 services:
   - xvfb
