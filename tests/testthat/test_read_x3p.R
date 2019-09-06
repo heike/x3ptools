@@ -11,18 +11,18 @@ test_that("read_x3p works as expected", {
   expect_equivalent(tmp$header.info$incrementY, 1.5625e-06)
   expect_equivalent(dim(tmp$surface.matrix), c(501, 1588))
   expect_equivalent(tmp$feature.info$Revision[[1]], "ISO5436 - 2000")
-  
+
   # Test nonexistant file path
   expect_error(read_x3p(file.path("does", "not", "exist.x3p")))
 
   # Test correct reading of x3p with size=4
   expect_silent(read_x3p(tmpfile))
   expect_warning(read_x3p(tmpfile, size = 8))
-  
+
   tmp <- read_x3p(tmpfile, tmpdir = "tmpx3ptest")
   expect_true(dir.exists("tmpx3ptest"))
   unlink("tmpx3ptest", recursive = T, force = T)
-  
+
   # Test whether mask can be read correctly
   tmp2 <- read_x3p(tmpfile2)
 })

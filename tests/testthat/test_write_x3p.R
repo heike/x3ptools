@@ -11,6 +11,6 @@ test_that("write_x3p works as expected", {
   expect_equivalent(tmpx3p$header.info$sizeY, x3ptest$header.info$sizeY)
   expect_equivalent(tmpx3p$header.info$incrementX, x3ptest$header.info$incrementX)
   expect_equivalent(tmpx3p$header.info$incrementY, x3ptest$header.info$incrementY)
-  
+
   file.remove(tmpfile)
 })

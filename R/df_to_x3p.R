@@ -1,11 +1,11 @@
 #' Convert an x3p file into a data frame
-#' 
-#' An x3p file consists of a list with meta info and a 2d matrix with scan depths. 
+#'
+#' An x3p file consists of a list with meta info and a 2d matrix with scan depths.
 #' fortify turns the matrix into a data frame, using the parameters of the header as necessary.
 #' @param x3p a file in x3p format as returned by function read_x3p
 #' @return data frame with variables x, y, and value and meta function in attribute
 #' @export
-#' @examples 
+#' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 #' logo_df <- x3p_to_df(logo)
 #' head(logo_df)
@@ -13,7 +13,7 @@ x3p_to_df <- function(x3p) {
   info <- x3p$header.info
   if (is.null(info$sizeX)) {
     if (!is.null(info$num_obs_per_profile)) {
-      info$sizeX <- info$num_obs_per_profile 
+      info$sizeX <- info$num_obs_per_profile
     } else {
       warning("Assuming X is represented by rows of the surface matrix because it is not specified in header information")
       info$sizeX <- nrow(x3p$surface.matrix)
@@ -26,7 +26,7 @@ x3p_to_df <- function(x3p) {
       warning("Assuming Y is represented by columns of the surface matrix because it is not specified in header information")
       info$sizeY <- ncol(x3p$surface.matrix)
     }
-  } 
+  }
   if (is.null(info$incrementY)) {
     if (!is.null(info$profile_inc)) {
       info$incrementY <- info$profile_inc
@@ -34,7 +34,7 @@ x3p_to_df <- function(x3p) {
       warning("Assuming Y increment is 1 - not specified")
       info$incrementY <- 1
     }
-  } 
+  }
   if (is.null(info$incrementX)) {
     if (!is.null(info$obs_inc)) {
       info$incrementX <- info$obs_inc
@@ -42,38 +42,39 @@ x3p_to_df <- function(x3p) {
       warning("Assuming X increment is 1 - not specified")
       info$incrementX <- 1
     }
-  }  
-  
+  }
+
   # expand.grid creates grid with first variable the fastest
   df <- data.frame(expand.grid(
-    x=1:info$sizeX,
-    y=info$sizeY:1
-    ), 
-    value=as.vector(x3p$surface.matrix))
-  df$y <- (df$y-1) * info$incrementY
-  df$x <- (df$x-1) * info$incrementX
-  
+    x = 1:info$sizeX,
+    y = info$sizeY:1
+  ),
+  value = as.vector(x3p$surface.matrix)
+  )
+  df$y <- (df$y - 1) * info$incrementY
+  df$x <- (df$x - 1) * info$incrementX
+
   if (!is.null(x3p$mask)) {
     df$mask <- as.vector(x3p$mask)
     # make sure the hex code is lower case and only 6 digits wide (7 including the hash)
     df$maskmerge <- tolower(substr(df$mask, 1, 7))
     annotations <- x3p_mask_legend(x3p)
     if (!is.null(annotations)) {
-      legend <- data.frame(maskmerge=annotations, annotation=names(annotations))
-      df <- merge(df, legend, by="maskmerge", all.x = TRUE)
+      legend <- data.frame(maskmerge = annotations, annotation = names(annotations))
+      df <- merge(df, legend, by = "maskmerge", all.x = TRUE)
     }
   }
-  
+
   attr(df, "header.info") <- info
   attr(df, "feature.info") <- x3p$feature.info
   attr(df, "general.info") <- x3p$general.info
-  
+
   df
 }
 
 #' Convert  a data frame into an x3p file
-#' 
-#' @param dframe  data frame. `dframe` must have the columns x, y, and value. 
+#'
+#' @param dframe  data frame. `dframe` must have the columns x, y, and value.
 #' @return x3p object
 #' @importFrom stats median
 #' @export
@@ -81,32 +82,35 @@ df_to_x3p <- function(dframe) {
   x3p <- attributes(dframe)[-(1:3)]
   # first three attributes are names, row.names and class, we want to keep the others
 
-  # dframe must have columns x, y, and value  
+  # dframe must have columns x, y, and value
   stopifnot(!is.null(dframe$x), !is.null(dframe$y), !is.null(dframe$value))
-  
+
   ny <- length(unique(dframe$y))
   nx <- length(unique(dframe$x))
-  if (nrow(dframe) != nx*ny) {
+  if (nrow(dframe) != nx * ny) {
     message("dframe has missing values ... they will be expanded")
     df2 <- expand.grid(x = unique(dframe$x), y = unique(dframe$y))
     df2 <- merge(df2, dframe, by = c("x", "y"), all.x = TRUE)
     dframe <- df2
   }
-  dframe$y <- (-1)*dframe$y
-  idx <- order(dframe$x, dframe$y) 
+  dframe$y <- (-1) * dframe$y
+  idx <- order(dframe$x, dframe$y)
   dframe <- dframe[idx, ]
 
-  x3p[["surface.matrix"]] <- matrix(dframe$value, 
-                                    #  nrow = ny,  ncol = nx, byrow = TRUE)
-                                    nrow = nx, ncol = ny, byrow = TRUE)
-  
+  x3p[["surface.matrix"]] <- matrix(dframe$value,
+    #  nrow = ny,  ncol = nx, byrow = TRUE)
+    nrow = nx, ncol = ny, byrow = TRUE
+  )
+
   if (is.null(x3p$header.info)) {
-    x3p$header.info <- list(sizeX = nx,
-                            sizeY = ny,
-                            incrementX = median(diff(unique(dframe$x))),
-                            incrementY = median(diff(unique(dframe$y))))
+    x3p$header.info <- list(
+      sizeX = nx,
+      sizeY = ny,
+      incrementX = median(diff(unique(dframe$x))),
+      incrementY = median(diff(unique(dframe$y)))
+    )
   }
-  
+
   if (is.null(x3p$matrix.info)) {
     x3p$matrix.info <- list(MatrixDimension = list(SizeX = nx, SizeY = ny, SizeZ = 1))
   }

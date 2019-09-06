@@ -20,10 +20,14 @@
 x3p_add_mask <- function(x3p, mask = NULL) {
   stopifnot("x3p" %in% class(x3p))
   dims <- rev(dim(x3p$surface.matrix))
-  if (is.null(mask)) {  
+  if (is.null(mask)) {
     if (!"Mask" %in% names(x3p$matrix.info)) {
       x3p$matrix.info$Mask <- list(
-        Background = if (length(unique(mask)) == 1) {list(unique(mask))} else {list("#cd7f32")},
+        Background = if (length(unique(mask)) == 1) {
+          list(unique(mask))
+        } else {
+          list("#cd7f32")
+        },
         Annotations = list()
       )
     }
@@ -38,19 +42,21 @@ x3p_add_mask <- function(x3p, mask = NULL) {
     }
   }
   x3p$mask <- mask
-  
+
   # This is necessary so that mask information can be added
   if (!"matrix.info" %in% names(x3p)) {
-    x3p$matrix.info <- list(MatrixDimension = list(SizeX = dim(x3p$surface.matrix)[1],
-                                                   SizeY = dim(x3p$surface.matrix)[2],
-                                                   SizeZ = 1))
+    x3p$matrix.info <- list(MatrixDimension = list(
+      SizeX = dim(x3p$surface.matrix)[1],
+      SizeY = dim(x3p$surface.matrix)[2],
+      SizeZ = 1
+    ))
   }
-  
+
   x3p
 }
 
 #' Delete mask from an x3p object
-#' 
+#'
 #' Deletes mask and its annotations from an x3p file.
 #' @param x3p x3p object
 #' @return x3p object without the mask
@@ -67,7 +73,7 @@ x3p_delete_mask <- function(x3p) {
 }
 
 #' Add annotations to an x3p object
-#' 
+#'
 #' @param x3p x3p object
 #' @param color name or hex value of color
 #' @param annotation character value describing the region
@@ -77,10 +83,10 @@ x3p_add_annotation <- function(x3p, color, annotation) {
   if (!("Mask" %in% names(x3p$matrix.info))) {
     x3p$matrix.info$Mask <- list("Annotations")
   }
-  
+
   len <- length(x3p$matrix.info$Mask$Annotations)
-  x3p$matrix.info$Mask$Annotations[[len+1]] <- list()
-  x3p$matrix.info$Mask$Annotations[[len+1]][[1]] <- annotation
-  attr(x3p$matrix.info$Mask$Annotations[[len+1]], "color") <- color
+  x3p$matrix.info$Mask$Annotations[[len + 1]] <- list()
+  x3p$matrix.info$Mask$Annotations[[len + 1]][[1]] <- annotation
+  attr(x3p$matrix.info$Mask$Annotations[[len + 1]], "color") <- color
   x3p
 }

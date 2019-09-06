@@ -22,9 +22,11 @@
 #' image_x3p(logoplus, size = c(741, 419), zoom=0.5)
 #' }
 x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
-                      crosscut = NA, 
-                      ccParam = list(color = "#e6bf98",
-                                     radius = 5),
+                      crosscut = NA,
+                      ccParam = list(
+                        color = "#e6bf98",
+                        radius = 5
+                      ),
                       size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
   stopifnot("x3p" %in% class(x3p))
   surface <- x3p$surface.matrix
@@ -58,27 +60,28 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
   if (!is.na(crosscut)) {
     .Deprecated("x3p_add_hline", msg = "Use of crosscut is deprecated. Use x3p_add_hline instead.")
     crosscutidx <- which.min(abs(crosscut - y))
-    
+
     colmat <- matrix(rep(col, length(z)), nrow = nrow(z), ncol = ncol(z))
     if (exists("mask", x3p)) colmat <- as.vector(x3p$mask)
-    
+
     if (length(crosscutidx) > 0) {
       coloridx <- pmax(crosscutidx - ccParam$radius, 0):pmin(crosscutidx + ccParam$radius, ncol(z))
       colmat[, coloridx] <- ccParam$color
     } else {
       warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
     }
-    
-    if (crosscut > max(y))
-      warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
 
-    
+    if (crosscut > max(y)) {
+      warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
+    }
+
+
     surface3d(x, y, z, color = colmat, back = "fill")
   } else {
     if (exists("mask", x3p)) col <- as.vector(x3p$mask)
     surface3d(x, y, z, color = col, back = "fill")
   }
-  
+
   if (!is.null(file)) {
     x3p_snapshot(file)
     rgl.close()
@@ -88,16 +91,20 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
 #' @export
 #' @rdname x3p_image
 image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
-                      crosscut = NA, 
-                      ccParam = list(color = "#e6bf98",
-                                     radius = 5),
+                      crosscut = NA,
+                      ccParam = list(
+                        color = "#e6bf98",
+                        radius = 5
+                      ),
                       size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
-  x3p_image(x3p=x3p, file=file, col=col, crosscut=crosscut, ccParam = ccParam, 
-            size=size, zoom=zoom, multiply=multiply, ...)
+  x3p_image(
+    x3p = x3p, file = file, col = col, crosscut = crosscut, ccParam = ccParam,
+    size = size, zoom = zoom, multiply = multiply, ...
+  )
 }
 
 #' Take a snapshot of the active rgl device and save in a file
-#' 
+#'
 #' Make a snapshot of the current rgl device and save it to file. Options for file formats are png, svg, and stl (for 3d printing).
 #' @param file file name for saving.
 #' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.
@@ -107,7 +114,7 @@ x3p_snapshot <- function(file) {
     splits <- strsplit(file, split = "\\.")
     extension <- splits[[1]][length(splits[[1]])]
     if (extension == "png") {
-      rgl.snapshot(filename = file, top=TRUE)
+      rgl.snapshot(filename = file, top = TRUE)
     }
     if (extension == "svg") {
       rgl.postscript(filename = file, fmt = "svg")
@@ -117,4 +124,3 @@ x3p_snapshot <- function(file) {
     }
   }
 }
-
