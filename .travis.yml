@@ -25,7 +25,6 @@ r_binary_packages:
   - purrr
   - magrittr
   - dplyr
-  - grDevices
   - readr
   - png
   - zoo
