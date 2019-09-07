@@ -10,6 +10,8 @@ addons:
     sources:
       - sourceline: 'ppa:opencpu/imagemagick'
     packages:
+      - libmagickcore-6.q16-2
+      - libmagick++-6.q16-5v5
       - libmagick++-dev
       - libglu1-mesa-dev 
       - freeglut3-dev 
