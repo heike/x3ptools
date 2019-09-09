@@ -10,14 +10,25 @@ addons:
     sources:
       - sourceline: 'ppa:opencpu/imagemagick'
     packages:
-      - libglu1-mesa-dev 
+      - libglu1-mesa-dev # rgl
       - freeglut3-dev 
       - mesa-common-dev
+      - libjpeg-dev # imagemagick
+      - libpng-dev
+      - libgif-dev
+      - libmagick++-dev
+      - librsvg2-dev
+      - libwebp-dev
+      - libpoppler-cpp-dev
+      - libtesseract-dev
+      - libleptonica-dev
+      - tesseract-ocr-eng
+      - libtiff-dev
       
 r_binary_packages:
   - rgl
 
-before_cache:
+before_script:
   - Rscript -e 'install.packages("remotes")'
   - Rscript -e 'remotes::install_cran(c("rmarkdown", "assertthat", "covr", "testthat", "purrr", "magrittr", "dplyr", "readr", "zoo", "png"))'
 
