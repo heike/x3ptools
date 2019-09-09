@@ -16,17 +16,10 @@ addons:
       
 r_binary_packages:
   - rgl
-  - covr
-  - rmarkdown
-  - assertthat
-  - testthat
-  - purrr
-  - magrittr
-  - dplyr
-  - readr
-  - png
-  - zoo
 
+before_cache:
+  - Rscript -e 'install.packages("remotes")'
+  - Rscript -e 'remotes::install_cran(c("rmarkdown", "assertthat", "covr", "testthat", "purrr", "magrittr", "dplyr", "readr", "zoo", "png"))'
 
 cache:
   packages: true
