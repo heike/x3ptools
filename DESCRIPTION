@@ -23,6 +23,7 @@ Imports: digest (>= 0.6.15),
          zoo (>= 1.8.1),
          png (>= 0.1-7),
          readr (>= 1.1.1),
+         dplyr (>= 0.8.3),
          assertthat,
          grDevices
 Suggests:
@@ -31,7 +32,6 @@ Suggests:
     testthat (>= 2.1.0),
     covr,
     here,
-    dplyr,
     magick (>= 2.0)
 License: MIT + file LICENSE
 LazyData: true

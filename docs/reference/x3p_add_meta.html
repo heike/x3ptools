@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add vertical line to the mask of an x3p object — x3p_add_vline • x3ptools</title>
+<title>Add/change xml meta information in x3p object — x3p_add_meta • x3ptools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Add vertical line to the mask of an x3p object — x3p_add_vline" />
+<meta property="og:title" content="Add/change xml meta information in x3p object — x3p_add_meta" />
 
-<meta property="og:description" content="Add vertical lines to overlay the surface of an x3p object. Lines are added to a mask. In case no mask exists, one is created." />
+<meta property="og:description" content="Use a specified template to overwrite the general info in the x3p object (and structure of the feature info, if needed)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,18 +102,20 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add vertical line to the mask of an x3p object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/add_lines_x3p.R'><code>R/add_lines_x3p.R</code></a></small>
-    <div class="hidden name"><code>x3p_add_vline.Rd</code></div>
+    <h1>Add/change xml meta information in x3p object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/addtemplate_x3p.R'><code>R/addtemplate_x3p.R</code></a></small>
+    <div class="hidden name"><code>x3p_add_meta.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add vertical lines to overlay the surface of an x3p object. Lines are added to a mask. In case no mask exists, one is created.</p>
+    <p>Use a specified template to overwrite the general info in the x3p object (and structure of the feature info, if needed).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_add_vline</span>(<span class='no'>x3p</span>, <span class='no'>xintercept</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"#e6bf98"</span>)</pre>
+    <pre class="usage"><span class='fu'>x3p_add_meta</span>(<span class='no'>x3p</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='fu'>addtemplate_x3p</span>(<span class='no'>x3p</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,41 +125,76 @@
       <td><p>x3p object</p></td>
     </tr>
     <tr>
-      <th>xintercept</th>
-      <td><p>(vector of) numerical values for the position of the lines.</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>width (in pixels) of the line</p></td>
-    </tr>
-    <tr>
-      <th>color</th>
-      <td><p>(vector of) character values to describe color of lines</p></td>
+      <th>template</th>
+      <td><p>file path to xml template, use NULL for in-built package template</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>x3p object with added vertical lines in the mask</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"x3ptools"</span>))
-<span class='no'>logo_color</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>magick</span><span class='kw ns'>::</span><span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"csafe-color.png"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"x3ptools"</span>))
-<span class='no'>logoplus</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_add_mask.html'>x3p_add_mask</a></span>(<span class='no'>logo</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/as.raster'>as.raster</a></span>(<span class='no'>logo_color</span>))
-<span class='co'># ten vertical lines across:</span>
-<span class='no'>logoplus</span> <span class='kw'>&lt;-</span> <span class='fu'>x3p_add_vline</span>(<span class='no'>logo</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>740</span> * <span class='fl'>6.4500e-7</span>, <span class='kw'>length</span> <span class='kw'>=</span> <span class='fl'>5</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-<span class='fu'><a href='x3p_image.html'>image_x3p</a></span>(<span class='no'>logoplus</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>741</span>, <span class='fl'>419</span>), <span class='kw'>zoom</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='co'># exchange meta information for general x3p information:</span>
+<span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'>x3p_add_meta</span>(<span class='no'>logo</span>, <span class='kw'>template</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"templateXML.xml"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
+<span class='no'>logo</span>$<span class='no'>general.info</span></div><div class='output co'>#&gt; $Date
+#&gt; $Date[[1]]
+#&gt; [1] "2013-12-26T16:06:00"
+#&gt; 
+#&gt; 
+#&gt; $Creator
+#&gt; $Creator[[1]]
+#&gt; [1] "Creator Name"
+#&gt; 
+#&gt; 
+#&gt; $Instrument
+#&gt; $Instrument$Manufacturer
+#&gt; $Instrument$Manufacturer[[1]]
+#&gt; [1] "Manufacturer Name"
+#&gt; 
+#&gt; 
+#&gt; $Instrument$Model
+#&gt; $Instrument$Model[[1]]
+#&gt; [1] "Model"
+#&gt; 
+#&gt; 
+#&gt; $Instrument$Serial
+#&gt; $Instrument$Serial[[1]]
+#&gt; [1] "Serial"
+#&gt; 
+#&gt; 
+#&gt; $Instrument$Version
+#&gt; $Instrument$Version[[1]]
+#&gt; [1] "Version"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $CalibrationDate
+#&gt; $CalibrationDate[[1]]
+#&gt; [1] "Date of Calibration"
+#&gt; 
+#&gt; 
+#&gt; $ProbingSystem
+#&gt; $ProbingSystem$Type
+#&gt; $ProbingSystem$Type[[1]]
+#&gt; [1] "Type"
+#&gt; 
+#&gt; 
+#&gt; $ProbingSystem$Identification
+#&gt; $ProbingSystem$Identification[[1]]
+#&gt; [1] "Identification"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $Comment
+#&gt; $Comment[[1]]
+#&gt; [1] "comment"
+#&gt; 
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

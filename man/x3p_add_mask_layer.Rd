@@ -19,5 +19,5 @@ x3p_add_mask_layer(x3p, mask, color = "red", annotation = "")
 x3p object with changed mask
 }
 \description{
-Add a region  a mask.  The region is specfied as TRUE values in a matrix of the same dimensions as the existing mask. In case no mask exists, one is created.
+Add a region to a mask.  The region is specfied as TRUE values in a matrix of the same dimensions as the existing mask. In case no mask exists, one is created.
 }
