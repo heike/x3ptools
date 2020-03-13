@@ -8,11 +8,13 @@
 
 <title>Scale x3p object by given unit — x3p_scale_unit • x3ptools</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,12 +32,13 @@
 
 
 
-<meta property="og:title" content="Scale x3p object by given unit — x3p_scale_unit" />
 
+<meta property="og:title" content="Scale x3p object by given unit — x3p_scale_unit" />
 <meta property="og:description" content="x3p objects can be presented in different units. ISO standard 5436_2 asks for specification of values in meters.
 For topographic surfaces collected by microscopes values in microns are
 more readable. This functions allows to convert between different units." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -84,7 +87,6 @@ more readable. This functions allows to convert between different units." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/heike/x3ptools">
@@ -110,15 +112,13 @@ more readable. This functions allows to convert between different units." />
     </div>
 
     <div class="ref-description">
-    
     <p>x3p objects can be presented in different units. ISO standard 5436_2 asks for specification of values in meters.
 For topographic surfaces collected by microscopes values in microns are
 more readable. This functions allows to convert between different units.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>x3p_scale_unit</span>(<span class='no'>x3p</span>, <span class='no'>scale_by</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -131,11 +131,10 @@ more readable. This functions allows to convert between different units.</p>
       <td><p>numeric value. Value the surface to be scaled by. While not enforced, values of <code>scale_by</code> make most sense as multiples of 10 (for a metric system).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>x3p with header information in microns</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>logo</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"csafe-logo.x3p"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"x3ptools"</span>))
@@ -155,9 +154,7 @@ more readable. This functions allows to convert between different units.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

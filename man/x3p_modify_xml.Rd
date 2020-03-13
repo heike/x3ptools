@@ -23,7 +23,7 @@ Identify xml fields in the meta file of an x3p object by name and modify content
 \examples{
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 x3p_show_xml(logo, "creator")
-x3p_modify_xml(logo, "creator", "I did that") 
+x3p_modify_xml(logo, "creator", "I did that")
 x3p_show_xml(logo, 20)
-x3p_modify_xml(logo, 20, "I did that, too") 
+x3p_modify_xml(logo, 20, "I did that, too")
 }

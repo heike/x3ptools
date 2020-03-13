@@ -5,13 +5,16 @@ Version: 0.0.2.9000
 Date: 2019-02-28
 Authors@R: c(
     person("Heike", "Hofmann", role = c("aut", "cre"),
-            email = "hofmann@iastate.edu"),
+            email = "hofmann@iastate.edu",
+            comment = c(ORCID = "0000-0001-6216-5183")),
     person("Susan", "Vanderplas", email = "srvander@iastate.edu", 
-            role = "aut"),                      
+            role = "aut",
+            comment = c(ORCID = "0000-0002-3803-0972")),                      
     person("Ganesh", "Krishnan", role = c("aut"),
             email = "ganeshk@iastate.edu"),
-    person("Eric", "Hare", email = "eric@oaiti.org", role = "aut")
-    )
+    person("Eric", "Hare", email = "eric@oaiti.org", role = "aut",
+            comment = c(ORCID="0000-0002-4277-3146"))
+            )
 Maintainer: Heike Hofmann <hofmann@iastate.edu>
 Description: The x3p file format  is specified in ISO standard 5436:2000 to 
     describe 3d surface measurements. 'x3ptools' allows reading, writing and 
