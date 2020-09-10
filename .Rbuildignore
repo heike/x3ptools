@@ -14,3 +14,4 @@ inst/*.R
 ^codecov.yml*
 ^downloadNist$
 raw-data
+^tic\.R$
