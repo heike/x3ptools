@@ -1,44 +1,48 @@
-## tic Travis CI template: linux
-## revision date: 2020-05-09
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-# OS ---------------------------------------------------------------------------
-os: linux
-dist: bionic
+language: R
+sudo: false
+cache: packages
 
-# meta -------------------------------------------------------------------------
-language: r
-cache:
-  - packages
-  - ccache
-latex: false
+addons:
+  apt:
+    update: true
+    sources:
+      - sourceline: 'ppa:opencpu/imagemagick'
+    packages:
+      - libglu1-mesa-dev # rgl
+      - freeglut3-dev 
+      - mesa-common-dev
+      - libjpeg-dev # imagemagick
+      - libpng-dev
+      - libgif-dev
+      - libmagick++-dev
+      - librsvg2-dev
+      - libwebp-dev
+      - libpoppler-cpp-dev
+      - libtesseract-dev
+      - libleptonica-dev
+      - tesseract-ocr-eng
+      - libtiff-dev
+      
+r_binary_packages:
+  - rgl
 
-# environment variables --------------------------------------------------------
-
-env:
-  global:
-    - MAKEFLAGS="-j 2"
-
-# Stages -----------------------------------------------------------------------
-
-before_install:
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then brew install ccache; fi
-  - if [ "${TRAVIS_OS_NAME}" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
-  - echo -e "options(Ncpus = 8, repos = structure(c(CRAN = 'https://cloud.r-project.org/')))" > $HOME/.Rprofile
-  - mkdir -p $HOME/.R && echo -e 'CC=ccache gcc -std=gnu99\nCXX=ccache g++\nCXX11=ccache g++ -std=gnu99\nCXX14=ccache g++ -std=gnu99\nCXX17=ccache g++ -std=gnu99\nFC=ccache gfortran\nF77=ccache gfortran' > $HOME/.R/Makevars
-  - mkdir -p $HOME/.ccache &&  echo -e 'max_size = 5.0G\nsloppiness = include_file_ctime\nhash_dir=false' > $HOME/.ccache/ccache.conf
-  - R -q -e 'if (!requireNamespace("remotes")) install.packages("remotes")'
-  - R -q -e 'if (getRversion() < "3.2" && !requireNamespace("curl")) install.packages("curl")'
-  - R -q -e 'remotes::install_github("ropensci/tic", upgrade = "always"); print(tic::dsl_load()); tic::prepare_all_stages()'
-  - R -q -e 'tic::before_install()'
-install:
-  - R -q -e 'tic::install()'
 before_script:
-  - R -q -e 'tic::before_script()'
-script:
-  - R -q -e 'tic::script()'
+  - Rscript -e 'install.packages("remotes")'
+  - Rscript -e 'remotes::install_cran(c("rmarkdown", "assertthat", "covr", "testthat", "purrr", "magrittr", "dplyr", "readr", "zoo", "png"))'
+
+cache:
+  packages: true
+  directories:
+    - /usr/local/lib/R/site-library
+    - /usr/lib/R
+
+services:
+  - xvfb
+
 after_success:
-  - R -q -e 'tic::after_success()'
+    - Rscript -e 'covr::codecov()'
+    
 after_failure:
-  - R -q -e 'tic::after_failure()'
-after_script:
-  - R -q -e 'tic::after_script()'
+  - if [ -f /home/travis/build/heike/x3ptools/x3ptools.Rcheck/00install.out ]; then cat /home/travis/build/heike/x3ptools/x3ptools.Rcheck/00install.out; fi
