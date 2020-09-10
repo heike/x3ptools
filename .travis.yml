@@ -24,6 +24,8 @@ addons:
       - libleptonica-dev
       - tesseract-ocr-eng
       - libtiff-dev
+      - libfreetype6-dev # fonts for rgl
+      - libftgl-dev # fonts for rgl
       
 r_binary_packages:
   - rgl
