@@ -66,7 +66,9 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
 
     if (length(crosscutidx) > 0) {
       coloridx <- pmax(crosscutidx - ccParam$radius, 0):pmin(crosscutidx + ccParam$radius, ncol(z))
-      colmat[, coloridx] <- ccParam$color
+      colmat[coloridx] <- ccParam$color 
+      # I changed this to be [coloridx] instead of [, coloridx] because of the 
+      # as.vector() call in the block above this if statement. 
     } else {
       warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
     }

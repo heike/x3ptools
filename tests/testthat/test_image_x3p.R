@@ -49,9 +49,9 @@ test_that("image_x3p works as expected", {
   }
 
   # With mask
-  x3ptest %>%
-    x3p_add_mask() %>%
-    image_x3p()
+  x3ptestmask <- x3ptest %>%
+    x3p_add_mask()
+  x3ptestmask %>% image_x3p()
   rglwindowopen <- rgl::.check3d()
   # Check that a window is open
   expect_gte(rglwindowopen, 1)
@@ -60,4 +60,15 @@ test_that("image_x3p works as expected", {
     rgl::rgl.close()
   }
 
+  expect_warning(
+    image_x3p(x3ptestmask, crosscut = 5),
+    "(Use of crosscut is deprecated)|(Crosscut does not map to x3p file correctly)",
+    all = T
+  )
+  # Check that a window is open
+  expect_gte(rglwindowopen, 1)
+  # If open, close it
+  if (rglwindowopen) {
+    rgl::rgl.close()
+  }
 })
