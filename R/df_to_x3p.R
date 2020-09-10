@@ -62,6 +62,7 @@ x3p_to_df <- function(x3p) {
     if (!is.null(annotations)) {
       legend <- data.frame(maskmerge = annotations, annotation = names(annotations))
       df <- merge(df, legend, by = "maskmerge", all.x = TRUE)
+      df <- select(df, -maskmerge)
     }
   }
 
