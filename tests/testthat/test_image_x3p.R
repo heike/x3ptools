@@ -60,15 +60,4 @@ test_that("image_x3p works as expected", {
     rgl::rgl.close()
   }
 
-  expect_warning(
-    x3ptest %>% image_x3p(crosscut = 8),
-    "(Use of crosscut is deprecated)|(Crosscut does not map to x3p file correctly)",
-    all = T
-  )
-  # Check that a window is open
-  expect_gte(rglwindowopen, 1)
-  # If open, close it
-  if (rglwindowopen) {
-    rgl::rgl.close()
-  }
 })
