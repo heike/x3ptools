@@ -4,8 +4,12 @@
 \alias{x3p_mask_quantile}
 \title{Draw a quantile region on the mask}
 \usage{
-x3p_mask_quantile(x3p, quantiles = c(0.25, 0.75), color = "red",
-  annotation = "quantile-region")
+x3p_mask_quantile(
+  x3p,
+  quantiles = c(0.25, 0.75),
+  color = "red",
+  annotation = "quantile-region"
+)
 }
 \arguments{
 \item{x3p}{x3p object}

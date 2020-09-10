@@ -5,6 +5,7 @@
 #' @param x3p a file in x3p format as returned by function read_x3p
 #' @return data frame with variables x, y, and value and meta function in attribute
 #' @export
+#' @importFrom dplyr select
 #' @examples
 #' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 #' logo_df <- x3p_to_df(logo)
@@ -62,7 +63,7 @@ x3p_to_df <- function(x3p) {
     if (!is.null(annotations)) {
       legend <- data.frame(maskmerge = annotations, annotation = names(annotations))
       df <- merge(df, legend, by = "maskmerge", all.x = TRUE)
-      df <- select(df, -maskmerge)
+      df <- select(df, -"maskmerge")
     }
   }
 

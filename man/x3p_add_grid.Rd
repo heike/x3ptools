@@ -4,8 +4,12 @@
 \alias{x3p_add_grid}
 \title{Add a grid of helper lines to the mask of an x3p object}
 \usage{
-x3p_add_grid(x3p, spaces, size = c(1, 3, 5), color = c("grey50",
-  "black", "darkred"))
+x3p_add_grid(
+  x3p,
+  spaces,
+  size = c(1, 3, 5),
+  color = c("grey50", "black", "darkred")
+)
 }
 \arguments{
 \item{x3p}{x3p object}

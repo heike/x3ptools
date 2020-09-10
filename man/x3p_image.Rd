@@ -5,13 +5,29 @@
 \alias{image_x3p}
 \title{Plot x3p object as an image}
 \usage{
-x3p_image(x3p, file = NULL, col = "#cd7f32", crosscut = NA,
-  ccParam = list(color = "#e6bf98", radius = 5), size = c(750, 250),
-  zoom = 0.35, multiply = 5, ...)
+x3p_image(
+  x3p,
+  file = NULL,
+  col = "#cd7f32",
+  crosscut = NA,
+  ccParam = list(color = "#e6bf98", radius = 5),
+  size = c(750, 250),
+  zoom = 0.35,
+  multiply = 5,
+  ...
+)
 
-image_x3p(x3p, file = NULL, col = "#cd7f32", crosscut = NA,
-  ccParam = list(color = "#e6bf98", radius = 5), size = c(750, 250),
-  zoom = 0.35, multiply = 5, ...)
+image_x3p(
+  x3p,
+  file = NULL,
+  col = "#cd7f32",
+  crosscut = NA,
+  ccParam = list(color = "#e6bf98", radius = 5),
+  size = c(750, 250),
+  zoom = 0.35,
+  multiply = 5,
+  ...
+)
 }
 \arguments{
 \item{x3p}{x3p object}
