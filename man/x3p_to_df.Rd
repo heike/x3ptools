@@ -7,7 +7,7 @@
 x3p_to_df(x3p)
 }
 \arguments{
-\item{x3p}{a file in x3p format as returned by function read_x3p}
+\item{x3p}{a file in x3p format as returned by function x3p_read}
 }
 \value{
 data frame with variables x, y, and value and meta function in attribute

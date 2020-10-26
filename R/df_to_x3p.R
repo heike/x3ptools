@@ -2,7 +2,7 @@
 #'
 #' An x3p file consists of a list with meta info and a 2d matrix with scan depths.
 #' fortify turns the matrix into a data frame, using the parameters of the header as necessary.
-#' @param x3p a file in x3p format as returned by function read_x3p
+#' @param x3p a file in x3p format as returned by function x3p_read
 #' @return data frame with variables x, y, and value and meta function in attribute
 #' @export
 #' @importFrom dplyr select

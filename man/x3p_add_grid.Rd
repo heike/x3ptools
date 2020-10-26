@@ -29,7 +29,7 @@ Lines are added to a mask. In case no mask exists, one is created.
 }
 \examples{
 \dontrun{
-logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
 # ten vertical lines across:
 logoplus <- x3p_add_grid(logo,
   spaces = 50e-6, size = c(1, 3, 5),

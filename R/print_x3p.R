@@ -5,7 +5,7 @@
 #' @param ... ignored
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' print(logo)
 #' @method print x3p
 print.x3p <- function(x, ...) {

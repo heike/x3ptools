@@ -8,7 +8,7 @@
 #' @importFrom utils head.matrix
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' head(logo)
 #' @method head x3p
 head.x3p <- function(x, n = 6L, ...) {

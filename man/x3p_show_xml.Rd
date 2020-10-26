@@ -19,7 +19,7 @@ list of exact field names and their contents
 Identify xml fields by name and show content.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 x3p_show_xml(logo, "creator") # all fields containing the word "creator"
 x3p_show_xml(logo, "axis")
 x3p_show_xml(logo, "CZ.AxisType")

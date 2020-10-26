@@ -8,7 +8,7 @@
 #' @return down-sampled x3p object
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' dim(logo$surface.matrix)
 #' # down-sample to one-fourth of the image:
 #' logo4 <- sample_x3p(logo, m=4)

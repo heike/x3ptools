@@ -10,7 +10,7 @@
 #' @param height integer, height (in pixels) of the rectangle,
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' # crop the x3p file to just the CSAFE logo
 #' logo_only <- x3p_crop(logo, x=20, y=50, width = 255 ,height =310)
 #' logo_only <- x3p_crop(logo, x=20, y=50, width = 255 ,height =510)

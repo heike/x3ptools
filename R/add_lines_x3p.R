@@ -22,7 +22,7 @@ scale_to_pix <- function(x3p, which, values) {
 #' @export
 #' @examples
 #' \dontrun{
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
 #' logo_color <- magick::image_read(system.file("csafe-color.png", package = "x3ptools"))
 #' logoplus <- x3p_add_mask(logo, as.raster(logo_color))
 #' # ten vertical lines across:
@@ -59,7 +59,7 @@ x3p_add_vline <- function(x3p, xintercept, size = 5, color = "#e6bf98") {
 #' @export
 #' @examples
 #' \dontrun{
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
 #' color_logo <- magick::image_read(system.file("csafe-color.png", package = "x3ptools"))
 #' logoplus <- x3p_add_mask(logo, as.raster(color_logo))
 #' # five horizontal lines at equal intervals:
@@ -109,7 +109,7 @@ calculate_spacing <- function(x3p, spaces, axis = "y") {
 #' @export
 #' @examples
 #' \dontrun{
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
 #' # ten vertical lines across:
 #' logoplus <- x3p_add_grid(logo,
 #'   spaces = 50e-6, size = c(1, 3, 5),

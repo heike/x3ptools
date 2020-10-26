@@ -5,7 +5,7 @@
 #' @return named vector of colors, names show annotations. In case no annotations exist NULL is returned.
 #' @export
 #' @examples
-#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' x3p_mask_legend(x3p) # annotations and color hex definitions
 x3p_mask_legend <- function(x3p) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
@@ -31,7 +31,7 @@ x3p_mask_legend <- function(x3p) {
 #' @param colors named character vector of colors (in hex format by default), names contain annotations
 #' @export
 #' @examples
-#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
 #' image_x3p(x3p) # run when rgl can open window on the device
 #' x3p_add_legend(x3p) # add legend
@@ -57,7 +57,7 @@ x3p_add_legend <- function(x3p, colors = NULL) {
 #' Make the currently active rgl object lighter. Adds a light source. Up to eight light sources can be added. Alternatively, any rgl light source can be added (see `light3d`).
 #' @export
 #' @examples
-#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
 #' image_x3p(x3p) # run when rgl can open window on the device
 #' x3p_lighter() # add a light source
@@ -74,7 +74,7 @@ x3p_lighter <- function() {
 #' Makes the currently active rgl object darker by removing a light source. Once all light sources are removed the object can not be any darker.
 #' @export
 #' @examples
-#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
 #' image_x3p(x3p) # run when rgl can open window on the device
 #' x3p_darker() # remove a light source

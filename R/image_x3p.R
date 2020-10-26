@@ -15,7 +15,7 @@
 #' @importFrom rgl snapshot3d r3dDefaults
 #' @examples
 #' \dontrun{
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' image_x3p(logo, file = "logo.png", crosscut = 50*.645e-6)
 #' # alternative to crosscut
 #' logoplus <- x3p_add_hline(logo, yintercept = 50*.645e-6, color = "#e6bf98", size = 5)
