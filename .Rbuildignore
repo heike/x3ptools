@@ -15,4 +15,3 @@ inst/*.R
 ^downloadNist$
 raw-data
 ^tic\.R$
-*.x3p$
