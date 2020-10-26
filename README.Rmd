@@ -1,11 +1,5 @@
 ---
-title: "x3ptools: working with x3p files in R"
-author: "Heike Hofmann, Susan Vanderplas, Ganesh Krishnan, Eric Hare"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output: 
-  html_document:
-    keep_md: TRUE
-    self_contained: TRUE
+output: github_document
 ---
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
@@ -20,10 +14,11 @@ output:
 knitr::opts_chunk$set(echo = TRUE, fig.path = "man/figures/")
 ```
 
-
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
-
+The x3p file format  is specified in ISO standard 5436:2000 to 
+    describe 3d surface measurements. This package allows reading, writing and 
+    basic modifications to the 3D surface measurements.
 
 # Installation
 
