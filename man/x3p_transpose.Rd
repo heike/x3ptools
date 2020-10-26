@@ -22,7 +22,7 @@ dim(logo$surface.matrix)
 x3p_image(logo)
 }
 #  transpose the image
-logotp <- transpose_x3p(logo)
+logotp <- x3p_transpose(logo)
 dim(logotp$surface.matrix)
 \dontrun{
 x3p_image(logotp)

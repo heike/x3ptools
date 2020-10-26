@@ -14,13 +14,13 @@
 #' x3p_image(logo)
 #' }
 #' # flip the y-axis for the old ISO standard:
-#' logoflip <- y_flip_x3p(logo)
+#' logoflip <- x3p_y_flip(logo)
 #' dim(logoflip$surface.matrix)
 #' \dontrun{
 #' x3p_image(logoflip)
 #' }
 x3p_flip_y <- function(x3p) {
-  rotate_x3p(transpose_x3p(x3p), angle = 90)
+  rotate_x3p(x3p_transpose(x3p), angle = 90)
 }
 
 #' @rdname x3p_flip_y

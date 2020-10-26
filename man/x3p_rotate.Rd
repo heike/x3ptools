@@ -24,7 +24,7 @@ dim(logo$surface.matrix)
 x3p_image(logo)
 }
 # rotate the image by 90 degrees counter-clockwise:
-logo90 <- rotate_x3p(logo, 90)
+logo90 <- x3p_rotate(logo, 90)
 dim(logo90$surface.matrix)
 \dontrun{
 x3p_image(logo90)
