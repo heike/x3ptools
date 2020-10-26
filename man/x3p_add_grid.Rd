@@ -35,6 +35,6 @@ logoplus <- x3p_add_grid(logo,
   spaces = 50e-6, size = c(1, 3, 5),
   color = c("grey50", "black", "darkred")
 )
-image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 }
 }

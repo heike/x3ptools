@@ -33,7 +33,7 @@ dim(logo$surface.matrix)
 logo4 <- sample_x3p(logo, m=4)
 dim(logo4$surface.matrix)
 \dontrun{
-image_x3p(logo)
-image_x3p(logo4)
+x3p_image(logo)
+x3p_image(logo4)
 }
 }

@@ -19,12 +19,12 @@ Transpose the surface matrix of an x3p object. Also adjust meta information.
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 dim(logo$surface.matrix)
 \dontrun{
-image_x3p(logo)
+x3p_image(logo)
 }
 #  transpose the image
 logotp <- transpose_x3p(logo)
 dim(logotp$surface.matrix)
 \dontrun{
-image_x3p(logotp)
+x3p_image(logotp)
 }
 }

@@ -33,7 +33,7 @@ x3p_mask_legend <- function(x3p) {
 #' @examples
 #' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
-#' image_x3p(x3p) # run when rgl can open window on the device
+#' x3p_image(x3p) # run when rgl can open window on the device
 #' x3p_add_legend(x3p) # add legend
 #' }
 x3p_add_legend <- function(x3p, colors = NULL) {
@@ -59,7 +59,7 @@ x3p_add_legend <- function(x3p, colors = NULL) {
 #' @examples
 #' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
-#' image_x3p(x3p) # run when rgl can open window on the device
+#' x3p_image(x3p) # run when rgl can open window on the device
 #' x3p_lighter() # add a light source
 #' }
 x3p_lighter <- function() {
@@ -76,7 +76,7 @@ x3p_lighter <- function() {
 #' @examples
 #' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
-#' image_x3p(x3p) # run when rgl can open window on the device
+#' x3p_image(x3p) # run when rgl can open window on the device
 #' x3p_darker() # remove a light source
 #' }
 x3p_darker <- function() {

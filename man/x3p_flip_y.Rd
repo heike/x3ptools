@@ -25,12 +25,12 @@ conform to the newest ISO norm.
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 dim(logo$surface.matrix)
 \dontrun{
-image_x3p(logo)
+x3p_image(logo)
 }
 # flip the y-axis for the old ISO standard:
 logoflip <- y_flip_x3p(logo)
 dim(logoflip$surface.matrix)
 \dontrun{
-image_x3p(logoflip)
+x3p_image(logoflip)
 }
 }

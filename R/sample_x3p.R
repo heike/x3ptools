@@ -14,8 +14,8 @@
 #' logo4 <- sample_x3p(logo, m=4)
 #' dim(logo4$surface.matrix)
 #' \dontrun{
-#' image_x3p(logo)
-#' image_x3p(logo4)
+#' x3p_image(logo)
+#' x3p_image(logo4)
 #' }
 x3p_sample <- function(x3p, m = 2, mY = m, offset = 0, offsetY = offset) {
   stopifnot("x3p" %in% class(x3p))

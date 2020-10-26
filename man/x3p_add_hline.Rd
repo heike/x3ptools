@@ -28,6 +28,6 @@ color_logo <- magick::image_read(system.file("csafe-color.png", package = "x3pto
 logoplus <- x3p_add_mask(logo, as.raster(color_logo))
 # five horizontal lines at equal intervals:
 logoplus <- x3p_add_hline(logo, seq(0, 418 * 6.4500e-7, length = 5), size = 3)
-image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 }
 }

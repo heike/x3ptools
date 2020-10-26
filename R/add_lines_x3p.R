@@ -27,7 +27,7 @@ scale_to_pix <- function(x3p, which, values) {
 #' logoplus <- x3p_add_mask(logo, as.raster(logo_color))
 #' # ten vertical lines across:
 #' logoplus <- x3p_add_vline(logo, seq(0, 740 * 6.4500e-7, length = 5), size = 3)
-#' image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+#' x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 #' }
 x3p_add_vline <- function(x3p, xintercept, size = 5, color = "#e6bf98") {
   stopifnot("x3p" %in% class(x3p))
@@ -64,7 +64,7 @@ x3p_add_vline <- function(x3p, xintercept, size = 5, color = "#e6bf98") {
 #' logoplus <- x3p_add_mask(logo, as.raster(color_logo))
 #' # five horizontal lines at equal intervals:
 #' logoplus <- x3p_add_hline(logo, seq(0, 418 * 6.4500e-7, length = 5), size = 3)
-#' image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+#' x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 #' }
 x3p_add_hline <- function(x3p, yintercept, size = 5, color = "#e6bf98") {
   stopifnot("x3p" %in% class(x3p))
@@ -115,7 +115,7 @@ calculate_spacing <- function(x3p, spaces, axis = "y") {
 #'   spaces = 50e-6, size = c(1, 3, 5),
 #'   color = c("grey50", "black", "darkred")
 #' )
-#' image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+#' x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 #' }
 x3p_add_grid <- function(x3p, spaces, size = c(1, 3, 5),
                          color = c("grey50", "black", "darkred")) {

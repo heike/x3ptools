@@ -12,7 +12,7 @@ Makes the currently active rgl object darker by removing a light source. Once al
 \examples{
 x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 \dontrun{
-image_x3p(x3p) # run when rgl can open window on the device
+x3p_image(x3p) # run when rgl can open window on the device
 x3p_darker() # remove a light source
 }
 }

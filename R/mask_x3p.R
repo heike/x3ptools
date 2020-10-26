@@ -15,7 +15,7 @@
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
 #' logoplus <- x3p_add_mask(logo, as.raster(color_logo))
-#' image_x3p(logoplus, multiply=50, size = c(741, 419),zoom = 0.5)
+#' x3p_image(logoplus, multiply=50, size = c(741, 419),zoom = 0.5)
 #' }
 x3p_add_mask <- function(x3p, mask = NULL) {
   stopifnot("x3p" %in% class(x3p))

@@ -7,13 +7,13 @@
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' dim(logo$surface.matrix)
 #' \dontrun{
-#' image_x3p(logo)
+#' x3p_image(logo)
 #' }
 #' #  transpose the image
 #' logotp <- transpose_x3p(logo)
 #' dim(logotp$surface.matrix)
 #' \dontrun{
-#' image_x3p(logotp)
+#' x3p_image(logotp)
 #' }
 x3p_transpose <- function(x3p) {
   stopifnot("x3p" %in% class(x3p))

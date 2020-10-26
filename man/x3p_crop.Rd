@@ -27,5 +27,5 @@ logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 # crop the x3p file to just the CSAFE logo
 logo_only <- x3p_crop(logo, x=20, y=50, width = 255 ,height =310)
 logo_only <- x3p_crop(logo, x=20, y=50, width = 255 ,height =510)
-# image_x3p(logo_only, size=c(500,500), zoom = 1)
+# x3p_image(logo_only, size=c(500,500), zoom = 1)
 }

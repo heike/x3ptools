@@ -21,12 +21,12 @@ Rotate the surface matrix of an x3p object. Also adjust meta information.
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 dim(logo$surface.matrix)
 \dontrun{
-image_x3p(logo)
+x3p_image(logo)
 }
 # rotate the image by 90 degrees counter-clockwise:
 logo90 <- rotate_x3p(logo, 90)
 dim(logo90$surface.matrix)
 \dontrun{
-image_x3p(logo90)
+x3p_image(logo90)
 }
 }
