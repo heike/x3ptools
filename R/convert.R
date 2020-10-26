@@ -24,7 +24,7 @@ x3p_m_to_mum <- function(x3p) {
 #' @return x3p with header information in microns
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' logo # measurements in meters
 #' x3p_scale_unit(logo, scale_by=10^6) # measurements in microns
 x3p_scale_unit <- function(x3p, scale_by) {

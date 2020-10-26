@@ -50,4 +50,4 @@ x3pbig2$matrix.info$Mask$Annotations <- list(
   Annotation = structure(list("testing"), color = "black")
 )
 
-logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))

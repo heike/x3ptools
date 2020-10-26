@@ -18,7 +18,7 @@ rotate_x3p(x3p, angle = 90)
 Rotate the surface matrix of an x3p object. Also adjust meta information.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 dim(logo$surface.matrix)
 \dontrun{
 image_x3p(logo)

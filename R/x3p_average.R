@@ -8,7 +8,7 @@
 #' @export
 #' @importFrom dplyr group_by summarize
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' small <- x3p_average(logo)
 x3p_average <- function(x3p, b = 10, f = mean, ...) {
   stopifnot("x3p" %in% class(x3p))

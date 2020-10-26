@@ -8,11 +8,11 @@
 #' @export
 #' @importFrom grDevices as.raster
 #' @examples
-#' x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+#' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' # x3p file has mask consisting color raster image:
 #' x3p$mask[1:5,1:5]
 #' \dontrun{
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
 #' logoplus <- x3p_add_mask(logo, as.raster(color_logo))
 #' image_x3p(logoplus, multiply=50, size = c(741, 419),zoom = 0.5)

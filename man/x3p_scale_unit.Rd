@@ -20,7 +20,7 @@ For topographic surfaces collected by microscopes values in microns are
 more readable. This functions allows to convert between different units.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 logo # measurements in meters
 x3p_scale_unit(logo, scale_by=10^6) # measurements in microns
 }

@@ -5,7 +5,7 @@
 #' @param angle rotate counter-clockwise by angle degrees given as 90, 180, 270 degree (or -90, -180, -270).
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' dim(logo$surface.matrix)
 #' \dontrun{
 #' image_x3p(logo)
