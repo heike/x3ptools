@@ -8,7 +8,7 @@
 #' @method image x3p
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' image(logo)
 image.x3p <- function(x, ...) {
   graphics::image(x$surface.matrix, ylim = c(1, 0), ...)

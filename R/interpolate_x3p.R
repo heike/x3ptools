@@ -11,7 +11,7 @@
 #' @importFrom zoo na.approx
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' # resolution:
 #' logo$header.info$incrementX
 #' # change resolution to 1 micron = 1e-6 meters

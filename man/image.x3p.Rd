@@ -16,6 +16,6 @@ This image function creates a quick raster image to show the surface of an x3p f
 Due to some inconsistency in where the origin (0,0) is supposed to be (top left or bottom left)  image functions from different packages will result in different images.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 image(logo)
 }

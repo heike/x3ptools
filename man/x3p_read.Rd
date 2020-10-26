@@ -29,5 +29,5 @@ consisting of an xml file of meta
 information and a binary matrix of numeric surface measurements.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 }

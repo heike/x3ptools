@@ -15,7 +15,7 @@
 #' @importFrom utils unzip download.file
 #'
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
   if (grepl("http|www", file)) {
     fname <- tempfile(fileext = ".x3p")
