@@ -28,7 +28,7 @@ dim(logo$surface.matrix)
 x3p_image(logo)
 }
 # flip the y-axis for the old ISO standard:
-logoflip <- x3p_y_flip(logo)
+logoflip <- x3p_flip_y(logo)
 dim(logoflip$surface.matrix)
 \dontrun{
 x3p_image(logoflip)
