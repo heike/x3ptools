@@ -27,13 +27,13 @@ down-sampled x3p object
 Sample from an x3p object
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 dim(logo$surface.matrix)
 # down-sample to one-fourth of the image:
-logo4 <- sample_x3p(logo, m=4)
+logo4 <- x3p_sample(logo, m=4)
 dim(logo4$surface.matrix)
 \dontrun{
-image_x3p(logo)
-image_x3p(logo4)
+x3p_image(logo)
+x3p_image(logo4)
 }
 }

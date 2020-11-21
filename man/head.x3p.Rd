@@ -17,6 +17,6 @@
 \code{head.x3p} expands the generic head method for x3p objects. It gives a summary of the most relevant 3p meta information and returns the object invisibly.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 head(logo)
 }

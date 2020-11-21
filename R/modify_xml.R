@@ -8,7 +8,7 @@
 #' @return x3p object with changed meta information
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' x3p_show_xml(logo, "creator")
 #' x3p_modify_xml(logo, "creator", "I did that")
 #' x3p_show_xml(logo, 20)
@@ -78,7 +78,7 @@ helper_identify_xml <- function(x3p, element) {
 #' @return list of exact field names and their contents
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' x3p_show_xml(logo, "creator") # all fields containing the word "creator"
 #' x3p_show_xml(logo, "axis")
 #' x3p_show_xml(logo, "CZ.AxisType")

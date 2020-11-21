@@ -7,6 +7,8 @@
 
 ## minor functionality 
 
+- add functions in form of `x3p_*` to adhere to tidyverse conventions
+
 ## bug fixes
 
 # x3ptools 0.0.2

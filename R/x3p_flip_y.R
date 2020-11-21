@@ -8,19 +8,19 @@
 #' @return x3p object in which the y coordinate is reversed.
 #' @export
 #' @examples
-#' logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' dim(logo$surface.matrix)
 #' \dontrun{
-#' image_x3p(logo)
+#' x3p_image(logo)
 #' }
 #' # flip the y-axis for the old ISO standard:
-#' logoflip <- y_flip_x3p(logo)
+#' logoflip <- x3p_y_flip(logo)
 #' dim(logoflip$surface.matrix)
 #' \dontrun{
-#' image_x3p(logoflip)
+#' x3p_image(logoflip)
 #' }
 x3p_flip_y <- function(x3p) {
-  rotate_x3p(transpose_x3p(x3p), angle = 90)
+  rotate_x3p(x3p_transpose(x3p), angle = 90)
 }
 
 #' @rdname x3p_flip_y

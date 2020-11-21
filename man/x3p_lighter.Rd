@@ -10,9 +10,9 @@ x3p_lighter()
 Make the currently active rgl object lighter. Adds a light source. Up to eight light sources can be added. Alternatively, any rgl light source can be added (see \code{light3d}).
 }
 \examples{
-x3p <- read_x3p(system.file("sample-land.x3p", package="x3ptools"))
+x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 \dontrun{
-image_x3p(x3p) # run when rgl can open window on the device
+x3p_image(x3p) # run when rgl can open window on the device
 x3p_lighter() # add a light source
 }
 }

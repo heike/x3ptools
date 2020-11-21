@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert  a data frame into an x3p file — df_to_x3p • x3ptools</title>
+<title>Crop an x3p object to a specified width and height — x3p_crop • x3ptools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Convert  a data frame into an x3p file — df_to_x3p" />
-<meta property="og:description" content="Convert  a data frame into an x3p file" />
+<meta property="og:title" content="Crop an x3p object to a specified width and height — x3p_crop" />
+<meta property="og:description" content="Cuts out a rectangle of size width x height from the location (x, y) of an x3p object.
+x and y specify the bottom right corner of the rectangle.
+In case the dimensions of the surface matrix do not allow for the full dimensions of the rectangle cutout the dimensions are adjusted accordingly." />
 
 
 
@@ -111,30 +113,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert  a data frame into an x3p file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/df_to_x3p.R'><code>R/df_to_x3p.R</code></a></small>
-    <div class="hidden name"><code>df_to_x3p.Rd</code></div>
+    <h1>Crop an x3p object to a specified width and height</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/x3p_crop.R'><code>R/x3p_crop.R</code></a></small>
+    <div class="hidden name"><code>x3p_crop.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert  a data frame into an x3p file</p>
+    <p>Cuts out a rectangle of size width x height from the location (x, y) of an x3p object.
+x and y specify the bottom right corner of the rectangle.
+In case the dimensions of the surface matrix do not allow for the full dimensions of the rectangle cutout the dimensions are adjusted accordingly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>df_to_x3p</span><span class='op'>(</span><span class='va'>dframe</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>x3p_crop</span><span class='op'>(</span><span class='va'>x3p</span>, x <span class='op'>=</span> <span class='fl'>1</span>, y <span class='op'>=</span> <span class='fl'>1</span>, width <span class='op'>=</span> <span class='fl'>128</span>, height <span class='op'>=</span> <span class='fl'>128</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dframe</th>
-      <td><p>data frame. <code>dframe</code> must have the columns x, y, and value.</p></td>
+      <th>x3p</th>
+      <td><p>x3p object</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>integer, location (in pixels) of the leftmost side of the rectangle,</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>integer, location (in pixels) of the leftmost side of the rectangle,</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>integer, width (in pixels) of the rectangle,</p></td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td><p>integer, height (in pixels) of the rectangle,</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>x3p object</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># crop the x3p file to just the CSAFE logo</span>
+<span class='va'>logo_only</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_crop</span><span class='op'>(</span><span class='va'>logo</span>, x<span class='op'>=</span><span class='fl'>20</span>, y<span class='op'>=</span><span class='fl'>50</span>, width <span class='op'>=</span> <span class='fl'>255</span> ,height <span class='op'>=</span><span class='fl'>310</span><span class='op'>)</span>
+<span class='va'>logo_only</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_crop</span><span class='op'>(</span><span class='va'>logo</span>, x<span class='op'>=</span><span class='fl'>20</span>, y<span class='op'>=</span><span class='fl'>50</span>, width <span class='op'>=</span> <span class='fl'>255</span> ,height <span class='op'>=</span><span class='fl'>510</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Specified dimension are adjusted to fit within range of the surface matrix: 255 x 369</span></div><div class='input'><span class='co'># image_x3p(logo_only, size=c(500,500), zoom = 1)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

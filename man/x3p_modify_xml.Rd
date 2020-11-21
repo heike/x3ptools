@@ -21,7 +21,7 @@ x3p object with changed meta information
 Identify xml fields in the meta file of an x3p object by name and modify content if uniquely described.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 x3p_show_xml(logo, "creator")
 x3p_modify_xml(logo, "creator", "I did that")
 x3p_show_xml(logo, 20)

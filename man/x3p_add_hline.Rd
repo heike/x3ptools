@@ -23,11 +23,11 @@ Add horizontal lines to overlay the surface of an x3p object. Lines are added to
 }
 \examples{
 \dontrun{
-logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
 color_logo <- magick::image_read(system.file("csafe-color.png", package = "x3ptools"))
 logoplus <- x3p_add_mask(logo, as.raster(color_logo))
 # five horizontal lines at equal intervals:
 logoplus <- x3p_add_hline(logo, seq(0, 418 * 6.4500e-7, length = 5), size = 3)
-image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 }
 }

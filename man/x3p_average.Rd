@@ -19,6 +19,6 @@ x3p_average(x3p, b = 10, f = mean, ...)
 Calculate blockwise summary statistics on the surface matrix of an x3p.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 small <- x3p_average(logo)
 }

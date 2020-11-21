@@ -7,7 +7,7 @@
 x3p_to_df(x3p)
 }
 \arguments{
-\item{x3p}{a file in x3p format as returned by function read_x3p}
+\item{x3p}{a file in x3p format as returned by function x3p_read}
 }
 \value{
 data frame with variables x, y, and value and meta function in attribute
@@ -17,7 +17,7 @@ An x3p file consists of a list with meta info and a 2d matrix with scan depths.
 fortify turns the matrix into a data frame, using the parameters of the header as necessary.
 }
 \examples{
-logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 logo_df <- x3p_to_df(logo)
 head(logo_df)
 }

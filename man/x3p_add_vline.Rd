@@ -23,11 +23,11 @@ Add vertical lines to overlay the surface of an x3p object. Lines are added to a
 }
 \examples{
 \dontrun{
-logo <- read_x3p(system.file("csafe-logo.x3p", package = "x3ptools"))
+logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
 logo_color <- magick::image_read(system.file("csafe-color.png", package = "x3ptools"))
 logoplus <- x3p_add_mask(logo, as.raster(logo_color))
 # ten vertical lines across:
 logoplus <- x3p_add_vline(logo, seq(0, 740 * 6.4500e-7, length = 5), size = 3)
-image_x3p(logoplus, size = c(741, 419), zoom = 0.5)
+x3p_image(logoplus, size = c(741, 419), zoom = 0.5)
 }
 }
