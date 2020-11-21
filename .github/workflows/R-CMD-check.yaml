@@ -52,13 +52,15 @@ jobs:
           do
             eval sudo $cmd
           done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "16.04"), sep = "\n")')
-          Rscript -e 'remotes::install_cran(c("rgl", "rmarkdown", "assertthat", "covr", "testthat", "purrr", "magrittr", "dplyr", "readr", "zoo", "png"))'
-          export DISPLAY=:99
 
       - name: Install X11 dependencies on MacOS
         if: runner.os == 'macOS'
         run: |
           brew cask install xquartz
+          
+      - name: Install R package deps on Linux/macOS
+        if: runner.os != 'Windows'
+        run: | 
           Rscript -e 'remotes::install_cran(c("rgl", "rmarkdown", "assertthat", "covr", "testthat", "purrr", "magrittr", "dplyr", "readr", "zoo", "png"))'
           export DISPLAY=:99
           
@@ -78,7 +80,6 @@ jobs:
 
       - name: Session info
         run: |
-          RGL_USE_NULL = true
           options(width = 100)
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
@@ -87,6 +88,8 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_: false
+          RGL_USE_NULL: true
+          _RGL_USE_NULL_: true
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "error", check_dir = "check")
         shell: Rscript {0}
 
