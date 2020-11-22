@@ -119,14 +119,6 @@ jobs:
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
         
-      - name: Does rgl load?
-        run: |
-          options(width = 100)
-          options(rgl.useNULL = TRUE)
-          library(rgl)
-          library(x3ptools)
-        shell: Rscript {0}
-        
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_: false
