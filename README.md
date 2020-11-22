@@ -8,14 +8,16 @@ state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build
 Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2020--10--26-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2020--11--22-yellowgreen.svg)](/commits/master)
 [![Coverage
-status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
+status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)[![Github
+Actions
+Status](https://github.com/heike/x3ptools/workflows/Build/badge.svg)](https://github.com/heike/x3ptools/runs/)
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
 The x3p file format is specified in ISO standard 5436:2000 to describe
-3d surface measurements. ‘x3ptools’ allows reading, writing and basic
+3d surface measurements. This package allows reading, writing and basic
 modifications to the 3D surface measurements.
 
 # Installation
@@ -311,8 +313,7 @@ image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
 <img src="man/figures/logo-color.png" width="655" />
 
 Some masks are more informative than others, but the only requirement
-for images is that they are of the right
-size.
+for images is that they are of the right size.
 
 <img src="man/figures/csafe-leopard.png" width="49%" /><img src="man/figures/csafe-island.png" width="49%" />
 
