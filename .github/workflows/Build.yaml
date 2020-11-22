@@ -65,7 +65,7 @@ jobs:
       - name: Install R package deps on Linux/macOS
         if: runner.os != 'Windows'
         run: | 
-          Rscript -e 'remotes::install_cran(c("rgl", "png")'
+          Rscript -e 'remotes::install_cran(c("rgl", "png"))'
           export DISPLAY=:99
           
       - name: Install dependencies
