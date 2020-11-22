@@ -107,6 +107,7 @@ jobs:
       - name: Does rgl load?
         run: |
           options(width = 100)
+          options(rgl.useNULL = TRUE)
           library(rgl)
           library(x3ptools)
         shell: Rscript {0}
@@ -116,7 +117,9 @@ jobs:
           _R_CHECK_CRAN_INCOMING_: false
           RGL_USE_NULL: true
           _RGL_USE_NULL_: true
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "error", check_dir = "check")
+        run: |
+          options(rgl.useNULL = TRUE)
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "error", check_dir = "check")
         shell: Rscript {0}
 
       - name: Show testthat output
