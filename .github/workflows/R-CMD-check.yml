@@ -58,30 +58,43 @@ jobs:
       - name: Install XQuartz on macOS
         if: runner.os == 'macOS'
         run: |
-          #brew cask install xquartz
-          wget --quiet https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
-          hdiutil mount XQuartz-2.7.11.dmg
-          sudo installer -package /Volumes/XQuartz-2.7.11/XQuartz.pkg -target /
-          hdiutil unmount "/Volumes/XQuartz-2.7.11/"
+          brew cask install xquartz
+          
+#      - name: Install XQuartz on macOS
+#        if: runner.os == 'macOS'
+#        run: |
+          #wget --quiet https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
+          #hdiutil mount XQuartz-2.7.11.dmg
+          #sudo installer -package /Volumes/XQuartz-2.7.11/XQuartz.pkg -target /
+          #hdiutil unmount "/Volumes/XQuartz-2.7.11/"
+          
+#      - name: Update library linking on macOS
+#        if: runner.os == 'macOS'
+#        run: |
           #brew unlink libtiff
           #brew reinstall libtiff
           #brew unlink libjpeg
           #brew reinstall libjpeg
           #brew unlink libpng
           #brew reinstall libpng
-          echo $PATH
 
-          
+      - name: Install rgl from source
+        if: runner.os != 'Windows'
+        run: |
+          Rscript -e 'options(rgl.useNULL = TRUE)
+                      remotes::install_cran(c("rgl", "png"), type = "source")'
+        
       - name: Install R package deps on Linux/macOS
         if: runner.os != 'Windows'
         run: | 
-          Rscript -e 'options(rgl.useNULL = TRUE); remotes::install_cran(c("rgl", "png"), type = "source")'
-          export DISPLAY=:99
-          
-      - name: Try to fix mac rgl
-        if: runner.os == 'macOS'
-        run: unlink(system.file("libs/aglrgl.so", package="rgl"))
+          options(rgl.useNULL = TRUE)
+          remotes::install_cran("rgl", type = "source")
         shell: Rscript {0}
+          
+#      - name: Try to fix mac rgl
+#        if: runner.os == 'macOS'
+#        run: unlink(system.file("libs/aglrgl.so", package="rgl"))
+#        shell: Rscript {0}
           
       - name: Install dependencies
         run: |
