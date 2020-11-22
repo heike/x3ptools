@@ -18,9 +18,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: '3.6'}
-          - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-16.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+#          - {os: windows-latest, r: '3.6'}
+#          - {os: windows-latest, r: 'release'}
+#          - {os: ubuntu-16.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
           - {os: macOS-latest,   r: 'release'}
 
     env:
@@ -59,9 +59,11 @@ jobs:
           # brew cask install xquartz
           wget https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
           hdiutil mount XQuartz-2.7.11.dmg
-          cp -R "/Volumes/XQuartz-2.7.11/*.pkg" /Applications
-          cd ~
-          hdiutil unmount "/Volumes/XQuartz-2.7.11/"
+          cd /Volumes/XQuartz-2.7.11
+          ls
+          #cp -R "/Volumes/XQuartz-2.7.11/*.pkg" /Applications
+          #cd ~
+          #hdiutil unmount "/Volumes/XQuartz-2.7.11/"
           
       - name: Install R package deps on Linux/macOS
         if: runner.os != 'Windows'
