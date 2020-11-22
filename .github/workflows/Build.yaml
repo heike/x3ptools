@@ -65,7 +65,7 @@ jobs:
           brew reinstall libjpeg
           brew unlink libpng
           brew reinstall libpng
-          R CMD INSTALL --with-libpng-prefix=/usr/X11/lib/ rgl
+          R CMD INSTALL -l /usr/X11/lib/ rgl
 
           
       - name: Install R package deps on Linux/macOS
