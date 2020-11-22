@@ -58,13 +58,18 @@ jobs:
       - name: Install XQuartz on macOS
         if: runner.os == 'macOS'
         run: |
-          brew cask install xquartz
-          brew unlink libtiff
-          brew reinstall libtiff
-          brew unlink libjpeg
-          brew reinstall libjpeg
-          brew unlink libpng
-          brew reinstall libpng
+          #brew cask install xquartz
+          wget --quiet https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
+          hdiutil mount XQuartz-2.7.11.dmg
+          sudo installer -package /Volumes/XQuartz-2.7.11/XQuartz.pkg -target /
+          hdiutil unmount "/Volumes/XQuartz-2.7.11/"
+          #brew unlink libtiff
+          #brew reinstall libtiff
+          #brew unlink libjpeg
+          #brew reinstall libjpeg
+          #brew unlink libpng
+          #brew reinstall libpng
+          echo $PATH
 
           
       - name: Install R package deps on Linux/macOS
