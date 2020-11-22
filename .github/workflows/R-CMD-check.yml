@@ -70,8 +70,13 @@ jobs:
       - name: Install R package deps on Linux/macOS
         if: runner.os != 'Windows'
         run: | 
-          Rscript -e 'remotes::install_cran(c("rgl", "png"), type = "source")'
+          Rscript -e 'options(rgl.useNULL = TRUE); remotes::install_cran(c("rgl", "png"), type = "source")'
           export DISPLAY=:99
+          
+      - name: Try to fix mac rgl
+        if: runner.os == 'macOS'
+        run: unlink(system.file("libs/aglrgl.so", package="rgl"))
+        shell: Rscript {0}
           
       - name: Install dependencies
         run: |
