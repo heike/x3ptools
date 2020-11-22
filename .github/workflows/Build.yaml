@@ -58,15 +58,15 @@ jobs:
         run: |
           # brew cask install xquartz
           wget https://dl.bintray.com/xquartz/downloads/XQuartz-2.7.11.dmg
-          hdiutil mount XQuartz-2.7.11.dmg /Volumes/XQuartz
-          cp -R "/Volumes/XQuartz/*.app" /Applications
+          hdiutil mount XQuartz-2.7.11.dmg
+          cp -R "/Volumes/XQuartz-2.7.11/*.pkg" /Applications
           cd ~
-          hdiutil unmount "/Volumes/XQuartz/"
+          hdiutil unmount "/Volumes/XQuartz-2.7.11/"
           
       - name: Install R package deps on Linux/macOS
         if: runner.os != 'Windows'
         run: | 
-          Rscript -e 'remotes::install_cran(c("rgl", "rmarkdown", "assertthat", "covr", "testthat", "purrr", "magrittr", "dplyr", "readr", "zoo", "png"))'
+          Rscript -e 'remotes::install_cran(c("rgl", "png", "imager"))'
           export DISPLAY=:99
           
       - name: Install dependencies
