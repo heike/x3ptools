@@ -29,6 +29,7 @@ x3p_interpolate <- function(x3p, resx = 1e-6, resy = resx, maxgap = 1) {
   }
   sizes <- dim(x3p$surface.matrix)
   newsize <- round(sizes * c(x3p$header.info$incrementX / resx, x3p$header.info$incrementY / resy))
+  newsize <- pmax(newsize, c(1,1))
   seqx <- seq.int(from = 1, to = sizes[1])
 
   newseq <- seq.int(from = 1, to = newsize[1]) * resx / x3p$header.info$incrementX
@@ -42,6 +43,10 @@ x3p_interpolate <- function(x3p, resx = 1e-6, resy = resx, maxgap = 1) {
   matrix2 <- t(apply(matrix1, 1, na.approx,
     x = seqy, xout = newseq, na.rm = FALSE, maxgap = maxgap
   ))
+  if (!all(dim(matrix2) == newsize)) {
+    warning(sprintf("Setting matrix dimensions to %d x %d", newsize[1], newsize[2]))
+    dim(matrix2) <- newsize
+  }
 
   x3p$surface.matrix <- matrix2
 
