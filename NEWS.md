@@ -4,6 +4,8 @@
 
 - `x3p_snapshot` lets you take a snapshot of the currently active rgl device. The extension of the file determines the format.
 - `x3p_mask_quantile` adds a region to the mask of an x3p object corresponding to the area between two specified quantiles
+- `x3p_trim_na` trim x3p to remove missing values along the edge of the surface matrix
+- `x3p_extract` subset an x3p file based on specified mask values
 
 ## minor functionality 
 
