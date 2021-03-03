@@ -89,6 +89,7 @@ x3p_add_hline <- function(x3p, yintercept, size = 5, color = "#e6bf98") {
 #' @param spaces space between grid lines
 #' @param axis axis to calculate, as character
 #' @return vector of line locations
+#' @keywords internal
 calculate_spacing <- function(x3p, spaces, axis = "y") {
   increment <- x3p_show_xml(x3p, paste0("increment", toupper(axis)))[[1]]
   size <- x3p_show_xml(x3p, paste0("size", toupper(axis)))[[1]]

@@ -19,3 +19,4 @@ vector of line locations
 \description{
 Helper function, not exported.
 }
+\keyword{internal}
