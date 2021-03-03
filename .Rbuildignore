@@ -16,4 +16,3 @@ inst/*.R
 raw-data
 ^tic\.R$
 ^\.github$
-^.*.x3p$
