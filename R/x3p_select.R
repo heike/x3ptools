@@ -7,18 +7,21 @@
 #' @return x3p file with selection in mask
 #' @export
 #' @examples 
-#' if (!file.exists("fadul1-1.x3p")) {
-#'   url <- "https://tsapps.nist.gov/NRBTD/Studies/CartridgeMeasurement/DownloadMeasurement"
-#'   file <- "2d9cc51f-6f66-40a0-973a-a9292dbee36d"
-#'   download.file(file.path(url, file), destfile="fadul1-1.x3p")
-#' }
-#' x3p <- x3p_read("fadul1-1.x3p")
-#' x3p_image(x3p, size=c(500,500), zoom=.8)
-#' x3p <- x3p_select(x3p, update=TRUE, col="#FF0000") 
+#' \dontrun{
+#' if (interactive) {
+#'   if (!file.exists("fadul1-1.x3p")) {
+#'     url <- "https://tsapps.nist.gov/NRBTD/Studies/CartridgeMeasurement/DownloadMeasurement"
+#'     file <- "2d9cc51f-6f66-40a0-973a-a9292dbee36d"
+#'     download.file(file.path(url, file), destfile="fadul1-1.x3p")
+#'   }
+#'   x3p <- x3p_read("fadul1-1.x3p")
+#'   x3p_image(x3p, size=c(500,500), zoom=.8)
+#'   x3p <- x3p_select(x3p, update=TRUE, col="#FF0000") 
 #' 
-#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
-#' x3p_image(logo, size=c(500,500), zoom = 1)
-#' x3p_select(logo, update=TRUE, col="#00FF00") 
+#'   logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
+#'   x3p_image(logo, size=c(500,500), zoom = 1)
+#'   x3p_select(logo, update=TRUE, col="#00FF00") 
+#' }
 x3p_select <- function(x3p, col = "#FF0000", update=TRUE) {
   #  browser()
   stopifnot("x3p" %in% class(x3p))
