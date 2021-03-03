@@ -4,10 +4,12 @@
 \alias{df_to_x3p}
 \title{Convert  a data frame into an x3p file}
 \usage{
-df_to_x3p(dframe)
+df_to_x3p(dframe, var = "value")
 }
 \arguments{
 \item{dframe}{data frame. \code{dframe} must have the columns x, y, and value.}
+
+\item{var}{name of the variable containing the surface measurements. Defaults to "value".}
 }
 \value{
 x3p object

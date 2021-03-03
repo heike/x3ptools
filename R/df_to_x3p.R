@@ -78,12 +78,15 @@ x3p_to_df <- function(x3p) {
 #'
 #' @param dframe  data frame. `dframe` must have the columns x, y, and value.
 #' @return x3p object
+#' @param var name of the variable containing the surface measurements. Defaults to "value".
 #' @importFrom stats median
+#' @importFrom dplyr pull
 #' @export
-df_to_x3p <- function(dframe) {
+df_to_x3p <- function(dframe, var = "value") {
   x3p <- attributes(dframe)[-(1:3)]
   # first three attributes are names, row.names and class, we want to keep the others
-
+  if (var != "value") dframe$value <- pull(dframe, var)
+  
   # dframe must have columns x, y, and value
   stopifnot(!is.null(dframe$x), !is.null(dframe$y), !is.null(dframe$value))
 
