@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/heike/x3ptools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -189,11 +189,11 @@ The file extension determines the type of output. Possible extensions are png, s
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>image_x3p</span><span class='op'>(</span><span class='va'>logo</span>, file <span class='op'>=</span> <span class='st'>"logo.png"</span>, crosscut <span class='op'>=</span> <span class='fl'>50</span><span class='op'>*</span><span class='fl'>.645e-6</span><span class='op'>)</span>
+<span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>x3p_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>x3p_image</span><span class='op'>(</span><span class='va'>logo</span>, file <span class='op'>=</span> <span class='st'>"logo.png"</span>, crosscut <span class='op'>=</span> <span class='fl'>50</span><span class='op'>*</span><span class='fl'>.645e-6</span><span class='op'>)</span>
 <span class='co'># alternative to crosscut</span>
 <span class='va'>logoplus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_add_hline.html'>x3p_add_hline</a></span><span class='op'>(</span><span class='va'>logo</span>, yintercept <span class='op'>=</span> <span class='fl'>50</span><span class='op'>*</span><span class='fl'>.645e-6</span>, color <span class='op'>=</span> <span class='st'>"#e6bf98"</span>, size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-<span class='fu'>image_x3p</span><span class='op'>(</span><span class='va'>logoplus</span>, size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>741</span>, <span class='fl'>419</span><span class='op'>)</span>, zoom<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
+<span class='fu'>x3p_image</span><span class='op'>(</span><span class='va'>logoplus</span>, size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>741</span>, <span class='fl'>419</span><span class='op'>)</span>, zoom<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

@@ -82,7 +82,7 @@ In case the dimensions of the surface matrix do not allow for the full dimension
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -96,7 +96,7 @@ In case the dimensions of the surface matrix do not allow for the full dimension
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/heike/x3ptools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -153,11 +153,11 @@ In case the dimensions of the surface matrix do not allow for the full dimension
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>x3p_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># crop the x3p file to just the CSAFE logo</span>
 <span class='va'>logo_only</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_crop</span><span class='op'>(</span><span class='va'>logo</span>, x<span class='op'>=</span><span class='fl'>20</span>, y<span class='op'>=</span><span class='fl'>50</span>, width <span class='op'>=</span> <span class='fl'>255</span> ,height <span class='op'>=</span><span class='fl'>310</span><span class='op'>)</span>
 <span class='va'>logo_only</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_crop</span><span class='op'>(</span><span class='va'>logo</span>, x<span class='op'>=</span><span class='fl'>20</span>, y<span class='op'>=</span><span class='fl'>50</span>, width <span class='op'>=</span> <span class='fl'>255</span> ,height <span class='op'>=</span><span class='fl'>510</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Specified dimension are adjusted to fit within range of the surface matrix: 255 x 369</span></div><div class='input'><span class='co'># image_x3p(logo_only, size=c(500,500), zoom = 1)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Specified dimension are adjusted to fit within range of the surface matrix: 255 x 369</span></div><div class='input'><span class='co'># x3p_image(logo_only, size=c(500,500), zoom = 1)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

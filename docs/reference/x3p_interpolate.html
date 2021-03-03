@@ -42,7 +42,7 @@
 <meta property="og:title" content="Interpolate from an x3p object — x3p_interpolate" />
 <meta property="og:description" content="An interpolated scan is created at specified resolutions resx, resy in x and y direction.
 The interpolation is based on na.approx from the zoo package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but it is not recommended to do so.
-interpolate_x3p can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution." />
+x3p_interpolate can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution." />
 
 
 
@@ -82,7 +82,7 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -96,7 +96,7 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/heike/x3ptools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -121,7 +121,7 @@ interpolate_x3p can also be used as a way to linearly interpolate any missing va
     <div class="ref-description">
     <p>An interpolated scan is created at specified resolutions <code>resx</code>, <code>resy</code> in x and y direction.
 The interpolation is based on <code>na.approx</code> from the <code>zoo</code> package. It is possible to create interpolations at a higher resolution than the one specified in the data itself, but it is not recommended to do so.
-<code>interpolate_x3p</code> can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.</p>
+<code>x3p_interpolate</code> can also be used as a way to linearly interpolate any missing values in an existing scan without changing the resolution.</p>
     </div>
 
     <pre class="usage"><span class='fu'>x3p_interpolate</span><span class='op'>(</span><span class='va'>x3p</span>, resx <span class='op'>=</span> <span class='fl'>1e-06</span>, resy <span class='op'>=</span> <span class='va'>resx</span>, maxgap <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
@@ -154,11 +154,11 @@ The interpolation is based on <code>na.approx</code> from the <code>zoo</code> p
     <p>interpolated x3p object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>x3p_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># resolution:</span>
 <span class='va'>logo</span><span class='op'>$</span><span class='va'>header.info</span><span class='op'>$</span><span class='va'>incrementX</span>
 </div><div class='output co'>#&gt; [1] 6.45e-07</div><div class='input'><span class='co'># change resolution to 1 micron = 1e-6 meters</span>
-<span class='va'>logo2</span> <span class='op'>&lt;-</span> <span class='fu'>interpolate_x3p</span><span class='op'>(</span><span class='va'>logo</span>, resx <span class='op'>=</span> <span class='fl'>1e-6</span><span class='op'>)</span>
+<span class='va'>logo2</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_interpolate</span><span class='op'>(</span><span class='va'>logo</span>, resx <span class='op'>=</span> <span class='fl'>1e-6</span><span class='op'>)</span>
 <span class='va'>logo2</span><span class='op'>$</span><span class='va'>header.info</span><span class='op'>$</span><span class='va'>incrementX</span>
 </div><div class='output co'>#&gt; [1] 1e-06</div></pre>
   </div>

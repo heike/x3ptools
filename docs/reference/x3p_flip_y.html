@@ -83,7 +83,7 @@ conform to the newest ISO norm." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,7 +97,7 @@ conform to the newest ISO norm." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/heike/x3ptools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -144,16 +144,16 @@ conform to the newest ISO norm.</p>
     <p>x3p object in which the y coordinate is reversed.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>read_x3p</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>x3p_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>logo</span><span class='op'>$</span><span class='va'>surface.matrix</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 741 419</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='x3p_image.html'>image_x3p</a></span><span class='op'>(</span><span class='va'>logo</span><span class='op'>)</span>
+<span class='fu'><a href='x3p_image.html'>x3p_image</a></span><span class='op'>(</span><span class='va'>logo</span><span class='op'>)</span>
 <span class='op'>}</span>
 <span class='co'># flip the y-axis for the old ISO standard:</span>
-<span class='va'>logoflip</span> <span class='op'>&lt;-</span> <span class='fu'>y_flip_x3p</span><span class='op'>(</span><span class='va'>logo</span><span class='op'>)</span>
+<span class='va'>logoflip</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_flip_y</span><span class='op'>(</span><span class='va'>logo</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>logoflip</span><span class='op'>$</span><span class='va'>surface.matrix</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 741 419</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'><a href='x3p_image.html'>image_x3p</a></span><span class='op'>(</span><span class='va'>logoflip</span><span class='op'>)</span>
+<span class='fu'><a href='x3p_image.html'>x3p_image</a></span><span class='op'>(</span><span class='va'>logoflip</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert x3p header information to microns from meters — x3p_m_to_mum • x3ptools</title>
+<title>Flip the x coordinate of an x3p file — x3p_flip_x • x3ptools</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,8 @@
 
 
 
-<meta property="og:title" content="Convert x3p header information to microns from meters — x3p_m_to_mum" />
-<meta property="og:description" content="ISO standard 5436_2 asks for specification of values in meters.
-For topographic surfaces collected by microscopes values in microns are
-more readable. Besides scaling the values in the surface matrix, corresponding
-increments are changed to microns as well." />
+<meta property="og:title" content="Flip the x coordinate of an x3p file — x3p_flip_x" />
+<meta property="og:description" content="Flip the surface matrix of an x3p file along the x axis." />
 
 
 
@@ -114,33 +111,45 @@ increments are changed to microns as well." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert x3p header information to microns from meters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/convert.R'><code>R/convert.R</code></a></small>
-    <div class="hidden name"><code>x3p_m_to_mum.Rd</code></div>
+    <h1>Flip the x coordinate of an x3p file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/x3p_flip_x.R'><code>R/x3p_flip_x.R</code></a></small>
+    <div class="hidden name"><code>x3p_flip_x.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>ISO standard 5436_2 asks for specification of values in meters.
-For topographic surfaces collected by microscopes values in microns are
-more readable. Besides scaling the values in the surface matrix, corresponding
-increments are changed to microns as well.</p>
+    <p>Flip the surface matrix of an x3p file along the x axis.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_m_to_mum</span><span class='op'>(</span><span class='va'>x3p</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>x3p_flip_x</span><span class='op'>(</span><span class='va'>x3p</span><span class='op'>)</span>
+
+<span class='fu'>x_flip_x3p</span><span class='op'>(</span><span class='va'>x3p</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x3p</th>
-      <td><p>x3p file with header information in meters</p></td>
+      <td><p>x3p object</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>x3p with header information in microns</p>
+    <p>x3p object in which the x coordinate is reversed.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>logo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='x3p_read.html'>x3p_read</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"csafe-logo.x3p"</span>, package<span class='op'>=</span><span class='st'>"x3ptools"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>logo</span><span class='op'>$</span><span class='va'>surface.matrix</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 741 419</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='x3p_image.html'>x3p_image</a></span><span class='op'>(</span><span class='va'>logo</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># flip the y-axis for the old ISO standard:</span>
+<span class='va'>logoflip</span> <span class='op'>&lt;-</span> <span class='fu'>x3p_flip_x</span><span class='op'>(</span><span class='va'>logo</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>logoflip</span><span class='op'>$</span><span class='va'>surface.matrix</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 741 419</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='x3p_image.html'>x3p_image</a></span><span class='op'>(</span><span class='va'>logoflip</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
