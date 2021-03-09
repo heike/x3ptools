@@ -120,6 +120,10 @@ df_to_x3p <- function(dframe, var = "value") {
     x3p$matrix.info <- list(MatrixDimension = list(SizeX = nx, SizeY = ny, SizeZ = 1))
   }
   class(x3p) <- "x3p"
+  
+  if (!is.null(dframe$mask)) {
+    x3p <- x3p %>% x3p_add_mask(mask = matrix(dframe$mask, nrow = dim(x3p$surface.matrix)[2]))
+  }
 
   x3p
 }

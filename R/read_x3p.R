@@ -36,9 +36,15 @@ x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
   result <- unzip(fname, exdir = mydir)
   if (length(result) == 0) stop(sprintf("File %s is not an x3p file", fname)) # unzipping didn't work
   ## see what we got:
-  data <- grep(".bin$", result) # data has extension .bin
+  data <- grep("data.bin$", result) # data has extension .bin
   meta <- grep(".xml$", result) # meta info has extension .xml
-  mask <- grep(".png$", result, value = TRUE) # mask has extension .png
+  mask <- grep(".png$", result, value = TRUE) # mask has extension .png # for CSAFE
+ # browser()
+  cadre <- FALSE
+  if (length(mask)==0) {
+    mask <- grep("mask.bin$", result, value = TRUE) # mask has extension .png # for Cadre
+    if (length(mask) > 0) cadre <- TRUE
+  }
   # if we have not exactly one of each we have a problem:
   stopifnot(length(data) == 1, length(meta) == 1) # nice error messages would be good
 
@@ -126,10 +132,16 @@ x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
   if (length(mask) > 0) {
     #  png <- magick::image_read(mask)
     png <- png::readPNG(mask, native = FALSE)
+    if (cadre) {
+      nc <- ncol(png)
+      png <- png[,nc:1]
+    }
     raster <- as.raster(png)
-    if (dim(png)[3] == 4) {
+    if (!(is.na(dim(png)[3]))) {
+      if (dim(png)[3] == 4) {
       # bit of a workaround - not sure why #rrggbb00 is not recognized as transparent automatically
       raster[png[, , 4] == 0] <- "transparent"
+      }
     }
     #  browser()
     res <- x3p_add_mask(res, mask = raster)
