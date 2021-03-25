@@ -14,6 +14,7 @@ x3p_image(
   size = c(750, 250),
   zoom = 0.35,
   multiply = 5,
+  update = FALSE,
   ...
 )
 
@@ -46,6 +47,8 @@ The file extension determines the type of output. Possible extensions are png, s
 \item{zoom}{numeric value indicating the amount of zoom}
 
 \item{multiply}{exaggerate the relief by factor multiply}
+
+\item{update}{Boolean value indicating whether a scene should be updated (defaults to FALSE). If FALSE, a new rgl device is opened.}
 
 \item{...}{not used}
 }

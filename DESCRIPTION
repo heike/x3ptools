@@ -19,8 +19,9 @@ Maintainer: Heike Hofmann <hofmann@iastate.edu>
 Description: The x3p file format  is specified in ISO standard 5436:2000 to 
     describe 3d surface measurements. 'x3ptools' allows reading, writing and 
     basic modifications to the 3D surface measurements.
-Depends: R (>= 3.3)
-Imports: digest (>= 0.6.15),
+Depends: R (>= 3.6)
+Imports: MASS (>= 7.3),
+         digest (>= 0.6.15),
          xml2 (>= 1.2.0),
          rgl (>= 0.99.9),
          zoo (>= 1.8.1),
