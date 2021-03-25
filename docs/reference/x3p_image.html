@@ -129,6 +129,7 @@
   size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>750</span>, <span class='fl'>250</span><span class='op'>)</span>,
   zoom <span class='op'>=</span> <span class='fl'>0.35</span>,
   multiply <span class='op'>=</span> <span class='fl'>5</span>,
+  update <span class='op'>=</span> <span class='cn'>FALSE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span>
 
@@ -179,6 +180,10 @@ The file extension determines the type of output. Possible extensions are png, s
     <tr>
       <th>multiply</th>
       <td><p>exaggerate the relief by factor multiply</p></td>
+    </tr>
+    <tr>
+      <th>update</th>
+      <td><p>Boolean value indicating whether a scene should be updated (defaults to FALSE). If FALSE, a new rgl device is opened.</p></td>
     </tr>
     <tr>
       <th>...</th>
