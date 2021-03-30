@@ -8,7 +8,7 @@ state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build
 Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2020--11--22-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2021--03--27-yellowgreen.svg)](/commits/master)
 [![Coverage
 status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)[![Github
 Actions
@@ -61,8 +61,8 @@ names(logo)
 
 The four info objects specify the information for Record1 through
 Record4 in the xml file. An example for an xml file is provided with the
-package and can be accessed as `system.file("templateXML.xml",
-package="x3ptools")`.
+package and can be accessed as
+`system.file("templateXML.xml", package="x3ptools")`.
 
 `header.info` contains the information relevant to interpret locations
 for the surface matrix:
@@ -180,6 +180,11 @@ visualize these raster images, e.g. using `ggplot2`:
 
 ``` r
 library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.0.2
+
+``` r
 library(magrittr)
 
 logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
