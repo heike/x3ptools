@@ -8,6 +8,7 @@
 * `x3p_extract` subset an x3p file based on specified mask values
 * `x3p_select` interactively select a rectangle on an x3p surface 
 * `x3p_fuzzyselect` repeatedly select a rectangle of interest, expand selection to include similar values based on robust linear model
+* `stl_to_x3p` convert STL files of topographic surfaces to x3p files
 
 
 ## minor functionality 
