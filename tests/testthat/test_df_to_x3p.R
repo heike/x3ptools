@@ -12,7 +12,7 @@ test_that("df_to_x3p works as expected", {
     )
   )
 
-  expect_silent(tmp <- df_to_x3p(dftest[, c(1, 2, 4)]))
+  expect_silent(tmp <- df_to_x3p(dftest[, c(1, 2, 4, 5)]))
   expect_equivalent(
     tmp$surface.matrix,
     matrix(dplyr::arrange(dftest, desc(y))$value,

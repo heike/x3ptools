@@ -5,7 +5,7 @@
 #   okfiles <- list.files(here::here("tests/"), ".Rdata", full.names = T)
 # }
 
-`%>%` <- dplyr::`%>%`
+#`%>%` <- dplyr::`%>%`
 
 url_unreachable <- function(url) {
   ("try-error" %in% class(try(xml2::read_html(url), silent = T)))
@@ -16,11 +16,11 @@ dftest <- expand.grid(x = 1:6, y = 1:7) %>%
   as.data.frame() %>%
   dplyr::mutate(
     z = rnorm(42, 0, .1) + sqrt((x - 3.5)^2 + (y - 3.5)^2),
-    value = z
+    value = z,
+    mask = sample(c("#FFFF00", "#0000FF", "#00FF00"), size = 42, replace=TRUE)
   )
 
 x3ptest <- df_to_x3p(dftest[, c(1, 2, 4)])
-
 
 bigdf <- expand.grid(x = 0:50, y = 0:100) %>%
   as.data.frame() %>%
