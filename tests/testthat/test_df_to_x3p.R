@@ -28,12 +28,13 @@ test_that("df_to_x3p works as expected", {
 })
 
 test_that("x3p_to_df works as expected", {
-  expect_silent(tmp <- x3p_to_df(x3ptest))
+  expect_silent(tmp <- x3p_to_df(x3ptest_mask))
   expect_equivalent(
     tmp %>%
       dplyr::mutate(x = x + 1, y = y + 1) %>%
-      dplyr::arrange(y, x),
-    dftest[, c(1, 2, 4)]
+      dplyr::arrange(y, x) %>%
+      dplyr::select(-maskmerge),
+    dftest[, c(1, 2, 4, 5)]
   )
 
   x3ptest2 <- x3ptest
