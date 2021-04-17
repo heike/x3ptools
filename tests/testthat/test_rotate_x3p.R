@@ -29,3 +29,8 @@ test_that("transpose_x3p works as expected", {
 test_that("y_flip_x3p works as expected", {
   expect_equivalent(x3ptest_yflip$surface.matrix, x3ptest$surface.matrix[, rev(1:ncol(x3ptest$surface.matrix))])
 })
+
+test_that("x3p_flip_x works as expected", {
+  x3ptest_xflip <- x3ptest %>% x3p_flip_x()
+  expect_equivalent(x3ptest_xflip$surface.matrix, x3ptest$surface.matrix[rev(1:nrow(x3ptest$surface.matrix)),])
+})
