@@ -19,6 +19,17 @@
 #' }
 x3p_add_mask <- function(x3p, mask = NULL) {
   stopifnot("x3p" %in% class(x3p))
+  
+  # This is necessary so that mask information can be added
+  # HH: I'm not sure how this could happen. Both df_to_x3p and x3p_read create the matrix
+  if (!"matrix.info" %in% names(x3p)) {
+    x3p$matrix.info <- list(MatrixDimension = list(
+      SizeX = dim(x3p$surface.matrix)[1],
+      SizeY = dim(x3p$surface.matrix)[2],
+      SizeZ = 1
+    ))
+  }
+  
   dims <- rev(dim(x3p$surface.matrix))
   if (is.null(mask)) {
     if (!"Mask" %in% names(x3p$matrix.info)) {
@@ -43,14 +54,6 @@ x3p_add_mask <- function(x3p, mask = NULL) {
   }
   x3p$mask <- mask
 
-  # This is necessary so that mask information can be added
-  if (!"matrix.info" %in% names(x3p)) {
-    x3p$matrix.info <- list(MatrixDimension = list(
-      SizeX = dim(x3p$surface.matrix)[1],
-      SizeY = dim(x3p$surface.matrix)[2],
-      SizeZ = 1
-    ))
-  }
 
   x3p
 }

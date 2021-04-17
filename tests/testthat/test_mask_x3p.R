@@ -2,8 +2,10 @@ context("test-mask_x3p")
 
 test_that("x3p_add_mask works", {
   expectednames <- c("surface.matrix", "header.info", "matrix.info", "mask")
-  # With null mask
-  x3ptest_mask <- x3p_add_mask(x3ptest)
+  # With null mask and malformed x3p:
+  x3p_mal <- x3ptest
+  x3p_mal$matrix.info <- NULL
+  x3ptest_mask <- x3p_add_mask(x3p_mal)
   expect_named(x3ptest_mask,
     expected = expectednames
   )
