@@ -22,8 +22,13 @@ dftest <- expand.grid(x = 1:6, y = 1:7) %>%
 
 x3ptest <- df_to_x3p(dftest[, c(1, 2, 4)])
 
-x3ptest_mask <- df_to_x3p(dftest[, c(1, 2, 4, 5)])
 
+x3ptest_mask <- df_to_x3p(dftest[, c(1, 2, 4, 5)])
+x3ptest_mask <- x3ptest_mask %>% 
+  x3p_add_annotation("#FFFF00", "yellow")  %>%
+  x3p_add_annotation("#00FF00", "green")  %>%
+  x3p_add_annotation("#0000FF", "blue")  
+  
 bigdf <- expand.grid(x = 0:50, y = 0:100) %>%
   as.data.frame() %>%
   dplyr::mutate(

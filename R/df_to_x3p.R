@@ -62,6 +62,7 @@ x3p_to_df <- function(x3p) {
     annotations <- x3p_mask_legend(x3p)
     if (!is.null(annotations)) {
       legend <- data.frame(maskmerge = annotations, annotation = names(annotations))
+      legend$maskmerge <- tolower(legend$maskmerge)
       df <- merge(df, legend, by = "maskmerge", all.x = TRUE)
       df <- select(df, -"maskmerge")
     }

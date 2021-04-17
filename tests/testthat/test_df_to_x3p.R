@@ -33,7 +33,7 @@ test_that("x3p_to_df works as expected", {
     tmp %>%
       dplyr::mutate(x = x + 1, y = y + 1) %>%
       dplyr::arrange(y, x) %>%
-      dplyr::select(-maskmerge),
+      dplyr::select(-annotation),
     dftest[, c(1, 2, 4, 5)]
   )
 

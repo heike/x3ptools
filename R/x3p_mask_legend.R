@@ -16,7 +16,10 @@ x3p_mask_legend <- function(x3p) {
   colors <- unlist(lapply(x3p$matrix.info$Mask$Annotations, attributes))
   names(colors) <- annotations
 
-  background <- x3p_show_xml(x3p, "Background")
+  background <- list()
+  elements <- x3p_show_xml(x3p,"*")
+  if ("Background" %in% elements) 
+    background <- x3p_show_xml(x3p, "Background")
   if (length(background) > 0) {
     colors <- c(background[[1]], colors)
     names(colors)[1] <- "well expressed striae"
