@@ -2,8 +2,6 @@ context("x3p_trim_na")
 
 
 test_that("x3p_trim_na works as expected", {
-  expect_silent(tmp <- x3ptest_mask %>% x3p_crop(width=4,height=4))
-
   logo_NA <- logo
   logo_NA$surface.matrix[logo_NA$surface.matrix == median(logo_NA$surface.matrix)] <- NA
   tmp <- x3p_trim_na(logo_NA)
@@ -20,7 +18,25 @@ test_that("x3p_trim_na works as expected", {
   
   expect_equivalent(
     dim(tmp$surface.matrix),
-    c(diff(idx_rows)-1, diff(idx_cols)-1)
+    c(diff(idx_rows), diff(idx_cols))
+  )
+  
+  # missing values inside the file should not be removed
+  logo_NA <- logo
+  logo_NA$surface.matrix[,50] <- NA
+  logo_NA$surface.matrix[50,] <- NA
+  tmp <- x3p_trim_na(logo_NA)
+  
+  expect_equivalent(
+    tmp$surface.matrix,
+    logo_NA$surface.matrix
+  )  
+
+  # trimming a file without missing value should not do anything
+  tmp <- logo %>% x3p_trim_na()
+  expect_equivalent(
+    logo$surface.matrix,
+    tmp$surface.matrix
   )
 })
 
