@@ -18,24 +18,19 @@ x3p_trim_na <- function(x3p) {
   rows <- apply(x3p$surface.matrix, MARGIN=1, FUN=function(x) sum(is.na(x)))
   idx <- which(rows == dim(x3p$surface.matrix)[2])
   if (length(idx) > 0) {
-    if (idx[1] != 1) {
-      xmin <- 1
-    } else xmin <- max(which(idx==1:length(idx))) +1
-    if (idx[length(idx)] != dim(x3p$surface.matrix)[1]) {
-      xmax <- dim(x3p$surface.matrix)[1]
-    } else xmax <- idx[min(which(idx==(dim(x3p$surface.matrix)[1] - rev(seq_along(idx))+1)))]-1
+    if (idx[1] == 1) xmin <- max(which(idx==1:length(idx))) +1
+    if (idx[length(idx)] == dim(x3p$surface.matrix)[1]) 
+      xmax <- idx[min(which(idx==(dim(x3p$surface.matrix)[1] - rev(seq_along(idx))+1)))]-1
   }
   
   cols <- apply(x3p$surface.matrix, MARGIN=2, FUN=function(x) sum(is.na(x)))
   idx <- which(cols == dim(x3p$surface.matrix)[1])
   
   if (length(idx) > 0) {
-    if (idx[1] != 1) {
-      ymin <- 1
-    } else ymin <- max(which(idx==1:length(idx))) +1
-    if (idx[length(idx)] != dim(x3p$surface.matrix)[2]) {
-      ymax <- dim(x3p$surface.matrix)[2]
-    } else ymax <- idx[min(which(idx==(dim(x3p$surface.matrix)[2] - rev(seq_along(idx))+1)))]-1
+    if (idx[1] == 1) 
+      ymin <- max(which(idx==1:length(idx))) +1
+    if (idx[length(idx)] == dim(x3p$surface.matrix)[2]) 
+      ymax <- idx[min(which(idx==(dim(x3p$surface.matrix)[2] - rev(seq_along(idx))+1)))]-1
   }
   
 #  browser()
