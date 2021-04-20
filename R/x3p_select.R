@@ -250,10 +250,10 @@ x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
 #'   x3p <- x3p_extract_profile(x3p, update=TRUE, col="#FFFF00") 
 #'   x3p$line_df %>% 
 #'     ggplot(aes(x = x, y = value)) + geom_line() +
-#'     geom_vline(xintercept = c(0.45, 2.15), colour = "blue")
+#'     geom_vline(xintercept = c(.4, 2.15), colour = "blue")
 #'     
 #'  sigs <- bulletxtrctr::cc_get_signature(ccdata = x3p$line_df, 
-#'    grooves = list(groove=c(0.45, 2.15)), span1 = 0.75, span2 = 0.03)
+#'    grooves = list(groove=c(.4, 2.15)), span1 = 0.75, span2 = 0.03)
 #'  sigs %>% 
 #'    ggplot(aes(x = x)) + 
 #'      geom_line(aes(y = raw_sig), colour = "grey50") +

@@ -18,8 +18,9 @@ x3p_mask_legend <- function(x3p) {
 
   background <- list()
   elements <- x3p_show_xml(x3p,"*")
-  if ("Background" %in% elements) 
-    background <- x3p_show_xml(x3p, "Background")
+  element_bg <- grep("Background", names(elements), value=TRUE)
+  if (length(element_bg) > 0) 
+    background <- x3p_show_xml(x3p, element_bg[1])
   if (length(background) > 0) {
     colors <- c(background[[1]], colors)
     names(colors)[1] <- "well expressed striae"

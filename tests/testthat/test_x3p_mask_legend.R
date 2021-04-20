@@ -76,4 +76,5 @@ test_that("x3p_mask_legend", {
   expect_null(x3p_mask_legend(x3ptest))
   x3pmask <- x3ptest %>% x3p_add_mask()
   expect_null(x3p_mask_legend(x3ptest))
+  x3pbig2
 })
