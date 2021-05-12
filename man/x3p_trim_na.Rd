@@ -4,10 +4,12 @@
 \alias{x3p_trim_na}
 \title{Trim rows and columns with missing values only from an x3p}
 \usage{
-x3p_trim_na(x3p)
+x3p_trim_na(x3p, ratio = 1)
 }
 \arguments{
 \item{x3p}{x3p object}
+
+\item{ratio}{ratio between zero and one, indicating the percent of values that need to be missing in each row and column, for the row or column to be removed}
 }
 \value{
 x3p object of the same or smaller dimension where missing values are removed from the boundaries
