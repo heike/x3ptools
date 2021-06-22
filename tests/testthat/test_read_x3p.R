@@ -6,6 +6,8 @@ context("read_x3p")
 url <- "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurement/43567404-1611-4b40-ae74-a1e440e79f6a"
 
 test_that("read_x3p works as expected", {
+  skip_if_offline(host = "tsapps.nist.gov")
+  
   tmp <- read_x3p(url, quiet = T)
   expect_equivalent(tmp$header.info$sizeY, 1588)
   expect_equivalent(tmp$header.info$incrementY, 1.5625e-06)
