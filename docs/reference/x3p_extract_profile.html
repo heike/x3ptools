@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert x3p header information to microns from meters — x3p_m_to_mum • x3ptools</title>
+<title>Interactively select a line on the active rgl device — x3p_extract_profile • x3ptools</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,10 @@
 
 
 
-<meta property="og:title" content="Convert x3p header information to microns from meters — x3p_m_to_mum" />
-<meta property="og:description" content="ISO standard 5436_2 asks for specification of values in meters.
-For topographic surfaces collected by microscopes values in microns are
-more readable. Besides scaling the values in the surface matrix, corresponding
-increments are changed to microns as well." />
+<meta property="og:title" content="Interactively select a line on the active rgl device — x3p_extract_profile" />
+<meta property="og:description" content="Use the right mouse button (double-finger on track pad) to identify to points on the
+active rgl device (this rgl device should show the surface of an x3p object). These points define the beginning and end  of a line segment.
+The line segment is drawn on the mask of the x3p object." />
 
 
 
@@ -114,32 +113,44 @@ increments are changed to microns as well." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert x3p header information to microns from meters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/convert.R'><code>R/convert.R</code></a></small>
-    <div class="hidden name"><code>x3p_m_to_mum.Rd</code></div>
+    <h1>Interactively select a line on the active rgl device</h1>
+    <small class="dont-index">Source: <a href='https://github.com/heike/x3ptools/blob/master/R/x3p_select.R'><code>R/x3p_select.R</code></a></small>
+    <div class="hidden name"><code>x3p_extract_profile.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>ISO standard 5436_2 asks for specification of values in meters.
-For topographic surfaces collected by microscopes values in microns are
-more readable. Besides scaling the values in the surface matrix, corresponding
-increments are changed to microns as well.</p>
+    <p>Use the right mouse button (double-finger on track pad) to identify to points on the
+active rgl device (this rgl device should show the surface of an x3p object). These points define the beginning and end  of a line segment.
+The line segment is drawn on the mask of the x3p object.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>x3p_m_to_mum</span><span class='op'>(</span><span class='va'>x3p</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>x3p_extract_profile</span><span class='op'>(</span><span class='va'>x3p</span>, col <span class='op'>=</span> <span class='st'>"#FF0000"</span>, update <span class='op'>=</span> <span class='cn'>TRUE</span>, line_out <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x3p</th>
-      <td><p>x3p file with header information in meters</p></td>
+      <td><p>x3p file</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>character value of the selection color</p></td>
+    </tr>
+    <tr>
+      <th>update</th>
+      <td><p>boolean value, whether the rgl window should be updated to show the selected circle</p></td>
+    </tr>
+    <tr>
+      <th>line_out</th>
+      <td><p>boolean enhavce result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to
+the second click (max x). The values of x in the result are in the same units as the original x3p.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>x3p with header information in microns</p>
+    <p>x3p file with identified in mask enhanced by a dataframe of the line segment (line_df).</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
