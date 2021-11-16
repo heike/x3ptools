@@ -21,7 +21,7 @@
 #'   logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #'   x3p_image(logo, size=c(500,500), zoom = 1)
 #'   x3p_select(logo, update=TRUE, col="#00FF00") 
-#' }
+#' }}
 x3p_select <- function(x3p, col = "#FF0000", update=TRUE) {
  #   browser()
   stopifnot("x3p" %in% class(x3p))
@@ -85,7 +85,7 @@ x3p_select <- function(x3p, col = "#FF0000", update=TRUE) {
 #'   logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #'   x3p_image(logo, size=c(500,500), zoom = 1)
 #'   x3p_fuzzyselect(logo, update=TRUE, col="#00FF00") 
-#' }
+#' }}
 x3p_fuzzyselect <- function(x3p, col="#FF0000", mad=5, type="plane", update=TRUE) {
   ids <- rgl::ids3d()
   if (nrow(ids) == 0) {
@@ -180,7 +180,7 @@ x3p_fuzzyselect <- function(x3p, col="#FF0000", mad=5, type="plane", update=TRUE
 #'   logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #'   x3p_image(logo, size=c(500,500), zoom = 1)
 #'   x3p_circle_select(logo, update=TRUE, col="#00FF00") 
-#' }
+#' }}
 x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
   cat("Select 3 points on the circumference of the circle you want to select ...\n")
   stopifnot("x3p" %in% class(x3p))
@@ -259,7 +259,7 @@ x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
 #'      geom_line(aes(y = raw_sig), colour = "grey50") +
 #'      geom_line(aes(y = sig), size = 1) +
 #'      theme_bw() 
-#' }
+#' }}
 x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE) {
   cat("Select start point and endpoint on the surface ...\n")
   stopifnot("x3p" %in% class(x3p))
