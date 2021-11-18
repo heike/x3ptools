@@ -24,3 +24,22 @@ Use the right mouse button (double-finger on track pad) to identify to points on
 active rgl device (this rgl device should show the surface of an x3p object). These points define the beginning and end  of a line segment.
 The line segment is drawn on the mask of the x3p object.
 }
+\examples{
+\dontrun{
+if (interactive) {
+  x3p <- x3p_read("~/Documents/Data/Klein/STL-files GelSight/standard-bullet-land.x3p")
+  x3p \%>\% image_x3p(size=dim(x3p$surface.matrix), multiply=1, zoom=1)
+  x3p <- x3p_extract_profile(x3p, update=TRUE, col="#FFFF00") 
+  x3p$line_df \%>\% 
+    ggplot(aes(x = x, y = value)) + geom_line() +
+    geom_vline(xintercept = c(.4, 2.15), colour = "blue")
+    
+ sigs <- bulletxtrctr::cc_get_signature(ccdata = x3p$line_df, 
+   grooves = list(groove=c(.4, 2.15)), span1 = 0.75, span2 = 0.03)
+ sigs \%>\% 
+   ggplot(aes(x = x)) + 
+     geom_line(aes(y = raw_sig), colour = "grey50") +
+     geom_line(aes(y = sig), size = 1) +
+     theme_bw() 
+}}
+}
