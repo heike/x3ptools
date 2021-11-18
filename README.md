@@ -6,9 +6,7 @@ downloads](http://cranlogs.r-pkg.org/badges/x3ptools)](http://www.r-pkg.org/pkg/
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Travis-CI Build
-Status](https://travis-ci.org/heike/x3ptools.svg?branch=master)](https://travis-ci.org/heike/x3ptools)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2021--03--27-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2021--11--18-yellowgreen.svg)](/commits/master)
 [![Coverage
 status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)[![Github
 Actions
@@ -123,7 +121,7 @@ image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rglwidget()
 ```
 
-<img src="man/figures/logo-rgl.png" width="360" />
+![](man/figures/logo-rgl.png)<!-- -->
 
 In case a file name is specified in the function call the resulting
 surface is saved in a file (the extension determines the actual file
@@ -143,7 +141,7 @@ image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rglwidget()
 ```
 
-<img src="man/figures/logo-rgl-grid.png" width="350" />
+![](man/figures/logo-rgl-grid.png)<!-- -->
 
 ### Casting between data types
 
@@ -180,11 +178,6 @@ visualize these raster images, e.g. using `ggplot2`:
 
 ``` r
 library(ggplot2)
-```
-
-    ## Warning: package 'ggplot2' was built under R version 4.0.2
-
-``` r
 library(magrittr)
 
 logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
@@ -302,7 +295,7 @@ barrel of the handgun when fired), areas in dark blue show groove
 engraved areas, the light blue area shows break off at the bottom of the
 bullet, and the pink area marks an area without striae:
 
-<img src="man/figures/markup.png" width="750" />
+![](man/figures/markup.png)<!-- -->
 
 Any image can serve as a mask, the command `x3p_add_mask` allows to add
 a raster image as a mask for a x3p object:
@@ -315,7 +308,7 @@ logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
 image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
 ```
 
-<img src="man/figures/logo-color.png" width="655" />
+![](man/figures/logo-color.png)<!-- -->
 
 Some masks are more informative than others, but the only requirement
 for images is that they are of the right size.
@@ -337,4 +330,4 @@ logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
 #image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
 ```
 
-<img src="man/figures/logo-lines.png" width="370" />
+![](man/figures/logo-lines.png)<!-- -->
