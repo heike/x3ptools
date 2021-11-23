@@ -23,3 +23,20 @@ x3p file with updated mask
 \description{
 Interactive selection of region of interest
 }
+\examples{
+\dontrun{
+if (interactive) {
+  if (!file.exists("fadul1-1.x3p")) {
+    url <- "https://tsapps.nist.gov/NRBTD/Studies/CartridgeMeasurement/DownloadMeasurement"
+    file <- "2d9cc51f-6f66-40a0-973a-a9292dbee36d"
+    download.file(file.path(url, file), destfile="fadul1-1.x3p")
+  }
+  x3p <- x3p_read("fadul1-1.x3p")
+  x3p_image(x3p, size=c(500,500), zoom=.8)
+  x3p <- x3p_fuzzyselect(x3p, update=TRUE, col="#FF0000") 
+
+  logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
+  x3p_image(logo, size=c(500,500), zoom = 1)
+  x3p_fuzzyselect(logo, update=TRUE, col="#00FF00") 
+}}
+}
