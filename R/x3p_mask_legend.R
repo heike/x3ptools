@@ -28,23 +28,31 @@ x3p_mask_legend <- function(x3p) {
   colors
 }
 
-#' Add legend to active rgl object
+#' Display legend in active rgl object
 #'
-#' Add the legend for colors and annotations to the actuve rgl window.
+#' Display the legend for colors and annotations in the active rgl window. In case no rgl window is opened, a new window displaying the x3p file (using default sizes and zoom) opens.
 #' @param x3p x3p object with a mask
 #' @param colors named character vector of colors (in hex format by default), names contain annotations
 #' @export
 #' @examples
 #' x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 #' \dontrun{
-#' x3p_image(x3p) # run when rgl can open window on the device
+#' # run when rgl can open window on the device
+#' x3p_image(x3p) 
 #' x3p_add_legend(x3p) # add legend
 #' }
 x3p_add_legend <- function(x3p, colors = NULL) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
-  stopifnot(length(rgl.dev.list()) > 0)
+#  stopifnot(length(rgl.dev.list()) > 0)
 
   if (is.null(colors)) colors <- x3p_mask_legend(x3p)
+  stopifnot("No colors to add to legend"=!is.null(colors))
+  
+  ids <- rgl::ids3d()
+  if (nrow(ids) == 0) {
+    x3p_image(x3p)
+  }
+  
   if (!is.null(colors)) {
     legend3d("bottomright",
       legend = names(colors), pch = 15,

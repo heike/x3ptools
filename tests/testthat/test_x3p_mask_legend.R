@@ -40,7 +40,7 @@ test_that("x3p_lighter", {
 
 test_that("x3p_add_legend", {
   expect_error(x3p_add_legend("x3p"))
-  expect_error(x3p_add_legend(x3pbig))
+  expect_error(x3p_add_legend(x3pbig)) 
 
   # With mask
   x3pbig2 %>%

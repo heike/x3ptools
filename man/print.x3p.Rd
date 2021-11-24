@@ -12,7 +12,7 @@
 \item{...}{ignored}
 }
 \description{
-\code{print.x3p} expands the generic print method for x3p objects. It gives a summary of the most relevant 3p meta information and returns the object invisibly.
+\code{print.x3p} expands the generic print method for x3p objects. It gives a summary of the most relevant x3p meta information and returns the object invisibly.
 }
 \examples{
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))

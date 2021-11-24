@@ -20,22 +20,21 @@ the second click (max x). The values of x in the result are in the same units as
 x3p file with identified in mask enhanced by a dataframe of the line segment (line_df).
 }
 \description{
-Use the right mouse button (double-finger on track pad) to identify to points on the
-active rgl device (this rgl device should show the surface of an x3p object). These points define the beginning and end  of a line segment.
-The line segment is drawn on the mask of the x3p object.
+In the active rgl device select a line on the 3d surface by clicking on start and end-point (order matters). These points define the beginning and end  of a line segment.
+The line segment is drawn on the mask of the x3p object. The returned x3p object is expanded by a data frame of surface measurements along the line segment.
 }
 \examples{
 \dontrun{
 if (interactive) {
   x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
   x3p \%>\% image_x3p(size=dim(x3p$surface.matrix), multiply=1, zoom=.3)
-  x3p <- x3p_extract_profile(x3p, update=TRUE, col="#FFFF00") 
+  x3p <- x3p_extract_profile(x3p, update=TRUE, col="#FFFFFF") 
   x3p$line_df \%>\% 
-    ggplot(aes(x = x, y = value)) + geom_line() +
-    geom_vline(xintercept = c(.4, 2.15), colour = "blue")
-    
+    ggplot(aes(x = x, y = value)) + geom_line() 
+ 
+ x3p$line_df$y <- 1      
  sigs <- bulletxtrctr::cc_get_signature(ccdata = x3p$line_df, 
-   grooves = list(groove=c(.4, 2.15)), span1 = 0.75, span2 = 0.03)
+   grooves = list(groove=c(min(x3p$line_df$x), max(x3p$line_df$x))), span1 = 0.75, span2 = 0.03)
  sigs \%>\% 
    ggplot(aes(x = x)) + 
      geom_line(aes(y = raw_sig), colour = "grey50") +

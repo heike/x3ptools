@@ -132,9 +132,8 @@ df_to_x3p <- function(dframe, var = "value") {
 
 #' Convert an STL file to an x3p file
 #' 
-#' STL files describe 3d objects as mesh objects. Here, we assume that the 3d object consists of a 3d surface on the top of a 'box'.
-#' We further assume, that each node of the STL file describes the x-y location of an actual measurement, and that measurements are taken on
-#' a regular 2d grid. These measurements are then converted into the surface matrix of an x3p object.
+#' STL files describe 3d objects as mesh objects. Here, we assume that the 3d object consists of a 3d surface on the top of a rectangular, equi-spaced 2d grid.
+#' We further assume, that each node of the STL file describes the x-y location of an actual measurement. These measurements are then converted into the surface matrix of an x3p object.
 #' The resolution is derived from the distance between consecutive x and y nodes.
 #' @param stl STL file object or path to the file
 #' @return x3p object
@@ -143,18 +142,16 @@ df_to_x3p <- function(dframe, var = "value") {
 #' @examples 
 #' \dontrun{
 #' # the website https://touchterrain.geol.iastate.edu/ allows a download
-#' # of a 3d printable terrain model, that should be very similar to 
-#' # the GelSight format.
-#' gc <- rgl::readSTL("~/Downloads/671743070119/NED_-112.16_36.14_tile_1_1.STL", plot=FALSE)
+#' # of a 3d printable terrain model. For an example we suggest to download a file from there.
+#' gc <- rgl::readSTL("<PATH TO STL FILE>", plot=FALSE)
 #' x3p <- stl_to_x3p(gc)
-#' stl_to_x3p("~/Downloads/671743070119/NED_-112.16_36.14_tile_1_1.STL")
 #' }
 stl_to_x3p <- function(stl) {
   if (is.character(stl)) {
     stl <- rgl::readSTL(stl, plot = FALSE)
   }
   stopifnot(is.matrix(stl), ncol(stl)==3)
-#  browser()
+
   x <- y <- value <- NULL
   
   stl_df <- data.frame(stl)

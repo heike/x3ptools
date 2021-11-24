@@ -12,8 +12,9 @@
 \item{...}{parameters passed into image}
 }
 \description{
-This image function creates a quick raster image to show the surface of an x3p file.
-Due to some inconsistency in where the origin (0,0) is supposed to be (top left or bottom left)  image functions from different packages will result in different images.
+\code{image.x3p} expands the generic image method for x3p objects.
+This image function creates a raster image to show the surface of an x3p file.
+Due to some inconsistency in the mapping of the origin (0,0), (choice between top left or bottom left)  image functions from different packages will result in different images.
 }
 \examples{
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))

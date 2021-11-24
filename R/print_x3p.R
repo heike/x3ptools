@@ -1,6 +1,6 @@
 #' Show meta information of an x3p file
 #'
-#' `print.x3p` expands the generic print method for x3p objects. It gives a summary of the most relevant 3p meta information and returns the object invisibly.
+#' `print.x3p` expands the generic print method for x3p objects. It gives a summary of the most relevant x3p meta information and returns the object invisibly.
 #' @param x x3p object
 #' @param ... ignored
 #' @export

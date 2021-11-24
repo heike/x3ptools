@@ -17,8 +17,8 @@
 #' @examples
 #' \dontrun{
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
-#' x3p_image(logo, file = "logo.png", crosscut = 50*.645e-6)
-#' # alternative to crosscut
+#' x3p_image(logoplus, size = c(741, 419), zoom=0.5)
+#' # add crosscut:
 #' logoplus <- x3p_add_hline(logo, yintercept = 50*.645e-6, color = "#e6bf98", size = 5)
 #' x3p_image(logoplus, size = c(741, 419), zoom=0.5)
 #' }
@@ -64,7 +64,6 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
   }
   
 
-
   if (!is.na(crosscut)) {
     .Deprecated("x3p_add_hline", msg = "Use of crosscut is deprecated. Use x3p_add_hline instead.")
     crosscutidx <- which.min(abs(crosscut - y))
@@ -96,6 +95,7 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
     x3p_snapshot(file)
     rgl.close()
   }
+  
 }
 
 #' @export
@@ -137,8 +137,9 @@ x3p_snapshot <- function(file) {
 
 #' Raster image of an x3p surface
 #'
-#' This image function creates a quick raster image to show the surface of an x3p file.
-#' Due to some inconsistency in where the origin (0,0) is supposed to be (top left or bottom left)  image functions from different packages will result in different images.
+#' `image.x3p` expands the generic image method for x3p objects.
+#' This image function creates a raster image to show the surface of an x3p file.
+#' Due to some inconsistency in the mapping of the origin (0,0), (choice between top left or bottom left)  image functions from different packages will result in different images.
 #' @param x an x3p object
 #' @param ... parameters passed into image
 #' @importFrom graphics image

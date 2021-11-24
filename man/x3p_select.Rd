@@ -2,7 +2,7 @@
 % Please edit documentation in R/x3p_select.R
 \name{x3p_select}
 \alias{x3p_select}
-\title{Draw rectangle on the surface of an x3p file using rgl}
+\title{Draw rectangle on the mask of an x3p file using rgl}
 \usage{
 x3p_select(x3p, col = "#FF0000", update = TRUE)
 }
@@ -17,7 +17,8 @@ x3p_select(x3p, col = "#FF0000", update = TRUE)
 x3p file with selection in mask
 }
 \description{
-Draw rectangle on the surface of an x3p file using rgl
+Interactive selection of rectangular area on the mask of an x3p object. Once the function runs, the active rgl window is brought to the front.
+Select the window with a click, then use click & drag to select a rectangular area. On release, this area is marked in the mask and (if update is TRUE) appears in the selection color in the active rgl window.
 }
 \examples{
 \dontrun{

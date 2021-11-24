@@ -2,7 +2,7 @@
 % Please edit documentation in R/x3p_mask_legend.R
 \name{x3p_add_legend}
 \alias{x3p_add_legend}
-\title{Add legend to active rgl object}
+\title{Display legend in active rgl object}
 \usage{
 x3p_add_legend(x3p, colors = NULL)
 }
@@ -12,12 +12,13 @@ x3p_add_legend(x3p, colors = NULL)
 \item{colors}{named character vector of colors (in hex format by default), names contain annotations}
 }
 \description{
-Add the legend for colors and annotations to the actuve rgl window.
+Display the legend for colors and annotations in the active rgl window. In case no rgl window is opened, a new window displaying the x3p file (using default sizes and zoom) opens.
 }
 \examples{
 x3p <- x3p_read(system.file("sample-land.x3p", package="x3ptools"))
 \dontrun{
-x3p_image(x3p) # run when rgl can open window on the device
+# run when rgl can open window on the device
+x3p_image(x3p) 
 x3p_add_legend(x3p) # add legend
 }
 }

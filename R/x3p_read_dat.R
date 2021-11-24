@@ -29,6 +29,9 @@ x3p_read_dat <- function(dat, delim = " ", col_names = FALSE) {
 
 #' Read information from plux file
 #'
+#' plux files are zip containers of 3d topographic scans in a format proprietary to Sensofar™. 
+#' One of the files in the container is the file `index.xml` which contains meta-information on the instrument, scan settings, date, and creator.   
+#' This information is added to the x3p meta-information.
 #' @param plux path to plux file
 #' @return xml of general information as stored in the plux file
 #' @export

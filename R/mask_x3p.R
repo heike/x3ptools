@@ -77,11 +77,26 @@ x3p_delete_mask <- function(x3p) {
 
 #' Add annotations to an x3p object
 #'
+#' Annotations in an x3p object are  legend entries for each color of a mask.
 #' @param x3p x3p object
 #' @param color name or hex value of color
 #' @param annotation character value describing the region
 #' @return x3p object with the added annotations
 #' @export
+#' @examples 
+#' \dontrun{
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
+#' color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
+#' logoplus <- x3p_add_mask(logo, as.raster(color_logo))
+#' x3p_image(logoplus, multiply=50, size = c(741, 419),zoom = 0.5)
+#' logoplus <- x3p_add_annotation(logoplus, "#FFFFFFFF", "background")
+#' logoplus <- x3p_add_annotation(logoplus, "#818285FF", "text")
+#' logoplus <- x3p_add_annotation(logoplus, "#F6BD47FF", "fingerprint")
+#' logoplus <- x3p_add_annotation(logoplus, "#D2202FFF", "fingerprint")
+#' logoplus <- x3p_add_annotation(logoplus, "#92278FFF", "fingerprint")
+#' 
+#' x3p_add_legend(logoplus)
+#' }
 x3p_add_annotation <- function(x3p, color, annotation) {
   if (!("Mask" %in% names(x3p$matrix.info))) {
     x3p$matrix.info$Mask <- list("Annotations")
