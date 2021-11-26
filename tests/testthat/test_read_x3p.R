@@ -9,6 +9,9 @@ test_that("read_x3p works as expected", {
   skip_if_offline(host = "tsapps.nist.gov")
   skip_if(url_unreachable(url), message = "NRBTD is unreachable, skipping")
   
+  tmp <- try(read_x3p(url, quiet = T), silent = T)
+  skip_if(!("x3p" %in% class(tmp) ))
+
   tmp <- read_x3p(url, quiet = T)
   expect_equivalent(tmp$header.info$sizeY, 1588)
   expect_equivalent(tmp$header.info$incrementY, 1.5625e-06)

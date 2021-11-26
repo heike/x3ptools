@@ -15,7 +15,7 @@
 #' x3p_modify_xml(logo, 20, "I did that, too")
 x3p_modify_xml <- function(x3p, element, value) {
   find_element <- helper_identify_xml(x3p, element)
-  idx <- find_element[[1]]
+#  idx <- find_element[[1]]
   res <- find_element[[2]]
 
   if (length(res) == 0) stop(sprintf("No element found matching <%s>", element))
@@ -24,7 +24,7 @@ x3p_modify_xml <- function(x3p, element, value) {
   # we found exactly one matching meta element
   record <- find_element[[3]]
 
-  obj_str <- sprintf("x3p$%s$%s[[1]] <- value", record, gsub("\\.", "$", names(res)), idx)
+  obj_str <- sprintf("x3p$%s$%s[[1]] <- value", record, gsub("\\.", "$", names(res)))
 
   eval(parse(text = obj_str))
   x3p

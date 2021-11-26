@@ -11,6 +11,7 @@ url_unreachable <- function(url) {
   ("try-error" %in% class(try(xml2::read_html(url), silent = T)))
 }
 
+
 set.seed(323523)
 dftest <- expand.grid(x = 1:6, y = 1:7) %>%
   as.data.frame() %>%
