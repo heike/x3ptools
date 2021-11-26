@@ -21,7 +21,7 @@ Description: The x3p file format  is specified in ISO standard 5436:2000 to
     basic modifications to the 3D surface measurements.
 Depends: R (>= 4.0)
 Imports: MASS (>= 7.3),
-         digest (>= 0.6.28),
+         digest (>= 0.6),
          xml2 (>= 1.3.0),
          rgl (>= 0.107.14),
          zoo (>= 1.8-9),
