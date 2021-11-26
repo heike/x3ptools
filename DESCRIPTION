@@ -2,9 +2,9 @@ Package: x3ptools
 Type: Package
 Title: Tools for Working with 3D Surface Measurements
 Version: 0.0.3
-Date: 2021-04-01
+Date: 2021-11-23
 Authors@R: c(
-    person("Heike", "Hofmann", role = c("aut", "cre"),
+    person("Heike", "Hofmann", role = c("aut", "cre", "cph"),
             email = "hofmann@iastate.edu",
             comment = c(ORCID = "0000-0001-6216-5183")),
     person("Susan", "Vanderplas", email = "srvander@iastate.edu", 
@@ -19,30 +19,28 @@ Maintainer: Heike Hofmann <hofmann@iastate.edu>
 Description: The x3p file format  is specified in ISO standard 5436:2000 to 
     describe 3d surface measurements. 'x3ptools' allows reading, writing and 
     basic modifications to the 3D surface measurements.
-Depends: R (>= 3.6)
+Depends: R (>= 4.0)
 Imports: MASS (>= 7.3),
-         digest (>= 0.6.15),
-         xml2 (>= 1.2.0),
-         rgl (>= 0.99.9),
-         zoo (>= 1.8.1),
+         digest (>= 0.6.28),
+         xml2 (>= 1.3.0),
+         rgl (>= 0.107.14),
+         zoo (>= 1.8-9),
          png (>= 0.1-7),
-         readr (>= 1.1.1),
-         dplyr (>= 0.8.3),
+         readr (>= 2.1.0),
+         dplyr (>= 1.0.7),
          pracma (>= 2.3.3),
-         assertthat,
+         assertthat (>= 0.2.1),
          grDevices
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 2.1.0),
+    testthat (>= 3.0.4),
     covr,
     here,
     magick (>= 2.0)
 License: MIT + file LICENSE
-LazyData: true
 RoxygenNote: 7.1.1
 URL: https://github.com/heike/x3ptools
 BugReports: https://github.com/heike/x3ptools/issues
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
-VignetteBuilder: knitr

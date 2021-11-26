@@ -16,3 +16,5 @@ inst/*.R
 raw-data
 ^tic\.R$
 ^\.github$
+^CRAN-RELEASE$
+^codecov\.yml$

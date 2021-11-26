@@ -1,16 +1,15 @@
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/x3ptools)](https://cran.r-project.org/package=x3ptools)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.org/package=x3ptools)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square)](commits/master)
 [![CRAN RStudio mirror
-downloads](http://cranlogs.r-pkg.org/badges/x3ptools)](http://www.r-pkg.org/pkg/x3ptools)
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2021--11--24-yellowgreen.svg)](/commits/master)
+downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2021--11--26-yellowgreen.svg)](/commits/master)
 [![Coverage
-status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)[![Github
-Actions
-Status](https://github.com/heike/x3ptools/workflows/Build/badge.svg)](https://github.com/heike/x3ptools/runs/)
+status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
+[![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
@@ -37,7 +36,7 @@ devtools::install_github("heike/x3ptools", build_vignettes = TRUE)
 
 The x3p file format is an xml based file format created to describe
 digital surface measurements. x3p has been developed by OpenFMC (Open
-Forensic Metrology Consortium, see <http://www.openfmc.org/>) and has
+Forensic Metrology Consortium, see <https://www.open-fmc.org/>) and has
 been adopted as ISO ISO5436 – 2000. x3p files are a zip archive of a
 directory consisting of an xml file of meta information and a matrix of
 numeric surface measurements.

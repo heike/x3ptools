@@ -14,7 +14,7 @@ test_that("read_x3p works as expected", {
   expect_equivalent(dim(tmp$surface.matrix), c(501, 1588))
   expect_equivalent(tmp$feature.info$Revision[[1]], "ISO5436 - 2000")
 
-  # Test nonexistant file path
+  # Test nonexistent file path
   expect_error(read_x3p(file.path("does", "not", "exist.x3p")))
 
   # Test correct reading of x3p with size=4
