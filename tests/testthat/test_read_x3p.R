@@ -7,6 +7,7 @@ url <- "https://tsapps.nist.gov/NRBTD/Studies/BulletMeasurement/DownloadMeasurem
 
 test_that("read_x3p works as expected", {
   skip_if_offline(host = "tsapps.nist.gov")
+  skip_if(url_unreachable(url), message = "NRBTD is unreachable, skipping")
   
   tmp <- read_x3p(url, quiet = T)
   expect_equivalent(tmp$header.info$sizeY, 1588)
