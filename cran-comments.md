@@ -1,8 +1,6 @@
-We have added Susan Vanderplas to the list of authors of the package - both Eric Hare and Ganesh Krishnan are aware of this and have agreed.
-
 ## Test environments
-* local OS X install, R 3.5.3
-* ubuntu 12.04 (on travis-ci), R 3.5.3
+* local OS X install, R 4.0.5
+* ubuntu 20.04 (on github action), R release
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -13,5 +11,6 @@ We have added Susan Vanderplas to the list of authors of the package - both Eric
 ## Reverse dependencies
 
 There are no packages with reverse dependencies on CRAN (checked with revdep).
+Package `cmcR` was archived when this package was archived 
 We are not aware of any other reverse dependencies. 
 
