@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.path = "man/figures/")
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
-The x3p file format  is specified in ISO standard 5436:2000 to 
+The x3p file format  is specified in ISO standard 25178-72:2017/AMD 1:2020 (based on ISO ISO5436 – 2000)
     describe 3d surface measurements. This package allows reading, writing and 
     basic modifications to the 3D surface measurements.
 
@@ -40,7 +40,7 @@ devtools::install_github("heike/x3ptools", build_vignettes = TRUE)
 
 ## The file format 
 
-The x3p file format is an xml based file format created to describe digital surface measurements.  x3p has been developed by OpenFMC (Open Forensic Metrology Consortium, see https://www.open-fmc.org/) and has been adopted as ISO ISO5436 – 2000.
+The x3p file format is an xml based file format created to describe digital surface measurements.  x3p has been developed by OpenFMC (Open Forensic Metrology Consortium, see https://www.open-fmc.org/) and has been adopted as 25178-72:2017/AMD 1:2020.
 x3p files are a zip archive of a directory consisting of an xml file of meta information and a matrix of numeric surface measurements. 
 
 ### x3p objects
