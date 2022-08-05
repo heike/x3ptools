@@ -1,5 +1,8 @@
 #' Plot x3p object as an image
 #'
+#' Plot an interactive surface plot of the x3p matrix. This implementation uses the `rgl` package.
+#' In case `rgl.useNULL` is set to TRUE (i.e. no separate window will be opened), an rgl widget 
+#' can be used to show the surface in the viewer window (see the example). 
 #' @param x3p x3p object
 #' @param file file name for saving, if file is NULL the opengl device stays open.
 #' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.
@@ -15,13 +18,19 @@
 #' @import rgl
 #' @importFrom rgl snapshot3d r3dDefaults
 #' @examples
-#' \dontrun{
+#' save <- getOption("rgl.useNULL")
+#' options(rgl.useNULL=TRUE)
+#' 
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
-#' x3p_image(logoplus, size = c(741, 419), zoom=0.5)
+#' x3p_image(logo, size = c(741, 419), zoom=0.5)
 #' # add crosscut:
 #' logoplus <- x3p_add_hline(logo, yintercept = 50*.645e-6, color = "#e6bf98", size = 5)
 #' x3p_image(logoplus, size = c(741, 419), zoom=0.5)
-#' }
+#' widget <- rgl::rglwidget()
+#' if (interactive())
+#'   widget
+#'
+#' options(rgl.useNULL=save)   
 x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
                       crosscut = NA,
                       ccParam = list(
