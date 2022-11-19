@@ -9,7 +9,7 @@
 #' @param col color specification
 #' @param crosscut crosscut index
 #' @param ccParam list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region
-#' @param size vector of width and height
+#' @param size vector of width and height. If only one value is given, height will be adjusted proportionally to the dimensions of the surface matrix of the scan.
 #' @param zoom numeric value indicating the amount of zoom
 #' @param multiply exaggerate the relief by factor multiply
 #' @param update Boolean value indicating whether a scene should be updated (defaults to FALSE). If FALSE, a new rgl device is opened.
@@ -38,13 +38,18 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
                         radius = 5
                       ),
                       size = c(750, 250), zoom = 0.35, multiply = 5, update = FALSE, ...) {
-  stopifnot("x3p" %in% class(x3p))
+  stopifnot("x3p" %in% class(x3p), is.numeric(size))
   surface <- x3p$surface.matrix
   z <- multiply * surface # Exaggerate the relief
   yidx <- ncol(z):1
   y <- x3p$header.info$incrementY * yidx #
   x <- x3p$header.info$incrementX * (1:nrow(z)) #
 
+  # set size to be proportional to value given if size is only one value
+  if (length(size) == 1) {
+    dims <- dim(surface)
+    size <- c(size[1], round(size[1]*dims[2]/dims[1]))
+  }
 
   params <- rgl::r3dDefaults
   #  params$viewport <- c(0,0, 750, 250)
@@ -94,17 +99,17 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
     }
 
 
-    surface3d(x, y, z, color = colmat, back = "fill")
+    p <- surface3d(x, y, z, color = colmat, back = "fill")
   } else {
     if (exists("mask", x3p)) col <- as.vector(x3p$mask)
-    surface3d(x, y, z, color = col, back = "fill")
+    p <- surface3d(x, y, z, color = col, back = "fill")
   }
-
+  p
   if (!is.null(file)) {
     x3p_snapshot(file)
     rgl.close()
   }
-  
+  invisible(p) 
 }
 
 #' @export

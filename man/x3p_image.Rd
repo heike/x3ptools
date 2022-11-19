@@ -42,7 +42,7 @@ The file extension determines the type of output. Possible extensions are png, s
 
 \item{ccParam}{list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region}
 
-\item{size}{vector of width and height}
+\item{size}{vector of width and height. If only one value is given, height will be adjusted proportionally to the dimensions of the surface matrix of the scan.}
 
 \item{zoom}{numeric value indicating the amount of zoom}
 

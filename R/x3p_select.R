@@ -161,7 +161,7 @@ x3p_fuzzyselect <- function(x3p, col="#FF0000", mad=5, type="plane", update=TRUE
 
 #' Select a circle area on the surface of an x3p file using rgl
 #' 
-#' In the active rgl window select a circle on the scan's surface by right-clicking on three points along the circumference.
+#' In the active rgl window select a circle on the scan's surface by clicking on three points along the circumference.
 #' Make sure that x3p file and the rgl window match. If no rgl window is active, an rgl window opens with the scan. 
 #' @param x3p x3p file
 #' @param col character value of the selection color
@@ -219,8 +219,7 @@ x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
   
   if (is.null(x3p$mask)) x3p <- x3p %>% x3p_add_mask()
   #  
-  browser()
-  
+
   x3p_df <- x3p_to_df(x3p)
   incircle <- (x3p_df$x-res["midx"])^2 + (x3p_df$y-res["midy"])^2 < res["radius"]^2
 #  x3p_df$mask[incircle] <- col
@@ -259,14 +258,14 @@ x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
 #'  
 #'  x3p$line_df$y <- 1      
 #'  sigs <- bulletxtrctr::cc_get_signature(ccdata = x3p$line_df, 
-#'    grooves = list(groove=c(min(x3p$line_df$x), max(x3p$line_df$x))), span1 = 0.75, span2 = 0.03)
+#'    grooves = list(groove=range(x3p$line_df$x)), span1 = 0.75, span2 = 0.03)
 #'  sigs %>% 
 #'    ggplot(aes(x = x)) + 
 #'      geom_line(aes(y = raw_sig), colour = "grey50") +
 #'      geom_line(aes(y = sig), size = 1) +
 #'      theme_bw() 
 #' }}
-x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE) {
+x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE, multiply = 5) {
   cat("Select start point and endpoint on the surface ...\n")
   stopifnot("x3p" %in% class(x3p))
   ids <- rgl::ids3d()
@@ -281,7 +280,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE
   # initialize values
   orig_x <- orig_y <- `p-x.m` <- `p-x.n` <- value <- NULL
   
-  multiply <- 5
+  multiply <- multiply
   surface <- x3p$surface.matrix
   z <- multiply * surface
   yidx <- ncol(z):1

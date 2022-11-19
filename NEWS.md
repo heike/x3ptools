@@ -1,5 +1,16 @@
 # x3ptools (development version)
 
+# x3ptools 0.0.3.9000
+
+## minor functionality 
+
+* updates to documentation
+
+## bug fixes
+
+* keep mask when averaging in `x3p_average`
+* preserve annotations when casting to a data frame
+
 # x3ptools 0.0.3
 
 ## features

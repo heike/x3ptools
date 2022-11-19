@@ -57,13 +57,18 @@ x3p_to_df <- function(x3p) {
 
   if (!is.null(x3p$mask)) {
     df$mask <- as.vector(x3p$mask)
-    # make sure the hex code is lower case and only 6 digits wide (7 including the hash)
-    df$maskmerge <- tolower(substr(df$mask, 1, 7))
     annotations <- x3p_mask_legend(x3p)
     if (!is.null(annotations)) {
-      legend <- data.frame(maskmerge = annotations, annotation = names(annotations))
-      legend$maskmerge <- tolower(legend$maskmerge)
-      df <- merge(df, legend, by = "maskmerge", all.x = TRUE)
+   #   browser()
+      rev_annotations <- tolower(names(annotations))
+      names(rev_annotations) <- annotations
+      # make sure the hex code is lower case and only 6 digits wide (7 including the hash)
+      df$maskmerge <- tolower(substr(df$mask, 1, 7))
+      df$annotation <- rev_annotations[df$maskmerge]
+
+      # preserve all annotations, not just the ones in use      
+      df$mask <- factor(df$maskmerge, levels=annotations)
+      df$annotation <- factor(df$annotation, levels=names(annotations))
       df <- select(df, -"maskmerge")
     }
   }
@@ -71,7 +76,6 @@ x3p_to_df <- function(x3p) {
   attr(df, "header.info") <- info
   attr(df, "feature.info") <- x3p$feature.info
   attr(df, "general.info") <- x3p$general.info
-
   df
 }
 
@@ -124,6 +128,22 @@ df_to_x3p <- function(dframe, var = "value") {
   
   if ("mask" %in% names(dframe)) {
     x3p <- x3p %>% x3p_add_mask(mask = matrix(dframe$mask, nrow = dim(x3p$surface.matrix)[2]))
+ #   browser()
+    if("annotation" %in% names(dframe)) {
+      if(is.factor(dframe$mask)) {
+        annotations <- data.frame(
+          mask = levels(dframe$mask),
+          annotation = levels(dframe$annotation)
+        )
+      } else
+        annotations <- unique(dframe[,c("mask", "annotation")])
+      for (i in 1:nrow(annotations)) {
+        x3p <- x3p %>% x3p_add_annotation(
+          color = annotations$mask[i], 
+          annotation=annotations$annotation[i])
+      }
+    }
+      
   }
 
   x3p
