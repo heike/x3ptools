@@ -17,7 +17,7 @@ x3p_circle_select(x3p, col = "#FF0000", update = TRUE)
 x3p file with selected circle in mask
 }
 \description{
-In the active rgl window select a circle on the scan's surface by right-clicking on three points along the circumference.
+In the active rgl window select a circle on the scan's surface by clicking on three points along the circumference.
 Make sure that x3p file and the rgl window match. If no rgl window is active, an rgl window opens with the scan.
 }
 \examples{

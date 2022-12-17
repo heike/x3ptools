@@ -4,6 +4,7 @@
 
 ## minor functionality 
 
+* `x3p_extract_profile_segments` interactive function for drawing lines in segments
 * updates to documentation
 
 ## bug fixes

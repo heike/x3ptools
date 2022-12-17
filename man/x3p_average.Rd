@@ -17,6 +17,7 @@ x3p_average(x3p, b = 10, f = mean, ...)
 }
 \description{
 Calculate blockwise summary statistics on the surface matrix of an x3p.
+If the x3p object has a mask, the mode of the mask value
 }
 \examples{
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))

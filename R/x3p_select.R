@@ -242,8 +242,10 @@ x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
 #' @param x3p x3p file
 #' @param col character value of the selection color
 #' @param update boolean value, whether the rgl window should be updated to show the selected circle
-#' @param line_out boolean enhavce result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to 
+#' @param line_out boolean enhance result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to 
 #' the second click (max x). The values of x in the result are in the same units as the original x3p.
+#' @param multiply integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5, 
+#' @param linewidth line width of the extracted line. Defaults to 1.
 #' @return x3p file with identified in mask enhanced by a dataframe of the line segment (line_df).  
 #' @export
 #' @importFrom dplyr arrange between filter mutate rename
@@ -265,7 +267,7 @@ x3p_circle_select <- function(x3p, col = "#FF0000", update=TRUE) {
 #'      geom_line(aes(y = sig), size = 1) +
 #'      theme_bw() 
 #' }}
-x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE, multiply = 5) {
+x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE, multiply = 5, linewidth = 1) {
   cat("Select start point and endpoint on the surface ...\n")
   stopifnot("x3p" %in% class(x3p))
   ids <- rgl::ids3d()
@@ -311,7 +313,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE
     `p-x.n` = (x - X[1])*n[1] + (y - X[2])*n[2],
     `p-x.m` = (x - X[1])*m[1] + (y - X[2])*m[2]
   )
-  eps <- x3p %>% x3p_get_scale()
+  eps <- x3p %>% x3p_get_scale() * linewidth
   on_line <- abs(x3p_df$`p-x.n`)< eps & dplyr::between(x3p_df$`p-x.m`, 0, dm)
   x3p_df$mask[on_line] <- col
   tmp <- x3p_df %>% df_to_x3p()

@@ -4,7 +4,14 @@
 \alias{x3p_extract_profile}
 \title{Interactively select a line on the active rgl device}
 \usage{
-x3p_extract_profile(x3p, col = "#FF0000", update = TRUE, line_out = TRUE)
+x3p_extract_profile(
+  x3p,
+  col = "#FF0000",
+  update = TRUE,
+  line_out = TRUE,
+  multiply = 5,
+  linewidth = 1
+)
 }
 \arguments{
 \item{x3p}{x3p file}
@@ -13,8 +20,12 @@ x3p_extract_profile(x3p, col = "#FF0000", update = TRUE, line_out = TRUE)
 
 \item{update}{boolean value, whether the rgl window should be updated to show the selected circle}
 
-\item{line_out}{boolean enhavce result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to
+\item{line_out}{boolean enhance result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to
 the second click (max x). The values of x in the result are in the same units as the original x3p.}
+
+\item{multiply}{integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5,}
+
+\item{linewidth}{line width of the extracted line. Defaults to 1.}
 }
 \value{
 x3p file with identified in mask enhanced by a dataframe of the line segment (line_df).
@@ -34,7 +45,7 @@ if (interactive) {
  
  x3p$line_df$y <- 1      
  sigs <- bulletxtrctr::cc_get_signature(ccdata = x3p$line_df, 
-   grooves = list(groove=c(min(x3p$line_df$x), max(x3p$line_df$x))), span1 = 0.75, span2 = 0.03)
+   grooves = list(groove=range(x3p$line_df$x)), span1 = 0.75, span2 = 0.03)
  sigs \%>\% 
    ggplot(aes(x = x)) + 
      geom_line(aes(y = raw_sig), colour = "grey50") +
