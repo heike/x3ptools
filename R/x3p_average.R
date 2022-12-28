@@ -7,13 +7,14 @@
 #' @param f function aggregate function
 #' @param ... parameters passed on to function f. Make sure to use na.rm = T as needed.
 #' @export
-#' @importFrom dplyr group_by summarize
+#' @importFrom dplyr group_by summarize ungroup add_tally
 #' @examples
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' small <- x3p_average(logo)
 x3p_average <- function(x3p, b = 10, f = mean, ...) {
   stopifnot("x3p" %in% class(x3p))
   x <- y <- value <- NULL # pass R CMD CHECK
+  mask <- mask_n <- NULL
     
   df <- x3p_to_df(x3p)
   scale <- x3p_get_scale(x3p)
