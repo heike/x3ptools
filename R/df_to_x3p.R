@@ -60,6 +60,7 @@ x3p_to_df <- function(x3p) {
     annotations <- x3p_mask_legend(x3p)
     if (!is.null(annotations)) {
    #   browser()
+      annotations <- tolower(annotations)
       rev_annotations <- tolower(names(annotations))
       names(rev_annotations) <- annotations
       # make sure the hex code is lower case and only 6 digits wide (7 including the hash)

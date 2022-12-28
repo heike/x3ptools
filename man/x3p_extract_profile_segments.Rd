@@ -25,6 +25,7 @@ Extract profiles with multiple segments
 }
 \examples{
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
-logo <- logo \%>\% x3p_m_to_mum()
-x3p_extract_profile_segments(logo, 850, col="#ffffff")
+logo <- x3p_m_to_mum(logo)
+if(interactive())
+  x3p_extract_profile_segments(logo, 850, col="#ffffff")
 }
