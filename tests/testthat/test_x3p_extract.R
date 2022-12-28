@@ -7,11 +7,11 @@ test_that("x3p_extract works as expected", {
     x3ptest %>% x3p_extract()
   )
   
-  x3ptest_extract <- x3ptest_mask %>% x3p_extract("#FFFF00") 
+  x3ptest_extract <- x3ptest_mask %>% x3p_extract("#ffff00") 
   
   expect_message(
     x3p_cmp <- dftest %>% 
-      dplyr::filter(mask == "#FFFF00") %>% df_to_x3p(),
+      dplyr::filter(mask == "#ffff00") %>% df_to_x3p(),
     "dframe has missing values ... they will be expanded"
   )
   
