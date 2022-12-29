@@ -18,3 +18,4 @@ raw-data
 ^\.github$
 ^CRAN-RELEASE$
 ^codecov\.yml$
+^pkgdown$
