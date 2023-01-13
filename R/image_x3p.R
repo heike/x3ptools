@@ -67,7 +67,7 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
   
   if (!update) { 
     open3d(params = params)
-    rgl.pop("lights")
+    pop3d("lights")
     light3d(
       x = xyz, diffuse = "gray40",
       specular = "gray40", ambient = "grey10", viewpoint.rel = TRUE
@@ -107,7 +107,7 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
   p
   if (!is.null(file)) {
     x3p_snapshot(file)
-    rgl.close()
+    close3d()
   }
   invisible(p) 
 }

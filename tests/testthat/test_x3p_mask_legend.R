@@ -8,13 +8,13 @@ test_that("x3p_darker", {
     x3p_add_mask() %>%
     image_x3p()
 
-  lights <- rgl::rgl.ids(type = "lights")
+  lights <- rgl::ids3d(type = "lights")
 
   x3p_darker()
 
-  lights2 <- rgl::rgl.ids(type = "lights")
+  lights2 <- rgl::ids3d(type = "lights")
 
-  rgl::rgl.close()
+  rgl::close3d()
   expect_lt(nrow(lights2), nrow(lights))
 })
 
@@ -26,13 +26,13 @@ test_that("x3p_lighter", {
     x3p_add_mask() %>%
     image_x3p()
 
-  lights <- rgl::rgl.ids(type = "lights")
+  lights <- rgl::ids3d(type = "lights")
 
   x3p_lighter()
 
-  lights2 <- rgl::rgl.ids(type = "lights")
+  lights2 <- rgl::ids3d(type = "lights")
 
-  rgl::rgl.close()
+  rgl::close3d()
 
   expect_gt(nrow(lights2), nrow(lights))
 })
@@ -51,7 +51,7 @@ test_that("x3p_add_legend", {
 
   objs2 <- rgl::rgl.attrib.info(showAll = T)
 
-  rgl::rgl.close()
+  rgl::close3d()
   extra_stuff <- dplyr::anti_join(objs2, objs)
   expect_gt(nrow(extra_stuff), 0) # TODO: Actually test for background? Not sure how to get at that...
 
@@ -65,7 +65,7 @@ test_that("x3p_add_legend", {
 
   objs2 <- rgl::rgl.attrib.info(showAll = T)
 
-  rgl::rgl.close()
+  rgl::close3d()
   extra_stuff <- dplyr::anti_join(objs2, objs)
   expect_gt(nrow(extra_stuff), 0) # TODO: Actually test for background? Not sure how to get at that...
 })
