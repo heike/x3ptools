@@ -95,5 +95,5 @@ x3p_darker <- function() {
   stopifnot(length(rgl.dev.list()) > 0)
   # stopifnot("x3p" %in% class(x3p)) # no x3p object
 
-  rgl.pop("lights")
+  pop3d("lights")
 }

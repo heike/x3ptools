@@ -29,7 +29,7 @@ test_that("image_x3p works as expected", {
   expect_gte(rglwindowopen, 1)
   # If open, close it
   if (rglwindowopen) {
-    rgl::rgl.close()
+    rgl::close3d()
   }
   x3ptest2 <- x3ptest %>% x3p_add_grid(spaces = 2, size = 1, color = "black")
   image_x3p(x3ptest2, file = "x3ptest.png")
@@ -45,7 +45,7 @@ test_that("image_x3p works as expected", {
   expect_gte(rglwindowopen, 1)
   # If open, close it
   if (rglwindowopen) {
-    rgl::rgl.close()
+    rgl::close3d()
   }
 
   # With mask
@@ -57,7 +57,7 @@ test_that("image_x3p works as expected", {
   expect_gte(rglwindowopen, 1)
   # If open, close it
   if (rglwindowopen) {
-    rgl::rgl.close()
+    rgl::close3d()
   }
 
   expect_warning(
@@ -69,6 +69,6 @@ test_that("image_x3p works as expected", {
   expect_gte(rglwindowopen, 1)
   # If open, close it
   if (rglwindowopen) {
-    rgl::rgl.close()
+    rgl::close3d()
   }
 })
