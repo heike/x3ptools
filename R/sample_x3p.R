@@ -33,7 +33,7 @@ x3p_sample <- function(x3p, m = 2, mY = m, offset = 0, offsetY = offset) {
   x3p$header.info$sizeY <- length(seqy)
 
   x3p$header.info$incrementX <- m * x3p$header.info$incrementX
-  x3p$header.info$incrementY <- m * x3p$header.info$incrementY
+  x3p$header.info$incrementY <- mY * x3p$header.info$incrementY
 
   x3p$matrix.info$MatrixDimension$SizeX[[1]] <- x3p$header.info$sizeX
   x3p$matrix.info$MatrixDimension$SizeY[[1]] <- x3p$header.info$sizeY
