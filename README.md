@@ -6,16 +6,17 @@ status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.o
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2021--11--29-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--01-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
 [![Coverage
 status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
-The x3p file format is specified in ISO standard 5436:2000 to describe
-3d surface measurements. This package allows reading, writing and basic
-modifications to the 3D surface measurements.
+The x3p file format is specified in ISO standard 25178-72:2017/AMD
+1:2020 (based on ISO ISO5436 – 2000) describe 3d surface measurements.
+This package allows reading, writing and basic modifications to the 3D
+surface measurements.
 
 # Installation
 
@@ -37,9 +38,9 @@ devtools::install_github("heike/x3ptools", build_vignettes = TRUE)
 The x3p file format is an xml based file format created to describe
 digital surface measurements. x3p has been developed by OpenFMC (Open
 Forensic Metrology Consortium, see <https://www.open-fmc.org/>) and has
-been adopted as ISO ISO5436 – 2000. x3p files are a zip archive of a
-directory consisting of an xml file of meta information and a matrix of
-numeric surface measurements.
+been adopted as 25178-72:2017/AMD 1:2020. x3p files are a zip archive of
+a directory consisting of an xml file of meta information and a matrix
+of numeric surface measurements.
 
 ### x3p objects
 
@@ -117,10 +118,10 @@ rotate):
 
 ``` r
 image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
-rglwidget()
+rgl::rglwidget()
 ```
 
-![](man/figures/logo-rgl.png)<!-- -->
+<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmp1nLfKW/fileae0443da1e04.png" width="480" />
 
 In case a file name is specified in the function call the resulting
 surface is saved in a file (the extension determines the actual file
@@ -137,10 +138,10 @@ are colored differently to ease a visual assessment of distance.
 logoplus <- x3p_add_grid(logo, spaces=50e-6, 
                          size = c(3,3,5), color=c("grey50", "black", "darkred"))
 image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
-rglwidget()
+rgl::rglwidget()
 ```
 
-![](man/figures/logo-rgl-grid.png)<!-- -->
+<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmp1nLfKW/fileae043d338053.png" width="480" />
 
 ### Casting between data types
 
@@ -184,7 +185,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   scale_fill_gradient2(midpoint=4e-7)
 ```
 
-![](man/figures/unnamed-chunk-11-1.png)<!-- -->
+![](man/figures/unnamed-chunk-10-1.png)<!-- -->
 
 ### Elementary operations
 
@@ -294,7 +295,7 @@ barrel of the handgun when fired), areas in dark blue show groove
 engraved areas, the light blue area shows break off at the bottom of the
 bullet, and the pink area marks an area without striae:
 
-![](man/figures/markup.png)<!-- -->
+<img src="docs/reference/figures/markup.png" width="750" />
 
 Any image can serve as a mask, the command `x3p_add_mask` allows to add
 a raster image as a mask for a x3p object:
@@ -307,12 +308,12 @@ logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
 image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
 ```
 
-![](man/figures/logo-color.png)<!-- -->
+<img src="docs/reference/figures/logo-color.png" width="655" />
 
 Some masks are more informative than others, but the only requirement
 for images is that they are of the right size.
 
-<img src="man/figures/csafe-leopard.png" width="49%" /><img src="man/figures/csafe-island.png" width="49%" />
+<img src="docs/reference/figures/csafe-leopard.png" width="49%" /><img src="docs/reference/figures/csafe-island.png" width="49%" />
 
 #### Editing masks
 
@@ -329,4 +330,4 @@ logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
 #image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
 ```
 
-![](man/figures/logo-lines.png)<!-- -->
+<img src="docs/reference/figures/logo-lines.png" width="370" />

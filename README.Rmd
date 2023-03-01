@@ -85,14 +85,11 @@ names(logo)
 
 The function `image_x3p` uses `rgl` to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate): 
 
-```{r, eval=FALSE, fig.width = 5, fig.height =2.83}
+```{r, eval=TRUE, fig.width = 5, fig.height =2.83}
 image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
-rglwidget()
+rgl::rglwidget()
 ```
 
-```{r, echo=FALSE}
-knitr::include_graphics("man/figures/logo-rgl.png")
-```
 
 
 In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).
@@ -101,13 +98,13 @@ In case a file name is specified in the function call the resulting surface is s
 
 `image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.
 
-```{r, eval=FALSE, fig.width = 5, fig.height =2.83}
+```{r, fig.width = 5, fig.height =2.83}
 logoplus <- x3p_add_grid(logo, spaces=50e-6, 
                          size = c(3,3,5), color=c("grey50", "black", "darkred"))
 image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
-rglwidget()
+rgl::rglwidget()
 ```
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 knitr::include_graphics("man/figures/logo-rgl-grid.png")
 ```
 
