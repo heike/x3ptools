@@ -3,7 +3,7 @@ output: github_document
 ---
 
 [![CRAN status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.org/package=x3ptools)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square)](https://github.com/heike/x3ptools/commits/master)
+<img src="https://img.shields.io/github/r-package/v/heike/x3ptools?logo=github">
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
