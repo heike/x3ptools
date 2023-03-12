@@ -65,6 +65,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
+<p><a href="https://cranlogs.r-pkg.org/badges/grand-total/x3ptools" class="external-link"></a></p>
 <div class="section level1">
 <div class="page-header"><h1 id="x3ptools-">x3ptools <img src="reference/figures/x3ptools.png" align="right" width="120"><a class="anchor" aria-label="anchor" href="#x3ptools-"></a>
 </h1></div>
@@ -135,7 +136,7 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/x3p_image.html">image_x3p</a></span><span class="op">(</span><span class="va">logo</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>,<span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, useNULL<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/rglwidget.html" class="external-link">rglwidget</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmp1nLfKW/fileae0443da1e04.png" width="480"></p>
+<p><img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpuxNPIT/file15831ce41356.png" width="480"></p>
 <p>In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).</p>
 <div class="section level4">
 <h4 id="helper-lines">Helper lines<a class="anchor" aria-label="anchor" href="#helper-lines"></a>
@@ -146,7 +147,7 @@
 <span>                         size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span>, color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grey50"</span>, <span class="st">"black"</span>, <span class="st">"darkred"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/x3p_image.html">image_x3p</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>,<span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, useNULL<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/rglwidget.html" class="external-link">rglwidget</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmp1nLfKW/fileae043d338053.png" width="480"></p>
+<p><img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpuxNPIT/file158316d4df2b1.png" width="480"></p>
 </div>
 </div>
 <div class="section level3">
@@ -241,7 +242,7 @@
 </h4>
 <p>A mask is used to markup regions of the surface - the mask can then be used to overlay the rendered surface with color.</p>
 <p>Below is a 3d surface of a part of a bullet surface is shown. Some regions are marked up: the bronze colored area is an area with strong striae (vertical lines engraved on the bullet as it moves through the barrel of the handgun when fired), areas in dark blue show groove engraved areas, the light blue area shows break off at the bottom of the bullet, and the pink area marks an area without striae:</p>
-<p><img src="docs/reference/figures/markup.png" width="750"></p>
+<p><img src="reference/figures/markup.png" width="750"></p>
 <p>Any image can serve as a mask, the command <code>x3p_add_mask</code> allows to add a raster image as a mask for a x3p object:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">read_x3p</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
@@ -249,9 +250,9 @@
 <span><span class="va">logoplus</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_add_mask.html">x3p_add_mask</a></span><span class="op">(</span><span class="va">logo</span>, mask <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/as.raster.html" class="external-link">as.raster</a></span><span class="op">(</span><span class="va">color_logo</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/x3p_image.html">image_x3p</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>, <span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, multiply <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
-<p><img src="docs/reference/figures/logo-color.png" width="655"></p>
+<p><img src="reference/figures/logo-color.png" width="655"></p>
 <p>Some masks are more informative than others, but the only requirement for images is that they are of the right size.</p>
-<p><img src="docs/reference/figures/csafe-leopard.png" width="49%"><img src="docs/reference/figures/csafe-island.png" width="49%"></p>
+<p><img src="reference/figures/csafe-leopard.png" width="49%"><img src="reference/figures/csafe-island.png" width="49%"></p>
 </div>
 <div class="section level4">
 <h4 id="editing-masks">Editing masks<a class="anchor" aria-label="anchor" href="#editing-masks"></a>
@@ -262,7 +263,7 @@
 <code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">read_x3p</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">logoplus</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_add_hline.html">x3p_add_hline</a></span><span class="op">(</span><span class="va">logo</span>, yintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">13e-5</span>,<span class="fl">19.5e-5</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"cyan"</span><span class="op">)</span></span>
 <span><span class="co">#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")</span></span></code></pre></div>
-<p><img src="docs/reference/figures/logo-lines.png" width="370"></p>
+<p><img src="reference/figures/logo-lines.png" width="370"></p>
 </div>
 </div>
 </div>
@@ -311,7 +312,7 @@
 <li><a href="https://github.com/heike/x3ptools/commits/master" class="external-link"><img src="https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square" alt="packageversion"></a></li>
 <li><a href="https://r-pkg.org/pkg/x3ptools" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue" alt="CRAN RStudio mirror downloads"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://github.com/heike/x3ptools/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--03--01-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/heike/x3ptools/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--03--03-yellowgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://codecov.io/github/heike/x3ptools?branch=master" class="external-link"><img src="https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://github.com/heike/x3ptools/actions" class="external-link"><img src="https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
