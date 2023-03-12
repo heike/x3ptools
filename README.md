@@ -1,17 +1,15 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.org/package=x3ptools)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.0.2-orange.svg?style=flat-square)](https://github.com/heike/x3ptools/commits/master)
+<img src="https://img.shields.io/github/r-package/v/heike/x3ptools?logo=github">
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--03-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--11-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
 [![Coverage
 status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
-
-[](https://cranlogs.r-pkg.org/badges/grand-total/x3ptools)
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
@@ -123,7 +121,7 @@ image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rgl::rglwidget()
 ```
 
-<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpuxNPIT/file15831ce41356.png" width="480" />
+<img src="man/figures/logo-rgl.png" width="360" />
 
 In case a file name is specified in the function call the resulting
 surface is saved in a file (the extension determines the actual file
@@ -143,7 +141,9 @@ image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rgl::rglwidget()
 ```
 
-<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpuxNPIT/file158316d4df2b1.png" width="480" />
+<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpTYVBe8/file15a775a915d81.png" width="480" />
+
+<img src="man/figures/logo-rgl-grid.png" width="350" />
 
 ### Casting between data types
 
@@ -187,7 +187,7 @@ logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
   scale_fill_gradient2(midpoint=4e-7)
 ```
 
-![](man/figures/unnamed-chunk-10-1.png)<!-- -->
+![](man/figures/unnamed-chunk-11-1.png)<!-- -->
 
 ### Elementary operations
 
