@@ -6,10 +6,12 @@ status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.o
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--01-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--03-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
 [![Coverage
 status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
+
+[](https://cranlogs.r-pkg.org/badges/grand-total/x3ptools)
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
 
@@ -121,7 +123,7 @@ image_x3p(logo, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rgl::rglwidget()
 ```
 
-<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmp1nLfKW/fileae0443da1e04.png" width="480" />
+<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpuxNPIT/file15831ce41356.png" width="480" />
 
 In case a file name is specified in the function call the resulting
 surface is saved in a file (the extension determines the actual file
@@ -141,7 +143,7 @@ image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rgl::rglwidget()
 ```
 
-<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmp1nLfKW/fileae043d338053.png" width="480" />
+<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpuxNPIT/file158316d4df2b1.png" width="480" />
 
 ### Casting between data types
 
@@ -295,7 +297,7 @@ barrel of the handgun when fired), areas in dark blue show groove
 engraved areas, the light blue area shows break off at the bottom of the
 bullet, and the pink area marks an area without striae:
 
-<img src="docs/reference/figures/markup.png" width="750" />
+<img src="man/figures/markup.png" width="750" />
 
 Any image can serve as a mask, the command `x3p_add_mask` allows to add
 a raster image as a mask for a x3p object:
@@ -308,12 +310,12 @@ logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
 image_x3p(logoplus, size=c(741, 419), zoom=0.5, multiply = 30)
 ```
 
-<img src="docs/reference/figures/logo-color.png" width="655" />
+<img src="man/figures/logo-color.png" width="655" />
 
 Some masks are more informative than others, but the only requirement
 for images is that they are of the right size.
 
-<img src="docs/reference/figures/csafe-leopard.png" width="49%" /><img src="docs/reference/figures/csafe-island.png" width="49%" />
+<img src="man/figures/csafe-leopard.png" width="49%" /><img src="man/figures/csafe-island.png" width="49%" />
 
 #### Editing masks
 
@@ -330,4 +332,4 @@ logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
 #image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
 ```
 
-<img src="docs/reference/figures/logo-lines.png" width="370" />
+<img src="man/figures/logo-lines.png" width="370" />
