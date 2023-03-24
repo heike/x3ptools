@@ -35,12 +35,13 @@ Imports: MASS (>= 7.3),
 Suggests:
     knitr,
     rmarkdown,
+    patchwork,
     testthat (>= 3.0.4),
     covr,
     here,
     magick (>= 2.0)
 License: MIT + file LICENSE
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 URL: https://github.com/heike/x3ptools,
     https://heike.github.io/x3ptools/
 BugReports: https://github.com/heike/x3ptools/issues

@@ -2,10 +2,15 @@
 
 # x3ptools 0.0.3.9000
 
+## major functionality 
+
+* `tmd_to_x3p` allows an import of a file in TMD format (natively supported by GelSight instruments) to x3p
+
 ## minor functionality 
 
 * `x3p_extract_profile_segments` interactive function for drawing lines in segments
 * updates to documentation
+
 
 ## bug fixes
 
