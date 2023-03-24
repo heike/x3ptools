@@ -64,12 +64,11 @@ tmd_to_x3p <- function(tmd_path, instrument=" GelSight Series 1 Mobile Probe 1.0
     x3p <- x3p %>% x3p_modify_xml("CalibrationDate", "N/A")
     x3p <- x3p %>% x3p_modify_xml("Creator", "Creator")
     x3p <- x3p %>% x3p_modify_xml("^Date$", "N/A")
-    x3p <- x3p %>% x3p_modify_xml("Instrument", instrument)
+    x3p <- x3p %>% x3p_modify_xml("Instrument.Manufacturer", instrument)
   }
   
   class(x3p) <- "x3p"
-  browser()
-  
+
   x3p
 }
 
