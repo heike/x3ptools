@@ -4,12 +4,16 @@
 \alias{tmd_to_x3p}
 \title{Read (or convert) from TMD file to x3p}
 \usage{
-tmd_to_x3p(tmd_path, instrument = " GelSight Series 1 Mobile Probe 1.0X")
+tmd_to_x3p(tmd_path, yaml_path = NA, verbose = TRUE)
 }
 \arguments{
-\item{instrument}{device that created the TMD file. Defaults to GelSight.}
+\item{tmd_path}{path to TMD file}
 
-\item{path}{to TMD file}
+\item{yaml_path}{path to corresponding yaml file with meta information.
+If set to \code{NA} (default), path of the the tmd file will be tried. If set to NULL,
+meta file will be ignored.}
+
+\item{verbose}{boolean}
 }
 \value{
 x3p file of the scan. Some rudimentary information will be filled in,
@@ -25,5 +29,7 @@ part of the Github repository
 \href{https://github.com/gelsightinc/gsmatlab}{\code{gelsightinc/gsmatlab}}
 }
 \examples{
-x3p <- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd") 
+#x3p <- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd") # 
+x3p <- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd", 
+                  yaml_path="~/Downloads/scan.yaml") # 
 }
