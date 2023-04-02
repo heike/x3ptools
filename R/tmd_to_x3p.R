@@ -113,7 +113,7 @@ tmd_to_x3p <- function(tmd_path, yaml_path = NA, verbose=TRUE) {
 # the code will only work for 
 #' @importFrom utils packageVersion
 x3p_yaml_info <- function(x3p, yaml_file) {
-  browser()
+#  browser()
   meta <- data.frame(
     Date = yaml_file$createdon,
     Instrument.Manufacturer = "GelSight",
