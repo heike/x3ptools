@@ -30,6 +30,6 @@ part of the Github repository
 }
 \examples{
 #x3p <- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd") # 
-x3p <- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd", 
-                  yaml_path="~/Downloads/scan.yaml") # 
+#x3p <- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd", 
+#                   yaml_path="~/Downloads/scan.yaml") # 
 }
