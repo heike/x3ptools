@@ -54,17 +54,23 @@ by GelSight to store 3d topographic surface scans.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tmd_to_x3p</span><span class="op">(</span><span class="va">tmd_path</span>, instrument <span class="op">=</span> <span class="st">" GelSight Series 1 Mobile Probe 1.0X"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tmd_to_x3p</span><span class="op">(</span><span class="va">tmd_path</span>, yaml_path <span class="op">=</span> <span class="cn">NA</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>instrument</dt>
-<dd><p>device that created the TMD file. Defaults to GelSight.</p></dd>
+    <dl><dt>tmd_path</dt>
+<dd><p>path to TMD file</p></dd>
 
 
-<dt>path</dt>
-<dd><p>to TMD file</p></dd>
+<dt>yaml_path</dt>
+<dd><p>path to corresponding yaml file with meta information.
+If set to <code>NA</code> (default), path of the the tmd file will be tried. If set to NULL,
+meta file will be ignored.</p></dd>
+
+
+<dt>verbose</dt>
+<dd><p>boolean</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -83,7 +89,9 @@ part of the Github repository
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="fu">tmd_to_x3p</span><span class="op">(</span><span class="st">"~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd"</span><span class="op">)</span> </span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">#x3p &lt;- tmd_to_x3p("~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd") # </span></span></span>
+<span class="r-in"><span><span class="va">x3p</span> <span class="op">&lt;-</span> <span class="fu">tmd_to_x3p</span><span class="op">(</span><span class="st">"~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd"</span>, </span></span>
+<span class="r-in"><span>                  yaml_path<span class="op">=</span><span class="st">"~/Downloads/scan.yaml"</span><span class="op">)</span> <span class="co"># </span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Path '~/Downloads/Sc04.Pl044.Ma4.SB.An80.Pb.DirFo.SizL.tmd' does not exist</span>
 </code></pre></div>
     </div>
