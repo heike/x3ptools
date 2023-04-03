@@ -20,7 +20,22 @@ test_that("df_to_x3p works as expected", {
     )
   )
   expect_equivalent(tmp$header.info, list(sizeX = 6, sizeY = 7, incrementX = 1, incrementY = 1))
-
+  
+  df2 <- dftest[,1:5]
+  expect_silent(tmp <- df_to_x3p(df2, var = "z"))
+  df2$annotation <- ifelse(df2$mask=="#00FF00", "green", 
+                           ifelse(df2$mask=="#FFFF00", "yellow", "blue"))
+  expect_silent(tmp <- df_to_x3p(df2, var = "z"))
+  annotations1 <- tmp %>% x3p_show_xml("annotation")
+#  expect_identical(annotations1[3], list(Mask.Annotations3="yellow"))
+  
+  df2$annotation <- factor(df2$annotation)
+  df2$mask <- factor(df2$mask)
+  expect_silent(tmp <- df_to_x3p(df2, var = "z"))
+  annotations2 <- tmp %>% x3p_show_xml("annotation")
+  expect_identical(annotations1, annotations2)
+  
+  
   expect_message(
     x3ptest2 <- df_to_x3p(dftest2),
     "dframe has missing values ... they will be expanded"
