@@ -1,7 +1,8 @@
 #' Interactively select a line on the active rgl device 
 #' 
 #' In the active rgl device select a line on the 3d surface by clicking on start and end-point (order matters). These points define the beginning and end  of a line segment.
-#' The line segment is drawn on the mask of the x3p object. The returned x3p object is expanded by a data frame of surface measurements along the line segment.
+#' The line segment is drawn on the mask of the x3p object. 
+#' The line object is returned as part of the x3p object, if `line_out` is set to `TRUE`
 #' @param x3p x3p file
 #' @param col character value of the selection color
 #' @param update boolean value, whether the rgl window should be updated to show the selected circle
@@ -9,7 +10,7 @@
 #' the second click (max x). The values of x in the result are in the same units as the original x3p.
 #' @param multiply integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5, 
 #' @param linewidth line width of the extracted line. Defaults to 1.
-#' @return x3p file with identified in mask enhanced by a dataframe of the line segment (line_df).  
+#' @return x3p file with identified line in the mask. If `line_out` is set to `TRUE`,  the x3p object is enhanced by the element `line`. `line` is a list object with the following entries:  `line_df` consists of of the pixel locations of 
 #' @export
 #' @importFrom dplyr arrange between filter mutate rename
 #' @examples 
