@@ -5,7 +5,9 @@
 ## major functionality 
 
 * `tmd_to_x3p` allows an import of a file in TMD format (natively supported by GelSight instruments) to x3p
-* `x3p_bin_stripes` color-shade the mask by row or column-baed gradient
+* `x3p_bin_stripes` color-shade the mask by row or column-based gradient
+* `x3p_shade_mask` color-shade the mask of an x3p by its surface profile
+
 
 ## minor functionality 
 
