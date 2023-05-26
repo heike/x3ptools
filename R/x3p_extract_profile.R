@@ -6,11 +6,14 @@
 #' @param x3p x3p file
 #' @param col character value of the selection color
 #' @param update boolean value, whether the rgl window should be updated to show the selected circle
-#' @param line_out boolean enhance result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to 
-#' the second click (max x). The values of x in the result are in the same units as the original x3p.
+#' @param line_result  enhance result by a data frame of the line: NULL for no, "raw" for data frame of original x and y (in the mask) and
+#' projected x onto the line, "equi-spaced" (default) returns a data frame with equispaced x values after fitting a loess smooth to the raw values. 
+#' Note that variable x indicates the direction from first click (x=0) to 
+#' the second click (max x). 
 #' @param multiply integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5, 
 #' @param linewidth line width of the extracted line. Defaults to 1.
-#' @return x3p file with identified line in the mask. If `line_out` is set to `TRUE`,  the x3p object is enhanced by the element `line`. `line` is a list object with the following entries:  `line_df` consists of of the pixel locations of 
+#' @return x3p file with identified line in the mask. Depending on the setting of `line_out`
+#' additional information on the line is attached as a data frame. 
 #' @export
 #' @importFrom dplyr arrange between filter mutate rename
 #' @examples 
@@ -31,7 +34,7 @@
 #'      geom_line(aes(y = sig), size = 1) +
 #'      theme_bw() 
 #' }}
-x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE, multiply = 5, linewidth = 1) {
+x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out= "equi-spaced", multiply = 5, linewidth = 1) {
   cat("Select start point and endpoint on the surface ...\n")
   stopifnot("x3p" %in% class(x3p))
   ids <- rgl::ids3d()
@@ -77,7 +80,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE
     `p-x.n` = (x - X[1])*n[1] + (y - X[2])*n[2],
     `p-x.m` = (x - X[1])*m[1] + (y - X[2])*m[2]
   )
-  eps <- x3p %>% x3p_get_scale() * linewidth
+  eps <- x3p %>% x3p_get_scale() * linewidth/2
   on_line <- abs(x3p_df$`p-x.n`)< eps & dplyr::between(x3p_df$`p-x.m`, 0, dm)
   x3p_df$mask[on_line] <- col
   tmp <- x3p_df %>% df_to_x3p()
@@ -93,7 +96,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE
     #  x3p %>% image_x3p(update=TRUE)
   }
   
-  if (line_out) {
+  if (!is.null(line_out)) {
     line_df <- x3p_df %>% 
       filter(abs(`p-x.n`)<eps, between(`p-x.m`, 0, dm)) %>%
       rename(
@@ -103,8 +106,17 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out=TRUE
       ) %>%
       select(x, orig_x, orig_y, value) %>%
       arrange(x)
+    if (line_out == "raw")  {
+      line <- line_df
+    } 
+    if (line_out == "equi-spaced") {
+      line_model <- loess(value~x, span=0.02, data = line_df)
+      line_predict <- data.frame(x = seq(min(line_df$x), max(line_df$x), by = x3p %>% x3p_get_scale()))
+      line_predict$value <- predict(line_model, newdata=line_predict)
+      line <- line_predict      
+    }
     
-    x3p$line_df <- line_df
+    x3p$line <- line
   }
   
   x3p
