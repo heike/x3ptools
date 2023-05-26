@@ -61,7 +61,7 @@ The line object is returned as part of the x3p object, if <code>line_out</code> 
 <span>  <span class="va">x3p</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">"#FF0000"</span>,</span>
 <span>  update <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  line_out <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  line_out <span class="op">=</span> <span class="st">"equi-spaced"</span>,</span>
 <span>  multiply <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -81,11 +81,6 @@ The line object is returned as part of the x3p object, if <code>line_out</code> 
 <dd><p>boolean value, whether the rgl window should be updated to show the selected circle</p></dd>
 
 
-<dt>line_out</dt>
-<dd><p>boolean enhance result by a data frame of the line? Note that variable x indicates the direction from first click (x=0) to
-the second click (max x). The values of x in the result are in the same units as the original x3p.</p></dd>
-
-
 <dt>multiply</dt>
 <dd><p>integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5,</p></dd>
 
@@ -93,12 +88,22 @@ the second click (max x). The values of x in the result are in the same units as
 <dt>linewidth</dt>
 <dd><p>line width of the extracted line. Defaults to 1.</p></dd>
 
+
+<dt>line_result</dt>
+<dd><p>enhance result by a data frame of the line: NULL for no, "raw" for data frame of original x and y (in the mask) and
+projected x onto the line, "equi-spaced" (default) returns a data frame with equispaced x values after fitting a loess smooth to the raw values.
+Note that variable x indicates the direction from first click (x=0) to
+the second click (max x).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>x3p file with identified line in the mask. If <code>line_out</code> is set to <code>TRUE</code>,  the x3p object is enhanced by the element <code>line</code>. <code>line</code> is a list object with the following entries:  <code>line_df</code> consists of of the pixel locations of</p>
+<p>x3p file with identified line in the mask. Depending on the setting of <code>line_out</code></p>
+
+
+<p>additional information on the line is attached as a data frame.</p>
     </div>
 
     <div class="section level2">
