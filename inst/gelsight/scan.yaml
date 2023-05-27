@@ -1,0 +1,36 @@
+images:
+  - image01.png
+  - image02.png
+  - image03.png
+  - image04.png
+  - image05.png
+  - image06.png
+guid: 6a520e40-8bec-4349-8341-95a5156bd81e
+mmperpixel: 0.00352524598198
+calib: ..\Calib-17C9-CJXW_20220608_1113.yaml
+crop: [0, 0, 0, 0]
+cameratostage: []
+aligned: false
+createdon: 2022-06-17 10:04:06
+sdkversion: 2.2.214
+activeheightmap: Sc17.Pl017.Ma6.S.A.An80.Pb.tmd
+activenormalmap: Sc17.Pl017.Ma6.S.A.An80.Pb.png
+calibration: 
+    date: 2022-06-08 11:14:00
+    username: DESKTOP-BIO06VF\GelSight
+camera: 
+    cameraid: CIMAF2108039
+    cameratype: Ximea
+    gelid: 17C9-CJXW
+    shutter: 1.303
+device: 
+    devicetemp: 56.6
+    devicetype: GelSight Mobile 1X
+    serialnumber: CIMAF2108039
+metadata: 
+    appname: GelSight.Mobile
+    appversion: 2.2.214.0
+    gelid: 17C9-CJXW
+    gelusecount: 216
+    sdkversion: 2.2.214.0
+    username: DESKTOP-BIO06VF\GelSight
