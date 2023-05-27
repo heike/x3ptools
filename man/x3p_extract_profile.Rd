@@ -8,7 +8,7 @@ x3p_extract_profile(
   x3p,
   col = "#FF0000",
   update = TRUE,
-  line_out = "equi-spaced",
+  line_result = "equi-spaced",
   multiply = 5,
   linewidth = 1
 )
@@ -20,14 +20,14 @@ x3p_extract_profile(
 
 \item{update}{boolean value, whether the rgl window should be updated to show the selected circle}
 
-\item{multiply}{integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5,}
-
-\item{linewidth}{line width of the extracted line. Defaults to 1.}
-
 \item{line_result}{enhance result by a data frame of the line: NULL for no, "raw" for data frame of original x and y (in the mask) and
 projected x onto the line, "equi-spaced" (default) returns a data frame with equispaced x values after fitting a loess smooth to the raw values.
 Note that variable x indicates the direction from first click (x=0) to
 the second click (max x).}
+
+\item{multiply}{integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5,}
+
+\item{linewidth}{line width of the extracted line. Defaults to 1.}
 }
 \value{
 x3p file with identified line in the mask. Depending on the setting of \code{line_out}

@@ -34,7 +34,7 @@
 #'      geom_line(aes(y = sig), size = 1) +
 #'      theme_bw() 
 #' }}
-x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_out= "equi-spaced", multiply = 5, linewidth = 1) {
+x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= "equi-spaced", multiply = 5, linewidth = 1) {
   cat("Select start point and endpoint on the surface ...\n")
   stopifnot("x3p" %in% class(x3p))
   ids <- rgl::ids3d()
