@@ -12,7 +12,11 @@ test_that("tmd_to_x3p works as expected", {
 
   tmd_file_2 <- system.file("gelsight/testing.tmd", package="x3ptools")
   
-  expect_output(tmd2 <- tmd_to_x3p(tmd_file_2), regex="Reading meta information from file scan.yaml.") 
+  expect_error(tmd_to_x3p(tmd_file_2)) # throws error about too many yaml files
+  yaml_file <- system.file("gelsight/scan.yaml", package="x3ptools")
+  expect_output(tmd2 <- tmd_to_x3p(tmd_file_2, yaml_path = yaml_file), 
+    regexp="Reading meta information from file scan.yaml.")
+  
   expect_identical(tmd$surface.matrix, tmd2$surface.matrix)
   expect_match(x3p_show_xml(tmd2, "Instrument.Model")$Instrument.Model ,"GelSight Mobile 1X")
 })
