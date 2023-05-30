@@ -4,7 +4,8 @@
 #' @param x3p object containing a 3d topographic surface 
 #' @param colors vector of colors
 #' @param freqs vector of values corresponding to color frequency (turned into quantiles of the differenced values)
-#' @return x3p object with mask colored 
+#' @return x3p object with color-shaded mask
+#' @export
 #' @examples 
 #' \dontrun{
 #' x3p <- x3p_read("~/Documents/CSAFE/Wirecutter/data/Aluminum Wires renamed/T1AW-LI-R1-B01.x3p")

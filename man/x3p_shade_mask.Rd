@@ -19,7 +19,7 @@ x3p_shade_mask(
 \item{freqs}{vector of values corresponding to color frequency (turned into quantiles of the differenced values)}
 }
 \value{
-x3p object with mask colored
+x3p object with color-shaded mask
 }
 \description{
 Apply color shading to the mask of a 3d topographic surface.
