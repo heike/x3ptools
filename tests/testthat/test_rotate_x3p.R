@@ -18,12 +18,26 @@ test_that("rotate_x3p works as expected", {
     x3ptest90$surface.matrix,
     rotate_surface_mat_90(x3ptest$surface.matrix)
   )
+  x3ptest2 <- x3ptest %>% x3p_shade_mask()
+  x3ptest2b <- rotate_x3p(x3ptest2)
+  expect_equivalent(
+    x3ptest2b$mask,
+    as.raster(t(as.matrix(x3ptest2$mask))[rev(1:6),])
+  )
 })
 
 test_that("transpose_x3p works as expected", {
   expect_equivalent(x3ptest$surface.matrix, t(x3ptest_transpose$surface.matrix))
   expect_equivalent(x3ptest$header.info$sizeX, x3ptest_transpose$header.info$sizeY)
   expect_equivalent(x3ptest$header.info$sizeY, x3ptest_transpose$header.info$sizeX)
+  
+  x3ptest2 <- x3ptest %>% x3p_shade_mask()
+  x3ptest2b <- transpose_x3p(x3ptest2)
+  expect_equivalent(
+    x3ptest2b$mask,
+    as.raster(t(as.matrix(x3ptest2$mask)))
+  )
+  
 })
 
 test_that("y_flip_x3p works as expected", {
