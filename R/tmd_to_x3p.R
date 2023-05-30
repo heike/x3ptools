@@ -36,7 +36,7 @@ tmd_to_x3p <- function(tmd_path, yaml_path = NA, verbose=TRUE) {
         if (length(yaml) > 1)
           stop(simpleError(message = sprintf("Multiple yaml files found in directory '%s':\n %s\nAvoid ambiguity by setting yaml_path.", directory, paste(basename(yaml), sep="\n", collapse="\n "))))
       }
-      yaml_path <- yaml[1]
+#      yaml_path <- yaml[1]      # can't be reached
     }
     if (verbose) cat(sprintf("Reading meta information from file %s.", basename(yaml_path)))
     yaml_file <- yaml::read_yaml(yaml_path)
