@@ -2,7 +2,7 @@
 #' 
 #' In the active rgl device select a line on the 3d surface by clicking on start and end-point (order matters). These points define the beginning and end  of a line segment.
 #' The line segment is drawn on the mask of the x3p object. 
-#' The line object is returned as part of the x3p object, if `line_out` is set to `TRUE`
+#' The line object is returned as part of the x3p object, if `line_result` is set to `TRUE`
 #' @param x3p x3p file
 #' @param col character value of the selection color
 #' @param update boolean value, whether the rgl window should be updated to show the selected circle
@@ -12,7 +12,7 @@
 #' the second click (max x). 
 #' @param multiply integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5, 
 #' @param linewidth line width of the extracted line. Defaults to 1.
-#' @return x3p file with identified line in the mask. Depending on the setting of `line_out`
+#' @return x3p file with identified line in the mask. Depending on the setting of `line_result`
 #' additional information on the line is attached as a data frame. 
 #' @export
 #' @importFrom dplyr arrange between filter mutate rename
@@ -96,7 +96,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
     #  x3p %>% image_x3p(update=TRUE)
   }
   
-  if (!is.null(line_out)) {
+  if (!is.null(line_result)) {
     line_df <- x3p_df %>% 
       filter(abs(`p-x.n`)<eps, between(`p-x.m`, 0, dm)) %>%
       rename(
@@ -106,10 +106,10 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
       ) %>%
       select(x, orig_x, orig_y, value) %>%
       arrange(x)
-    if (line_out == "raw")  {
+    if (line_result == "raw")  {
       line <- line_df
     } 
-    if (line_out == "equi-spaced") {
+    if (line_result == "equi-spaced") {
       line_model <- loess(value~x, span=0.02, data = line_df)
       line_predict <- data.frame(x = seq(min(line_df$x), max(line_df$x), by = x3p %>% x3p_get_scale()))
       line_predict$value <- predict(line_model, newdata=line_predict)

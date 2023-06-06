@@ -30,13 +30,13 @@ the second click (max x).}
 \item{linewidth}{line width of the extracted line. Defaults to 1.}
 }
 \value{
-x3p file with identified line in the mask. Depending on the setting of \code{line_out}
+x3p file with identified line in the mask. Depending on the setting of \code{line_result}
 additional information on the line is attached as a data frame.
 }
 \description{
 In the active rgl device select a line on the 3d surface by clicking on start and end-point (order matters). These points define the beginning and end  of a line segment.
 The line segment is drawn on the mask of the x3p object.
-The line object is returned as part of the x3p object, if \code{line_out} is set to \code{TRUE}
+The line object is returned as part of the x3p object, if \code{line_result} is set to \code{TRUE}
 }
 \examples{
 \dontrun{
