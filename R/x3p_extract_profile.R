@@ -102,19 +102,33 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
       rename(
         orig_x = x,
         orig_y = y,
-        x = `p-x.m`
+        x = `p-x.m`,
+        y = `p-x.n`
       ) %>%
-      select(x, orig_x, orig_y, value) %>%
+      select(x, y, orig_x, orig_y, value) %>%
       arrange(x)
+    
     if (line_result == "raw")  {
       line <- line_df
     } 
     if (line_result == "equi-spaced") {
-      line_model <- loess(value~x, span=0.02, data = line_df)
-      line_predict <- data.frame(x = seq(min(line_df$x), max(line_df$x), by = x3p %>% x3p_get_scale()))
-      line_predict$value <- predict(line_model, newdata=line_predict)
-      line <- line_predict      
+      
+      #ps <- sequence_points(0, Y-X, by=x3p %>% x3p_get_scale())
+      scale <- x3p %>% x3p_get_scale()
+      line_df <- line_df %>% mutate(
+        x = round(x/scale),
+        y = round(y/scale)
+      ) 
+      line <- line_df %>% group_by(x) %>% 
+        summarize(
+          value = median(value, na.rm=TRUE),
+          orig_x = median(orig_x),
+          orig_y = median(orig_y),
+          y = 0,
+          n = n()) %>% 
+        mutate(x = x*scale)
     }
+    attributes(line)$click <- list(start=X, end=Y)
     
     x3p$line <- line
   }
