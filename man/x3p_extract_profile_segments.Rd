@@ -7,8 +7,8 @@
 x3p_extract_profile_segments(
   x3p,
   width,
-  col = "#00FF00",
-  linewidth,
+  col = "#FF0000",
+  linewidth = 11,
   verbose = TRUE
 )
 }

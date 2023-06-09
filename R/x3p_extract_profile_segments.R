@@ -17,7 +17,7 @@
 #' logo <- x3p_m_to_mum(logo)
 #' if(interactive())
 #'   x3p_extract_profile_segments(logo, 850, col="#ffffff", linewidth=5)
-x3p_extract_profile_segments <- function(x3p, width, col="#00FF00", linewidth, verbose = TRUE) {
+x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11, verbose = TRUE) {
   # pass R CMD CHECK
   x <- y <- height <- value <- orig_x <- orig_y <- piece <- NULL
   mask.x <- mask.y <- NULL
