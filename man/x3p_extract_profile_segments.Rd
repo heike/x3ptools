@@ -2,9 +2,15 @@
 % Please edit documentation in R/x3p_extract_profile_segments.R
 \name{x3p_extract_profile_segments}
 \alias{x3p_extract_profile_segments}
-\title{Extract profiles with multiple segments}
+\title{Extract profiles from surface using multiple segments}
 \usage{
-x3p_extract_profile_segments(x3p, width, col, linewidth, verbose = TRUE)
+x3p_extract_profile_segments(
+  x3p,
+  width,
+  col = "#00FF00",
+  linewidth,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x3p}{object}
@@ -18,14 +24,16 @@ x3p_extract_profile_segments(x3p, width, col, linewidth, verbose = TRUE)
 \item{verbose}{logical}
 }
 \value{
-x3p object with added lines
+x3p object with added \code{lines} attribute.
 }
 \description{
-Extract profiles with multiple segments
+The 3d topographic surface is split into multiple segments of width \code{width} (in pixels)
+using an overlap of 10\% between segments. For each segment, a line is extracted (with \code{x3p_extract_profile}).
+Line segments are projected onto the mask of the initial x3p object and exported as a \code{lines} attribute.
 }
 \examples{
 logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 logo <- x3p_m_to_mum(logo)
 if(interactive())
-  x3p_extract_profile_segments(logo, 850, col="#ffffff")
+  x3p_extract_profile_segments(logo, 850, col="#ffffff", linewidth=5)
 }
