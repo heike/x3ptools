@@ -20,8 +20,8 @@
 #' x3p_image(logo60)
 #' }
 
-x3p_rotate_xy <- function(x3p, theta) {
-  theta <- theta / 180 * pi
+x3p_rotate_xy <- function(x3p, angle) {
+  angle <- angle / 180 * pi
   
   ### Change to contrast color
   x3p_shift <- x3p$surface.matrix
@@ -43,8 +43,8 @@ x3p_rotate_xy <- function(x3p, theta) {
 
   ### Compute padding width
   pad_width <- max(
-    dim(x3p_cimg)[2] * sin(theta) * 2,
-    (dim(x3p_cimg)[1] * sin(theta) + dim(x3p_cimg)[2] * cos(theta) - dim(x3p_cimg)[2]) * 2
+    dim(x3p_cimg)[2] * sin(angle) * 2,
+    (dim(x3p_cimg)[1] * sin(angle) + dim(x3p_cimg)[2] * cos(angle) - dim(x3p_cimg)[2]) * 2
   )
 
   ### Pad the original cimg object
@@ -53,7 +53,7 @@ x3p_rotate_xy <- function(x3p, theta) {
   ### Rotate at padding center
   ### interpolation maintain the original scaling
   x3p_cimg_pad_rotate <- x3p_cimg_pad %>%
-    rotate_xy(theta / (2 * pi) * 360, pad_width, pad_width, interpolation = 0L, boundary_conditions = 2L)
+    rotate_xy(angle / (2 * pi) * 360, pad_width, pad_width, interpolation = 0L, boundary_conditions = 2L)
 
   ### Change cimg object to matrix
   x3p_matrix_pad_rotate <- x3p_cimg_pad_rotate %>%

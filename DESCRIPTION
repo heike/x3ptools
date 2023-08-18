@@ -33,7 +33,9 @@ Imports: MASS (>= 7.3),
          purrr (>= 1.0.0),
          yaml (>= 2.3.7),
          scales (>= 1.2.1),
-         grDevices
+         grDevices,
+         imager,
+         raster
 Suggests:
     knitr,
     rmarkdown,

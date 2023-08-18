@@ -4,7 +4,7 @@
 \alias{x3p_rotate_xy}
 \title{Rotate an x3p object}
 \usage{
-x3p_rotate_xy(x3p, theta)
+x3p_rotate_xy(x3p, angle)
 }
 \arguments{
 \item{x3p}{x3p object}
