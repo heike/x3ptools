@@ -63,15 +63,11 @@ x3p_rotate_xy <- function(x3p, angle) {
 
   ### Remove extra NA space after padding
   x3p_matrix_pad_rotate <- x3p_matrix_pad_rotate %>%
-    t() %>%
     as.data.frame() %>%
-    select_if(~ any(!is.na(.))) %>%
-    as.matrix() %>%
-    t() %>%
-    as.data.frame() %>%
+    filter_all(any_vars(!is.na(.))) %>% 
     select_if(~ any(!is.na(.))) %>%
     as.matrix()
-
+    
   ### Copy x3p object
   x3p_pad_rotate <- x3p %>%
     x3p_delete_mask()
