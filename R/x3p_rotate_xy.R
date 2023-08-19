@@ -21,8 +21,8 @@
 #' }
 
 x3p_rotate_xy <- function(x3p, angle) {
-  angle <- angle / 180 * pi
-  
+  angle <- angle %% 360
+
   ### Change to contrast color
   x3p_shift <- x3p$surface.matrix
   NA_val <- -(x3p$surface.matrix %>%
@@ -41,19 +41,19 @@ x3p_rotate_xy <- function(x3p, angle) {
   ### Change to cimg
   x3p_cimg <- as.cimg(x3p_raster)
 
-  ### Compute padding width
-  pad_width <- max(
-    dim(x3p_cimg)[2] * sin(angle) * 2,
-    (dim(x3p_cimg)[1] * sin(angle) + dim(x3p_cimg)[2] * cos(angle) - dim(x3p_cimg)[2]) * 2
-  )
+  ### Compute diagonal length
+  diag_len <- sqrt(nrow(x3p_cimg)^2 + ncol(x3p_cimg)^2)
 
   ### Pad the original cimg object
-  x3p_cimg_pad <- pad(x3p_cimg, pad_width, "xy", val = NA_val)
+  x3p_cimg_pad <- x3p_cimg %>%
+    pad(nPix = diag_len, axes = "xy", pos = -1, val = NA_val) %>%
+    pad(nPix = diag_len - nrow(x3p_cimg), axes = "x", pos = 1, val = NA_val) %>%
+    pad(nPix = diag_len - ncol(x3p_cimg), axes = "y", pos = 1, val = NA_val)
 
   ### Rotate at padding center
   ### interpolation maintain the original scaling
   x3p_cimg_pad_rotate <- x3p_cimg_pad %>%
-    rotate_xy(angle / (2 * pi) * 360, pad_width, pad_width, interpolation = 0L, boundary_conditions = 2L)
+    rotate_xy(angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
 
   ### Change cimg object to matrix
   x3p_matrix_pad_rotate <- x3p_cimg_pad_rotate %>%
@@ -64,10 +64,10 @@ x3p_rotate_xy <- function(x3p, angle) {
   ### Remove extra NA space after padding
   x3p_matrix_pad_rotate <- x3p_matrix_pad_rotate %>%
     as.data.frame() %>%
-    filter_all(any_vars(!is.na(.))) %>% 
+    filter_all(any_vars(!is.na(.))) %>%
     select_if(~ any(!is.na(.))) %>%
     as.matrix()
-    
+
   ### Copy x3p object
   x3p_pad_rotate <- x3p %>%
     x3p_delete_mask()
