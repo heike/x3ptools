@@ -24,6 +24,6 @@ x3p_image(logo)
 logo60 <- x3p_rotate_xy(logo, 60)
 dim(logo60$surface.matrix)
 \dontrun{
-x3p_image(logo60)
+x3p_image(logo60, zoom = 1.2)
 }
 }
