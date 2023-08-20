@@ -21,7 +21,11 @@
 #' }
 
 x3p_rotate_xy <- function(x3p, angle) {
-  angle <- angle %% 360
+  if (identical(angle %% 360, 0)){
+    return(x3p)
+  } else {
+    angle <- angle %% 360
+  }
 
   ### Change to contrast color
   x3p_shift <- x3p$surface.matrix
@@ -78,6 +82,6 @@ x3p_rotate_xy <- function(x3p, angle) {
   x3p_pad_rotate$matrix.info$MatrixDimension$SizeY <- ncol(x3p_matrix_pad_rotate)
   x3p_pad_rotate$surface.matrix <- x3p_matrix_pad_rotate
 
-  x3p_pad_rotate
+  return(x3p_pad_rotate)
 }
 
