@@ -88,7 +88,5 @@ x3p_rotate <- function(x3p, angle = 90) {
 
 #' @rdname x3p_rotate
 #' @export
-rotate_x3p <- function(x3p, angle = 90){
-  x3p_rotate(x3p, angle)
-}
+rotate_x3p <- x3p_rotate
 
