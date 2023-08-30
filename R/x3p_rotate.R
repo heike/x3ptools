@@ -20,7 +20,7 @@
 #' x3p_image(logo60, zoom = 1.2)
 #' }
 
-x3p_rotate <- function(x3p, angle) {
+x3p_rotate <- function(x3p, angle = 90) {
   if (identical(angle %% 360, 0)){
     return(x3p)
   } else {
@@ -87,7 +87,7 @@ x3p_rotate <- function(x3p, angle) {
 
 
 #' @rdname x3p_rotate
-rotate_x3p <- function(x3p, angle){
+rotate_x3p <- function(x3p, angle = 90){
   x3p_rotate(x3p, angle)
 }
 

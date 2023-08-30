@@ -5,9 +5,9 @@
 \alias{rotate_x3p}
 \title{Rotate an x3p object}
 \usage{
-x3p_rotate(x3p, angle)
+x3p_rotate(x3p, angle = 90)
 
-rotate_x3p(x3p, angle)
+rotate_x3p(x3p, angle = 90)
 }
 \arguments{
 \item{x3p}{x3p object}
