@@ -18,7 +18,7 @@
 #' }
 x3p_flip_x <- function(x3p) {
 
-  x3p_transpose(rotate_x3p(x3p, angle = 90))
+  x3p_transpose(rotate_x3p(x3p, angle = -90))
 }
 
 #' @rdname x3p_flip_x
