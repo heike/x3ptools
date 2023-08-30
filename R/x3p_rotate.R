@@ -14,13 +14,13 @@
 #' x3p_image(logo)
 #' }
 #' # rotate the image by 60 degrees counter-clockwise:
-#' logo60 <- x3p_rotate_xy(logo, 60)
+#' logo60 <- x3p_rotate(logo, 60)
 #' dim(logo60$surface.matrix)
 #' \dontrun{
 #' x3p_image(logo60, zoom = 1.2)
 #' }
 
-x3p_rotate_xy <- function(x3p, angle) {
+x3p_rotate <- function(x3p, angle) {
   if (identical(angle %% 360, 0)){
     return(x3p)
   } else {
@@ -83,5 +83,11 @@ x3p_rotate_xy <- function(x3p, angle) {
   x3p_pad_rotate$surface.matrix <- x3p_matrix_pad_rotate
 
   return(x3p_pad_rotate)
+}
+
+
+#' @rdname x3p_rotate
+rotate_x3p <- function(x3p, angle){
+  x3p_rotate(x3p, angle)
 }
 
