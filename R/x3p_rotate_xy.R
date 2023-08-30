@@ -78,8 +78,8 @@ x3p_rotate_xy <- function(x3p, angle) {
   ### Change details of x3p object
   x3p_pad_rotate$header.info$sizeX <- nrow(x3p_matrix_pad_rotate)
   x3p_pad_rotate$header.info$sizeY <- ncol(x3p_matrix_pad_rotate)
-  x3p_pad_rotate$matrix.info$MatrixDimension$SizeX <- nrow(x3p_matrix_pad_rotate)
-  x3p_pad_rotate$matrix.info$MatrixDimension$SizeY <- ncol(x3p_matrix_pad_rotate)
+  x3p_pad_rotate$matrix.info$MatrixDimension$SizeX <- list(nrow(x3p_matrix_pad_rotate))
+  x3p_pad_rotate$matrix.info$MatrixDimension$SizeY <- list(ncol(x3p_matrix_pad_rotate))
   x3p_pad_rotate$surface.matrix <- x3p_matrix_pad_rotate
 
   return(x3p_pad_rotate)
