@@ -21,7 +21,7 @@
 #' }
 
 x3p_rotate <- function(x3p, angle = 90) {
-  if (identical(angle %% 360, 0)){
+  if (identical(angle %% 360, 0)) {
     return(x3p)
   } else {
     angle <- angle %% 360
@@ -80,41 +80,41 @@ x3p_rotate <- function(x3p, angle = 90) {
   x3p_pad_rotate$matrix.info$MatrixDimension$SizeX <- list(nrow(x3p_matrix_pad_rotate))
   x3p_pad_rotate$matrix.info$MatrixDimension$SizeY <- list(ncol(x3p_matrix_pad_rotate))
   x3p_pad_rotate$surface.matrix <- x3p_matrix_pad_rotate
-  
-  if (!is.null(x3p$mask)){
+
+  if (!is.null(x3p$mask)) {
     ### Change to cimg
     x3p_mask_cimg <- as.cimg(x3p$mask)
-    
+
     ### Compute diagonal length
     diag_len <- sqrt(nrow(x3p_mask_cimg)^2 + ncol(x3p_mask_cimg)^2)
-    
+
     ### Pad the original cimg object
-    NA_val <- rep(255, dim(x3p_mask_cimg)[4])
+    NA_val <- "black"
     x3p_mask_cimg_pad <- x3p_mask_cimg %>%
       pad(nPix = diag_len, axes = "xy", pos = -1, val = NA_val) %>%
       pad(nPix = diag_len - nrow(x3p_mask_cimg), axes = "x", pos = 1, val = NA_val) %>%
       pad(nPix = diag_len - ncol(x3p_mask_cimg), axes = "y", pos = 1, val = NA_val)
-    
+
     ### Rotate at padding center
     ### interpolation maintain the original scaling
     x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>%
       rotate_xy(-angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
-    
+
     ### Change cimg object to raster
     x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
       as.raster()
-    
-    x3p_mask_raster_pad_rotate[x3p_mask_raster_pad_rotate == "#FFFFFF"] <- NA
-    
+
+    x3p_mask_raster_pad_rotate[x3p_mask_raster_pad_rotate == "#000000"] <- NA
+
     ### Remove extra NA space after padding
     x3p_mask_raster_pad_rotate <- x3p_mask_raster_pad_rotate %>%
-      as.matrix() %>% 
+      as.matrix() %>%
       as.data.frame() %>%
       filter_all(any_vars(!is.na(.))) %>%
       select_if(~ any(!is.na(.))) %>%
-      as.matrix() %>% 
+      as.matrix() %>%
       as.raster()
-    
+
     x3p_pad_rotate$mask <- x3p_mask_raster_pad_rotate
   }
 
