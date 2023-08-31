@@ -20,7 +20,10 @@ test_that("x3p_rotate works as expected", {
     rotate_surface_mat_90(x3ptest$surface.matrix)
   )
   x3ptest2 <- x3ptest %>% x3p_shade_mask()
-  x3ptest2b <- x3p_rotate(x3ptest2, angle = 90)
+  ### Replace NA in the mask with default color "#FFFFFF"
+  x3ptest2def <- x3ptest2
+  x3ptest2def$mask[is.na(x3ptest2def$mask)] <- "#FFFFFF"
+  x3ptest2defb <- x3p_rotate(x3ptest2def, angle = 90)
   expect_equivalent(
     x3ptest2b$mask,
     as.raster(t(as.matrix(x3ptest2$mask))[rev(1:6),])
