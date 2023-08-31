@@ -4,7 +4,7 @@ rotate_surface_mat_90 <- function(x) {
   t(x)[, c(rev(1:nrow(x)))]
 }
 ### To rotate counter-clockwise
-x3ptest90 <- x3p_rotate(x3ptest, angle = -90)
+x3ptest90 <- x3p_rotate(x3ptest, angle = 90)
 x3ptest_transpose <- transpose_x3p(x3ptest)
 x3ptest_yflip <- y_flip_x3p(x3ptest)
 
@@ -20,7 +20,7 @@ test_that("x3p_rotate works as expected", {
     rotate_surface_mat_90(x3ptest$surface.matrix)
   )
   x3ptest2 <- x3ptest %>% x3p_shade_mask()
-  x3ptest2b <- x3p_rotate(x3ptest2, angle = -90)
+  x3ptest2b <- x3p_rotate(x3ptest2, angle = 90)
   expect_equivalent(
     x3ptest2b$mask,
     as.raster(t(as.matrix(x3ptest2$mask))[rev(1:6),])

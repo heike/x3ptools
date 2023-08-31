@@ -12,7 +12,7 @@ rotate_x3p(x3p, angle = 90)
 \arguments{
 \item{x3p}{x3p object}
 
-\item{angle}{rotate clockwise by angle degrees given as 30, 60, 90 degree.}
+\item{angle}{rotate counter-clockwise by angle degrees given as 30, 60, 90 degree.}
 }
 \description{
 Rotate the surface matrix of an x3p object. Also adjust meta information.

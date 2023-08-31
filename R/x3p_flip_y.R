@@ -20,7 +20,7 @@
 #' x3p_image(logoflip)
 #' }
 x3p_flip_y <- function(x3p) {
-  rotate_x3p(x3p_transpose(x3p), angle = -90)
+  rotate_x3p(x3p_transpose(x3p), angle = 90)
 }
 
 #' @rdname x3p_flip_y

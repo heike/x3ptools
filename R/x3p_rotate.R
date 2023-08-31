@@ -2,7 +2,7 @@
 #'
 #' Rotate the surface matrix of an x3p object. Also adjust meta information.
 #' @param x3p x3p object
-#' @param angle rotate clockwise by angle degrees given as 30, 60, 90 degree.
+#' @param angle rotate counter-clockwise by angle degrees given as 30, 60, 90 degree.
 #' @import dplyr
 #' @importFrom imager as.cimg pad rotate_xy
 #' @importFrom raster raster
@@ -57,7 +57,7 @@ x3p_rotate <- function(x3p, angle = 90) {
   ### Rotate at padding center
   ### interpolation maintain the original scaling
   x3p_cimg_pad_rotate <- x3p_cimg_pad %>%
-    rotate_xy(angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
+    rotate_xy(-angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
 
   ### Change cimg object to matrix
   x3p_matrix_pad_rotate <- x3p_cimg_pad_rotate %>%
@@ -98,7 +98,7 @@ x3p_rotate <- function(x3p, angle = 90) {
     ### Rotate at padding center
     ### interpolation maintain the original scaling
     x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>%
-      rotate_xy(angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
+      rotate_xy(-angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
     
     ### Change cimg object to raster
     x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
