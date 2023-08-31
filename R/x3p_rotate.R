@@ -113,7 +113,8 @@ x3p_rotate <- function(x3p, angle = 90) {
       filter_all(any_vars(!is.na(.))) %>%
       select_if(~ any(!is.na(.))) %>%
       as.matrix() %>%
-      as.raster()
+      as.raster() %>% 
+      toupper()
 
     x3p_pad_rotate$mask <- x3p_mask_raster_pad_rotate
   }
