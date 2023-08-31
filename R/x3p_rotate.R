@@ -73,14 +73,50 @@ x3p_rotate <- function(x3p, angle = 90) {
     as.matrix()
 
   ### Copy x3p object
-  x3p_pad_rotate <- x3p %>%
-    x3p_delete_mask()
+  x3p_pad_rotate <- x3p
   ### Change details of x3p object
   x3p_pad_rotate$header.info$sizeX <- nrow(x3p_matrix_pad_rotate)
   x3p_pad_rotate$header.info$sizeY <- ncol(x3p_matrix_pad_rotate)
   x3p_pad_rotate$matrix.info$MatrixDimension$SizeX <- list(nrow(x3p_matrix_pad_rotate))
   x3p_pad_rotate$matrix.info$MatrixDimension$SizeY <- list(ncol(x3p_matrix_pad_rotate))
   x3p_pad_rotate$surface.matrix <- x3p_matrix_pad_rotate
+  
+  if (!is.null(x3p$mask)){
+    ### Change to cimg
+    x3p_mask_cimg <- as.cimg(x3p$mask)
+    
+    ### Compute diagonal length
+    diag_len <- sqrt(nrow(x3p_mask_cimg)^2 + ncol(x3p_mask_cimg)^2)
+    
+    ### Pad the original cimg object
+    NA_val <- rep(255, dim(x3p_mask_cimg)[4])
+    x3p_mask_cimg_pad <- x3p_mask_cimg %>%
+      pad(nPix = diag_len, axes = "xy", pos = -1, val = NA_val) %>%
+      pad(nPix = diag_len - nrow(x3p_mask_cimg), axes = "x", pos = 1, val = NA_val) %>%
+      pad(nPix = diag_len - ncol(x3p_mask_cimg), axes = "y", pos = 1, val = NA_val)
+    
+    ### Rotate at padding center
+    ### interpolation maintain the original scaling
+    x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>%
+      rotate_xy(angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
+    
+    ### Change cimg object to raster
+    x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
+      as.raster()
+    
+    x3p_mask_raster_pad_rotate[x3p_mask_raster_pad_rotate == "#FFFFFF"] <- NA
+    
+    ### Remove extra NA space after padding
+    x3p_mask_raster_pad_rotate <- x3p_mask_raster_pad_rotate %>%
+      as.matrix() %>% 
+      as.data.frame() %>%
+      filter_all(any_vars(!is.na(.))) %>%
+      select_if(~ any(!is.na(.))) %>%
+      as.matrix() %>% 
+      as.raster()
+    
+    x3p_pad_rotate$mask <- x3p_mask_raster_pad_rotate
+  }
 
   return(x3p_pad_rotate)
 }
