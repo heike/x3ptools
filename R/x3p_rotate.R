@@ -5,7 +5,7 @@
 #' @param angle rotate counter-clockwise by angle degrees given as 30, 60, 90 degree.
 #' @import dplyr
 #' @importFrom imager as.cimg pad rotate_xy
-#' @importFrom raster raster
+#' @importFrom raster raster as.matrix
 #' @export
 #' @examples
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
@@ -66,11 +66,11 @@ x3p_rotate <- function(x3p, angle = 90) {
   x3p_matrix_pad_rotate[near(x3p_matrix_pad_rotate, NA_val)] <- NA
 
   ### Remove extra NA space after padding
-  x3p_matrix_pad_rotate <- x3p_matrix_pad_rotate %>%
-    as.data.frame() %>%
-    filter_all(any_vars(!is.na(.))) %>%
-    select_if(~ any(!is.na(.))) %>%
-    as.matrix()
+  na_matrix <- x3p_matrix_pad_rotate %>%
+    is.na()
+  na_row <- rowSums(na_matrix) == (ncol(na_matrix))
+  na_col <- colSums(na_matrix) == (nrow(na_matrix))
+  x3p_matrix_pad_rotate <- x3p_matrix_pad_rotate[!na_row, !na_col]
 
   ### Copy x3p object
   x3p_pad_rotate <- x3p
@@ -83,7 +83,11 @@ x3p_rotate <- function(x3p, angle = 90) {
 
   if (!is.null(x3p$mask)) {
     ### Change to cimg
-    x3p_mask_cimg <- as.cimg(x3p$mask)
+    x3p_mask_cimg <- x3p$mask %>%
+      raster::as.matrix() %>%
+      t() %>%
+      as.raster() %>%
+      as.cimg()
 
     ### Compute diagonal length
     diag_len <- sqrt(nrow(x3p_mask_cimg)^2 + ncol(x3p_mask_cimg)^2)
@@ -98,7 +102,7 @@ x3p_rotate <- function(x3p, angle = 90) {
     ### Rotate at padding center
     ### interpolation maintain the original scaling
     x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>%
-      rotate_xy(-angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
+      rotate_xy(angle, diag_len, diag_len, interpolation = 0L, boundary_conditions = 1L)
 
     ### Change cimg object to raster
     x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
@@ -107,15 +111,13 @@ x3p_rotate <- function(x3p, angle = 90) {
     x3p_mask_raster_pad_rotate[x3p_mask_raster_pad_rotate == "#000000"] <- NA
 
     ### Remove extra NA space after padding
-    x3p_mask_raster_pad_rotate <- x3p_mask_raster_pad_rotate %>%
-      as.matrix() %>%
-      as.data.frame() %>%
-      filter_all(any_vars(!is.na(.))) %>%
-      select_if(~ any(!is.na(.))) %>%
-      as.matrix() %>%
-      as.raster() %>% 
+    x3p_mask_raster_pad_rotate <- (x3p_mask_raster_pad_rotate %>%
+      as.matrix())[!na_row, !na_col] %>%
+      t() %>%
+      as.raster() %>%
       toupper()
 
+    # x3p_add_mask(x3p_pad_rotate, x3p_mask_raster_pad_rotate)
     x3p_pad_rotate$mask <- x3p_mask_raster_pad_rotate
   }
 
