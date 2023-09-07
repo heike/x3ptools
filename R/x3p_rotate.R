@@ -1,6 +1,6 @@
 #' Rotate an x3p object
 #'
-#' Rotate the surface matrix of an x3p object. Also adjust meta information.
+#' Rotate the surface matrix and mask of an x3p object. Also adjust meta information.
 #' @param x3p x3p object
 #' @param angle rotate counter-clockwise by angle degrees given as 30, 60, 90 degree.
 #' @import dplyr
@@ -8,16 +8,18 @@
 #' @importFrom raster raster as.matrix
 #' @export
 #' @examples
-#' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
-#' dim(logo$surface.matrix)
 #' \dontrun{
-#' x3p_image(logo)
-#' }
-#' # rotate the image by 60 degrees counter-clockwise:
-#' logo60 <- x3p_rotate(logo, 60)
-#' dim(logo60$surface.matrix)
-#' \dontrun{
-#' x3p_image(logo60, zoom = 1.2)
+#' logo <- x3p_read(system.file("csafe-logo.x3p", package = "x3ptools"))
+#' color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
+#' logoplus <- x3p_add_mask(logo, as.raster(color_logo))
+#' dim(logoplus$surface.matrix)
+#' dim(logoplus$mask)
+#' x3p_image(logoplus, multiply=50, size = c(741, 419),zoom = 0.5)
+#'
+#' logoplus60 <- x3p_rotate(x3p = logoplus, angle = 60)
+#' dim(logoplus60$surface.matrix)
+#' dim(logoplus60$mask)
+#' x3p_image(logoplus60, multiply=50, size = c(741, 419),zoom = 0.75)
 #' }
 
 x3p_rotate <- function(x3p, angle = 90) {
