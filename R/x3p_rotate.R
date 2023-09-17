@@ -5,7 +5,7 @@
 #' @param angle rotate counter-clockwise by angle degrees given as 30, 60, 90 degree.
 #' @import dplyr
 #' @importFrom imager as.cimg pad rotate_xy
-#' @importFrom raster raster as.matrix
+#' @importFrom raster raster as.matrix as.raster
 #' @export
 #' @examples
 #' \dontrun{
