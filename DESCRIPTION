@@ -20,22 +20,24 @@ Description: The x3p file format  is specified in ISO standard 5436:2000 to
     describe 3d surface measurements. 'x3ptools' allows reading, writing and 
     basic modifications to the 3D surface measurements.
 Depends: R (>= 4.0)
-Imports: MASS (>= 7.3),
-         digest (>= 0.6),
-         xml2 (>= 1.3.0),
-         rgl (>= 1.0.1),
-         zoo (>= 1.8-9),
-         png (>= 0.1-7),
-         readr (>= 2.1.0),
-         dplyr (>= 1.0.7),
-         pracma (>= 2.3.3),
-         assertthat (>= 0.2.1),
-         purrr (>= 1.0.0),
-         yaml (>= 2.3.7),
-         scales (>= 1.2.1),
-         grDevices,
-         imager,
-         raster
+Imports: 
+    MASS (>= 7.3),
+    digest (>= 0.6),
+    xml2 (>= 1.3.0),
+    rgl (>= 1.0.1),
+    zoo (>= 1.8-9),
+    png (>= 0.1-7),
+    readr (>= 2.1.0),
+    dplyr (>= 1.0.7),
+    pracma (>= 2.3.3),
+    assertthat (>= 0.2.1),
+    purrr (>= 1.0.0),
+    yaml (>= 2.3.7),
+    scales (>= 1.2.1),
+    grDevices,
+    imager,
+    raster,
+    tidyr
 Suggests:
     knitr,
     rmarkdown,

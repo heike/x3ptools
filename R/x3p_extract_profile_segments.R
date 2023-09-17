@@ -11,6 +11,7 @@
 #' @return x3p object with added `lines` attribute.
 #' @importFrom dplyr mutate left_join select desc add_tally ungroup
 #' @importFrom purrr pmap map map_dbl pmap_df 
+#' @importFrom tidyr unnest
 #' @export
 #' @examples 
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
