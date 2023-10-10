@@ -22,6 +22,7 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   # pass R CMD CHECK
   x <- y <- height <- value <- orig_x <- orig_y <- piece <- NULL
   mask.x <- mask.y <- line <- offset_x <- value_adjust <- NULL
+  offset_y <- NULL
   # how many pieces do we need assuming we use 10% for overlap?
   dims <- dim(x3p$surface.matrix)
   w10 <- round(.1*width)
