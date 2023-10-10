@@ -9,8 +9,9 @@
 #' @param linewidth integer value specifying the width for the profile
 #' @param verbose logical 
 #' @return x3p object with added `lines` attribute.
-#' @importFrom dplyr mutate left_join select desc add_tally ungroup
+#' @importFrom dplyr mutate left_join select desc add_tally ungroup n
 #' @importFrom purrr pmap map map_dbl pmap_df 
+#' @importFrom tidyr unnest
 #' @export
 #' @examples 
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
@@ -20,7 +21,7 @@
 x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11, verbose = TRUE) {
   # pass R CMD CHECK
   x <- y <- height <- value <- orig_x <- orig_y <- piece <- NULL
-  mask.x <- mask.y <- NULL
+  mask.x <- mask.y <- line <- offset_x <- value_adjust <- NULL
   # how many pieces do we need assuming we use 10% for overlap?
   dims <- dim(x3p$surface.matrix)
   w10 <- round(.1*width)
