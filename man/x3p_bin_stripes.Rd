@@ -26,25 +26,28 @@ x3p object with mask colored by discretized surface gradient
 }
 \description{
 Apply gradient-based color shading to the mask of a 3d topographic surface.
-gradients are determined empirically based on row- or column-wise differenced
-sequential surface values. The \code{direction} parameter determines the direction
-differencing. If direction is "vertical", columns in the surface matrix are
+Gradients are determined empirically based on sequentical row- (or column-)wise
+differences of surface values.
+The \code{direction} parameter determines the direction of differencing.
+If direction is "vertical", columns in the surface matrix are
 differenced to identify whether 'vertical' stripes exist.
 }
 \examples{
-\dontrun{
-x3p <- x3p_read("~/Documents/CSAFE/Wirecutter/data/Aluminum Wires renamed/T1AW-LI-R1-B01.x3p")
-x3p_image(x3p, size = dim(x3p$surface.matrix)/5, zoom=0.8)
-x3p_with <- x3p \%>\% x3p_bin_stripes(direction="vertical")
-x3p_image(x3p_with \%>\% x3p_sample(5), size = dim(x3p$surface.matrix)/5, zoom=0.8)
-# sampling first is better at preserving the intended color frequency
-x3p_with2 <- x3p \%>\% x3p_sample(5) \%>\% x3p_bin_stripes(direction="vertical")
-x3p_image(x3p_with2, size = dim(x3p$surface.matrix)/5, zoom=0.8)
-x3p_with3 <- x3p \%>\% x3p_average(5) \%>\% x3p_bin_stripes(direction="vertical")
-x3p_image(x3p_with3, size = dim(x3p$surface.matrix)/5, zoom=0.8)
+data(wire)
+x3p <- wire
+if (interactive()) x3p_image(x3p, size = c(400, 400), zoom=0.8)
+x3p_with <- x3p_bin_stripes(x3p, direction="vertical")
+x3p_with <- x3p_bin_stripes(x3p, direction="vertical", 
+colors=c("#b12819","#ffffff","#134D6B"), freqs=c(0, 0.3, 0.7, 1))
+if (interactive()) x3p_image(x3p_with, size = c(400, 400), zoom=0.8)
 
-lea <- x3p_read("~/Documents/Data/Houston Persistence/Barrel A/Bullet 11/Houston 1 - Barrel A - Bullet 11 - Land 1 - Sneox1 - 20x - auto light left image + 20\% x10 - threshold 2 - resolution 4 - Mark Mosher.x3p")
-lea \%>\% x3p_sample(m=5) \%>\% x3p_bin_stripes() \%>\% x3p_image()
-lea \%>\% x3p_sample(m=5) \%>\% x3p_bin_stripes(freqs = c(0, 0.05, 0.1, 0.2,0.8, 0.9, 0.95, 1)) \%>\% x3p_image()
+data(lea)
+if (interactive()) {
+  lea \%>\% x3p_bin_stripes() \%>\% x3p_image() # default stripes
+ 
+# three colors only   
+  lea \%>\% x3p_bin_stripes(
+     colors=c("#b12819","#ffffff","#134D6B"), 
+     freqs=c(0, 0.3, 0.7, 1)) \%>\%  x3p_image()
 }
 }

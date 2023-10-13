@@ -8,19 +8,15 @@
 #' @export
 #' @examples 
 #' \dontrun{
-#' x3p <- x3p_read("~/Documents/CSAFE/Wirecutter/data/Aluminum Wires renamed/T1AW-LI-R1-B01.x3p")
-#' x3p_image(x3p, size = dim(x3p$surface.matrix)/5, zoom=0.8)
+#' data(wire)
+#' x3p <- wire
+#' x3p_image(x3p, size = c(400, 400), zoom=0.8)
 #' x3p_with <- x3p %>% x3p_shade_mask()
-#' x3p_image(x3p_with %>% x3p_sample(5), size = dim(x3p$surface.matrix)/5, zoom=0.8)
-#' # sampling first is better at preserving the intended color frequency
-#' x3p_with2 <- x3p %>% x3p_sample(5) %>% x3p_shade_mask()
-#' x3p_image(x3p_with2, size = dim(x3p$surface.matrix)/5, zoom=0.8)
-#' x3p_with3 <- x3p %>% x3p_average(5) %>% x3p_shade_mask()
-#' x3p_image(x3p_with3, size = dim(x3p$surface.matrix)/5, zoom=0.8)
+#' x3p_image(x3p_with, size = c(400, 400), zoom=0.8)
 #' 
-#' lea <- x3p_read("~/Documents/Data/Houston Persistence/Barrel A/Bullet 11/Houston 1 - Barrel A - Bullet 11 - Land 1 - Sneox1 - 20x - auto light left image + 20% x10 - threshold 2 - resolution 4 - Mark Mosher.x3p")
-#' lea %>% x3p_sample(m=5) %>% x3p_shade_mask() %>% x3p_image()
-#' lea %>% x3p_sample(m=5) %>% x3p_shade_mask(freqs = c(0, 0.05, 0.1, 0.2,0.8, 0.9, 0.95, 1)) %>% x3p_image()
+#' data(lea)
+#' lea %>% x3p_shade_mask() %>% x3p_image()
+#' lea %>% x3p_shade_mask(freqs = c(0, 0.05, 0.1, 0.3,0.7, 0.9, 0.95, 1)) %>% x3p_image()
 #' }
 x3p_shade_mask <- function(x3p, 
   colors = rev(c("#b12819", "#d7301f","#e16457","#ffffff","#5186a2","#175d82", "#134D6B")), 
