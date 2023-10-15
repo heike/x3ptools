@@ -35,6 +35,7 @@ Imports:
     yaml (>= 2.3.7),
     scales (>= 1.2.1),
     tidyr (>= 1.3.0),
+    imager,
     grDevices,
     magrittr
 Suggests:
