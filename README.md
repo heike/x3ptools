@@ -6,7 +6,7 @@ status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.o
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--03--11-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2023--10--15-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
 [![Coverage
 status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
@@ -141,7 +141,11 @@ image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rgl::rglwidget()
 ```
 
-<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpTYVBe8/file15a775a915d81.png" width="480" />
+    ## Warning in snapshot3d(scene = x, width = width, height = height): webshot =
+    ## TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
+    ## instead
+
+<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmpa6hgQz/filedc3055b035df.png" width="480" />
 
 <img src="man/figures/logo-rgl-grid.png" width="350" />
 
