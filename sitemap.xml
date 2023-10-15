@@ -31,6 +31,12 @@
     <loc>https://heike.github.io/x3ptools/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://heike.github.io/x3ptools/reference/lea.html</loc>
+  </url>
+  <url>
+    <loc>https://heike.github.io/x3ptools/reference/pipe.html</loc>
+  </url>
+  <url>
     <loc>https://heike.github.io/x3ptools/reference/print.x3p.html</loc>
   </url>
   <url>
@@ -38,6 +44,9 @@
   </url>
   <url>
     <loc>https://heike.github.io/x3ptools/reference/tmd_to_x3p.html</loc>
+  </url>
+  <url>
+    <loc>https://heike.github.io/x3ptools/reference/wire.html</loc>
   </url>
   <url>
     <loc>https://heike.github.io/x3ptools/reference/x3p_add_annotation.html</loc>
