@@ -2,7 +2,7 @@ Package: x3ptools
 Type: Package
 Title: Tools for Working with 3D Surface Measurements
 Version: 0.0.4
-Date: 2023-11-03
+Date: 2023-11-18
 Authors@R: c(
     person("Heike", "Hofmann", role = c("aut", "cre", "cph"),
             email = "hofmann@iastate.edu",
