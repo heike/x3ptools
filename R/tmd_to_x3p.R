@@ -38,8 +38,8 @@ tmd_to_x3p <- function(tmd_path, yaml_path = NA, verbose=TRUE) {
       }
 #      yaml_path <- yaml[1]      # can't be reached
     }
-    if (verbose) cat(sprintf("Reading meta information from file %s.", basename(yaml_path)))
     yaml_file <- yaml::read_yaml(yaml_path)
+    if (verbose) message(sprintf("Reading meta information from file '%s'.", basename(yaml_path)))
   }
 
   con <- file(tmd_path,"rb")
@@ -97,8 +97,8 @@ tmd_to_x3p <- function(tmd_path, yaml_path = NA, verbose=TRUE) {
       x3p <- x3p %>% x3p_modify_xml("Comment", sprintf("Converted from TMD file using x3ptools %s", packageVersion("x3ptools")))
     } else {
       # check that we have the correct yaml file
-      if (length(grep(comment, yaml_file))==0) {
-        warning(sprintf("Meta info in %s might not be correct for the scan. GelID '%s' does not match.", basename(yaml_path), comment))
+      if (yaml_file$activeheightmap != basename(tmd_path)) {
+        warning(sprintf("Meta info in %s might not be correct for the scan. Heightmap info specifies scan '%s'. Did you rename the scan?", basename(yaml_path), yaml_file$activeheightmap))
       }
       x3p <- x3p_yaml_info(x3p, yaml_file)
     }

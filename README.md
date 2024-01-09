@@ -6,9 +6,9 @@ status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.o
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2023--10--15-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
-[![Coverage
-status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--09-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/main)
+[![Codecov test
+coverage](https://codecov.io/gh/heike/x3ptools/branch/main/graph/badge.svg)](https://app.codecov.io/gh/heike/x3ptools?branch=main)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
 
 # x3ptools <img src="man/figures/x3ptools.png" align="right" width="120"/>
@@ -140,12 +140,6 @@ logoplus <- x3p_add_grid(logo, spaces=50e-6,
 image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
 rgl::rglwidget()
 ```
-
-    ## Warning in snapshot3d(scene = x, width = width, height = height): webshot =
-    ## TRUE requires the webshot2 package and Chrome browser; using rgl.snapshot()
-    ## instead
-
-<img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/Rtmpa6hgQz/filedc3055b035df.png" width="480" />
 
 <img src="man/figures/logo-rgl-grid.png" width="350" />
 
@@ -333,7 +327,8 @@ using the commands `x3p_add_vline` and `x3p_add_hline`:
 ``` r
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
-#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
+
+image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
 ```
 
 <img src="man/figures/logo-lines.png" width="370" />

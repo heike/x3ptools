@@ -13,9 +13,11 @@ docs
 inst/*.R
 ^codecov.yml*
 ^downloadNist$
+^NIST_K004dD1$
 raw-data
 ^tic\.R$
 ^\.github$
 ^CRAN-RELEASE$
 ^codecov\.yml$
 ^pkgdown$
+^CRAN-SUBMISSION$

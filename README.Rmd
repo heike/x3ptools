@@ -6,8 +6,8 @@ output: github_document
 <img src="https://img.shields.io/github/r-package/v/heike/x3ptools?logo=github">
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/master)
-[![Coverage status](https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg)](https://codecov.io/github/heike/x3ptools?branch=master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/main)
+[![Codecov test coverage](https://codecov.io/gh/heike/x3ptools/branch/main/graph/badge.svg)](https://app.codecov.io/gh/heike/x3ptools?branch=main)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
 
 
@@ -101,7 +101,7 @@ In case a file name is specified in the function call the resulting surface is s
 
 `image_x3p_grid` lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn `spaces` apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.
 
-```{r, fig.width = 5, fig.height =2.83}
+```{r, fig.width = 5, fig.height =2.83, eval=FALSE}
 logoplus <- x3p_add_grid(logo, spaces=50e-6, 
                          size = c(3,3,5), color=c("grey50", "black", "darkred"))
 image_x3p(logoplus, size=c(741,419), zoom=0.5, useNULL=TRUE)
@@ -194,7 +194,7 @@ knitr::include_graphics("man/figures/markup.png")
 
 Any image can serve as a mask, the command `x3p_add_mask` allows to add a raster image as a mask for a x3p object:
 
-```{r}
+```{r eval=FALSE}
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 color_logo <- png::readPNG(system.file("csafe-color.png", package="x3ptools"))
 logoplus <- x3p_add_mask(logo, mask = as.raster(color_logo))
@@ -221,7 +221,8 @@ Additionally, vertical and horizontal lines can be added in the masks using the 
 ```{r, eval=FALSE}
 logo <- read_x3p(system.file("csafe-logo.x3p", package="x3ptools"))
 logoplus <- x3p_add_hline(logo, yintercept=c(13e-5,19.5e-5), color="cyan")
-#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
+
+image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")
 ```
 
 ```{r, echo=FALSE}

@@ -13,8 +13,8 @@ cameratostage: []
 aligned: false
 createdon: 2022-06-09 14:30:01
 sdkversion: 2.2.214
-activeheightmap: Sc02.Pl002.Ma6.S.B.An80.Pb.whole.tmd
-activenormalmap: Sc02.Pl002.Ma6.S.B.An80.Pb.whole.png
+activeheightmap: not-testing.tmd
+activenormalmap: not-testing.png
 calibration: 
     date: 2022-06-08 11:14:00
     username: DESKTOP-BIO06VF\GelSight
