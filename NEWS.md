@@ -16,6 +16,7 @@
 ## minor functionality 
 
 * `x3p_extract_profile_segments` interactive function for drawing lines in segments
+* added convenience parameter `create_dir` in `x3p_write` to create necessary directory structure
 * updates to documentation
 
 

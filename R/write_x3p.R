@@ -4,6 +4,7 @@
 #' @param file path to where the file should be written
 #' @param size integer. The number of bytes per element in the  surface matrix used for creating the binary file. Use size = 4 for 32 bit IEEE 754 floating point numbers and size = 8 for 64 bit IEEE 754 floating point number (default).
 #' @param quiet suppress messages
+#' @param create_dir boolean. create directory for saving file, if necessary. Posts a message in case a directory is created.
 #' @importFrom digest digest
 #' @importFrom xml2 read_xml
 #' @importFrom utils as.relistable relist zip
@@ -14,11 +15,22 @@
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 #' # write a copy of the file into a temporary file
 #' x3p_write(logo, file = tempfile(fileext="x3p"))
-x3p_write <- function(x3p, file, size = 8, quiet = F) {
+x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
   a1 <- read_xml(system.file("templateXML.xml", package = "x3ptools"))
   a1list <- as_list(a1, ns = xml_ns(a1))
   tmp <- as.relistable(a1list) # structure needed for compiling xml_document
 
+  # check that file can be written
+  directory <- dirname(file)
+  if (!dir.exists(directory)) {
+    if (create_dir) {
+      message("Creating directory '", directory, "'")
+      dir.create(directory, recursive = TRUE)
+    } else {
+      stop("directory '", directory,"' does not exist. Set `create_dir` to TRUE to create it during the file export.")
+    }
+  }
+  
   # check that size is 4 or 8
   stopifnot(size %in% c(4, 8))
 

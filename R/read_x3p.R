@@ -33,7 +33,7 @@ x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
     mydir <- tempdir()
   }
 
-  result <- unzip(fname, exdir = mydir)
+  try_unzip <- try({result <- unzip(fname, exdir = mydir)}, silent=TRUE)
   if (length(result) == 0) stop(sprintf("File %s is not an x3p file", fname)) # unzipping didn't work
   ## see what we got:
   data <- grep("data.bin$", result) # data has extension .bin

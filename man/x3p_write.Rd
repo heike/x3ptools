@@ -5,7 +5,7 @@
 \alias{write_x3p}
 \title{Write an x3p object to a file}
 \usage{
-x3p_write(x3p, file, size = 8, quiet = F)
+x3p_write(x3p, file, size = 8, quiet = F, create_dir = T)
 
 write_x3p(x3p, file, size = 8, quiet = F)
 }
@@ -17,6 +17,8 @@ write_x3p(x3p, file, size = 8, quiet = F)
 \item{size}{integer. The number of bytes per element in the  surface matrix used for creating the binary file. Use size = 4 for 32 bit IEEE 754 floating point numbers and size = 8 for 64 bit IEEE 754 floating point number (default).}
 
 \item{quiet}{suppress messages}
+
+\item{create_dir}{boolean. create directory for saving file, if necessary. Posts a message in case a directory is created.}
 }
 \description{
 Write an x3p object to a file

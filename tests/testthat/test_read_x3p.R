@@ -21,6 +21,9 @@ test_that("read_x3p works as expected", {
   # Test nonexistent file path
   expect_error(read_x3p(file.path("does", "not", "exist.x3p")))
 
+  # Test wrong file format
+  expect_error(read_x3p(system.file("pyramid.stl", package = "x3ptools")))
+  
   # Test correct reading of x3p with size=4
   expect_silent(read_x3p(tmpfile))
   expect_warning(read_x3p(tmpfile, size = 8))
@@ -29,6 +32,7 @@ test_that("read_x3p works as expected", {
   expect_true(dir.exists("tmpx3ptest"))
   unlink("tmpx3ptest", recursive = T, force = T)
 
+  
   # Test whether mask can be read correctly
   tmp2 <- read_x3p(tmpfile2)
 })
