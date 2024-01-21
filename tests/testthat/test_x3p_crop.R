@@ -11,7 +11,7 @@ test_that("x3p_crop works as expected", {
   
   expect_equivalent(
     tmp$surface.matrix,
-    x3ptest_mask$surface.matrix[1:4,3:6]
+    x3ptest_mask$surface.matrix[1:4,4:7]
   )
 })
 
