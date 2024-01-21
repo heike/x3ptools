@@ -16,12 +16,11 @@
 #' logo_only <- x3p_crop(logo, x=20, y=50, width = 255 ,height =510)
 #' # x3p_image(logo_only, size=c(500,500), zoom = 1)
 x3p_crop <- function(x3p, x=1, y=1, width=128, height=128) {
- # browser()
   # check that x, x+width, y, y+height are inside the matrix
   y3p <- x3p
   dims <- dim(y3p$surface.matrix)
   xidx <- x+0:(width-1)
-  yidx <- sort(dims[2] - (y+0:(height-1)))
+  yidx <- sort(dims[2] - (y+0:(height-1)))+1
   # dimension checks:
   xidx <- xidx[(xidx > 0) & (xidx <= dims[1])]
   yidx <- yidx[(yidx > 0) & (yidx <= dims[2])]
