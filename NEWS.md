@@ -11,6 +11,7 @@
 * `x3p_bin_stripes` color-shade the mask by row or column-based gradient
 * `x3p_shade_mask` color-shade the mask of an x3p by its surface profile
 * `x3p_circle_select` interactively select a circle on an x3p surface by selecting three points
+* update `x3p_read` to allow vendor specific information
 
 
 ## minor functionality 
