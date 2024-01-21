@@ -12,6 +12,7 @@
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2
+#' @importFrom rlang flatten
 #' @importFrom utils unzip download.file
 #'
 #' @examples
@@ -46,25 +47,22 @@ x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
     if (length(mask) > 0) cadre <- TRUE
   }
   # if we have not exactly one of each we have a problem:
-  stopifnot(length(data) == 1, length(meta) == 1) # nice error messages would be good
+  stopifnot(length(data) == 1) # nice error messages would be good
 
   ## Should contain data.bin and valid.bin
   bullet_data_dir <- file.path(mydir, "bindata", dir(file.path(mydir, "bindata")))
   bullet_data <- result[data]
 
-  ## Get the information on the bullet
-  bullet_info <- read_xml(result[meta])
-  bullet_children <- xml_children(bullet_info)
-  bullet_childinfo <- xml_children(bullet_children)
+  ## Get the meta information
+  bullet_info <- lapply(result[meta], read_xml)
+  bullet_children <- lapply(bullet_info, xml_children)
+  bullet_childinfo <- lapply(bullet_children, xml_children)
 
   ## Convert to a list
   bullet_info_list <- lapply(bullet_childinfo, as_list)
-  bullet_info_unlist <- unlist(bullet_info_list, recursive = FALSE)
+  bullet_info_list <- flatten(bullet_info_list)
 
-  ## Get the data types
-  bi <- unlist(bullet_info_list[[3]])
-  idx <- grep("DataType", names(bi))
-  data_types <- bi[idx]
+  bullet_info_unlist <- flatten(bullet_info_list)
 
   ## Read the data matrix
   sizes <- as.numeric(c(bullet_info_unlist$SizeX[[1]], bullet_info_unlist$SizeY[[1]], bullet_info_unlist$SizeZ[[1]]))
@@ -104,26 +102,42 @@ x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {
     incrementX = increments[1]
   )
 
-  input.info <- as_list(bullet_info)
-  # xml2 version update
-  input.info <- input.info[[1]]
+  input.info <- flatten(lapply(bullet_info, as_list))
+  if (!("Record1" %in% names(input.info))) {
+    names(input.info) <- NULL
+    input.info <- flatten(input.info)
+  }
+  # Let's make sure we have Records 1, 2, 3, and 4
+  record1 <- input.info$Record1
+  record2 <- input.info$Record2
+  record3 <- input.info$Record3
+  if (any(is.null(record1), is.null(record2), is.null(record3))) {
+    warning("One of the crucial record files is missing, double check that the x3p is valid. Found Records named <", paste0(names(input.info), collapse = ","),">")
+  }
 
   # is there missing info in general.info?
-  any_empty_info <- sapply(input.info$Record2, function(x) !length(x))
+  any_empty_info <- sapply(record2, function(x) !length(x))
   if (any(any_empty_info)) {
     idx <- which(any_empty_info)
-    input.info$Record2[idx] <- lapply(input.info$Record2[idx], function(x) {
+    record2[idx] <- lapply(record2[idx], function(x) {
       x <- list("")
     })
   }
 
+  # is there any other information?
+  other <- setdiff(names(input.info), c("Record1", "Record2", "Record3", "Record4"))
+  record_other <- NULL
+  if (length(other) > 0) {
+    record_other <- input.info[other]
+  }
 
   res <- list(
     header.info = bullet_metadata,
     surface.matrix = datamat,
-    feature.info = input.info$Record1,
-    general.info = input.info$Record2,
-    matrix.info = input.info$Record3
+    feature.info = record1,
+    general.info = record2,
+    matrix.info = record3,
+    other.info = record_other
   )
   #  bullet_info = bullet_info)
   #  browser()
