@@ -47,4 +47,11 @@ test_that("x3p_add_grid works", {
 
   expect_warning(x3p_add_grid(x3pbig, spaces = 200))
   expect_warning(x3p_add_grid(x3pbig, spaces = 60))
+  
+  # check that length of size and color do not have to have the same lengths
+  test_grid_2 <- x3p_add_grid(x3pbig, spaces = 10, size=10)
+  expect_equal(names(table(test_grid_2$mask)), c("black", "darkred", "grey50"))
+  
+  test_grid_3 <- x3p_add_grid(x3pbig, spaces = 10, color="pink")
+  expect_equal(names(table(test_grid_3$mask)), c("#cd7f32", "pink"))
 })
