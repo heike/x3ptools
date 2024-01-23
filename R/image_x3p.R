@@ -7,9 +7,7 @@
 #' @param file file name for saving, if file is NULL the opengl device stays open.
 #' The file extension determines the type of output. Possible extensions are png, stl (suitable for 3d printing), or svg.
 #' @param col color specification
-#' @param crosscut crosscut index
-#' @param ccParam list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region
-#' @param size vector of width and height. If only one value is given, height will be adjusted proportionally to the dimensions of the surface matrix of the scan.
+#' @param size vector of width and height. If only one value is given, height or width will be adjusted proportionally to the dimensions of the surface matrix of the scan to reach an upper bound of size.
 #' @param zoom numeric value indicating the amount of zoom
 #' @param multiply exaggerate the relief by factor multiply
 #' @param update Boolean value indicating whether a scene should be updated (defaults to FALSE). If FALSE, a new rgl device is opened.
@@ -32,12 +30,12 @@
 #'
 #' options(rgl.useNULL=save)   
 x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
-                      crosscut = NA,
-                      ccParam = list(
-                        color = "#e6bf98",
-                        radius = 5
-                      ),
-                      size = c(750, 250), zoom = 0.35, multiply = 5, update = FALSE, ...) {
+#                      crosscut = NA,
+#                      ccParam = list(
+#                        color = "#e6bf98",
+#                        radius = 5
+#                      ),
+                      size = 750, zoom = 0.35, multiply = 5, update = FALSE, ...) {
   stopifnot("x3p" %in% class(x3p), is.numeric(size))
   surface <- x3p$surface.matrix
   z <- multiply * surface # Exaggerate the relief
@@ -45,10 +43,15 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
   y <- x3p$header.info$incrementY * yidx #
   x <- x3p$header.info$incrementX * (1:nrow(z)) #
 
-  # set size to be proportional to value given if size is only one value
-  if (length(size) == 1) {
+  if (all(is.na(size)) | length(size) == 1) {
+    # set size to be proportional to value given if size is only one value
+    if (length(size) == 1 & all(is.na(size))) size <- 750
     dims <- dim(surface)
-    size <- c(size[1], round(size[1]*dims[2]/dims[1]))
+    ratio <- dims[2]/dims[1]
+    if (ratio < 1)
+      size <- c(size[1], round(size[1]*dims[2]/dims[1]))
+    else
+      size <- c(round(size[1]*dims[1]/dims[2]), size[1])
   }
 
   params <- rgl::r3dDefaults
@@ -78,32 +81,32 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
   }
   
 
-  if (!is.na(crosscut)) {
-    .Deprecated("x3p_add_hline", msg = "Use of crosscut is deprecated. Use x3p_add_hline instead.")
-    crosscutidx <- which.min(abs(crosscut - y))
-
-    colmat <- matrix(rep(col, length(z)), nrow = nrow(z), ncol = ncol(z))
-    if (exists("mask", x3p)) colmat <- as.vector(x3p$mask)
-
-    if (length(crosscutidx) > 0) {
-      coloridx <- pmax(crosscutidx - ccParam$radius, 0):pmin(crosscutidx + ccParam$radius, ncol(z))
-      colmat[coloridx] <- ccParam$color 
-      # I changed this to be [coloridx] instead of [, coloridx] because of the 
-      # as.vector() call in the block above this if statement. 
-    } else {
-      warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
-    }
-
-    if (crosscut > max(y)) {
-      warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
-    }
-
-
-    p <- surface3d(x, y, z, color = colmat, back = "fill")
-  } else {
+  # if (!is.na(crosscut)) {
+  #   .Deprecated("x3p_add_hline", msg = "Use of crosscut is deprecated. Use x3p_add_hline instead.")
+  #   crosscutidx <- which.min(abs(crosscut - y))
+  # 
+  #   colmat <- matrix(rep(col, length(z)), nrow = nrow(z), ncol = ncol(z))
+  #   if (exists("mask", x3p)) colmat <- as.vector(x3p$mask)
+  # 
+  #   if (length(crosscutidx) > 0) {
+  #     coloridx <- pmax(crosscutidx - ccParam$radius, 0):pmin(crosscutidx + ccParam$radius, ncol(z))
+  #     colmat[coloridx] <- ccParam$color 
+  #     # I changed this to be [coloridx] instead of [, coloridx] because of the 
+  #     # as.vector() call in the block above this if statement. 
+  #   } else {
+  #     warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
+  #   }
+  # 
+  #   if (crosscut > max(y)) {
+  #     warning(sprintf("Crosscut does not map to x3p file correctly. Crosscut is at %f, scan has height of %f", crosscut, max(y)))
+  #   }
+  # 
+  # 
+  #   p <- surface3d(x, y, z, color = colmat, back = "fill")
+  # } else {
     if (exists("mask", x3p)) col <- as.vector(x3p$mask)
     p <- surface3d(x, y, z, color = col, back = "fill")
-  }
+#  }
   p
   if (!is.null(file)) {
     x3p_snapshot(file)
@@ -115,14 +118,14 @@ x3p_image <- function(x3p, file = NULL, col = "#cd7f32",
 #' @export
 #' @rdname x3p_image
 image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
-                      crosscut = NA,
-                      ccParam = list(
-                        color = "#e6bf98",
-                        radius = 5
-                      ),
+#                      crosscut = NA,
+#                      ccParam = list(
+#                        color = "#e6bf98",
+#                        radius = 5
+#                      ),
                       size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
   x3p_image(
-    x3p = x3p, file = file, col = col, crosscut = crosscut, ccParam = ccParam,
+    x3p = x3p, file = file, col = col, #crosscut = crosscut, ccParam = ccParam,
     size = size, zoom = zoom, multiply = multiply, ...
   )
 }

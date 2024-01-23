@@ -22,7 +22,8 @@ test_that("read_x3p works as expected", {
   expect_error(read_x3p(file.path("does", "not", "exist.x3p")))
 
   # Test wrong file format
-  expect_error(read_x3p(system.file("pyramid.stl", package = "x3ptools")))
+  expect_error(
+    expect_warning(read_x3p(system.file("pyramid.stl", package = "x3ptools"))))
   
   # Test correct reading of x3p with size=4
   expect_silent(read_x3p(tmpfile))

@@ -9,9 +9,7 @@ x3p_image(
   x3p,
   file = NULL,
   col = "#cd7f32",
-  crosscut = NA,
-  ccParam = list(color = "#e6bf98", radius = 5),
-  size = c(750, 250),
+  size = 750,
   zoom = 0.35,
   multiply = 5,
   update = FALSE,
@@ -22,8 +20,6 @@ image_x3p(
   x3p,
   file = NULL,
   col = "#cd7f32",
-  crosscut = NA,
-  ccParam = list(color = "#e6bf98", radius = 5),
   size = c(750, 250),
   zoom = 0.35,
   multiply = 5,
@@ -38,11 +34,7 @@ The file extension determines the type of output. Possible extensions are png, s
 
 \item{col}{color specification}
 
-\item{crosscut}{crosscut index}
-
-\item{ccParam}{list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region}
-
-\item{size}{vector of width and height. If only one value is given, height will be adjusted proportionally to the dimensions of the surface matrix of the scan.}
+\item{size}{vector of width and height. If only one value is given, height or width will be adjusted proportionally to the dimensions of the surface matrix of the scan to reach an upper bound of size.}
 
 \item{zoom}{numeric value indicating the amount of zoom}
 
