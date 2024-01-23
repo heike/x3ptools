@@ -38,6 +38,8 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
   general.info <- x3p$general.info
   header.info <- x3p$header.info
   matrix.info <- x3p$matrix.info
+  other.info <- x3p$other.info
+  
 
   if (is.null(general.info)) {
     if (!quiet) message("general info not specified, using template")
@@ -88,6 +90,9 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
   binPath <- file.path("bindata", "data.bin")
   a1list[[1]]$Record3$DataLink$PointDataLink <- list(binPath)
   a1list[[1]]$Record1 <- feature.info
+  
+  a1list[[1]]$Other <- other.info
+  
 
   # Writing the Surface Matrix as a Binary file
   writeBin(as.vector((x3p$surface.matrix)), con = binPath, size = size)
