@@ -61,9 +61,7 @@ can be used to show the surface in the viewer window (see the example).</p>
 <span>  <span class="va">x3p</span>,</span>
 <span>  file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">"#cd7f32"</span>,</span>
-<span>  crosscut <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  ccParam <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#e6bf98"</span>, radius <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span>  size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">750</span>, <span class="fl">250</span><span class="op">)</span>,</span>
+<span>  size <span class="op">=</span> <span class="fl">750</span>,</span>
 <span>  zoom <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  multiply <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  update <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -74,8 +72,6 @@ can be used to show the surface in the viewer window (see the example).</p>
 <span>  <span class="va">x3p</span>,</span>
 <span>  file <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col <span class="op">=</span> <span class="st">"#cd7f32"</span>,</span>
-<span>  crosscut <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  ccParam <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#e6bf98"</span>, radius <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
 <span>  size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">750</span>, <span class="fl">250</span><span class="op">)</span>,</span>
 <span>  zoom <span class="op">=</span> <span class="fl">0.35</span>,</span>
 <span>  multiply <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -98,16 +94,8 @@ The file extension determines the type of output. Possible extensions are png, s
 <dd><p>color specification</p></dd>
 
 
-<dt>crosscut</dt>
-<dd><p>crosscut index</p></dd>
-
-
-<dt>ccParam</dt>
-<dd><p>list with named components, consisting of parameters for showing crosscuts:  color and radius for crosscut region</p></dd>
-
-
 <dt>size</dt>
-<dd><p>vector of width and height. If only one value is given, height will be adjusted proportionally to the dimensions of the surface matrix of the scan.</p></dd>
+<dd><p>vector of width and height. If only one value is given, height or width will be adjusted proportionally to the dimensions of the surface matrix of the scan to reach an upper bound of size.</p></dd>
 
 
 <dt>zoom</dt>
