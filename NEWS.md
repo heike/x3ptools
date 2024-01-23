@@ -18,6 +18,8 @@
 
 * `x3p_extract_profile_segments` interactive function for drawing lines in segments
 * added convenience parameter `create_dir` in `x3p_write` to create necessary directory structure
+* `x3p_image` remove previously deprecated parameters crosscut and ccParam
+* `x3p_image` change functionality of parameter size for convenience working with cartridge case scans (make window size proportional to surface), default behavior for bullet scans is unchanged. 
 * updates to documentation
 
 
