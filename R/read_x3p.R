@@ -1,3 +1,7 @@
+flatten <- function(list) {
+  unlist(list, recursive = FALSE, use.names=TRUE)
+}
+  
 #' Read an x3p file into an x3p object
 #'
 #' Read file in x3p format. x3p formats describe 3d topological surface according to
@@ -12,7 +16,6 @@
 #' @return x3p object consisting of a list of the surface matrix and the four records as specified in the ISO standard
 #' @export
 #' @import xml2
-#' @importFrom rlang flatten
 #' @importFrom utils unzip download.file
 #'
 #' @examples

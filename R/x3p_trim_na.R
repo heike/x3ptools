@@ -36,7 +36,7 @@ x3p_trim_na <- function(x3p, ratio = 1) {
   }
   
 #  browser()
-  x3p %>% x3p_crop(x = xmin, y = dim(x3p$surface.matrix)[2]-ymax, width = xmax-xmin+1, height = ymax-ymin+1)
+  x3p %>% x3p_crop(x = xmin, y = dim(x3p$surface.matrix)[2]-ymax+1, width = xmax-xmin+1, height = ymax-ymin+1)
 }
 
 

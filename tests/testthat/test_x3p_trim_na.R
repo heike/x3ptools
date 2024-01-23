@@ -8,7 +8,7 @@ test_that("x3p_trim_na works as expected", {
   
   expect_equivalent(
     tmp %>% x3p_show_xml("Comment"),
-    "image rendered from the CSAFE logo ; cropped from location ( 36 , 73 )"
+    "image rendered from the CSAFE logo ; cropped from location ( 36 , 74 )"
   )
   
   na_rows <- apply(logo_NA$surface.matrix, MAR=1, FUN = function(x) {sum(is.na(x))})
@@ -38,5 +38,6 @@ test_that("x3p_trim_na works as expected", {
     logo$surface.matrix,
     tmp$surface.matrix
   )
+  
 })
 
