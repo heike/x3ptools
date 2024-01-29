@@ -10,8 +10,8 @@
     basic modifications to the 3D surface measurements.">
 <title>Tools for Working with 3D Surface Measurements • x3ptools</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Tools for Working with 3D Surface Measurements">
 <meta property="og:description" content="The x3p file format  is specified in ISO standard 5436:2000 to 
@@ -30,7 +30,7 @@
     
     <a class="navbar-brand me-2" href="index.html">x3ptools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,7 +90,7 @@
 <p>Internally, x3p objects are stored as a list consisting of the surface matrix (the measurements) and meta information in four records: header info, feature info, general info, and matrix info:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/heike/x3ptools" class="external-link">x3ptools</a></span><span class="op">)</span></span>
-<span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">read_x3p</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">x3p_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">logo</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  </span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="do">## [5] "matrix.info"</span></span></code></pre></div>
@@ -112,14 +112,14 @@
 <p><code>matrix.info</code> expands on <code>header.info</code> and provides the link to the surface measurements in binary format.</p>
 <p><code>general.info</code> consists of information on how the data was captured, i.e. both author and capturing device are specified here.</p>
 <p><code>feature.info</code> is informed by the header info and provides the structure for storing the information.</p>
-<p>While these pieces can be changed and adapted manually, it is more convenient to save information on the capturing device and the creator in a separate template and bind measurements and meta information together in the command <code>addtemplate_x3p</code>.</p>
+<p>While these pieces can be changed and adapted manually, it is more convenient to save information on the capturing device and the creator in a separate template and bind measurements and meta information together in the command <code>x3p_addtemplate</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="reading-and-writing-x3p-files">Reading and writing x3p files<a class="anchor" aria-label="anchor" href="#reading-and-writing-x3p-files"></a>
 </h3>
-<p><code>read_x3p</code> and <code>write_x3p</code> are the two functions allows us to read x3p files and write to x3p files.</p>
+<p><code>x3p_read</code> and <code>x3p_write</code> are the two functions allows us to read x3p files and write to x3p files.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">read_x3p</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">x3p_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">logo</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="do">## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  </span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="do">## [5] "matrix.info"</span></span></code></pre></div>
@@ -131,22 +131,21 @@
 <div class="section level3">
 <h3 id="visualizing-x3p-objects">Visualizing x3p objects<a class="anchor" aria-label="anchor" href="#visualizing-x3p-objects"></a>
 </h3>
-<p>The function <code>image_x3p</code> uses <code>rgl</code> to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate):</p>
+<p>The function <code>x3p_image</code> uses <code>rgl</code> to render a 3d object in a separate window. The user can then interact with the 3d surface (zoom and rotate):</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/x3p_image.html">image_x3p</a></span><span class="op">(</span><span class="va">logo</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>,<span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, useNULL<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/x3p_image.html">x3p_image</a></span><span class="op">(</span><span class="va">logo</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>,<span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, useNULL<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/rglwidget.html" class="external-link">rglwidget</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/logo-rgl.png" width="360"></p>
 <p>In case a file name is specified in the function call the resulting surface is saved in a file (the extension determines the actual file format of the image).</p>
 <div class="section level4">
 <h4 id="helper-lines">Helper lines<a class="anchor" aria-label="anchor" href="#helper-lines"></a>
 </h4>
-<p><code>image_x3p_grid</code> lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn <code>spaces</code> apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.</p>
+<p><code>x3p_image_grid</code> lays a regularly spaced grid of lines over the surface of the scan. Lines are drawn <code>spaces</code> apart (50 microns by default in y direction and 100 microns in x direction). Every fifth and tenth lines are colored differently to ease a visual assessment of distance.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logoplus</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_add_grid.html">x3p_add_grid</a></span><span class="op">(</span><span class="va">logo</span>, spaces<span class="op">=</span><span class="fl">50e-6</span>, </span>
 <span>                         size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">5</span><span class="op">)</span>, color<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grey50"</span>, <span class="st">"black"</span>, <span class="st">"darkred"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/x3p_image.html">image_x3p</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>,<span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, useNULL<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/x3p_image.html">x3p_image</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>,<span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, useNULL<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/rglwidget.html" class="external-link">rglwidget</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="../../../../../private/var/folders/1x/tvy5cf5j4glg4_6g8cxvrcbm7qbgrn/T/RtmpTYVBe8/file15a775a915d81.png" width="480"></p>
 <p><img src="reference/figures/logo-rgl-grid.png" width="350"></p>
 </div>
 </div>
@@ -181,29 +180,29 @@
 <div class="section level4">
 <h4 id="rotation-and-transposition">Rotation and Transposition<a class="anchor" aria-label="anchor" href="#rotation-and-transposition"></a>
 </h4>
-<p><code>rotate_x3p</code> rotates an x3p image in steps of 90 degrees, <code>transpose_x3p</code> transposes the surface matrix of an image and updates the corresponding meta information. The function <code>y_flip_x3p</code> is a combination of transpose and rotation, that allows to flip the direction of the y axis to move easily from legacy ISO x3p scans to ones conforming to the most recent ISO standard.</p>
+<p><code>x3p_rotate</code> rotates an x3p image counter-clockwise by angle in degrees, <code>x3p_transpose</code> transposes the surface matrix of an image and updates the corresponding meta information. The function <code>x3p_flip_y</code> is a combination of transpose and rotation, that allows to flip the direction of the y axis to move easily from legacy ISO x3p scans to ones conforming to the most recent ISO standard.</p>
 </div>
 <div class="section level4">
 <h4 id="sampling">Sampling<a class="anchor" aria-label="anchor" href="#sampling"></a>
 </h4>
-<p><code>sample_x3p</code> allows to sub-sample an x3p object to get a lower resolution image. In <code>sample_x3p</code> we need to set a sampling factor. A sample factor <code>mX</code> of 2 means that we only use every 2nd value of the surface matrix, <code>mX</code> of 5 means, we only use every fifth value:</p>
+<p><code>x3p_sample</code> allows to sub-sample an x3p object to get a lower resolution image. In <code>x3p_sample</code> we need to set a sampling factor. A sample factor <code>mX</code> of 2 means that we only use every 2nd value of the surface matrix, <code>mX</code> of 5 means, we only use every fifth value:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">logo</span><span class="op">$</span><span class="va">surface.matrix</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="do">## [1] 741 419</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logo_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_sample.html">sample_x3p</a></span><span class="op">(</span><span class="va">logo</span>, m<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">logo_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_sample.html">x3p_sample</a></span><span class="op">(</span><span class="va">logo</span>, m<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">logo_sample</span><span class="op">$</span><span class="va">surface.matrix</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="do">## [1] 149  84</span></span></code></pre></div>
 <p>Parameter <code>mY</code> can be specified separately from <code>mX</code> for a different sampling rate in y direction. We can also use different offsets in x and y direction by specifying <code>offsetX</code> and/or <code>offsetY</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sample2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_sample.html">sample_x3p</a></span><span class="op">(</span><span class="va">logo</span>, m<span class="op">=</span><span class="fl">5</span>, offset<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">sample2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_sample.html">x3p_sample</a></span><span class="op">(</span><span class="va">logo</span>, m<span class="op">=</span><span class="fl">5</span>, offset<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">logo_sample</span><span class="op">$</span><span class="va">surface.matrix</span><span class="op">[</span><span class="op">-</span><span class="fl">149</span>,<span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">sample2</span><span class="op">$</span><span class="va">surface.matrix</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="do">## [1] 0.8639308</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="interpolation">Interpolation<a class="anchor" aria-label="anchor" href="#interpolation"></a>
 </h4>
-<p><code>interpolate_x3p</code> allows, like <code>sample_x3p</code>, to create a new x3p file at a new resolution, as specified in the parameters <code>resx</code> and <code>resy</code>. The new resolution should be lower (i.e. larger values for <code>resx</code> and <code>resy</code>) than the resolution specified as <code>IncrementX</code> and <code>IncrementY</code> in the header info of the x3p file. <code>interpolate_x3p</code> can also be used to interpolate missing values (set parameter <code>maxgap</code> according to specifications in <code><a href="https://rdrr.io/pkg/zoo/man/na.approx.html" class="external-link">zoo::na.approx</a></code>).</p>
+<p><code>x3p_interpolate</code> allows, like <code>x3p_sample</code>, to create a new x3p file at a new resolution, as specified in the parameters <code>resx</code> and <code>resy</code>. The new resolution should be lower (i.e. larger values for <code>resx</code> and <code>resy</code>) than the resolution specified as <code>IncrementX</code> and <code>IncrementY</code> in the header info of the x3p file. <code>x3p_interpolate</code> can also be used to interpolate missing values (set parameter <code>maxgap</code> according to specifications in <code><a href="https://rdrr.io/pkg/zoo/man/na.approx.html" class="external-link">zoo::na.approx</a></code>).</p>
 </div>
 </div>
 <div class="section level3">
@@ -245,11 +244,11 @@
 <p><img src="reference/figures/markup.png" width="750"></p>
 <p>Any image can serve as a mask, the command <code>x3p_add_mask</code> allows to add a raster image as a mask for a x3p object:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">read_x3p</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">x3p_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">color_logo</span> <span class="op">&lt;-</span> <span class="fu">png</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/png/man/readPNG.html" class="external-link">readPNG</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-color.png"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">logoplus</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_add_mask.html">x3p_add_mask</a></span><span class="op">(</span><span class="va">logo</span>, mask <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/as.raster.html" class="external-link">as.raster</a></span><span class="op">(</span><span class="va">color_logo</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/x3p_image.html">image_x3p</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>, <span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, multiply <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/x3p_image.html">x3p_image</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>, <span class="fl">419</span><span class="op">)</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, multiply <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/logo-color.png" width="655"></p>
 <p>Some masks are more informative than others, but the only requirement for images is that they are of the right size.</p>
 <p><img src="reference/figures/csafe-leopard.png" width="49%"><img src="reference/figures/csafe-island.png" width="49%"></p>
@@ -260,9 +259,10 @@
 <p>Masks are raster images. Any change to the raster manifests as a change in the surface color of the corresponding scan. We suggest using the <code>magick</code> package to manipulate masks.</p>
 <p>Additionally, vertical and horizontal lines can be added in the masks using the commands <code>x3p_add_vline</code> and <code>x3p_add_hline</code>:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">read_x3p</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">logo</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_read.html">x3p_read</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csafe-logo.x3p"</span>, package<span class="op">=</span><span class="st">"x3ptools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">logoplus</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/x3p_add_hline.html">x3p_add_hline</a></span><span class="op">(</span><span class="va">logo</span>, yintercept<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">13e-5</span>,<span class="fl">19.5e-5</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"cyan"</span><span class="op">)</span></span>
-<span><span class="co">#image_x3p(logoplus, size=c(741, 419)/2, zoom=0.5, multiply = 30, file="man/figures/logo-lines.png")</span></span></code></pre></div>
+<span></span>
+<span><span class="fu"><a href="reference/x3p_image.html">x3p_image</a></span><span class="op">(</span><span class="va">logoplus</span>, size<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">741</span>, <span class="fl">419</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, zoom<span class="op">=</span><span class="fl">0.5</span>, multiply <span class="op">=</span> <span class="fl">30</span>, file<span class="op">=</span><span class="st">"man/figures/logo-lines.png"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/logo-lines.png" width="370"></p>
 </div>
 </div>
@@ -311,8 +311,8 @@
 <li><a href="https://CRAN.R-project.org/package=x3ptools" class="external-link"><img src="https://www.r-pkg.org/badges/version/x3ptools" alt="CRAN status"></a></li>
 <li><a href="https://r-pkg.org/pkg/x3ptools" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue" alt="CRAN RStudio mirror downloads"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
-<li><a href="https://github.com/heike/x3ptools/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2023--03--11-yellowgreen.svg" alt="Last-changedate"></a></li>
-<li><a href="https://codecov.io/github/heike/x3ptools?branch=master" class="external-link"><img src="https://codecov.io/gh/heike/x3ptools/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://github.com/heike/x3ptools/commits/main" class="external-link"><img src="https://img.shields.io/badge/last%20change-2024--01--29-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://app.codecov.io/gh/heike/x3ptools" class="external-link"><img src="https://codecov.io/gh/heike/x3ptools/graph/badge.svg?token=80NyJNOg5b" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/heike/x3ptools/actions" class="external-link"><img src="https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
