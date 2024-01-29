@@ -71,6 +71,7 @@ tmd_to_x3p <- function(tmd_path, yaml_path = NA, verbose=TRUE) {
   close(con)
 
   x3p <- list()
+  class(x3p) <- "x3p" # need the class early on
   if (is.null(x3p$matrix.info)) {
     x3p$matrix.info <- list(MatrixDimension = list(SizeX = cols, SizeY = rows, SizeZ = 1))
   }
@@ -103,14 +104,13 @@ tmd_to_x3p <- function(tmd_path, yaml_path = NA, verbose=TRUE) {
       x3p <- x3p_yaml_info(x3p, yaml_file)
     }
   }
-  
-  class(x3p) <- "x3p"
+
 
   x3p
 }
 
 # internal helper function
-# the code will only work for 
+# the code will likely only work for GelSight instruments.
 #' @importFrom utils packageVersion
 x3p_yaml_info <- function(x3p, yaml_file) {
 #  browser()
