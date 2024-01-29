@@ -14,6 +14,7 @@
 #' x3p_show_xml(logo, 20)
 #' x3p_modify_xml(logo, 20, "I did that, too")
 x3p_modify_xml <- function(x3p, element, value) {
+  stopifnot(inherits(x3p, "x3p"), length(value)==1, length(element)==1)
   find_element <- helper_identify_xml(x3p, element)
 #  idx <- find_element[[1]]
   res <- find_element[[2]]
@@ -37,8 +38,9 @@ helper_identify_xml <- function(x3p, element) {
   rec2 <- unlist(x3p$feature.info)
   rec3 <- unlist(x3p$general.info)
   rec4 <- unlist(x3p$matrix.info)
-  allrecords <- c(rec1, rec2, rec3, rec4)
-  n <- c(length(rec1), length(rec2), length(rec3), length(rec4))
+  other <- unlist(x3p$other.info)
+  allrecords <- c(rec1, rec2, rec3, rec4, other)
+  n <- c(length(rec1), length(rec2), length(rec3), length(rec4), length(other))
 
   idx <- NULL
   if (is.character(element)) {
@@ -50,13 +52,13 @@ helper_identify_xml <- function(x3p, element) {
 
   if (length(idx) == 1) {
     firstneg <- which(idx - cumsum(n) <= 0)
-    record <- c("header.info", "feature.info", "general.info", "matrix.info")[firstneg[1]]
+    record <- c("header.info", "feature.info", "general.info", "matrix.info", "other.info")[firstneg[1]]
     firstidx <- (idx - cumsum(c(0, n)))[firstneg[1]]
   }
 
   res <- lapply(idx, function(k) {
     firstneg <- which(k - cumsum(n) <= 0)
-    record <- c("header.info", "feature.info", "general.info", "matrix.info")[firstneg[1]]
+    record <- c("header.info", "feature.info", "general.info", "matrix.info", "other.info")[firstneg[1]]
     firstidx <- (k - cumsum(c(0, n)))[firstneg[1]]
     list(firstidx, allrecords[k], record)
   })
