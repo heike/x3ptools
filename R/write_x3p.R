@@ -146,6 +146,7 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
     zipfile = file.path(fileDir, fileName), files = dir(),
     flags = ifelse(quiet, "-r9Xq", "-r9X")
   )
+  
   # not necessary to delete the temporary folder
   # setwd("..")
   #  unlink(tmpx3pfolder,recursive = TRUE)
