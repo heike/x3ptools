@@ -8,8 +8,9 @@ test_that("write_x3p works as expected", {
   # make it chatty
   x3ptest2 <- x3ptest
   x3ptest2$matrix.info <- NULL
-  expect_message(write_x3p(x3ptest, file = tmpfile, quiet = F),
-                regexp="general info not specified, using template")
+  expect_message(
+    write_x3p(x3ptest, file = tmpfile, quiet = F), 
+    regexp="general info not specified, using template")
   
   tmpx3p <- read_x3p(tmpfile)
   expect_equivalent(tmpx3p$surface.matrix, x3ptest$surface.matrix)
