@@ -12,23 +12,23 @@ x3p_rotate_2 <- function(x3p, angle = 90) {
   diag_len <- sqrt(nrow(x3p_cimg)^2 + ncol(x3p_cimg)^2)
   x3p_cimg_pad <- x3p_cimg %>%
     pad(
-      nPix = ((diag_len - ncol(x3p_cimg)) / 2) * abs(sin(angle / 180 * pi)), axes = "y",
+      nPix = diag_len / 2 * abs(sin(angle / 180 * pi)) - ncol(x3p_cimg) / 2 * (1 - abs(cos(angle / 180 * pi))), axes = "y",
       pos = -1, val = NA_val
     ) %>%
     pad(
-      nPix = ((diag_len - ncol(x3p_cimg)) / 2) * abs(sin(angle / 180 * pi)), axes = "y",
+      nPix = diag_len / 2 * abs(sin(angle / 180 * pi)) - ncol(x3p_cimg) / 2 * (1 - abs(cos(angle / 180 * pi))), axes = "y",
       pos = 1, val = NA_val
     ) %>%
     pad(
-      nPix = (diag_len - nrow(x3p_cimg)) / 2,
+      nPix = diag_len / 2 * abs(cos(angle / 180 * pi)) - nrow(x3p_cimg) / 2 * (1 - abs(sin(angle / 180 * pi))),
       axes = "x", pos = 1, val = NA_val
     ) %>%
     pad(
-      nPix = (diag_len - nrow(x3p_cimg)) / 2,
+      nPix = diag_len / 2 * abs(cos(angle / 180 * pi)) - nrow(x3p_cimg) / 2 * (1 - abs(sin(angle / 180 * pi))),
       axes = "x", pos = -1, val = NA_val
     )
-  x3p_cimg_pad_rotate <- x3p_cimg_pad %>% rotate_xy(angle,
-    diag_len, diag_len,
+  x3p_cimg_pad_rotate <- x3p_cimg_pad %>% rotate_xy(-angle,
+    diag_len / 2, diag_len / 2,
     interpolation = 0L, boundary_conditions = 1L
   )
   x3p_matrix_pad_rotate <- x3p_cimg_pad_rotate %>% as.matrix()
@@ -52,23 +52,23 @@ x3p_rotate_2 <- function(x3p, angle = 90) {
     NA_val <- "black"
     x3p_mask_cimg_pad <- x3p_mask_cimg %>%
       pad(
-        nPix = ((diag_len - ncol(x3p_cimg)) / 2) * abs(sin(angle / 180 * pi)), axes = "y",
+        nPix = diag_len / 2 * abs(sin(angle / 180 * pi)) - ncol(x3p_cimg) / 2 * (1 - abs(cos(angle / 180 * pi))), axes = "y",
         pos = -1, val = NA_val
       ) %>%
       pad(
-        nPix = ((diag_len - ncol(x3p_cimg)) / 2) * abs(sin(angle / 180 * pi)), axes = "y",
+        nPix = diag_len / 2 * abs(sin(angle / 180 * pi)) - ncol(x3p_cimg) / 2 * (1 - abs(cos(angle / 180 * pi))), axes = "y",
         pos = 1, val = NA_val
       ) %>%
       pad(
-        nPix = (diag_len - nrow(x3p_cimg)) / 2,
+        nPix = diag_len / 2 * abs(cos(angle / 180 * pi)) - nrow(x3p_cimg) / 2 * (1 - abs(sin(angle / 180 * pi))),
         axes = "x", pos = 1, val = NA_val
       ) %>%
       pad(
-        nPix = (diag_len - nrow(x3p_cimg)) / 2,
+        nPix = diag_len / 2 * abs(cos(angle / 180 * pi)) - nrow(x3p_cimg) / 2 * (1 - abs(sin(angle / 180 * pi))),
         axes = "x", pos = -1, val = NA_val
       )
-    x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>% rotate_xy(angle,
-      diag_len, diag_len,
+    x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>% rotate_xy(-angle,
+      diag_len / 2, diag_len / 2,
       interpolation = 0L, boundary_conditions = 1L
     )
     x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
