@@ -79,7 +79,7 @@ x3p_rotate <- function(x3p, angle = 90) {
     rotate_xy(-angle,
       max(x_len, w / 2),
       max(y_len, h / 2),
-      interpolation = 0L, boundary_conditions = 1L
+      interpolation = 0L, boundary_conditions = 0L
     )
   x3p_matrix_pad_rotate <- x3p_cimg_pad_rotate %>% as.matrix()
   x3p_matrix_pad_rotate[near(x3p_matrix_pad_rotate, NA_val)] <- NA
@@ -121,7 +121,7 @@ x3p_rotate <- function(x3p, angle = 90) {
       rotate_xy(-angle,
         max(x_len, w / 2),
         max(y_len, h / 2),
-        interpolation = 0L, boundary_conditions = 1L
+        interpolation = 0L, boundary_conditions = 0L
       )
     x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
       as.raster()
