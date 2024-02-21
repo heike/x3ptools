@@ -3,7 +3,7 @@
 #' Rotate the surface matrix and mask of an x3p object. Also adjust meta information.
 #' @param x3p x3p object
 #' @param angle rotate counter-clockwise by angle in degrees.
-#' @importFrom imager as.cimg pad rotate_xy
+#' @importFrom imager as.cimg pad imrotate
 #' @importFrom dplyr near
 #' @export
 #' @examples
@@ -32,55 +32,7 @@ x3p_rotate <- function(x3p, angle = 90) {
     diff(range(x3p$surface.matrix, na.rm = TRUE))
   x3p_shift[is.na(x3p$surface.matrix)] <- NA_val
   x3p_cimg <- as.cimg(x3p_shift)
-  h <- ncol(x3p_cimg)
-  w <- nrow(x3p_cimg)
-  r <- 1 / 2 * sqrt(w^2 + h^2)
-  sin_a <- h / 2 / r
-  cos_a <- w / 2 / r
-
-  if (theta >= 0 & theta < pi / 2) {
-    x_len <- r * (cos(theta) * cos_a + sin(theta) * sin_a)
-    y_len <- r * (sin(theta) * cos_a + cos(theta) * sin_a)
-  } else {
-    if (theta >= pi / 2 & theta < pi) {
-      x_len <- -r * (cos(theta) * cos_a - sin(theta) * sin_a)
-      y_len <- r * (sin(theta) * cos_a - cos(theta) * sin_a)
-    } else {
-      if (theta >= pi & theta < 3 / 2 * pi) {
-        x_len <- -r * (cos(theta) * cos_a + sin(theta) * sin_a)
-        y_len <- -r * (sin(theta) * cos_a + cos(theta) * sin_a)
-      } else {
-        if (theta >= 3 / 2 * pi & theta < 2 * pi) {
-          x_len <- r * (cos(theta) * cos_a - sin(theta) * sin_a)
-          y_len <- -r * (sin(theta) * cos_a - cos(theta) * sin_a)
-        }
-      }
-    }
-  }
-
-  x3p_cimg_pad <- x3p_cimg %>%
-    {
-      if (x_len > w / 2) {
-        pad(., nPix = x_len - w / 2, axes = "x", pos = 1, val = NA_val) %>%
-          pad(nPix = x_len - w / 2, axes = "x", pos = -1, val = NA_val)
-      } else {
-        .
-      }
-    } %>%
-    {
-      if (y_len > h / 2) {
-        pad(., nPix = y_len - h / 2, axes = "y", pos = 1, val = NA_val) %>%
-          pad(nPix = y_len - h / 2, axes = "y", pos = -1, val = NA_val)
-      } else {
-        .
-      }
-    }
-  x3p_cimg_pad_rotate <- x3p_cimg_pad %>%
-    rotate_xy(-angle,
-      max(x_len, w / 2),
-      max(y_len, h / 2),
-      interpolation = 0L, boundary_conditions = 0L
-    )
+  x3p_cimg_pad_rotate <- x3p_cimg %>% imrotate(-angle)
   x3p_matrix_pad_rotate <- x3p_cimg_pad_rotate %>% as.matrix()
   x3p_matrix_pad_rotate[near(x3p_matrix_pad_rotate, NA_val)] <- NA
   na_matrix <- x3p_matrix_pad_rotate %>% is.na()
@@ -98,35 +50,12 @@ x3p_rotate <- function(x3p, angle = 90) {
   x3p_pad_rotate$surface.matrix <- x3p_matrix_pad_rotate
   if (!is.null(x3p$mask)) {
     x3p_mask_cimg <- as.cimg(x3p$mask)
-    r <- 1 / 2 * sqrt(nrow(x3p_mask_cimg)^2 + ncol(x3p_mask_cimg)^2)
     NA_val <- "black"
-    x3p_mask_cimg_pad <- x3p_mask_cimg %>%
-      {
-        if (x_len > w / 2) {
-          pad(., nPix = x_len - w / 2, axes = "x", pos = 1, val = NA_val) %>%
-            pad(nPix = x_len - w / 2, axes = "x", pos = -1, val = NA_val)
-        } else {
-          .
-        }
-      } %>%
-      {
-        if (y_len > h / 2) {
-          pad(., nPix = y_len - h / 2, axes = "y", pos = 1, val = NA_val) %>%
-            pad(nPix = y_len - h / 2, axes = "y", pos = -1, val = NA_val)
-        } else {
-          .
-        }
-      }
-    x3p_mask_cimg_pad_rotate <- x3p_mask_cimg_pad %>%
-      rotate_xy(-angle,
-        max(x_len, w / 2),
-        max(y_len, h / 2),
-        interpolation = 0L, boundary_conditions = 0L
-      )
+    x3p_mask_cimg_pad_rotate <- x3p_mask_cimg %>% imrotate(-angle)
     x3p_mask_raster_pad_rotate <- x3p_mask_cimg_pad_rotate %>%
       as.raster()
     x3p_mask_raster_pad_rotate[x3p_mask_raster_pad_rotate ==
-      "#000000"] <- NA
+      NA_val] <- NA
     x3p_mask_raster_pad_rotate <- x3p_mask_raster_pad_rotate[
       !na_col,
       !na_row
