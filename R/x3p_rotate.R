@@ -28,9 +28,9 @@ x3p_rotate <- function(x3p, angle = 90) {
   }
   not_zero <- 10
   shift_up <- not_zero + abs(min(x3p$surface.matrix, na.rm = TRUE))
-  x3p_shift <- x3p$surface.matrix + shift_up 
+  x3p_shift <- x3p$surface.matrix + shift_up
   NA_val <- 0
-  
+
   x3p_shift[is.na(x3p$surface.matrix)] <- NA_val
   x3p_cimg <- as.cimg(x3p_shift)
 
@@ -38,9 +38,9 @@ x3p_rotate <- function(x3p, angle = 90) {
     imrotate(-angle, interpolation = 0L)
   x3p_matrix_rotate <- x3p_cimg_rotate %>%
     as.matrix()
-  x3p_matrix_rotate[x3p_matrix_rotate < shift_up/2] <- NA # there should not be any values between 0 and shift_up
-  x3p_matrix_rotate <- x3p_matrix_rotate - shift_up - not_zero
-  
+  x3p_matrix_rotate[x3p_matrix_rotate < shift_up / 2] <- NA # there should not be any values between 0 and shift_up
+  x3p_matrix_rotate <- x3p_matrix_rotate - shift_up
+
   na_matrix <- x3p_matrix_rotate %>% is.na()
   na_row <- rowSums(na_matrix) == (ncol(na_matrix))
   na_col <- colSums(na_matrix) == (nrow(na_matrix))
@@ -56,7 +56,8 @@ x3p_rotate <- function(x3p, angle = 90) {
   x3p_rotate$surface.matrix <- x3p_matrix_rotate
   if (!is.null(x3p$mask)) {
     x3p_mask_cimg <- as.cimg(x3p$mask)
-    x3p_mask_cimg_rotate <- x3p_mask_cimg %>% imrotate(-angle, interpolation = 0L)
+    x3p_mask_cimg_rotate <- x3p_mask_cimg %>%
+      imrotate(-angle, interpolation = 0L)
     x3p_mask_raster_rotate <- x3p_mask_cimg_rotate %>%
       as.raster()
     x3p_mask_raster_rotate[is.na(x3p_matrix_rotate)] <- NA
