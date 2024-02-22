@@ -43,7 +43,14 @@ x3p_rotate <- function(x3p, angle = 90) {
   x3p_matrix_rotate <- x3p_matrix_rotate - shift_up
 
   if (!is.null(x3p$mask)) {
-    x3p_mask_cimg <- as.cimg(x3p$mask)
+    x3p_mask_shift <- x3p$mask
+
+    if (sum(is.na(x3p$mask)) != 0) {
+      warning("Mask contains NA values. Mask areas with color '#000000' will also be considered as missing.")
+      x3p_mask_shift[is.na(x3p_mask_shift)] <- "#000000"
+    }
+
+    x3p_mask_cimg <- as.cimg(x3p_mask_shift)
     x3p_mask_cimg_rotate <- x3p_mask_cimg %>%
       imrotate(-angle, interpolation = 0L, boundary = 0L)
     x3p_mask_raster_rotate <- x3p_mask_cimg_rotate %>%
@@ -51,6 +58,10 @@ x3p_rotate <- function(x3p, angle = 90) {
       toupper()
     na_mask <- t(is.na(x3p_matrix_rotate))
     x3p_mask_raster_rotate[na_mask] <- NA
+
+    if (sum(is.na(x3p$mask)) != 0) {
+      x3p_mask_raster_rotate[x3p_mask_raster_rotate == "#000000"] <- NA
+    }
   }
 
   na_matrix <- x3p_matrix_rotate %>% is.na()
