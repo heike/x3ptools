@@ -3,7 +3,7 @@
 #' Rotate the surface matrix and mask of an x3p object. Also adjust meta information.
 #' @param x3p x3p object
 #' @param angle rotate counter-clockwise by angle in degrees.
-#' @importFrom imager cimg as.cimg pad imrotate
+#' @importFrom imager as.cimg pad imrotate
 #' @importFrom dplyr near
 #' @export
 #' @examples
