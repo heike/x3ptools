@@ -21,9 +21,7 @@ test_that("x3p_rotate works as expected", {
   )
   x3ptest2 <- x3ptest %>% x3p_shade_mask()
   x3ptest2def <- x3ptest2
-  expect_warning(
-    x3ptest2defb <- x3p_rotate(x3ptest2def, angle = 90)
-  )
+  x3ptest2defb <- x3p_rotate(x3ptest2def, angle = 90)
   expect_equivalent(
     x3ptest2defb$mask,
     as.raster(t(as.matrix(x3ptest2def$mask))[rev(1:6), ]) %>% toupper()

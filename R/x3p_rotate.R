@@ -46,7 +46,9 @@ x3p_rotate <- function(x3p, angle = 90) {
     x3p_mask_shift <- x3p$mask
 
     if (sum(is.na(x3p$mask)) != 0) {
-      warning("Mask contains NA values. Mask areas with color '#000000' will also be considered as missing.")
+      if (sum(x3p$mask == "#000000", na.rm = TRUE) != 0) {
+        warning("Mask areas with color '#000000' will be converted to NA.")
+      }
       x3p_mask_shift[is.na(x3p_mask_shift)] <- "#000000"
     }
 
