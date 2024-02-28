@@ -1,8 +1,8 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-01-30T15:21Z
+last_built: 2024-02-28T20:30Z
 urls:
   reference: https://heike.github.io/x3ptools/reference
   article: https://heike.github.io/x3ptools/articles
