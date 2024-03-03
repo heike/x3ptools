@@ -6,7 +6,7 @@ status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.o
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--02--22-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--03--02-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/main)
 [![Codecov test
 coverage](https://codecov.io/gh/heike/x3ptools/graph/badge.svg?token=80NyJNOg5b)](https://app.codecov.io/gh/heike/x3ptools)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
