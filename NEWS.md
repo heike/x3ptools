@@ -2,6 +2,10 @@
 
 # x3ptools 0.0.4.9000
 
+## minor functionality
+
+* `x3p_read_folder` allows an import of multiple x3p files (recursively) into a single data frame (in tibble format) with a list variable of x3p objects.
+
 
 # x3ptools 0.0.4
 
