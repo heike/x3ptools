@@ -6,7 +6,7 @@ status](https://www.r-pkg.org/badges/version/x3ptools)](https://CRAN.R-project.o
 downloads](https://cranlogs.r-pkg.org/badges/last-month/x3ptools?color=blue)](https://r-pkg.org/pkg/x3ptools)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2024--01--30-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--03--04-yellowgreen.svg)](https://github.com/heike/x3ptools/commits/main)
 [![Codecov test
 coverage](https://codecov.io/gh/heike/x3ptools/graph/badge.svg?token=80NyJNOg5b)](https://app.codecov.io/gh/heike/x3ptools)
 [![R-CMD-check](https://github.com/heike/x3ptools/workflows/R-CMD-check/badge.svg)](https://github.com/heike/x3ptools/actions)
@@ -55,7 +55,7 @@ names(logo)
 ```
 
     ## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
-    ## [5] "matrix.info"
+    ## [5] "matrix.info"    "other.info"
 
 The four info objects specify the information for Record1 through
 Record4 in the xml file. An example for an xml file is provided with the
@@ -106,7 +106,7 @@ names(logo)
 ```
 
     ## [1] "header.info"    "surface.matrix" "feature.info"   "general.info"  
-    ## [5] "matrix.info"
+    ## [5] "matrix.info"    "other.info"
 
 ## Usage
 
@@ -178,6 +178,11 @@ visualize these raster images, e.g. using `ggplot2`:
 
 ``` r
 library(ggplot2)
+```
+
+    ## Warning: package 'ggplot2' was built under R version 4.3.2
+
+``` r
 library(magrittr)
 
 logo_df %>% ggplot(aes( x= x, y=y, fill= value)) +
