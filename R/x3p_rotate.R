@@ -39,7 +39,7 @@ x3p_rotate <- function(x3p, angle = 90) {
   x3p_matrix_rotate <- x3p_cimg_rotate %>%
     as.matrix()
   # there should not be any values between 0 and shift_up
-  x3p_matrix_rotate[x3p_matrix_rotate < (shift_up / 2)] <- NA
+  x3p_matrix_rotate[x3p_matrix_rotate < (not_zero / 2)] <- NA
   x3p_matrix_rotate <- x3p_matrix_rotate - shift_up
 
   if (!is.null(x3p$mask)) {
