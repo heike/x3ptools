@@ -5,6 +5,11 @@
 ## minor functionality
 
 * `x3p_read_folder` allows an import of multiple x3p files (recursively) into a single data frame (in tibble format) with a list variable of x3p objects.
+* `dim.x3p` just for convenience.
+
+## bug fixes
+
+* fix to `x3p_rotate` in an obscure situation
 
 
 # x3ptools 0.0.4
