@@ -68,7 +68,8 @@ x3p_to_df <- function(x3p) {
       df$annotation <- rev_annotations[df$maskmerge]
 
       # preserve all annotations, not just the ones in use      
-      df$mask <- factor(df$maskmerge, levels=annotations)
+    #  df$mask <- factor(df$maskmerge, levels=annotations) # if the levels are different, all colors are wiped out
+      df$mask <- factor(df$maskmerge)
       df$annotation <- factor(df$annotation, levels=names(annotations))
       df <- select(df, -"maskmerge")
     }
