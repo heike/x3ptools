@@ -102,13 +102,17 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
 
   # if the mask exists, write it as a png file
   if (exists("mask", x3p)) {
-    grDevices::png(
-      file = "bindata/mask.png", width = x3p$header.info$sizeX,
-      height = x3p$header.info$sizeY, units = "px", bg = "transparent"
-    )
-    graphics::par(mar = c(0, 0, 0, 0))
-    plot(x3p$mask)
-    dev.off()
+    # grDevices::png(
+    #   file = "bindata/mask.png", width = x3p$header.info$sizeX,
+    #   height = x3p$header.info$sizeY, units = "px", #bg = "transparent" # HH: does the transparency change colors?
+    # )
+    # graphics::par(mar = c(0, 0, 0, 0))
+    # plot(x3p$mask)
+    # dev.off()
+ #   browser()
+    png <- convert_raster_to_png(x3p$mask)
+    png::writePNG(png, "bindata/mask.png")
+    
   }
 
   if (size == 4) a1list[[1]]$Record1$Axes$CZ$DataType[[1]] <- "F"
@@ -158,4 +162,18 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
 #' @export
 write_x3p <- function(x3p, file, size = 8, quiet = F) {
   x3p_write(x3p = x3p, file = file, size = size, quiet = quiet)
+}
+
+#' Helper function
+#' @param raster raster image
+#' @return png object
+convert_raster_to_png <- function(raster) {
+#  browser()
+  dims <- dim(raster)
+  m <- array(NA,c(dims[1],dims[2],3))
+  m[,,1] <- apply(substr(raster,2,3), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+  m[,,2] <- apply(substr(raster,4,5), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+  m[,,3] <- apply(substr(raster,6,7), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#  m[,,3] <- apply(substr(raster,8,9), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+  m
 }
