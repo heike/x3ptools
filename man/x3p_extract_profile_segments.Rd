@@ -9,6 +9,7 @@ x3p_extract_profile_segments(
   width,
   col = "#FF0000",
   linewidth = 11,
+  scale_to = NA,
   verbose = TRUE
 )
 }
@@ -20,6 +21,8 @@ x3p_extract_profile_segments(
 \item{col}{color}
 
 \item{linewidth}{integer value specifying the width for the profile}
+
+\item{scale_to}{positive number indicating the resolution for the line returned.}
 
 \item{verbose}{logical}
 }

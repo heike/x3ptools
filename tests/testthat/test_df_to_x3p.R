@@ -23,8 +23,8 @@ test_that("df_to_x3p works as expected", {
   
   df2 <- dftest[,1:5]
   expect_silent(tmp <- df_to_x3p(df2, var = "z"))
-  df2$annotation <- ifelse(df2$mask=="#00FF00", "green", 
-                           ifelse(df2$mask=="#FFFF00", "yellow", "blue"))
+  df2$annotation <- ifelse(df2$mask=="#00ff00", "green", 
+                           ifelse(df2$mask=="#ffff00", "yellow", "blue"))
   expect_silent(tmp <- df_to_x3p(df2, var = "z"))
   annotations1 <- tmp %>% x3p_show_xml("annotation")
 #  expect_identical(annotations1[3], list(Mask.Annotations3="yellow"))

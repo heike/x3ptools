@@ -9,6 +9,7 @@ x3p_extract_profile(
   col = "#FF0000",
   update = TRUE,
   line_result = "equi-spaced",
+  scale_to = NA,
   multiply = 5,
   linewidth = 1
 )
@@ -24,6 +25,8 @@ x3p_extract_profile(
 projected x onto the line, "equi-spaced" (default) returns a data frame with equispaced x values after fitting a loess smooth to the raw values.
 Note that variable x indicates the direction from first click (x=0) to
 the second click (max x).}
+
+\item{scale_to}{numeric value of the resolution in the returned line. Only applies to equi-spaced \code{line_result}.}
 
 \item{multiply}{integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5,}
 

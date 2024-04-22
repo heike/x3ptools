@@ -10,6 +10,7 @@
 #' projected x onto the line, "equi-spaced" (default) returns a data frame with equispaced x values after fitting a loess smooth to the raw values. 
 #' Note that variable x indicates the direction from first click (x=0) to 
 #' the second click (max x). 
+#' @param scale_to numeric value of the resolution in the returned line. Only applies to equi-spaced `line_result`.
 #' @param multiply integer value, factor to multiply surface values.  Only applied if update is true. Defaults to 5, 
 #' @param linewidth line width of the extracted line. Defaults to 1.
 #' @return x3p file with identified line in the mask. Depending on the setting of `line_result`
@@ -34,7 +35,7 @@
 #'      geom_line(aes(y = sig), size = 1) +
 #'      theme_bw() 
 #' }}
-x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= "equi-spaced", multiply = 5, linewidth = 1) {
+x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= "equi-spaced", scale_to = NA, multiply = 5, linewidth = 1) {
   cat("Select start point and endpoint on the surface ...\n")
   stopifnot("x3p" %in% class(x3p))
   ids <- rgl::ids3d()
@@ -50,6 +51,9 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
   orig_x <- orig_y <- `p-x.m` <- `p-x.n` <- value <- NULL
   
   multiply <- multiply
+  if (is.na(scale_to)) scale_to = x3p %>% x3p_get_scale()
+  
+  
   surface <- x3p$surface.matrix
   z <- multiply * surface
   yidx <- ncol(z):1
@@ -59,7 +63,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
   xidx <- rep(x, length(y))
   yidx <- rep(y, each=length(x))
   selected <-  identify3d(xidx, yidx ,z, n=2, buttons=c("left", "middle"))
-  #  browser()
+#    browser()
   
   coord1 <- xidx[selected]
   coord2 <- yidx[selected]
@@ -82,6 +86,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
   )
   eps <- x3p %>% x3p_get_scale() * linewidth/2
   on_line <- abs(x3p_df$`p-x.n`)< eps & dplyr::between(x3p_df$`p-x.m`, 0, dm)
+  
   x3p_df$mask[on_line] <- col
   tmp <- x3p_df %>% df_to_x3p()
   #  if (is.null(x3p$mask)) x3p <- x3p %>% x3p_add_mask()
@@ -112,12 +117,12 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
       line <- line_df
     } 
     if (line_result == "equi-spaced") {
-      
+     # browser()
       #ps <- sequence_points(0, Y-X, by=x3p %>% x3p_get_scale())
-      scale <- x3p %>% x3p_get_scale()
+
       line_df <- line_df %>% mutate(
-        x = round(x/scale),
-        y = round(y/scale)
+        x = round(x/scale_to),
+        y = round(y/scale_to)
       ) 
       line <- line_df %>% group_by(x) %>% 
         summarize(
@@ -126,7 +131,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
           orig_y = median(orig_y),
           y = 0,
           n = n()) %>% 
-        mutate(x = x*scale)
+        mutate(x = x*scale_to)
     }
     attributes(line)$click <- list(start=X, end=Y)
     

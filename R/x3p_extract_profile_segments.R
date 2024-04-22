@@ -7,9 +7,10 @@
 #' @param width segment width 
 #' @param col color
 #' @param linewidth integer value specifying the width for the profile
+#' @param scale_to positive number indicating the resolution for the line returned.
 #' @param verbose logical 
 #' @return x3p object with added `lines` attribute.
-#' @importFrom dplyr mutate left_join select desc add_tally ungroup n
+#' @importFrom dplyr mutate left_join select desc add_tally ungroup n slice_min slice_max
 #' @importFrom purrr pmap map map_dbl pmap_df 
 #' @importFrom tidyr unnest
 #' @export
@@ -18,7 +19,7 @@
 #' logo <- x3p_m_to_mum(logo)
 #' if(interactive())
 #'   x3p_extract_profile_segments(logo, 850, col="#ffffff", linewidth=5)
-x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11, verbose = TRUE) {
+x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11, scale_to = NA, verbose = TRUE) {
   # pass R CMD CHECK
   x <- y <- height <- value <- orig_x <- orig_y <- piece <- NULL
   mask.x <- mask.y <- line <- offset_x <- value_adjust <- NULL
@@ -30,6 +31,7 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   orig_scale <- x3p$header.info$incrementY
   x3p$header.info$incrementY <- 1
   x3p$header.info$incrementX <- 1
+  if (is.na(scale_to)) scale_to <- orig_scale
   
   if (verbose) {
     message(sprintf("Setting up %d pieces ...", dims[1] %/% w90 + 1))
@@ -52,7 +54,7 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   dframe <- dframe %>% mutate(
     x3p = x3p %>% purrr::map(.f = function(x) {
       x %>% x3ptools::x3p_image()
-      x <- x %>% x3p_extract_profile(linewidth=linewidth)
+      x <- x %>% x3p_extract_profile(linewidth=linewidth, scale_to=scale_to)
     })
   )
  
@@ -93,11 +95,13 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   # check the `value` values of overlapping pieces and adjust consecutive pieces for any systematic 
   # differences in `value` 
    dframe <- dframe %>% mutate(
-     value_first10 = x3p %>% purrr::map_dbl(.f = function(x) {
-       x$line %>% filter(x <= w10) %>% summarize(value = mean(value, na.rm=TRUE)) %>% pull(1)
+     value_first10 = x3p %>% purrr::map_dbl(.f = function(x) { # exclude missing values
+       x$line %>% filter(!is.na(value)) %>% slice_min(order_by=x, prop=.1) %>% 
+         summarize(value = mean(value, na.rm=TRUE)) %>% pull(1)
      }),
      value_last10 = x3p %>% purrr::map_dbl(.f = function(x) {
-       x$line %>% filter(x > w90) %>% summarize(value = mean(value, na.rm=TRUE)) %>% pull(1)
+       x$line %>% filter(!is.na(value)) %>% slice_max(order_by=x, prop=.1) %>% 
+         summarize(value = mean(value, na.rm=TRUE)) %>% pull(1)
      })
    )
    idx <-1:nrow(dframe)
@@ -131,8 +135,8 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   x3p$header.info$incrementX <- orig_scale
   
   x3p$lines <- lines %>% mutate(
-    x = x * orig_scale, 
-    y = y * orig_scale,
+    x = x * scale_to, 
+    y = y * scale_to,
     orig_x = orig_x+offset_x,
     orig_y = orig_y+offset_y) %>%
     select(x, y, value, orig_x, orig_y, piece)

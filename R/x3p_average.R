@@ -59,3 +59,4 @@ x3p_average <- function(x3p, b = 10, f = mean, ...) {
 }
 
 
+

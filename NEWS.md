@@ -6,10 +6,12 @@
 
 * `x3p_read_folder` allows an import of multiple x3p files (recursively) into a single data frame (in tibble format) with a list variable of x3p objects.
 * `dim.x3p` just for convenience.
+* parameter `scale_to` in `x3p_extract_profile` and `x3p_extract_profile_segments` to set resolution for returned lines explicitly
 
 ## bug fixes
 
 * fix to `x3p_rotate` in an obscure situation
+* annotations don't get lost in conversions to data frames
 
 
 # x3ptools 0.0.4
