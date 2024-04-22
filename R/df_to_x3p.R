@@ -130,15 +130,13 @@ df_to_x3p <- function(dframe, var = "value") {
   
   if ("mask" %in% names(dframe)) {
     x3p <- x3p %>% x3p_add_mask(mask = matrix(dframe$mask, nrow = dim(x3p$surface.matrix)[2]))
- #   browser()
     if("annotation" %in% names(dframe)) {
-      if(is.factor(dframe$mask) & is.factor(dframe$annotation)) {
-        annotations <- data.frame(
-          mask = levels(dframe$mask),
-          annotation = levels(dframe$annotation)
-        )
-      } else
-        annotations <- unique(dframe[,c("mask", "annotation")])
+      annotations <- unique(dframe[,c("mask", "annotation")])
+      if (any(is.na(annotations$annotation))) {
+        warning(sprintf("Number of annotations is not equal to the number of colors '%d vs %d'", sum(!is.na(annotations$annotation)), nrow(annotations)))
+      }
+      annotations <- annotations %>% filter(!is.na(annotation))
+      
       for (i in 1:nrow(annotations)) {
         x3p <- x3p %>% x3p_add_annotation(
           color = annotations$mask[i], 
