@@ -17,6 +17,9 @@ x3p_crop(x3p, x = 1, y = 1, width = 128, height = 128)
 
 \item{height}{integer, height (in pixels) of the rectangle,}
 }
+\value{
+x3p object of the cropped location expanded by list element \code{offset} that contains the coordinates of the cropped piece within the parent.
+}
 \description{
 Cuts out a rectangle of size width x height from the location (x, y) of an x3p object.
 x and y specify the bottom right corner of the rectangle.
