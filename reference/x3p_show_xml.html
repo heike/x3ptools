@@ -41,7 +41,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Show xml elements from meta information in x3p object</h1>
-      <small class="dont-index">Source: <a href="https://github.com/heike/x3ptools/blob/HEAD/R/modify_xml.R" class="external-link"><code>R/modify_xml.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/heike/x3ptools/blob/HEAD/R/x3p_show_xml.R" class="external-link"><code>R/x3p_show_xml.R</code></a></small>
       <div class="d-none name"><code>x3p_show_xml.Rd</code></div>
     </div>
 
@@ -51,7 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_show_xml</span><span class="op">(</span><span class="va">x3p</span>, <span class="va">element</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">x3p_show_xml</span><span class="op">(</span><span class="va">x3p</span>, <span class="va">element</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -63,6 +63,10 @@
 <dt>element</dt>
 <dd><p>character or integer (vector). In case of character, name of xml field in the meta file. Note that element can contain regular expressions, e.g. <code>"*"</code> returns all meta fields.
 In case of integer, element is used as an index vector for the meta fields.</p></dd>
+
+
+<dt>verbose</dt>
+<dd><p>boolean should warning be shown?</p></dd>
 
 </dl></div>
     <div class="section level2">
