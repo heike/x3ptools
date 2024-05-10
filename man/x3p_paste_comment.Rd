@@ -10,6 +10,8 @@ x3p_paste_comment(x3p, comment, sep = ", ")
 \item{x3p}{x3p object}
 
 \item{comment}{character value with the appendage}
+
+\item{sep}{character value to use for separating between existing and new comments}
 }
 \value{
 x3p object with expanded comment

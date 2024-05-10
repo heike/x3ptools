@@ -31,6 +31,7 @@ x3p_show_xml <- function(x3p, element, verbose=TRUE) {
 #' Append information to the current comment of the x3p object. If there is no comment, a comment will be included in Record2 (general info)
 #' @param x3p x3p object
 #' @param comment character value with the appendage
+#' @param sep character value to use for separating between existing and new comments
 #' @return x3p object with expanded comment
 #' @export
 #' @examples
