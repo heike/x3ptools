@@ -36,7 +36,9 @@ x3p_crop <- function(x3p, x=1, y=1, width=128, height=128) {
   y3p$matrix.info$MatrixDimension$SizeX[[1]] <- y3p$header.info$sizeX
   y3p$matrix.info$MatrixDimension$SizeY[[1]] <- y3p$header.info$sizeY
   
-  y3p$general.info$Comment <- paste(trimws(y3p$general.info$Comment), "; cropped from location (", x, ",", y,")")
+  
+  y3p <- y3p %>% x3p_paste_comment(paste0("cropped from location (", x, ",", y,")"), sep="; ")
+  
   if (!is.null(y3p$mask)) {
     # matrix with flipped x and y dimensions
     y3p$mask <- y3p$mask[yidx, xidx]

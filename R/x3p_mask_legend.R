@@ -10,7 +10,7 @@
 x3p_mask_legend <- function(x3p) {
   stopifnot("x3p" %in% class(x3p)) # no x3p object
   if (is.null(x3p$mask)) return(NULL)
-  if (length(suppressWarnings(x3p_show_xml(x3p, "Annotations"))) == 0) return(NULL)
+  if (all(is.na(x3p_show_xml(x3p, "Annotations", verbose=FALSE)))) return(NULL)
 
   annotations <- unlist(x3p$matrix.info$Mask$Annotations)
   colors <- unlist(lapply(x3p$matrix.info$Mask$Annotations, attributes))

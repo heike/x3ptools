@@ -39,7 +39,7 @@ test_that("x3p_lighter", {
 
 
 test_that("x3p_add_legend", {
-  expect_error(x3p_add_legend("x3p"))
+  expect_error(x3p_add_legend("x3p")) # string is not an x3p object
   expect_error(x3p_add_legend(x3pbig)) 
 
   # With mask
