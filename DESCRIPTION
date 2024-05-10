@@ -10,6 +10,8 @@ Authors@R: c(
     person("Susan", "Vanderplas", email = "srvander@iastate.edu", 
             role = "aut",
             comment = c(ORCID = "0000-0002-3803-0972")),                      
+    person("Yuhang (Tom)", "Lin", role = c("aut"),
+            email = "yhlin@iastate.edu"),
     person("Ganesh", "Krishnan", role = c("aut"),
             email = "ganeshk@iastate.edu"),
     person("Eric", "Hare", email = "eric@oaiti.org", role = "aut",
