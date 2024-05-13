@@ -11,6 +11,8 @@
 print.x3p <- function(x, ...) {
   cat("x3p object\n")
   cat(sprintf("Instrument: %s \n", x$general.info$Instrument$Manufacturer[[1]]))
+  cat(sprintf("Model: %s \n", x$general.info$Instrument$Model[[1]]))
+  cat(sprintf("Date: %s \n", x$general.info$Date[[1]]))
   cat(sprintf(
     "size (width x height): %d x %d in pixel \n",
     x$header.info$sizeX, x$header.info$sizeY
