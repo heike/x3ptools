@@ -93,6 +93,7 @@ x3p_extract_profile <- function(x3p, col = "#FF0000", update=TRUE, line_result= 
   #  browser()
   x3p$mask <- tmp$mask
   
+  
   #  browser()
   if (update) {
     rgl::rgl.bringtotop()

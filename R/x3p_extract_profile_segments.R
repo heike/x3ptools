@@ -5,8 +5,13 @@
 #' Line segments are projected onto the mask of the initial x3p object and exported as a `lines` attribute. 
 #' @param x3p object
 #' @param width segment width 
+#' @param overlap percentage of overlap between segments
 #' @param col color
 #' @param linewidth integer value specifying the width for the profile
+#' @param line_result  enhance result by the line: NULL for no, "raw" for a list of data frames of original x and y (in the mask) and
+#' projected x onto the line, "equi-spaced" (default) returns a single data frame with equi-spaced x values after fitting a loess smooth to the raw values. 
+#' Note that variable x indicates the direction from first click (x=0) to 
+#' the second click (max x) in steps of `scale_to`. 
 #' @param scale_to positive number indicating the resolution for the line returned.
 #' @param verbose logical 
 #' @return x3p object with added `lines` attribute.
@@ -19,14 +24,15 @@
 #' logo <- x3p_m_to_mum(logo)
 #' if(interactive())
 #'   x3p_extract_profile_segments(logo, 850, col="#ffffff", linewidth=5)
-x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11, scale_to = NA, verbose = TRUE) {
+x3p_extract_profile_segments <- function(x3p, width, overlap = 10, col="#FF0000", linewidth=11, line_result = 'equi-spaced', scale_to = NA, verbose = TRUE) {
   # pass R CMD CHECK
   x <- y <- height <- value <- orig_x <- orig_y <- piece <- NULL
   mask.x <- mask.y <- line <- offset_x <- value_adjust <- NULL
   offset_y <- NULL
   # how many pieces do we need assuming we use 10% for overlap?
+  overlap <- overlap/100
   dims <- dim(x3p$surface.matrix)
-  w10 <- round(.1*width)
+  w10 <- round(overlap*width)
   w90 <- width - w10
   orig_scale <- x3p$header.info$incrementY
   x3p$header.info$incrementY <- 1
@@ -54,7 +60,7 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   dframe <- dframe %>% mutate(
     x3p = x3p %>% purrr::map(.f = function(x) {
       x %>% x3ptools::x3p_image()
-      x <- x %>% x3p_extract_profile(linewidth=linewidth, scale_to=scale_to)
+      x <- x %>% x3p_extract_profile(linewidth=linewidth, line_result = line_result, scale_to=scale_to)
     })
   )
  
@@ -63,8 +69,12 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
   }
   
   dframe <- dframe %>% mutate(
-    line = x3p %>% purrr::map(.f = function(x) x$line)
+    line = x3p %>% purrr::map(.f = function(x) {
+      x$line}
+      ),
+    offsets = x3p %>% purrr::map(.f = function(x) x$offset)
   )
+  dframe$piece = 1:nrow(dframe)
   
   masklines <- dframe %>% select(-x3p) %>% 
     rename(offset_x = x, offset_y = y) %>%
@@ -79,7 +89,8 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
     unique()
 
   if (is.null(x3p$mask)) x3p <- x3p %>% x3p_add_mask()
-  
+
+#  browser()  
   x3p_df <- x3p %>% x3p_to_df()
  # masklines %>% anti_join(x3p_df, by=c("x", "y")) 
   
@@ -88,10 +99,11 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
     mask = ifelse(is.na(mask.y), mask.x, mask.y)
   ) %>% select(-mask.x, -mask.y)
   
+  
   if (verbose) {
-    message("done\nCombine profiles into one ...\n")
+    message("done\nCombine profiles ...\n")
   }
-
+  
   # check the `value` values of overlapping pieces and adjust consecutive pieces for any systematic 
   # differences in `value` 
    dframe <- dframe %>% mutate(
@@ -115,7 +127,6 @@ x3p_extract_profile_segments <- function(x3p, width, col="#FF0000", linewidth=11
    }
    lines <- dframe %>% select(-x3p) %>% 
      rename(offset_x = x, offset_y = y) %>%
-     mutate(piece = 1:n()) %>%
      tidyr::unnest(col=line) %>%
      mutate(
        value = value + value_adjust,

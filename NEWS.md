@@ -4,6 +4,7 @@
 
 ## minor functionality
 
+* `x3p_extract_profile_segments` include all parameters for `x3p_extract_profile`
 * `x3p_read_folder` allows an import of multiple x3p files (recursively) into a single data frame (in tibble format) with a list variable of x3p objects.
 * `dim.x3p` just for convenience.
 * parameter `scale_to` in `x3p_extract_profile` and `x3p_extract_profile_segments` to set resolution for returned lines explicitly

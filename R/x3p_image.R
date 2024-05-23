@@ -123,7 +123,7 @@ image_x3p <- function(x3p, file = NULL, col = "#cd7f32",
 #                        color = "#e6bf98",
 #                        radius = 5
 #                      ),
-                      size = c(750, 250), zoom = 0.35, multiply = 5, ...) {
+                      size = 750, zoom = 0.35, multiply = 5, ...) {
   x3p_image(
     x3p = x3p, file = file, col = col, #crosscut = crosscut, ccParam = ccParam,
     size = size, zoom = zoom, multiply = multiply, ...

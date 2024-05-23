@@ -74,6 +74,13 @@ x3p_to_df <- function(x3p) {
       df <- select(df, -"maskmerge")
     }
   }
+  if (!is.null(x3p$offset)) {
+    attr(df, "offset") <- x3p$offset # just hand the offset out
+#    df <- df %>% mutate( # scaled dimensions
+#      x = x + x3p$offset$xmin[2],
+#      y = y + x3p$offset$ymin[2]
+#    )
+  }
 
   attr(df, "header.info") <- info
   attr(df, "feature.info") <- x3p$feature.info
@@ -127,6 +134,8 @@ df_to_x3p <- function(dframe, var = "value") {
     x3p$matrix.info <- list(MatrixDimension = list(SizeX = nx, SizeY = ny, SizeZ = 1))
   }
   class(x3p) <- "x3p"
+  
+  ## HH: add an offset?
   
   if ("mask" %in% names(dframe)) {
     x3p <- x3p %>% x3p_add_mask(mask = matrix(dframe$mask, nrow = dim(x3p$surface.matrix)[2]))
