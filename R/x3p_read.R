@@ -1,4 +1,4 @@
-flatten <- function(list) {
+pinkflatten <- function(list) {
   unlist(list, recursive = FALSE, use.names=TRUE)
 }
   
