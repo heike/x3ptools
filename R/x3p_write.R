@@ -116,7 +116,10 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
     if (length(colnames) > 1) {
       # does mask contain any information?
       png <- convert_raster_to_png(x3p$mask) 
-      png::writePNG(png, "bindata/mask.png")
+      
+      writePNG(png, "bindata/mask.png")
+      
+    
     } else {
       # delete mask
       x3p$mask <- NULL
@@ -178,12 +181,13 @@ write_x3p <- function(x3p, file, size = 8, quiet = F) {
 #' @param raster raster image
 #' @return png object
 convert_raster_to_png <- function(raster) {
-#  browser()
-  dims <- dim(raster)
-  m <- array(NA,c(dims[1],dims[2],3))
-  m[,,1] <- apply(substr(raster,2,3), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-  m[,,2] <- apply(substr(raster,4,5), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-  m[,,3] <- apply(substr(raster,6,7), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#  m[,,3] <- apply(substr(raster,8,9), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-  m
+  # convert a raster object to a numeric array of values between 0 and 1
+  r <- x3p$mask
+  
+  mask_table <- table(r)
+  mask_table <- 0:(length(mask_table)-1)
+  names(mask_table) <- names(table(r))
+  r_int <- mask_table[r]/max(mask_table)
+  png <- t(array(mask_table[r]/max(mask_table), dim = rev(dim(r))))
+  png
 }
