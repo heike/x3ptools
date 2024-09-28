@@ -7,8 +7,10 @@
 x3p_extract_profile_segments(
   x3p,
   width,
+  overlap = 10,
   col = "#FF0000",
   linewidth = 11,
+  line_result = "equi-spaced",
   scale_to = NA,
   verbose = TRUE
 )
@@ -18,9 +20,16 @@ x3p_extract_profile_segments(
 
 \item{width}{segment width}
 
+\item{overlap}{percentage of overlap between segments}
+
 \item{col}{color}
 
 \item{linewidth}{integer value specifying the width for the profile}
+
+\item{line_result}{enhance result by the line: NULL for no, "raw" for a list of data frames of original x and y (in the mask) and
+projected x onto the line, "equi-spaced" (default) returns a single data frame with equi-spaced x values after fitting a loess smooth to the raw values.
+Note that variable x indicates the direction from first click (x=0) to
+the second click (max x) in steps of \code{scale_to}.}
 
 \item{scale_to}{positive number indicating the resolution for the line returned.}
 

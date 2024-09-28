@@ -1,4 +1,4 @@
-pinkflatten <- function(list) {
+flatten <- function(list) {
   unlist(list, recursive = FALSE, use.names=TRUE)
 }
   
@@ -17,7 +17,6 @@ pinkflatten <- function(list) {
 #' @export
 #' @import xml2
 #' @importFrom utils unzip download.file
-#'
 #' @examples
 #' logo <- x3p_read(system.file("csafe-logo.x3p", package="x3ptools"))
 x3p_read <- function(file, size = NA, quiet = T, tmpdir = NULL) {

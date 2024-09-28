@@ -110,8 +110,18 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
     # plot(x3p$mask)
     # dev.off()
  #   browser()
-    png <- convert_raster_to_png(x3p$mask)
-    png::writePNG(png, "bindata/mask.png")
+    # convert_raster_to_png  is extremely slow for large scans
+    # can we avoid it?
+    colnames <- names(table(x3p$mask))
+    if (length(colnames) > 1) {
+      # does mask contain any information?
+      png <- convert_raster_to_png(x3p$mask) 
+      png::writePNG(png, "bindata/mask.png")
+    } else {
+      # delete mask
+      x3p$mask <- NULL
+    }
+    
     
   }
 

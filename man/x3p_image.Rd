@@ -20,7 +20,7 @@ image_x3p(
   x3p,
   file = NULL,
   col = "#cd7f32",
-  size = c(750, 250),
+  size = 750,
   zoom = 0.35,
   multiply = 5,
   ...
