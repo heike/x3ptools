@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.opengps.eu/2008/ISO5436_2" targetNamespace="http://www.opengps.eu/2008/ISO5436_2" elementFormDefault="unqualified">
+  <xsd:annotation>
+    <xsd:documentation>
+XML-implementation for ISO5436-2 file format.
+First revision 04-Apr-2007
+Second revision 20-Jan-2020
+Copyright by Georg Wiora (NanoFocus AG), Jörg Seewig (Universität Hannover),
+Andreas Walther (NanoFocus AG), Mark A. Weber (NanoFocus AG) 2007
+Jörg Seewig (Technische Universität Kaiserslautern) 2020
+openGPS and the openGPS logo is a registered trademark of
+Physikalisch Technische Bundesanstalt (PTB)
+http://www.ptb.de/
+More information about openGPS can be found at
+http://www.opengps.eu/
+</xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="ISO5436_2" type="ISO5436_2Type">
+</xsd:element>
+  <xsd:complexType name="Record1Type">
+    <xsd:sequence>
+      <xsd:element name="Revision" type="xsd:token" minOccurs="1" maxOccurs="1">
+</xsd:element>
+      <xsd:element name="FeatureType" maxOccurs="1" minOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:token">
+            <xsd:whiteSpace value="collapse">
+            </xsd:whiteSpace>
+            <xsd:enumeration value="PRF">
+            </xsd:enumeration>
+            <xsd:enumeration value="SUR">
+            </xsd:enumeration>
+            <xsd:enumeration value="PCL">
+            </xsd:enumeration>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="Axes" type="AxesType" maxOccurs="1" minOccurs="1">
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ISO5436_2Type">
+    <xsd:sequence>
+      <xsd:element name="Record1" type="Record1Type" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Record2" type="Record2Type" maxOccurs="1" minOccurs="0">
+</xsd:element>
+      <xsd:element name="Record3" type="Record3Type" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Record4" type="Record4Type" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="VendorSpecificID" type="xsd:anyURI" minOccurs="0" maxOccurs="unbounded">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Record2Type">
+    <xsd:sequence>
+      <xsd:element name="Date" type="xsd:dateTime" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Creator" type="xsd:token" maxOccurs="1" minOccurs="0">
+</xsd:element>
+      <xsd:element name="Instrument" type="InstrumentType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="CalibrationDate" type="xsd:dateTime" maxOccurs="1" minOccurs="0">
+</xsd:element>
+      <xsd:element name="ProbingSystem" type="ProbingSystemType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Comment" type="xsd:string" maxOccurs="1" minOccurs="0">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Record3Type">
+    <xsd:sequence>
+      <xsd:choice maxOccurs="1" minOccurs="1">
+        <xsd:element name="MatrixDimension" maxOccurs="1" minOccurs="1" type="MatrixDimensionType">
+</xsd:element>
+        <xsd:element name="ListDimension" type="xsd:unsignedLong" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      </xsd:choice>
+      <xsd:choice maxOccurs="1" minOccurs="1">
+        <xsd:element name="DataLink" type="DataLinkType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+        <xsd:element name="DataList" type="DataListType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Record4Type">
+    <xsd:sequence>
+      <xsd:element name="ChecksumFile" type="xsd:string" maxOccurs="1" minOccurs="1">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AxesType">
+    <xsd:sequence>
+      <xsd:element name="CX" type="AxisDescriptionType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="CY" type="AxisDescriptionType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="CZ" type="AxisDescriptionType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Rotation" type="RotationType" maxOccurs="1" minOccurs="0">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AxisDescriptionType">
+    <xsd:sequence>
+      <xsd:element name="AxisType" maxOccurs="1" minOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="A">
+</xsd:enumeration>
+            <xsd:enumeration value="I">
+</xsd:enumeration>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="DataType" maxOccurs="1" minOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="I">
+</xsd:enumeration>
+            <xsd:enumeration value="L">
+</xsd:enumeration>
+            <xsd:enumeration value="F">
+</xsd:enumeration>
+            <xsd:enumeration value="D">
+</xsd:enumeration>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="Increment" type="xsd:double" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Offset" type="xsd:double" maxOccurs="1" minOccurs="0">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InstrumentType">
+    <xsd:sequence>
+      <xsd:element name="Manufacturer" type="xsd:token" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="Model" type="xsd:token">
+</xsd:element>
+      <xsd:element name="Serial" type="xsd:token">
+</xsd:element>
+      <xsd:element name="Version" type="xsd:token">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ProbingSystemType">
+    <xsd:sequence>
+      <xsd:element name="Type" maxOccurs="1" minOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Contacting">
+</xsd:enumeration>
+            <xsd:enumeration value="NonContacting">
+</xsd:enumeration>
+            <xsd:enumeration value="Software">
+</xsd:enumeration>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="Identification" type="xsd:token" maxOccurs="1" minOccurs="1">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DataListType">
+    <xsd:sequence>
+      <xsd:element name="Datum" maxOccurs="unbounded" minOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:token">
+            <xsd:pattern value="((-|\+)?(\d*\.?\d+)((e|E) (-|\+)?\d{1,4})?)?(;(-|\+)?(\d*\.?\d+)((e|E)(-|\+)?\d{1,4})?)*">
+</xsd:pattern>
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DataLinkType">
+    <xsd:sequence>
+      <xsd:element name="PointDataLink" type="xsd:string" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="MD5ChecksumPointData" type="xsd:hexBinary" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:sequence maxOccurs="1" minOccurs="0">
+        <xsd:element name="ValidPointsLink" type="xsd:string" maxOccurs="1" minOccurs="1">
+</xsd:element>
+        <xsd:element name="MD5ChecksumValidPoints" type="xsd:hexBinary" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MatrixDimensionType">
+    <xsd:sequence>
+      <xsd:element name="SizeX" type="xsd:unsignedLong" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="SizeY" type="xsd:unsignedLong" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="SizeZ" type="xsd:unsignedLong" maxOccurs="1" minOccurs="1">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RotationType">
+    <xsd:sequence>
+      <xsd:element name="r11" maxOccurs="1" minOccurs="1" type="RotationMatrixElementType">
+</xsd:element>
+      <xsd:element name="r12" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r13" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r21" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r22" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r23" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r31" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r32" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+      <xsd:element name="r33" type="RotationMatrixElementType" maxOccurs="1" minOccurs="1">
+</xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="RotationMatrixElementType">
+    <xsd:restriction base="xsd:double">
+      <xsd:maxInclusive value="1">
+</xsd:maxInclusive>
+      <xsd:minInclusive value="-1">
+</xsd:minInclusive>
+      <xsd:whiteSpace value="collapse">
+</xsd:whiteSpace>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

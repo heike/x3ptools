@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.open-fmc.org/open-fmc-revision-1.xsd" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.open-fmc.org/open-fmc-revision-1.xsd" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="0.7">
+	<xs:annotation>
+		<xs:documentation>Schema of Open-FMC x3p extension for forensic topography data of cartridge cases and bullets,  DRAFT, Version 0.7, April 2022</xs:documentation>
+	</xs:annotation>
+	<xs:element name="Open-FMC">
+		<xs:annotation>
+			<xs:documentation>Root XML element for the open-fmc x3p extension</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Revision" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Data format revision</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:token">
+							<xs:enumeration value="1.0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Admin" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Administrative information</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AgencyID" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="AgencyCaseNumber" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="LabID" type="xs:string" nillable="true" minOccurs="0"/>
+							<xs:element name="LabCaseNumber" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Measurement" nillable="true" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Information about the measurement method and data processing</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="UnmodifiedData" type="xs:boolean" nillable="true" minOccurs="0"/>
+							<xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Firearm" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Information about the firearm that was used to obtain a test fire exhibit</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ItemNumber" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="SerialNumber" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="Brand" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="Model" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="Caliber" type="xs:token" nillable="true" minOccurs="0"/>
+							<xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="CartridgeCase">
+						<xs:annotation>
+							<xs:documentation>Information about a cartridge case exhibit and its measurement</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="ItemNumber" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="Brand" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="Caliber" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="Headstamp" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="FiringPinType" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Centerfire"/>
+											<xs:enumeration value="Rimfire"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="FiringPinClass" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Circular"/>
+											<xs:enumeration value="Elliptical"/>
+											<xs:enumeration value="Hemispherical"/>
+											<xs:enumeration value="Rectangular"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="FiringPinAperture" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Circular"/>
+											<xs:enumeration value="Rectangular/Square"/>
+											<xs:enumeration value="Teardrop"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="BreechFaceClass" nillable="true" minOccurs="0" maxOccurs="unbounded">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Arched"/>
+											<xs:enumeration value="Circular"/>
+											<xs:enumeration value="Crosshatch"/>
+											<xs:enumeration value="Granular"/>
+											<xs:enumeration value="Parallel"/>
+											<xs:enumeration value="Smooth"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="PrimerMaterial" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Brass"/>
+											<xs:enumeration value="Copper"/>
+											<xs:enumeration value="Nickel"/>
+											<xs:enumeration value="Steel"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="LacqueredPrimer" type="xs:boolean" nillable="true" minOccurs="0"/>
+								<xs:element name="CaseMaterial" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Aluminum"/>
+											<xs:enumeration value="Brass"/>
+											<xs:enumeration value="Nickel"/>
+											<xs:enumeration value="Steel"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="Cast" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Negative"/>
+											<xs:enumeration value="Positive"/>
+											<xs:enumeration value="No"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="CartridgeCaseROI" nillable="true" minOccurs="0" maxOccurs="unbounded">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="ApertureShear"/>
+											<xs:enumeration value="BreechFace"/>
+											<xs:enumeration value="CaseBodyMark"/>
+											<xs:enumeration value="EjectorMark"/>
+											<xs:enumeration value="ExtractorMark"/>
+											<xs:enumeration value="FiringPinDrag"/>
+											<xs:enumeration value="FiringPinImpression"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Bullet">
+						<xs:annotation>
+							<xs:documentation>Information about a bullet exhibit and its measurement</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="ItemNumber" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="Brand" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="Caliber" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="Diameter" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="RiflingType" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Conventional"/>
+											<xs:enumeration value="Polygonal"/>
+											<xs:enumeration value="Unrifled"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="NumberOfLands" type="xs:nonNegativeInteger" nillable="true" minOccurs="0"/>
+								<xs:element name="TwistDirection" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Left"/>
+											<xs:enumeration value="Right"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="UnfiredWeight" type="xs:token" nillable="true" minOccurs="0"/>
+								<xs:element name="SurfaceMaterial" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Aluminum"/>
+											<xs:enumeration value="Brass"/>
+											<xs:enumeration value="Copper"/>
+											<xs:enumeration value="Lead"/>
+											<xs:enumeration value="Nickel"/>
+											<xs:enumeration value="Polymer"/>
+											<xs:enumeration value="Steel"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="Cast" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Negative"/>
+											<xs:enumeration value="Positive"/>
+											<xs:enumeration value="No"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="BulletROI" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="GEA"/>
+											<xs:enumeration value="LEA"/>
+											<xs:enumeration value="PartialStrip"/>
+											<xs:enumeration value="Strip"/>
+											<xs:enumeration value="Other"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="LEAorGEAIndex" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:pattern value="((GEA|LEA)([0-9])+)((\s(to)\s)((GEA|LEA)([0-9])+)){0,1}"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="LEAorGEAPosition" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="DoubleListType">
+											<xs:minLength value="3"/>
+											<xs:maxLength value="3"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="IndexDirection" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="xs:token">
+											<xs:enumeration value="Clockwise"/>
+											<xs:enumeration value="Counterclockwise"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="NoseDirection" nillable="true" minOccurs="0">
+									<xs:simpleType>
+										<xs:restriction base="DoubleListType">
+											<xs:minLength value="3"/>
+											<xs:maxLength value="3"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="Comment" type="xs:string" nillable="true" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="DoubleListType">
+		<xs:annotation>
+			<xs:documentation>List of double values</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="xs:double"/>
+	</xs:simpleType>
+</xs:schema>
