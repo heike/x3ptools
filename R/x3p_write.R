@@ -115,9 +115,10 @@ x3p_write <- function(x3p, file, size = 8, quiet = F, create_dir = T) {
     colnames <- names(table(x3p$mask))
     if (length(colnames) > 1) {
       # does mask contain any information?
+  #  browser()
       png <- convert_raster_to_png(x3p$mask) 
       
-      writePNG(png, "bindata/mask.png")
+      png::writePNG(png, "bindata/mask.png")
       
     
     } else {
@@ -182,12 +183,46 @@ write_x3p <- function(x3p, file, size = 8, quiet = F) {
 #' @return png object
 convert_raster_to_png <- function(raster) {
   # convert a raster object to a numeric array of values between 0 and 1
-  r <- x3p$mask
-  
+  r <- raster
+
   mask_table <- table(r)
-  mask_table <- 0:(length(mask_table)-1)
-  names(mask_table) <- names(table(r))
-  r_int <- mask_table[r]/max(mask_table)
-  png <- t(array(mask_table[r]/max(mask_table), dim = rev(dim(r))))
-  png
+  splinters <- strsplit(names(mask_table), "")
+  
+  red <- sapply(splinters, FUN = function(s) { paste0(s[2], s[3])})
+  red_values <- strtoi(red, 16L)/255
+  names(red_values) <- names(table(r))
+  
+  green <- sapply(splinters, FUN = function(s) { paste0(s[4], s[5])})
+  green_values <- strtoi(green, 16L)/255
+  names(green_values) <- names(table(r))
+  
+  blue <- sapply(splinters, FUN = function(s) { paste0(s[6], s[7])})
+  blue_values <- strtoi(blue, 16L)/255
+  names(blue_values) <- names(table(r))
+  
+#  browser()
+  dims <- dim(raster)
+  m <- array(NA,c(dims[1],dims[2],3))
+  m[,,1] <- matrix(red_values[r], nrow=dims[1], ncol = dims[2], byrow = TRUE)
+  m[,,2] <- matrix(green_values[r], nrow=dims[1], ncol = dims[2], byrow = TRUE)
+  m[,,3] <- matrix(blue_values[r], nrow=dims[1], ncol = dims[2], byrow = TRUE)
+#  m[,,1] <- apply(substr(raster,2,3), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#  m[,,2] <- apply(substr(raster,4,5), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#  m[,,3] <- apply(substr(raster,6,7), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+  m  
 }
+
+
+#' #' Helper function
+#' #' @param raster raster image
+#' #' @return png object
+#' convert_raster_to_png <- function(raster) {
+#'   #  browser()
+#'   dims <- dim(raster)
+#'   m <- array(NA,c(dims[1],dims[2],3))
+#'   m[,,1] <- apply(substr(raster,2,3), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#'   m[,,2] <- apply(substr(raster,4,5), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#'   m[,,3] <- apply(substr(raster,6,7), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#'   #  m[,,3] <- apply(substr(raster,8,9), MARGIN=c(1,2), FUN= strtoi, base=16)/255
+#'   m
+#' }
