@@ -200,29 +200,11 @@ convert_raster_to_png <- function(raster) {
   blue_values <- strtoi(blue, 16L)/255
   names(blue_values) <- names(table(r))
   
-#  browser()
-  dims <- dim(raster)
+  dims <- dim(r)
   m <- array(NA,c(dims[1],dims[2],3))
   m[,,1] <- matrix(red_values[r], nrow=dims[1], ncol = dims[2], byrow = TRUE)
   m[,,2] <- matrix(green_values[r], nrow=dims[1], ncol = dims[2], byrow = TRUE)
   m[,,3] <- matrix(blue_values[r], nrow=dims[1], ncol = dims[2], byrow = TRUE)
-#  m[,,1] <- apply(substr(raster,2,3), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#  m[,,2] <- apply(substr(raster,4,5), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#  m[,,3] <- apply(substr(raster,6,7), MARGIN=c(1,2), FUN= strtoi, base=16)/255
   m  
 }
 
-
-#' #' Helper function
-#' #' @param raster raster image
-#' #' @return png object
-#' convert_raster_to_png <- function(raster) {
-#'   #  browser()
-#'   dims <- dim(raster)
-#'   m <- array(NA,c(dims[1],dims[2],3))
-#'   m[,,1] <- apply(substr(raster,2,3), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#'   m[,,2] <- apply(substr(raster,4,5), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#'   m[,,3] <- apply(substr(raster,6,7), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#'   #  m[,,3] <- apply(substr(raster,8,9), MARGIN=c(1,2), FUN= strtoi, base=16)/255
-#'   m
-#' }
